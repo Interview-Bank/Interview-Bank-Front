@@ -1,17 +1,12 @@
-import './App.css';
-import Layout from "./components/layout/layout.js"
+import React from "react";
+import Router from "./Router";
 
 function App() {
-
   return (
-    <Layout>
-
-    </Layout>
+    <div className="App">
+      <Router />
+    </div>
   );
 }
 
 export default App;
-
-
-
-

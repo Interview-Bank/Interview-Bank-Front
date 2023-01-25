@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+body {
+  background-color: #f9f9f9;
+}
+.register-outer-box {
+  margin: 64px auto auto;
+  width: 346px;
+  height: 676px;
+}
+
+.register-box-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: #2e55e7;
+  font-size: 14px;
+}
+
+.form-item > p {
+  font-family: "Inter", sans-serif;
+  margin-top: 20px;
+  margin-bottom: 3px;
+  color: #797979;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 320px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  padding: 13px 12px;
+}
+
+.form-input::placeholder {
+  font-family: "Inter", sans-serif;
+  color: #dee2e6;
+}
+
+.register-confirm-button {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 346px;
+  height: 52px;
+  border-radius: 5px;
+  padding: 13px 12px;
+  background-color: #2e55e7;
+  color: #fff;
+  margin-top: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.comfortable-register > p {
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  color: #797979;
+  font-weight: 600;
+}
