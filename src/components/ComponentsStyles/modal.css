@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* modal창 */
+.modalBody {
+  position: absolute;
+  width: 330px;
+  height: 400px;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  z-index: 2;
+}
+
+.modalTitle {
+  margin-top: 20px;
+  color: #2e55e7;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  z-index: 2;
+}
+
+#modalCloseBtn {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  color: #999999;
+  background-color: transparent;
+  font-size: 18px;
+  z-index: 2;
+}
+
+#modalCloseBtn:hover {
+  cursor: pointer;
+}
+
+.modal-login-button {
+  width: 330px;
+  height: 45px;
+  cursor: pointer;
+  border: 1px solid #2e55e7;
+  background-color: #2e55e7;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: bolder;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.input-login {
+  font-family: "Inter", sans-serif;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  width: 308px;
+  height: 30px;
+  font-size: 13px;
+  padding: 5px 10px;
+  z-index: 2;
+}
+
+input::placeholder {
+  color: #b5b5b5;
+}
+
+.close-button {
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  margin: 20px;
+  background-color: #fff;
+  border: none;
+  float: right;
+  color: #999999;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.additional-container {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  color: #646464;
+  margin-top: 10px;
+  border: none;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.additional-container > span {
+  margin: 10px;
+  text-align: center;
+}
+
+.social-login-container {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #646464;
+  margin-top: 40px;
+  z-index: 2;
+}
+
+.register-button {
+  text-decoration: none;
+  color: inherit;
+  z-index: 2;
+}
+
+.register-button:hover {
+  color: #2e55e7;
+}
+
+.login-modal-options {
+  margin-top: 10px;
+  text-align: end;
+}
+
+.find-password-option {
+  color: #646464;
+  margin-left: 10px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.register-option {
+  color: #646464;
+  margin-left: 10px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.additional-login {
+  margin-top: 40px;
+  color: #646464;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.social-login-button {
+  margin: 15px;
+  width: 50px;
+  height: 50px;
+}
