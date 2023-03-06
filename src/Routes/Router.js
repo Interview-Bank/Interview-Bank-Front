@@ -5,6 +5,7 @@ import RegisterEmailContainer from "../Pages/Register/RegisterEmail/RegisterEmai
 import HomeContainer from "../Pages/Home/HomeContainer";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import FindPasswordContainer from "../Pages/FindPassword/FindPasswordContainer";
+import InterviewConatiner from "../Pages/Interview/InterviewConatiner";
 const Router = () => {
   return (
     <Routes>
@@ -12,6 +13,7 @@ const Router = () => {
       <Route path="/select" element={<RegisterSelect />} />
       <Route path="/signup" element={<RegisterEmailContainer />} />
       <Route path="/find" element={<FindPasswordContainer />} />
+      <Route path="/interview/:interview_id" element={<InterviewConatiner />} />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );

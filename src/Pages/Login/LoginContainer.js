@@ -2,10 +2,13 @@ import axios from "axios";
 import LoginView from "./LoginView";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { setToken, setUserId } from "../../Redux/Reducers/AuthReducer";
+import { useDispatch } from "react-redux";
 
 const LoginContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginSubmit = async (values) => {
     const { email, password } = values;
@@ -18,7 +21,8 @@ const LoginContainer = () => {
         .then((res) => {
           const userId = res.data.accountId;
           const authToken = res.headers.get("X-Auth-Token");
-          console.log(authToken);
+          dispatch(setToken(authToken));
+          dispatch(setUserId(userId));
           localStorage.setItem("user", res.data.nickname);
           alert("로그인 성공");
           window.location.reload();
