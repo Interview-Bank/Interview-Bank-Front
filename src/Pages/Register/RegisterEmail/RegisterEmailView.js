@@ -27,7 +27,7 @@ const RegisterEmailView = ({
         <RegisterBody>
           <div>
             <h4>닉네임</h4>
-            <Input
+            <RegisterInput
               id="nickname"
               type="text"
               placeholder="닉네임을 입력해주세요."
@@ -40,7 +40,7 @@ const RegisterEmailView = ({
           </div>
           <div>
             <h4>이메일</h4>
-            <Input
+            <RegisterInput
               id="email"
               type="text"
               placeholder="이메일을 입력해주세요."
@@ -53,7 +53,7 @@ const RegisterEmailView = ({
           </div>
           <div>
             <h4>비밀번호</h4>
-            <Input
+            <RegisterInput
               id="password"
               type="password"
               placeholder="영문,숫자,특수문자 포함 8자 이상"
@@ -65,8 +65,7 @@ const RegisterEmailView = ({
             </OutputText>
           </div>
           <div>
-            <h4>비밀번호 확인</h4>
-            <Input
+            <RegisterInput
               id="passwordConfirm"
               type="password"
               placeholder="비밀번호를 다시 입력해주세요."
@@ -110,7 +109,7 @@ const RegisterBody = styled.div`
     }
   }
 `;
-const Input = styled.input`
+const RegisterInput = styled.input`
   width: 319px;
   height: 50px;
   border-radius: 5px;
@@ -140,6 +139,8 @@ const RegisterButton = styled.button`
 const OutputText = styled.div`
   border: none;
   margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
   font-size: 12px;
   text-align: start;
   &.success {

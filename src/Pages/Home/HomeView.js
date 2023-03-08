@@ -17,19 +17,18 @@ const HomeView = ({ interviewList, navigate }) => {
           {interviewList &&
             interviewList.slice(-10).map((item, index) => (
               <ul
-                key={index}
+                key={item.interviewId}
                 onClick={(e) => {
                   navigate(`/interview/${item.interviewId}`);
                 }}
               >
                 <CardTitle>{item.title}</CardTitle>
-                <CardNickname>
-                  <RiUser3Fill />
-                  {item.nickname}
-                </CardNickname>
-                <CardDate>
-                  {moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
-                </CardDate>
+                <CardDetail>
+                  <CardNickname>{item.nickname}</CardNickname>
+                  <CardDate>
+                    {moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
+                  </CardDate>
+                </CardDetail>
               </ul>
             ))}
         </HomeBody>
@@ -38,8 +37,6 @@ const HomeView = ({ interviewList, navigate }) => {
     </Layout>
   );
 };
-
-const HomeBestInterview = styled.div``;
 
 const HomeWrapper = styled.div`
   min-height: 70vh;
@@ -88,15 +85,21 @@ const HomeBody = styled.div`
 `;
 const HomeFooter = styled.div``;
 
-const CardTitle = styled.div`
+const CardTitle = styled.span`
   font-size: 1.4rem;
+  color: #252525;
   margin-top: 30px;
   margin-left: 30px;
   margin: 0 auto;
   margin-left: 30px;
   margin-top: 30px;
 `;
-const CardNickname = styled.div`
+
+const CardDetail = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+const CardNickname = styled.span`
   display: flex;
   align-items: flex-end;
   color: #747474;

@@ -60,9 +60,7 @@ const HeaderView = ({ modal, setModal, isAuth }) => {
             <img src={Search} alt="search" />
           </SearchBox>
           <NavigationBox>
-            <WriteButton onClick={() => navigate("/write")}>
-              글 쓰기
-            </WriteButton>
+            <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
             <LogoutButton>{localStorage.getItem("user")} 님</LogoutButton>
           </NavigationBox>
         </HeaderContents>
