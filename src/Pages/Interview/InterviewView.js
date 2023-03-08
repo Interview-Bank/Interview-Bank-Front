@@ -102,19 +102,23 @@ const BoardScrapButton = styled.button`
 
 const QuestionsBlock = styled.div`
   > li {
-    font-weight: 700;
-    font-size: 18px;
-    width: 1047px;
-    height: 100px;
-    padding-left: 30px;
+    width: 988px;
+    height: 65px;
     margin-top: 30px;
-    border-radius: 5px;
-    border: 0px solid #b5b5b5;
-    border-left: 17px solid #2e55e7;
-    outline: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
-    align-items: center;
+    margin-bottom: 18px;
+    border: none;
+    border-left: 12px solid #2e55e7;
+    background-color: #fff;
+    font-weight: 700;
+    color: #252525;
+    font-size: 1.2rem;
     display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px 50px;
+    outline: none;
   }
 `;
 export default InterviewView;

@@ -83,9 +83,7 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
             <img src={Search} alt="search" />
           </SearchBox>
           <NavigationBox>
-            <WriteButton onClick={() => navigate("/write")}>
-              글 쓰기
-            </WriteButton>
+            <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
             <LogoutButton
              type="button"
              onClick={() => {

@@ -153,8 +153,9 @@ const SocialLoginBox = styled.div`
   }
   > div {
     margin-top: 5px;
+    justify-content: center;
+    gap: 15px;
     display: flex;
-    justify-content: space-evenly;
   }
 `;
 
@@ -164,7 +165,7 @@ const SocialLoginButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   > img {
-    justify-content: space-evenly;
+    gap: 15px;
     display: flex;
     width: 3.2rem;
   }

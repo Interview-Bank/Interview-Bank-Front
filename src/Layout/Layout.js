@@ -16,6 +16,7 @@ const Layout = (props) => {
 const MainWrapper = styled.div`
   position: relative;
   top: 100px;
+  min-height: 100vh;
 `;
 
 export default Layout;
