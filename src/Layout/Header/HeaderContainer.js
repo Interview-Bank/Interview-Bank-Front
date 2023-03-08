@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import HeaderView from "./HeaderView";
 import { jwtUtils } from "../../utils/jwtUtils";
 import { useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { useSelector } from "react-redux";
 const HeaderContainer = () => {
   const [modal, setModal] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+  const [profile, setProfile] = useState(false)
   const token = useSelector((state) => state.Auth.token);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const HeaderContainer = () => {
     }
   }, [token]);
 
-  return <HeaderView modal={modal} setModal={setModal} isAuth={isAuth} />;
+  return <HeaderView modal={modal} setModal={setModal} profile = {profile} setProfile={setProfile} isAuth={isAuth}/>;
 };
 
 export default HeaderContainer;

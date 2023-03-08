@@ -1,16 +1,36 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Assets/Images/logo.svg";
 import Search from "../../Assets/Images/search.png";
 import Modal from "../../Components/Modal/Modal";
+import ProfileContainer from "../../Components/Profile/ProfileContainer";
 import LoginContainer from "../../Pages/Login/LoginContainer";
 
-const HeaderView = ({ modal, setModal, isAuth }) => {
+const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
+  const headerWrapperRef = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        headerWrapperRef.current &&
+        !headerWrapperRef.current.contains(event.target)
+      ) {
+        setProfile(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [headerWrapperRef, setProfile]);
+
   if (!isAuth) {
     return (
-      <HeaderWrapper>
+      <HeaderWrapper ref={headerWrapperRef}>
         <HeaderContents>
           <LogoBox>
             <img src={Logo} alt="logo" onClick={() => navigate("/")} />
@@ -50,7 +70,10 @@ const HeaderView = ({ modal, setModal, isAuth }) => {
     );
   } else {
     return (
-      <HeaderWrapper>
+      <HeaderWrapper
+        ref={headerWrapperRef}
+        onClick={() => setProfile(!profile)}
+      >
         <HeaderContents>
           <LogoBox>
             <img src={Logo} alt="logo" onClick={() => navigate("/")} />
@@ -63,7 +86,12 @@ const HeaderView = ({ modal, setModal, isAuth }) => {
             <WriteButton onClick={() => navigate("/write")}>
               글 쓰기
             </WriteButton>
-            <LogoutButton>{localStorage.getItem("user")} 님</LogoutButton>
+            <LogoutButton
+             type="button"
+             onClick={() => {
+               setProfile(!profile);
+             }}>{localStorage.getItem("user")} 님</LogoutButton>
+             {profile && <ProfileContainer/>}
           </NavigationBox>
         </HeaderContents>
       </HeaderWrapper>
