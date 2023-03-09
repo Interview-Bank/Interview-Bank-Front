@@ -6,4 +6,7 @@ export class jwtUtils {
       return true;
     }
   }
+  static getId(token){
+    return token
+  }
 }

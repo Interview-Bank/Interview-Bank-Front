@@ -10,12 +10,12 @@ import LoginContainer from "../../Pages/Login/LoginContainer";
 const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
+  const UserButtonRef = useRef(null)
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (
-        ProfileRef.current &&
-        !ProfileRef.current.contains(event.target)
+        UserButtonRef.current && !UserButtonRef.current.contains(event.target) && ProfileRef.current && !ProfileRef.current.contains(event.target)
       ) {
         setProfile(false);
       }
@@ -83,11 +83,13 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
             <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
             <UserButton
              type="button"
-             ref={ProfileRef}
+             ref = {UserButtonRef}
              onClick={() => {
                setProfile(!profile);
              }}>{localStorage.getItem("user")} 님</UserButton>
+             <ProfileWrapper ref={ProfileRef}>
              {profile && <ProfileContainer/>}
+             </ProfileWrapper>
           </NavigationBox>
         </HeaderContents>
       </HeaderWrapper>
@@ -158,6 +160,10 @@ const UserButton = styled.button`
   font-size: 14px;
   font-weight: 600;
   margin-left: 25px;
+`;
+
+const ProfileWrapper = styled.div`
+  position: fixed;
 `;
 const WriteButton = styled.button`
   font-weight: 700;
