@@ -9,13 +9,13 @@ import LoginContainer from "../../Pages/Login/LoginContainer";
 
 const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
-  const headerWrapperRef = useRef(null)
+  const ProfileRef = useRef(null)
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (
-        headerWrapperRef.current &&
-        !headerWrapperRef.current.contains(event.target)
+        ProfileRef.current &&
+        !ProfileRef.current.contains(event.target)
       ) {
         setProfile(false);
       }
@@ -26,11 +26,11 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [headerWrapperRef, setProfile]);
+  }, [ProfileRef, setProfile]);
 
   if (!isAuth) {
     return (
-      <HeaderWrapper ref={headerWrapperRef}>
+      <HeaderWrapper>
         <HeaderContents>
           <LogoBox>
             <img src={Logo} alt="logo" onClick={() => navigate("/")} />
@@ -70,10 +70,7 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
     );
   } else {
     return (
-      <HeaderWrapper
-        ref={headerWrapperRef}
-        onClick={() => setProfile(!profile)}
-      >
+      <HeaderWrapper>
         <HeaderContents>
           <LogoBox>
             <img src={Logo} alt="logo" onClick={() => navigate("/")} />
@@ -84,11 +81,12 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
           </SearchBox>
           <NavigationBox>
             <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
-            <LogoutButton
+            <UserButton
              type="button"
+             ref={ProfileRef}
              onClick={() => {
                setProfile(!profile);
-             }}>{localStorage.getItem("user")} 님</LogoutButton>
+             }}>{localStorage.getItem("user")} 님</UserButton>
              {profile && <ProfileContainer/>}
           </NavigationBox>
         </HeaderContents>
@@ -152,7 +150,7 @@ const RegisterPageButton = styled.button`
   }
 `;
 
-const LogoutButton = styled.button`
+const UserButton = styled.button`
   border: none;
   background-color: #f9f9f9;
   cursor: pointer;
