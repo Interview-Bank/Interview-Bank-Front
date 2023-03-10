@@ -3,7 +3,14 @@ import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 
-const InterviewView = ({ interview, contents, token, accountId, userId }) => {
+const InterviewView = ({
+  interview,
+  contents,
+  token,
+  accountId,
+  userId,
+  handleScrap,
+}) => {
   return (
     <Layout>
       <BoardWrapper>
@@ -20,7 +27,9 @@ const InterviewView = ({ interview, contents, token, accountId, userId }) => {
               </div>
             )}
             {jwtUtils.isAuth(token) && accountId !== userId && (
-              <BoardScrapButton>★ 스크랩</BoardScrapButton>
+              <BoardScrapButton onClick={handleScrap}>
+                ★ 스크랩
+              </BoardScrapButton>
             )}
           </BoardDetail>
           <QuestionsBlock>
@@ -76,6 +85,7 @@ const BoardEdit = styled.button`
   background-color: #f9f9f9;
   justify-content: end;
   cursor: pointer;
+  font-weight: 700;
   color: #747474;
 `;
 const BoardDelete = styled.button`
@@ -83,6 +93,7 @@ const BoardDelete = styled.button`
   background-color: #f9f9f9;
   cursor: pointer;
   color: #747474;
+  font-weight: 700;
   :hover {
     color: red;
   }

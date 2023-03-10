@@ -29,7 +29,7 @@ const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle }) => {
 
 const AddButton = styled.button`
   width: 100%;
-  height: 60px;
+  height: 100px;
   margin-top: 30px;
   margin-bottom: 18px;
   border: none;
@@ -58,12 +58,12 @@ const InsertForm = styled.div`
 `;
 
 const Input = styled.input`
-  width: 988px;
+  width: 984px;
   height: 80px;
   margin-bottom: 15px;
   margin-top: 30px;
   border: none;
-  border-left: 12px solid #2e55e7;
+  border-left: 16px solid #2e55e7;
   background-color: #fff;
   font-weight: 700;
   color: #252525;
@@ -80,7 +80,7 @@ const Input = styled.input`
 
 const QuestionsAddButton = styled.button`
   position: absolute;
-  top: 50%;
+  top: 75px;
   right: 20px;
   justify-content: center;
   border: none;

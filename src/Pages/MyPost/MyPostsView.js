@@ -15,26 +15,21 @@ const MyPostsView = ({ boardList }) => {
         <MyPostsBody>
           {boardList.map((item, index) => (
             <CardWrapper
-            key={index}
-            onClick={() => {
-              navigate(`/interview/${item.interviewId}`);
-            }}
-          >
-            <CardBody>
-              <CardBodyTitle>{item.title}</CardBodyTitle>
-              <CardBodyDetail>
-                <CardBodyDate>{moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}</CardBodyDate>
-                <CardBodyUser>{item.nickname}</CardBodyUser>
-              </CardBodyDetail>
-            </CardBody>
-          </CardWrapper>
-            // <CardBoard
-            //   key={item.interviewId}
-            //   nickname={item.nickname}
-            //   date={moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
-            //   title={item.title}
-            //   board_id={item.interviewId}
-            // />
+              key={index}
+              onClick={() => {
+                navigate(`/interview/${item.interviewId}`);
+              }}
+            >
+              <CardBody>
+                <CardBodyTitle>{item.title}</CardBodyTitle>
+                <CardBodyDetail>
+                  <CardBodyDate>
+                    {moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
+                  </CardBodyDate>
+                  <CardBodyUser>{item.nickname}</CardBodyUser>
+                </CardBodyDetail>
+              </CardBody>
+            </CardWrapper>
           ))}
         </MyPostsBody>
       </MyPostsContainer>

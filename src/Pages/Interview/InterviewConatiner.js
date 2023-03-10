@@ -36,6 +36,23 @@ const InterviewConatiner = () => {
     });
   }, []);
 
+  const handleScrap = () => {
+    axios
+      .post(
+        `https://bstaging.interviewbank.net/scraps`,
+        {
+          interviewId: interview.interviewId,
+        },
+        {
+          headers,
+        }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <InterviewView
       interview={interview}
@@ -44,6 +61,7 @@ const InterviewConatiner = () => {
       token={token}
       userId={userId}
       accountId={accountId}
+      handleScrap={handleScrap}
     />
   );
 };

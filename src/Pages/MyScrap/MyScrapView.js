@@ -6,13 +6,8 @@ import { useNavigate } from "react-router-dom";
 // import { CardScrap } from "../Components/CardScrap";
 // import Pagination from "../Components/Pagination";
 
-const MyScrapView = ({
-  scrapList,
-  handlePageChange,
-  limit,
-  currentPage,
-}) => {
-    const navigate = useNavigate();
+const MyScrapView = ({ scrapList }) => {
+  const navigate = useNavigate();
   return (
     <Layout>
       <ScrapPageContainer>
@@ -22,14 +17,14 @@ const MyScrapView = ({
         <ScrapPageBody>
           {scrapList.map((item, index) => (
             <CardWrapper
-            key={index}
-            onClick={() => {
+              key={index}
+              onClick={() => {
                 navigate(`/scraps/${item.scrapId}`);
-            }}
+              }}
             >
-                <CardBody>
-                    <CardBodyTitle>{item.title}</CardBodyTitle>
-                </CardBody>
+              <CardBody>
+                <CardBodyTitle>{item.title}</CardBodyTitle>
+              </CardBody>
             </CardWrapper>
           ))}
         </ScrapPageBody>

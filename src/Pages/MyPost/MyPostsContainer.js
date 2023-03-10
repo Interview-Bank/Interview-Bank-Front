@@ -8,31 +8,38 @@ import { jwtUtils } from "../../utils/jwtUtils";
 const MyPostsContainer = () => {
   const [boardList, setBoardList] = useState([]);
   const token = useSelector((state) => state.Auth.token);
-  const authToken = jwtUtils.getId(token);
   const userName = localStorage.getItem("user");
   const newBoardList = boardList.filter(
     (boardList) => boardList.nickname === userName
   );
   const headers = {
-    "X-Auth-Token": `${authToken}`,
+    "X-Auth-Token": `${token}`,
   };
 
   useEffect(() => {
-    // 페이지에 해당하는 게시물 가져오기
-    const getBoardList = async () => {
-      const { data } = await axios.get(
-        `https://bstaging.interviewbank.net/interview`,
-        {},
-        {
-          headers,
-        }
-      );
-      return data.interviews;
+    const fetchData = async () => {
+      try {
+        let allData = [];
+        let pageSize = 10; // 한 번에 가져올 수 있는 최대 사이즈
+        let pageNumber = 0;
+        let data = [];
+        do {
+          console.log(pageNumber);
+          const response = await axios.get(
+            `https://bstaging.interviewbank.net/interview?page=${pageNumber}&size=${pageSize}`
+          );
+          console.log(response);
+          data = response.data.interviews;
+          allData = [...allData, ...data];
+          setBoardList(allData);
+          pageNumber++;
+        } while (data.length === pageSize);
+        setBoardList(allData);
+      } catch (error) {
+        console.log(error);
+      }
     };
-
-    getBoardList().then((result) => {
-      setBoardList(result);
-    });
+    fetchData();
   }, []);
 
   return <MyPostsView boardList={newBoardList} />;
