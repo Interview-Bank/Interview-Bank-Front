@@ -61,7 +61,6 @@ const RegisterEmailContainer = () => {
     }
   }, []);
 
-  //비밀번호 확인
   const onChangeConfirmPwd = useCallback(
     (e) => {
       const currConfirmPwd = e.target.value;
@@ -76,7 +75,6 @@ const RegisterEmailContainer = () => {
     [password]
   );
 
-  //닉네임
   const onChangeNickname = useCallback((e) => {
     const currNickname = e.target.value;
     setNickname(currNickname);
@@ -102,7 +100,6 @@ const RegisterEmailContainer = () => {
         navigate("/");
       }, 1000);
     } catch (e) {
-      // 서버에서 받은 에러 메시지 출력
       alert(e.response.data.message + "😭");
     }
   };
