@@ -5,8 +5,12 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick }) => {
   return (
     <ProfileContainer>
       <UserInfo></UserInfo>
-      <Button type="button" onClick={onScrapClick}>스크랩한 글</Button>
-      <Button type="button" onClick={onMyPostsClick}>작성한 글</Button>
+      <Button type="button" onClick={onScrapClick}>
+        스크랩한 글
+      </Button>
+      <Button type="button" onClick={onMyPostsClick}>
+        작성한 글
+      </Button>
       <Button type="button" onClick={onLogoutClick}>
         로그아웃
       </Button>
@@ -25,6 +29,7 @@ const ProfileContainer = styled.div`
   border-radius: 5px;
 `;
 const UserInfo = styled.div``;
+
 const Button = styled.button`
   cursor: pointer;
   background-color: #fff;

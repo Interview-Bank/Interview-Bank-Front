@@ -28,13 +28,7 @@ const MyScrapView = ({ scrapList }) => {
             </CardWrapper>
           ))}
         </ScrapPageBody>
-        <ScrapPageFooter>
-          {/* <Pagination
-            limit={limit}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />{" "} */}
-        </ScrapPageFooter>
+        <ScrapPageFooter></ScrapPageFooter>
       </ScrapPageContainer>
     </Layout>
   );
@@ -71,15 +65,26 @@ const ScrapPageFooter = styled.div`
 `;
 
 const CardWrapper = styled.div`
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  height: 60px;
   margin-bottom: 10px;
+  border: none;
+  background-color: #fff;
+  font-weight: 700;
+  color: #252525;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
   cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
   :hover {
-    border: 1px solid #2e55e7;
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
+    color: #2e55e7;
   }
 `;
 const CardBody = styled.div``;

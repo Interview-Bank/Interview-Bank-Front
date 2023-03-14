@@ -45,7 +45,6 @@ const MyPostsContainer = styled.div`
 `;
 
 const MyPostsTitle = styled.div`
-  margin-top: 70px;
   width: 1100px;
   > h2 {
     margin: 0;
@@ -58,14 +57,28 @@ const MyPostsTitle = styled.div`
 const MyPostsBody = styled.div`
   margin-top: 30px;
 `;
+
 const CardWrapper = styled.div`
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding: 15px 30px;
+  height: 60px;
   margin-bottom: 10px;
+  border: none;
+  background-color: #fff;
+  font-weight: 700;
+  color: #252525;
+  font-size: 0.9rem;
+  gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
   cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
   :hover {
-    border: 1px solid #2e55e7;
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
+    color: #2e55e7;
   }
 `;
 const CardBody = styled.div`
@@ -74,7 +87,9 @@ const CardBody = styled.div`
   text-align: center;
 `;
 const CardBodyTitle = styled.div`
-  margin: 30px 0px 20px 35px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   font-size: 1.3rem;
   font-weight: 700;
 `;
