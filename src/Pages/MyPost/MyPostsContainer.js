@@ -28,7 +28,6 @@ const MyPostsContainer = () => {
           const response = await axios.get(
             `https://bstaging.interviewbank.net/interview?page=${pageNumber}&size=${pageSize}`
           );
-          console.log(response);
           data = response.data.interviews;
           allData = [...allData, ...data];
           setBoardList(allData);

@@ -15,7 +15,7 @@ const MyScrapContainer = () => {
     const fetchData = async () => {
       try {
         let allData = [];
-        let pageSize = 10; // 한 번에 가져올 수 있는 최대 사이즈
+        let pageSize = 10;
         let pageNumber = 0;
         let data = [];
         do {
@@ -24,7 +24,6 @@ const MyScrapContainer = () => {
             `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
-          console.log(response);
           data = response.data;
           allData = [...allData, ...data];
           setScrapList(allData);

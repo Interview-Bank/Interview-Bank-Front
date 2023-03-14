@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
 import { AuthReducer } from "./Reducers/AuthReducer";
 import { createStore, combineReducers } from "redux";
-// local storage 사용
+
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {

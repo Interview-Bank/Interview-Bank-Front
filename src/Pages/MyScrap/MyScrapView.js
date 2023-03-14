@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-// import { CardScrap } from "../Components/CardScrap";
-// import Pagination from "../Components/Pagination";
 
 const MyScrapView = ({ scrapList }) => {
   const navigate = useNavigate();

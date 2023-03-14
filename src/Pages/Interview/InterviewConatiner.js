@@ -47,9 +47,7 @@ const InterviewConatiner = () => {
           headers,
         }
       )
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
       .catch((err) => console.log(err));
   };
 

@@ -3,7 +3,6 @@ import moment from "moment";
 import Layout from "../../Layout/Layout";
 import styled from "styled-components";
 import Banner from "../../Layout/Banner/Banner";
-import { RiUser3Fill } from "react-icons/ri";
 
 const HomeView = ({ interviewList, navigate }) => {
   return (
