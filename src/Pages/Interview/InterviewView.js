@@ -2,7 +2,8 @@ import { jwtUtils } from "../../utils/jwtUtils";
 import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-
+import ScrapModal from "../../Components/Modal/PopUpModal"
+import ScrapModalContainer from "../../Components/ModalContent/ScrapModalContent/ScrapModalContainer";
 const InterviewView = ({
   interview,
   contents,
@@ -10,6 +11,8 @@ const InterviewView = ({
   accountId,
   userId,
   handleScrap,
+  scrapModal,
+  setScrapModal
 }) => {
   return (
     <Layout>
@@ -30,6 +33,14 @@ const InterviewView = ({
               <BoardScrapButton onClick={handleScrap}>
                 ★ 스크랩
               </BoardScrapButton>
+            )}
+            {scrapModal&&(
+              <ScrapModal
+              CloseModal={() => {
+                setScrapModal(!scrapModal);
+              }}>
+                <ScrapModalContainer/>
+              </ScrapModal>
             )}
           </BoardDetail>
           <QuestionsBlock>

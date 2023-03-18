@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Assets/Images/logo.svg";
 import Search from "../../Assets/Images/search.png";
-import Modal from "../../Components/Modal/Modal";
+import Modal from "../../Components/Modal/LoginModal";
 import ProfileContainer from "../../Components/Profile/ProfileContainer";
 import LoginContainer from "../../Pages/Login/LoginContainer";
 
-const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
+const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
@@ -50,15 +50,15 @@ const HeaderView = ({ modal, setModal, profile, setProfile, isAuth }) => {
 
             <LoginButton
               onClick={() => {
-                setModal(true);
+                setLoginModal(true);
               }}
             >
               로그인
             </LoginButton>
-            {modal && (
+            {loginModal && (
               <Modal
                 CloseModal={() => {
-                  setModal(!modal);
+                  setLoginModal(!loginModal);
                 }}
               >
                 <LoginContainer />

@@ -23,8 +23,8 @@ const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
           </BoardDetail>
           <QuestionsBlock>
             {contents.map((item, index) => (
-              <div>
-                <li key={index}>
+              <div key={index}>
+                <li>
                   {item.content}
                   <AddAnswerButton>+</AddAnswerButton>
                 </li>

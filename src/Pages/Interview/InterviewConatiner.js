@@ -10,7 +10,7 @@ const InterviewConatiner = () => {
   const [interview, setInterview] = useState({});
   const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
-
+  const [scrapModal, setScrapModal] = useState(false)
   const token = useSelector((state) => state.Auth.token);
   const userId = useSelector((state) => state.Auth.userId);
 
@@ -29,7 +29,6 @@ const InterviewConatiner = () => {
       return data;
     };
     getBoard().then((result) => {
-      console.log(result);
       setAccountId(result.accountId);
       setInterview(result);
       setContents(result.questions);
@@ -49,6 +48,7 @@ const InterviewConatiner = () => {
       )
       .then((result) => {})
       .catch((err) => console.log(err));
+    setScrapModal(true)
   };
 
   return (
@@ -60,6 +60,8 @@ const InterviewConatiner = () => {
       userId={userId}
       accountId={accountId}
       handleScrap={handleScrap}
+      scrapModal = {scrapModal}
+      setScrapModal = {setScrapModal}
     />
   );
 };

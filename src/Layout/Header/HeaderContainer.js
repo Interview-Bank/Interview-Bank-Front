@@ -4,7 +4,7 @@ import { jwtUtils } from "../../utils/jwtUtils";
 import { useSelector } from "react-redux";
 
 const HeaderContainer = () => {
-  const [modal, setModal] = useState(false);
+  const [LoginModal, setLoginModal] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [profile, setProfile] = useState(false)
   const token = useSelector((state) => state.Auth.token);
@@ -17,7 +17,7 @@ const HeaderContainer = () => {
     }
   }, [token]);
 
-  return <HeaderView modal={modal} setModal={setModal} profile = {profile} setProfile={setProfile} isAuth={isAuth}/>;
+  return <HeaderView loginModal={LoginModal} setLoginModal={setLoginModal} profile = {profile} setProfile={setProfile} isAuth={isAuth}/>;
 };
 
 export default HeaderContainer;

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
 import { useSelector } from "react-redux";
 import MyPostsView from "./MyPostsView";
-import { jwtUtils } from "../../utils/jwtUtils";
 
 const MyPostsContainer = () => {
   const [boardList, setBoardList] = useState([]);
