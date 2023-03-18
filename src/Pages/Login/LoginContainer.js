@@ -24,7 +24,6 @@ const LoginContainer = () => {
           dispatch(setToken(authToken));
           dispatch(setUserId(userId));
           localStorage.setItem("user", res.data.nickname);
-          alert("로그인 성공");
           window.location.reload();
         });
     } catch (e) {

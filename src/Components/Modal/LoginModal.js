@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = (props) => {
+const LoginModal = (props) => {
+  console.log(props)
   const CloseModal = () => {
     props.CloseModal();
   };
@@ -67,4 +68,4 @@ const ModalBody = styled.div`
   }
 `;
 
-export default Modal;
+export default LoginModal;
