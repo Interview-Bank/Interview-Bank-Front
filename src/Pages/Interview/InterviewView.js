@@ -3,7 +3,7 @@ import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 import ScrapModal from "../../Components/Modal/PopUpModal"
-import ScrapModalContainer from "../../Components/ModalContent/ScrapModalContent/ScrapModalContainer";
+import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapModalContainer";
 const InterviewView = ({
   interview,
   contents,

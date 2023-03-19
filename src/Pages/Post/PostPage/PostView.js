@@ -4,7 +4,8 @@ import Layout from "../../../Layout/Layout";
 import CreateQuestionsContainer from "../CreateQuestions/CreateQuestionsContainer";
 import QuestionList from "../QuestionsList/QuestionList";
 import styled from "styled-components";
-
+import EmptyInterviewTitleModalContainer from "../../../Components/ModalContent/EmptyInterviewTitleModal/EmptyInterviewTitleModalContainer";
+import EmptyInterviewTitleModal from "../../../Components/Modal/PopUpModal"
 const PostView = ({
   setTitle,
   handleClickSubmit,
@@ -14,6 +15,10 @@ const PostView = ({
   questions,
   onRemove,
   questionsId,
+  emptyInterviewTitleModal,
+  setEmptyInterviewTitleModal,
+  onAddInput
+
 }) => {
   return (
     <Layout>
@@ -36,8 +41,17 @@ const PostView = ({
           questionsId={questionsId}
           onCreate={onCreate}
           onChange={onChange}
+          onAddInput={onAddInput}
         />
         <PostButton onClick={handleClickSubmit}>발행하기</PostButton>
+        {emptyInterviewTitleModal&&(
+              <EmptyInterviewTitleModal
+              CloseModal={() => {
+                setEmptyInterviewTitleModal(!emptyInterviewTitleModal);
+              }}>
+                <EmptyInterviewTitleModalContainer/>
+              </EmptyInterviewTitleModal>
+          )}
       </WriteBody>
     </Layout>
   );

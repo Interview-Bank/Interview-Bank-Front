@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import PostView from "./PostView";
 
 function PostContainer() {
@@ -12,6 +11,7 @@ function PostContainer() {
   });
 
   const { content, questionsId } = inputs;
+  const [emptyInterviewTitleModal, setEmptyInterviewTitleModal] = useState(false)
 
   const token = useSelector((state) => state.Auth.token);
   const headers = {
@@ -30,6 +30,14 @@ function PostContainer() {
       })
       .catch((err) => {
         alert(err);
+        if(data.title === ""){
+          setEmptyInterviewTitleModal(true)
+        }
+        console.log(data)
+        console.log(inputs)
+        //여기서 제목 또는 내용이 비었을 때 팝업 생성을 해줘야함
+        //비어있는 카드를 어떻게 체크할까?
+        //이거 하려면 먼저 인터뷰 작성 방식을 수정해야한다.
       });
   };
 
@@ -70,6 +78,21 @@ function PostContainer() {
     }
   };
 
+  const onAddInput = () => {
+    //이건 단순히 인풋 카드를 하나 늘려주는거
+    const newQuestions = {
+      content,
+      questionsId,
+    };
+    setQuestions([...questions, newQuestions]);
+    setInputs({
+      content: "",
+      questionsId: nextId.current,
+    });
+    nextId.current += 1;
+    console.log(questions);
+  }
+
   const onRemove = (id) => {
     console.log(questions);
     setQuestions(questions.filter((question) => question.questionsId !== id));
@@ -87,6 +110,9 @@ function PostContainer() {
       questions={questions}
       setQuestions={setQuestions}
       onRemove={onRemove}
+      emptyInterviewTitleModal = {emptyInterviewTitleModal}
+      setEmptyInterviewTitleModal = {setEmptyInterviewTitleModal}
+      onAddInput = {onAddInput}
     />
   );
 }

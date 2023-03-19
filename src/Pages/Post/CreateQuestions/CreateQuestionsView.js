@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle }) => {
+const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle, onAddInput, handleKeyDown }) => {
+
   return (
     <>
       {isOpen && (
@@ -13,14 +14,13 @@ const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle }) => {
               value={content}
               placeholder="인터뷰를 입력해주세요."
               autoComplete="off"
+              onKeyDown={handleKeyDown}
             />
-
-            <QuestionsAddButton onClick={onCreate}>+ 등록</QuestionsAddButton>
           </Block>
         </InsertForm>
       )}
 
-      <AddButton onClick={onToggle} isOpen={isOpen}>
+      <AddButton onClick={onAddInput}>
         추가하기
       </AddButton>
     </>
@@ -78,23 +78,23 @@ const Input = styled.input`
   outline: none;
 `;
 
-const QuestionsAddButton = styled.button`
-  position: absolute;
-  top: 75px;
-  right: 20px;
-  justify-content: center;
-  border: none;
-  background-color: #2e55e7;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 80px;
-  height: 30px;
-  margin-right: 30px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  outline: none;
-`;
+// const QuestionsAddButton = styled.button`
+//   position: absolute;
+//   top: 75px;
+//   right: 20px;
+//   justify-content: center;
+//   border: none;
+//   background-color: #2e55e7;
+//   color: #fff;
+//   cursor: pointer;
+//   border-radius: 5px;
+//   width: 80px;
+//   height: 30px;
+//   margin-right: 30px;
+//   font-size: 0.9rem;
+//   font-weight: 700;
+//   outline: none;
+// `;
 
 const Block = styled.div`
   justify-content: space-between;
