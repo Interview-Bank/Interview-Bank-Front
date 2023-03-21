@@ -13,6 +13,8 @@ const PostView = ({
   onCreate,
   content,
   questions,
+  setQuestions,
+  inputs,
   onRemove,
   questionsId,
   emptyInterviewTitleModal,
@@ -33,19 +35,20 @@ const PostView = ({
       <WriteBody>
         <QuestionList
           questions={questions}
+          setQuestions={setQuestions}
           questionsId={questionsId}
+          inputs={inputs}
           onRemove={onRemove}
           onCreate={onCreate}
           onChange={onChange}
-          onAddInput={onAddInput}
         />
-        <CreateQuestionsContainer
+        {/* <CreateQuestionsContainer
           content={content}
           questionsId={questionsId}
           onCreate={onCreate}
           onChange={onChange}
           onAddInput={onAddInput}
-        />
+        /> */}
         <AddButton onClick={onAddInput}>
           추가하기
         </AddButton>

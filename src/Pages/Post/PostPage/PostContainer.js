@@ -5,10 +5,17 @@ import PostView from "./PostView";
 
 function PostContainer() {
   const [title, setTitle] = useState("");
-  const [inputs, setInputs] = useState({
+  const inputId = useRef(0);
+
+  const generateId = () => {
+    inputId.current += 1;
+    return inputId.current;
+  };
+
+  const [inputs, setInputs] = useState([{
     content: "",
-    questionsId: 0,
-  });
+    questionsId: generateId(),
+  }]);
 
   const { content, questionsId } = inputs;
   const [emptyInterviewTitleModal, setEmptyInterviewTitleModal] = useState(false)
@@ -41,13 +48,6 @@ function PostContainer() {
       });
   };
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
 
   const [questions, setQuestions] = useState([]);
 
@@ -58,48 +58,55 @@ function PostContainer() {
     title: title,
   };
 
-  const nextId = useRef(1);
-
-  const onCreate = () => {
-    if (content.length < 1) {
+  const onCreate = (id, event) => {
+    if ( event.target.value.length < 1) {
       return;
     } else {
       const newQuestions = {
         content : content,
-        questionsId : questionsId,
+        questionsId : id,
       };
       setQuestions([...questions, newQuestions]);
-      setInputs({
+      setInputs([...inputs,
+        {
         content: "",
-        questionsId: nextId.current,
-      });
-      nextId.current += 1;
+        questionsId: generateId()
+      }]);
+   
       console.log(questions);
     }
   };
-
+  const onChange = (questionsId, e) => {
+    const newInputs = inputs.map((input) => {
+      if (input.questionsId === questionsId) {
+        return { ...input, content: e.target.value };
+      }
+      return input;
+    });
+    setInputs(newInputs);
+    
+    // const { name, value } = e.target;
+    // setInputs({
+    //   ...inputs,
+    //   [name]: value,
+    // });
+  };
   const onAddInput = () => {
     //이건 단순히 인풋 카드를 하나 늘려주는거
-    const newQuestions = {
-      content,
-      questionsId,
-    };
-    console.log(content, questionsId)
-    console.log(questions);
-
-    setQuestions([...questions, newQuestions]);
-    setInputs({
+    setInputs([...inputs,
+      {
       content: "",
-      questionsId: nextId.current,
-    });
-    nextId.current += 1;
-    console.log(questions);
-    console.log(newQuestions)
+      questionsId: generateId()
+    }]);
   }
 
   const onRemove = (id) => {
-    console.log(questions);
-    setQuestions(questions.filter((question) => question.questionsId !== id));
+    // console.log(questions);
+    // setQuestions(questions.filter((question) => question.questionsId !== id));
+    const newInputs = inputs.filter((input) => input.questionsId !== id);
+
+    setInputs(newInputs);
+
   };
 
   return (
@@ -113,6 +120,7 @@ function PostContainer() {
       handleClickSubmit={handleClickSubmit}
       questions={questions}
       setQuestions={setQuestions}
+      inputs={inputs}
       onRemove={onRemove}
       emptyInterviewTitleModal = {emptyInterviewTitleModal}
       setEmptyInterviewTitleModal = {setEmptyInterviewTitleModal}
