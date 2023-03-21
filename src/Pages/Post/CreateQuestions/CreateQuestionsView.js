@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle, onAddInput, handleKeyDown }) => {
-
+  console.log(content)
   return (
     <>
       {isOpen && (
@@ -19,38 +19,34 @@ const CreateQuestions = ({ content, onCreate, onChange, isOpen, onToggle, onAddI
           </Block>
         </InsertForm>
       )}
-
-      <AddButton onClick={onAddInput}>
-        추가하기
-      </AddButton>
     </>
   );
 };
 
-const AddButton = styled.button`
-  width: 100%;
-  height: 100px;
-  margin-top: 30px;
-  margin-bottom: 18px;
-  border: none;
-  background-color: #fff;
-  font-weight: 700;
-  color: #747474;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
-  :hover {
-    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
-    color: #2e55e7;
-  }
-`;
+// const AddButton = styled.button`
+//   width: 100%;
+//   height: 100px;
+//   margin-top: 30px;
+//   margin-bottom: 18px;
+//   border: none;
+//   background-color: #fff;
+//   font-weight: 700;
+//   color: #747474;
+//   font-size: 0.9rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 20px;
+//   border-radius: 8px;
+//   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+//   padding: 10px 10px;
+//   cursor: pointer;
+//   transition: box-shadow 0.3s ease-in-out;
+//   :hover {
+//     box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
+//     color: #2e55e7;
+//   }
+// `;
 
 const InsertForm = styled.div`
   display: flex;

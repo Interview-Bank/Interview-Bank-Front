@@ -65,8 +65,8 @@ function PostContainer() {
       return;
     } else {
       const newQuestions = {
-        content,
-        questionsId,
+        content : content,
+        questionsId : questionsId,
       };
       setQuestions([...questions, newQuestions]);
       setInputs({
@@ -84,6 +84,9 @@ function PostContainer() {
       content,
       questionsId,
     };
+    console.log(content, questionsId)
+    console.log(questions);
+
     setQuestions([...questions, newQuestions]);
     setInputs({
       content: "",
@@ -91,6 +94,7 @@ function PostContainer() {
     });
     nextId.current += 1;
     console.log(questions);
+    console.log(newQuestions)
   }
 
   const onRemove = (id) => {

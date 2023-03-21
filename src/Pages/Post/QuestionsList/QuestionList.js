@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import CreateQuestionsContainer from "../CreateQuestions/CreateQuestionsContainer"
 const Question = ({ question, onRemove }) => {
   const { content, questionsId } = question;
   return (
@@ -17,10 +17,16 @@ const Question = ({ question, onRemove }) => {
   );
 };
 
-const QuestionList = ({ questions, onRemove, questionsId }) => {
+const QuestionList = ({ questions, onRemove, questionsId, onCreate, onChange, onAddInput }) => {
   return (
     <QuestionsList>
-      {questions.map((question) => (
+      {questions.map((question) => (question.content === "" ?
+        <CreateQuestionsContainer
+          content={question.content}
+          questionsId={questionsId}
+          onCreate={onCreate}
+          onChange={onChange}
+          onAddInput={onAddInput}/>:
         <Question
           question={question}
           questionsId={questionsId}
