@@ -17,11 +17,9 @@ function PostContainer() {
     questionsId: inputId.current,
   }]);
 
-  // const { content, questionsId } = inputs;
   const [emptyInterviewTitleModal, setEmptyInterviewTitleModal] = useState(false)
   const [emptyInterviewContentModal, setEmptyInterviewContentModal] = useState(false)
-
-  // const [questions, setQuestions] = useState([]);
+  const [registerInterviewModal, setRegisterInterviewModal] = useState(false)
 
   const token = useSelector((state) => state.Auth.token);
   const headers = {
@@ -43,8 +41,9 @@ function PostContainer() {
         headers,
       })
       .then((res) => {
-        alert("글이 등록되었습니다.");
-        window.location.href = "/";
+        // alert("글이 등록되었습니다.");
+        setRegisterInterviewModal(true)
+        // window.location.href = "/";
       })
       .catch((err) => {
         if(data.title === ""){
@@ -96,6 +95,8 @@ function PostContainer() {
       setEmptyInterviewTitleModal = {setEmptyInterviewTitleModal}
       emptyInterviewContentModal = {emptyInterviewContentModal}
       setEmptyInterviewContentModal = {setEmptyInterviewContentModal}
+      registerInterviewModal = {registerInterviewModal}
+      setRegisterInterviewModal = {setRegisterInterviewModal}
     />
   );
 }

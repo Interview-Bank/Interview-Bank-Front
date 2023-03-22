@@ -2,10 +2,10 @@ import React from "react";
 import Layout from "../../../Layout/Layout";
 import QuestionList from "../QuestionsList/QuestionList";
 import styled from "styled-components";
+import PopUpModal from "../../../Components/Modal/PopUpModal"
 import EmptyInterviewTitleModalContainer from "../../../Components/ModalContent/EmptyInterviewTitleModal/EmptyInterviewTitleModalContainer";
-import EmptyInterviewTitleModal from "../../../Components/Modal/PopUpModal"
 import EmptyInterviewContentModalContainer from "../../../Components/ModalContent/EmptyInterviewContentModal/EmptyInterviewContentModalContainer";
-import EmptyInterviewContentModal from "../../../Components/Modal/PopUpModal"
+import RegisterInterviewModalContainer from "../../../Components/ModalContent/RegisterInterviewModal/RegisterInterviewModalContainer";
 const PostView = ({
   setTitle,
   handleClickSubmit,
@@ -17,6 +17,8 @@ const PostView = ({
   setEmptyInterviewTitleModal,
   emptyInterviewContentModal,
   setEmptyInterviewContentModal,
+  registerInterviewModal,
+  setRegisterInterviewModal,
 
 }) => {
   return (
@@ -41,20 +43,29 @@ const PostView = ({
         </AddButton>
         <PostButton onClick={handleClickSubmit}>발행하기</PostButton>
         {emptyInterviewTitleModal&&(
-              <EmptyInterviewTitleModal
+              <PopUpModal
               CloseModal={() => {
                 setEmptyInterviewTitleModal(!emptyInterviewTitleModal);
               }}>
                 <EmptyInterviewTitleModalContainer/>
-              </EmptyInterviewTitleModal>
+              </PopUpModal>
           )}
         {emptyInterviewContentModal&&(
-              <EmptyInterviewContentModal
+              <PopUpModal
               CloseModal={() => {
                 setEmptyInterviewContentModal(!emptyInterviewContentModal);
               }}>
                 <EmptyInterviewContentModalContainer/>
-              </EmptyInterviewContentModal>
+              </PopUpModal>
+          )}
+        {registerInterviewModal&&(
+              <PopUpModal
+              CloseModal={() => {
+                setRegisterInterviewModal(false); // 모달을 숨깁니다.
+                window.location.href = "/";
+              }}>
+                <RegisterInterviewModalContainer/>
+              </PopUpModal>
           )}
       </WriteBody>
     </Layout>
