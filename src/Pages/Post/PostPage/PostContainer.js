@@ -41,9 +41,7 @@ function PostContainer() {
         headers,
       })
       .then((res) => {
-        // alert("글이 등록되었습니다.");
         setRegisterInterviewModal(true)
-        // window.location.href = "/";
       })
       .catch((err) => {
         if(data.title === ""){

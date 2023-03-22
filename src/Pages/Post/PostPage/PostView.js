@@ -61,7 +61,7 @@ const PostView = ({
         {registerInterviewModal&&(
               <PopUpModal
               CloseModal={() => {
-                setRegisterInterviewModal(false); // 모달을 숨깁니다.
+                setRegisterInterviewModal(false);
                 window.location.href = "/";
               }}>
                 <RegisterInterviewModalContainer/>
