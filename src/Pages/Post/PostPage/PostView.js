@@ -1,25 +1,22 @@
-import axios from "axios";
 import React from "react";
 import Layout from "../../../Layout/Layout";
-import CreateQuestionsContainer from "../CreateQuestions/CreateQuestionsContainer";
 import QuestionList from "../QuestionsList/QuestionList";
 import styled from "styled-components";
 import EmptyInterviewTitleModalContainer from "../../../Components/ModalContent/EmptyInterviewTitleModal/EmptyInterviewTitleModalContainer";
 import EmptyInterviewTitleModal from "../../../Components/Modal/PopUpModal"
+import EmptyInterviewContentModalContainer from "../../../Components/ModalContent/EmptyInterviewContentModal/EmptyInterviewContentModalContainer";
+import EmptyInterviewContentModal from "../../../Components/Modal/PopUpModal"
 const PostView = ({
   setTitle,
   handleClickSubmit,
   onChange,
-  onCreate,
-  content,
-  questions,
-  setQuestions,
+  onAddInput,
   inputs,
   onRemove,
-  questionsId,
   emptyInterviewTitleModal,
   setEmptyInterviewTitleModal,
-  onAddInput
+  emptyInterviewContentModal,
+  setEmptyInterviewContentModal,
 
 }) => {
   return (
@@ -34,23 +31,13 @@ const PostView = ({
       </WriteTitle>
       <WriteBody>
         <QuestionList
-          questions={questions}
-          setQuestions={setQuestions}
-          questionsId={questionsId}
           inputs={inputs}
           onRemove={onRemove}
-          onCreate={onCreate}
           onChange={onChange}
         />
-        {/* <CreateQuestionsContainer
-          content={content}
-          questionsId={questionsId}
-          onCreate={onCreate}
-          onChange={onChange}
-          onAddInput={onAddInput}
-        /> */}
+
         <AddButton onClick={onAddInput}>
-          추가하기
+          +추가하기
         </AddButton>
         <PostButton onClick={handleClickSubmit}>발행하기</PostButton>
         {emptyInterviewTitleModal&&(
@@ -60,6 +47,14 @@ const PostView = ({
               }}>
                 <EmptyInterviewTitleModalContainer/>
               </EmptyInterviewTitleModal>
+          )}
+        {emptyInterviewContentModal&&(
+              <EmptyInterviewContentModal
+              CloseModal={() => {
+                setEmptyInterviewContentModal(!emptyInterviewContentModal);
+              }}>
+                <EmptyInterviewContentModalContainer/>
+              </EmptyInterviewContentModal>
           )}
       </WriteBody>
     </Layout>
@@ -72,9 +67,10 @@ const AddButton = styled.button`
   margin-bottom: 18px;
   border: none;
   background-color: #fff;
-  font-weight: 700;
+  font-weight: 800;
   color: #747474;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  
   display: flex;
   align-items: center;
   justify-content: center;
