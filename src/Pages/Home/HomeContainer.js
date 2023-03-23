@@ -20,6 +20,7 @@ const HomeContainer = () => {
           );
           data = response.data.interviews;
           allData = [...allData, ...data];
+          console.log(allData)
           setInterviewList(allData);
           pageNumber++;
         } while (data.length === pageSize);

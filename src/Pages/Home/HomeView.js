@@ -14,7 +14,7 @@ const HomeView = ({ interviewList, navigate }) => {
         </HomeTitle>
         <HomeBody>
           {interviewList &&
-            interviewList.slice(-10).map((item, index) => (
+            interviewList.slice(0,10).map((item, index) => (
               <ul
                 key={item.interviewId}
                 onClick={(e) => {
