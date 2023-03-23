@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import moment from "moment";
 import Layout from "../../Layout/Layout";
 import styled from "styled-components";

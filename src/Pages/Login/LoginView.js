@@ -1,13 +1,15 @@
-import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
-import { Formik, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import styled from "styled-components";
 import Kakao from "../../Assets/Images/kakaotalk.png";
 import Github from "../../Assets/Images/github.png";
 import Google from "../../Assets/Images/google.png";
 
-const LoginView = ({ loginSubmit, navigate }) => {
+
+const LoginView = ({ loginSubmit, navigate, loginError }) => {
+
   return (
+    <>
     <Formik
       initialValues={{
         email: "",
@@ -28,9 +30,6 @@ const LoginView = ({ loginSubmit, navigate }) => {
                   onChange={handleChange}
                   placeholder="이메일"
                 />
-                <div className="error-message">
-                  <ErrorMessage name="email" />
-                </div>
               </div>
               <div className="input-forms-item">
                 <LoginInput
@@ -41,10 +40,10 @@ const LoginView = ({ loginSubmit, navigate }) => {
                   onChange={handleChange}
                   placeholder="비밀번호"
                 />
-                <div className="error-message">
-                  <ErrorMessage name="password" />
-                </div>
               </div>
+              <ErrorMessage>
+                {loginError.errorMessage}
+              </ErrorMessage>
               <LoginButton
                 color="primary"
                 variant="contained"
@@ -88,9 +87,9 @@ const LoginView = ({ loginSubmit, navigate }) => {
         </LoginWrapper>
       )}
     </Formik>
+    </>
   );
 };
-
 const LoginWrapper = styled.div`
   margin-top: 20px;
   display: block;
@@ -171,4 +170,10 @@ const SocialLoginButton = styled.button`
   }
 `;
 
+const ErrorMessage = styled.div`
+    color: red;
+    margin-top: 20px;
+    font-size: 13px;
+    font-family: "Inter", sans-serif;
+`
 export default LoginView;
