@@ -74,6 +74,7 @@ const CardWrapper = styled.div`
   font-size: 0.9rem;
   display: flex;
   justify-content: start;
+  align-items: center;
   gap: 20px;
   border-radius: 8px;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
@@ -87,7 +88,7 @@ const CardWrapper = styled.div`
 `;
 const CardBody = styled.div``;
 const CardBodyTitle = styled.div`
-  margin: 30px 0px 20px 35px;
+  margin-left: 30px;
   font-size: 1.1rem;
   font-weight: 700;
 `;

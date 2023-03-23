@@ -24,10 +24,9 @@ const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
           <QuestionsBlock>
             {contents.map((item, index) => (
               <div>
-                <li key={index}>
-                  {item.content}
-                  <AddAnswerButton>+</AddAnswerButton>
-                </li>
+                <li key={index}>{item.content}</li>
+
+                <AnswerBlock>Answer</AnswerBlock>
               </div>
             ))}
           </QuestionsBlock>
@@ -82,18 +81,6 @@ const GoToPost = styled.button`
   right: 0;
   justify-content: end;
 `;
-const AddAnswerButton = styled.button`
-  border: none;
-  font-weight: 400;
-  color: #747474;
-  cursor: pointer;
-  background-color: #fff;
-  font-size: 1.3rem;
-  margin-right: 20px;
-  :hover {
-    color: #2e55e7;
-  }
-`;
 
 const QuestionsBlock = styled.div`
   > div > li {
@@ -114,5 +101,23 @@ const QuestionsBlock = styled.div`
     justify-content: space-between;
   }
 `;
+
+const AnswerBlock = styled.div`
+  font-weight: 700;
+  font-size: 18px;
+  height: 70px;
+  padding-left: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: 0px solid #b5b5b5;
+  outline: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+  align-items: center;
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+`;
+
+const InputAnswer = styled.input``;
 
 export default ScrapInterviewView;

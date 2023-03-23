@@ -28,7 +28,7 @@ const InterviewView = ({
             )}
             {jwtUtils.isAuth(token) && accountId !== userId && (
               <BoardScrapButton onClick={handleScrap}>
-                ★ 스크랩
+                ★ 내 답변 작성하기
               </BoardScrapButton>
             )}
           </BoardDetail>
@@ -101,12 +101,12 @@ const BoardDelete = styled.button`
 
 const BoardScrapButton = styled.button`
   display: block;
-  border-radius: 30px;
+  border-radius: 8px;
   border: none;
   background-color: #2e55e7;
   color: #fff;
   font-weight: 700;
-  width: 100px;
+  width: 180px;
   height: 30px;
   cursor: pointer;
 `;
