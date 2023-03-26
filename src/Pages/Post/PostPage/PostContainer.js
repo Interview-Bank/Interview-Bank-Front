@@ -26,38 +26,6 @@ function PostContainer() {
   const headers = {
     "X-Auth-Token": token,
   };
-  const userName = localStorage.getItem("user");
-  const [boardList, setBoardList] = useState([]);
-  const [currentPost, setCurrentPost] = useState("")
-  const fetchData = async () => {
-    return new Promise(async (resolve, reject) => {
-    try {
-      let allData = [];
-      let pageSize = 10;
-      let pageNumber = 0;
-      let data = [];
-      do {
-        console.log(pageNumber);
-        const response = await axios.get(
-          `https://bstaging.interviewbank.net/interview?page=${pageNumber}&size=${pageSize}`
-        );
-        data = response.data.interviews;
-        allData = [...allData, ...data];
-        setBoardList(allData);
-        pageNumber++;
-      } while (data.length === pageSize);
-      setBoardList(allData);
-      const newBoardList = allData.filter(
-        (boardList) => boardList.nickname === userName
-      );
-      console.log(newBoardList[0].interviewId)
-      resolve(); // 데이터가 성공적으로 설정된 후에 resolve()를 호출합니다.
-    } catch (error) {
-      console.log(error);
-      reject(error); // 에러가 발생한 경우 reject()를 호출합니다.
-    }
-  })
-  };
 
   const navigate = useNavigate();
 
@@ -71,14 +39,11 @@ function PostContainer() {
     };
 
     try {
-      await axios.post("https://bstaging.interviewbank.net/interview", data, {
+      const response = await axios.post("https://bstaging.interviewbank.net/interview", data, {
         headers,
       });
-      await fetchData().then(() =>{
-        console.log(currentPost)
-        // URL을 변경하려면 다음 코드를 사용하세요.
-        navigate(`/interview/${currentPost}`);
-      });
+      const newIntervieId = response.data.interviewId;
+      navigate(`/interview/${newIntervieId}`);
     } catch (err) {
         if(data.title === ""){
           setEmptyInterviewTitleModal(true)
