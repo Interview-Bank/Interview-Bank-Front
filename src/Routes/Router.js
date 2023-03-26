@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import RegisterSelect from "../Pages/Register/RegisterSelect";
 import RegisterEmailContainer from "../Pages/Register/RegisterEmail/RegisterEmailContianer";

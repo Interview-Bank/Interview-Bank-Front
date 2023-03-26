@@ -2,9 +2,10 @@ import axios from "axios";
 import LoginView from "./LoginView";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { setToken, setUserId } from "../../Redux/Reducers/AuthReducer";
+import { setToken, setUserId } from "../../Redux/Reducers/AuthReducer.js";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
+import { setCookie, setCookieExpires } from '../api/loginApi';
 
 const LoginContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/";
@@ -21,11 +22,10 @@ const LoginContainer = () => {
           password,
         })
         .then((res) => {
-          const userId = res.data.accountId;
-          const authToken = res.headers.get("X-Auth-Token");
-          dispatch(setToken(authToken));
-          dispatch(setUserId(userId));
-          localStorage.setItem("user", res.data.nickname);
+          sessionStorage.setItem('authToken', res.headers.get("X-Auth-Token"));
+          setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
+          setCookie('userId', res.data.accountId);
+          setCookie('user', res.data.nickname);
           setLoginError({})
           window.location.reload();
         });
