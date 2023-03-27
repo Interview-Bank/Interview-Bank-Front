@@ -26,6 +26,7 @@ const Router = () => {
       <Route path="/scrap" element={<MyScrapContainer />} />
       <Route path="/interview/:interview_id" element={<InterviewConatiner />} />
       <Route path="/scraps/:scrap_id" element={<ScrapInterviewContainer />} />
+      <Route path="/search" element={<SearchInterviewContainer />} />
       <Route path="/*" element={<PageNotFound />} />
       <Route path="/oauth2/google/redirect" element={<GoogleSocialLogin/>}/>
       <Route path="/oauth2/naver/redirect" element={<NaverSocialLogin/>}/>

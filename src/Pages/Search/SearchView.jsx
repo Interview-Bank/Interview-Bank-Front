@@ -132,7 +132,6 @@ const SearchCategoryCheckBox = ({ data, isChangeCategory }) => {
 					cursor: pointer;
 					width: 100%;
 					display: flex;
-          
 				}
 
 				.acordian {
