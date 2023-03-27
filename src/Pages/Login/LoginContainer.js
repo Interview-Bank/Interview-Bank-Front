@@ -10,7 +10,7 @@ import { setCookie, setCookieExpires } from '../api/loginApi';
 const LoginContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/";
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
   const [loginError, setLoginError] = useState({})
   const loginSubmit = async (values) => {
@@ -22,12 +22,13 @@ const LoginContainer = () => {
           password,
         })
         .then((res) => {
-          sessionStorage.setItem('authToken', res.headers.get("X-Auth-Token"));
+          // sessionStorage.setItem('authToken', res.headers.get("X-Auth-Token"));
           setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
           setCookie('userId', res.data.accountId);
           setCookie('user', res.data.nickname);
           setLoginError({})
-          window.location.reload();
+          if ((window.location.pathname === '/select' || window.location.pathname === '/signup')) navigate('/');
+          else window.location.reload();
         });
     } catch (e) {
       setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
