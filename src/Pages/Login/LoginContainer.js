@@ -34,11 +34,34 @@ const LoginContainer = () => {
     }
   };
 
+  const handleGoogleOauth = () => {
+    const oauthUrl = "https://bstaging.interviewbank.net/account/oauth/google/login";
+    const width = 500;
+    const height = 600;
+    const left = (window.innerWidth / 2) - (width / 2);
+    const top = (window.innerHeight / 2) - (height / 2);
+  
+    const popupWindow = window.open(oauthUrl, "popup", "popup=true");
+    const checkPopup = setInterval(() => {
+      console.log(popupWindow.window.location.href)
+      if(!popupWindow || !popupWindow.closed){
+        clearInterval(checkPopup)
+        return
+      }
+      if(popupWindow.window.location.href.includes("state") && popupWindow.window.location.href.includes("code")){
+        console.log(popupWindow.window.location.href)
+        popupWindow.close()
+      }
+    }, 1000)
+  };
+  
+
   return (
     <LoginView 
       loginSubmit={loginSubmit} 
       navigate={navigate} 
       loginError={loginError}
+      handleGoogleOauth={handleGoogleOauth}
     />);
 };
 
