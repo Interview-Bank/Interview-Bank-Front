@@ -9,7 +9,7 @@ const Layout = (props) => {
   return (
     <>
       <HeaderContainer />
-      <MainWrapper locationHref={window.location.pathname.includes("interview")}>{props.children}</MainWrapper>
+      <MainWrapper locationHref={window.location.pathname === "/post"}>{props.children}</MainWrapper>
       <Footer />
     </>
   );
@@ -18,7 +18,7 @@ const Layout = (props) => {
 const MainWrapper = styled.div`
   position: relative;
   top: 100px;
-  min-height: ${(props) => props.locationHref ? "calc(100vh - 100px - 151px);" : "calc(100vh - 100px - 60px - 151px);"}
+  min-height: ${(props) => props.locationHref ? "calc(100vh - 100px - 60px - 151px);" : "calc(100vh - 100px - 151px);"}
 `;
 
 export default Layout;
