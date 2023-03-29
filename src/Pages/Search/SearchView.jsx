@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 import Search from "../../Assets/Images/search.png";
+import { useState } from 'react';
+import { useCallback } from 'react';
 
 const categoryData = [
   {
@@ -10,27 +12,27 @@ const categoryData = [
   },
   {
     id: 2,
-    category: 'develope',
+    category: 'plan',
     name: '기획'
   },
   {
     id: 3,
-    category: 'develope',
+    category: 'R&D',
     name: 'R&D'
   },
   {
     id: 4,
-    category: 'develope',
+    category: 'design',
     name: '디자인'
   },
   {
     id: 5,
-    category: 'develope',
+    category: 'marketing',
     name: '마케팅'
   },
   {
     id: 6,
-    category: 'develope',
+    category: 'other',
     name: '기타'
   }
 ];
@@ -40,52 +42,67 @@ const searchArrayList = [
     "createdAt": "2023-03-29T04:46:54.021Z",
     "interviewId": 0,
     "nickname": "aaaa",
-    "title": "네이버 면접 2022"
+    "title": "네이버 면접 2022",
+    "category": "develope"
   },
   {
     "createdAt": "2023-03-29T04:46:54.021Z",
     "interviewId": 1,
     "nickname": "aaaa",
-    "title": "쿠팡 면접 2022"
+    "title": "쿠팡 면접 2022",
+    "category": "plan"
   },
   {
     "createdAt": "2023-03-29T04:46:54.021Z",
     "interviewId": 2,
     "nickname": "aaaa",
-    "title": "야놀자 면접 2022"
+    "title": "야놀자 면접 2022",
+    "category": "design"
   },
   {
     "createdAt": "2023-03-29T04:46:54.021Z",
     "interviewId": 3,
     "nickname": "aaaa",
-    "title": "카카오 면접 2022"
+    "title": "카카오 면접 2022",
+    "category": "R&D"
   },
   {
     "createdAt": "2023-03-29T04:46:54.021Z",
     "interviewId": 4,
     "nickname": "aaaa",
-    "title": "다음 면접 2022"
+    "title": "다음 면접 2022",
+    "category": "marketing"
+  },
+  {
+    "createdAt": "2023-03-29T04:46:54.021Z",
+    "interviewId": 5,
+    "nickname": "aaaa",
+    "title": "면접 2022",
+    "category": "other"
   },
 ];
 
-const SearchCategory = () => {
+const SearchCategory = ({ isChangeCategory }) => {
   return (
     <>
       <h2>직무 구분</h2>
       {categoryData &&
         categoryData.map((current) =>
-          <SearchCategoryCheckBox data={current} key={current.id} />
+          <SearchCategoryCheckBox data={current} key={current.id} isChangeCategory={isChangeCategory} />
         )
       }
     </>
   )
 }
 
-const SearchCategoryCheckBox = ({ data }) => {
+const SearchCategoryCheckBox = ({ data, isChangeCategory }) => {
   const { name, category } = data;
+  const onClick = useCallback((value) => {
+    isChangeCategory(value)
+  }, [])
   return (
-    <div className='check__area'>
-      <input type="checkbox" name={category} id={category} />
+    <div className='check__area' onClick={()=>onClick(category)}>
+      <input type="radio" name="category" value={category} />
       <label for={category}>{name}</label>
       <style jsx>{`
         .check__area {
@@ -102,16 +119,18 @@ const SearchCategoryCheckBox = ({ data }) => {
   )
 }
 
-const SearchArea = () => {
+const SearchArea = ({ searchParam }) => {
+  const { category } = searchParam;  
   return (
     <div className='search__area'>
       {searchArrayList.length
         ? <div className="search-list">
-            {searchArrayList.length && searchArrayList.map((current) =>
-              <div className="search__item" key={current.interviewId}>
-                <h4>{current.title}</h4>
-              </div>
-            )}
+          {searchArrayList.length
+            && category 
+            ?  searchArrayList.filter((current) => current.category === category)
+                              .map((current) =><SearchAreaItem item={current} />)
+            :  searchArrayList.map((current) => <SearchAreaItem item={current} />)
+          }
           </div>
         : <div className="search-empty">
             <h4>
@@ -145,6 +164,17 @@ const SearchArea = () => {
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
         }
+      `}</style>
+    </div>
+  )
+}
+
+const SearchAreaItem = ({ item }) => {
+  const { interviewId, title } = item;
+  return (
+    <div className="search__item" key={interviewId}>
+      <h4>{title}</h4>
+      <style jsx>{`
         .search__item {
           width: calc(100% - (29px * 2));
           aspect-ratio: 1/1.2D;
@@ -164,6 +194,20 @@ const SearchArea = () => {
 }
 
 const SearchInterviewView = () => {
+  const [searchParam, setSearchParam] = useState({
+    title: '',
+    category: ''
+  });
+
+  const isChangeCategory = useCallback(value => {
+    setSearchParam(prev => {return {...prev, category: value}})    
+  }, [])
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log('hh');
+    }
+  }
   return (
     <Layout>
       <SearchWrapper>
@@ -171,12 +215,12 @@ const SearchInterviewView = () => {
         <SearchFlex>
           <SerachSide>
             <SearchItem>
-              <input type="text"></input>
+              <input type="text" onChange={(e) => setSearchParam(prev => { return { ...prev, title: e.target.value } })} onKeyDown={(e)=>onKeyDown(e)} />
               <img src={Search} alt="search" />
             </SearchItem>
             <SearchItem>
               <SearchCarrerArea>
-                <SearchCategory />
+                <SearchCategory isChangeCategory={isChangeCategory} />
               </SearchCarrerArea>
             </SearchItem>
             <SearchItem>
@@ -191,7 +235,7 @@ const SearchInterviewView = () => {
               </SearchDateArea>
             </SearchItem>
           </SerachSide>
-          <SearchArea />
+          <SearchArea searchParam={searchParam} />
         </SearchFlex>
       </SearchWrapper>
     </Layout>
