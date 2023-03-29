@@ -35,24 +35,22 @@ const LoginContainer = () => {
   };
 
   const handleGoogleOauth = () => {
-    const oauthUrl = "https://bstaging.interviewbank.net/account/oauth/google/login";
+    const oauthUrl = "http://localhost:8084/account/oauth/google/login";
+    //이 oauthUrl이 구글 로그인 URL이니까 이 URL로 접근했을 때 사용될 코드를 새로운 컴포넌트로 따야함.
+    console.log(oauthUrl)
     const width = 500;
     const height = 600;
     const left = (window.innerWidth / 2) - (width / 2);
     const top = (window.innerHeight / 2) - (height / 2);
   
-    const popupWindow = window.open(oauthUrl, "popup", "popup=true");
-    const checkPopup = setInterval(() => {
-      console.log(popupWindow.window.location.href)
-      if(!popupWindow || !popupWindow.closed){
-        clearInterval(checkPopup)
-        return
-      }
-      if(popupWindow.window.location.href.includes("state") && popupWindow.window.location.href.includes("code")){
-        console.log(popupWindow.window.location.href)
-        popupWindow.close()
-      }
-    }, 1000)
+    window.location.assign(oauthUrl);
+    // const checkPopup = setInterval(() => {
+    //   if (!popupWindow || popupWindow.closed) {
+    //     clearInterval(checkPopup);
+    //     return;
+    //   }
+    //   console.log(popupWindow.location.href);
+    // }, 1000);  
   };
   
 
