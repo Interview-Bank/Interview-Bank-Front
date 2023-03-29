@@ -10,6 +10,7 @@ import PostContainer from "../Pages/Post/PostPage/PostContainer";
 import MyPostsContainer from "../Pages/MyPost/MyPostsContainer";
 import MyScrapContainer from "../Pages/MyScrap/MyScrapContainer";
 import ScrapInterviewContainer from "../Pages/ScrapInterview/ScrapInterviewContainer";
+import SocialLogin from "../Pages/SocialLogin/SocialLogin";
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
       <Route path="/interview/:interview_id" element={<InterviewConatiner />} />
       <Route path="/scraps/:scrap_id" element={<ScrapInterviewContainer />} />
       <Route path="/*" element={<PageNotFound />} />
+      <Route path="/oauth2/google/redirect" element={<SocialLogin/>}/>
     </Routes>
   );
 };
