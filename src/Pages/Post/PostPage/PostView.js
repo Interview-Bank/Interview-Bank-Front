@@ -145,6 +145,8 @@ const PostButton = styled.button`
   margin-top: 100px;
   margin-bottom: 30px;
   background-color: #2e55e7;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #fff;
   justify-content: end;
 `;

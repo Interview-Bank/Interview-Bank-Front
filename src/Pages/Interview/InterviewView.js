@@ -55,7 +55,7 @@ const InterviewView = ({
 };
 
 const BoardWrapper = styled.div`
-  min-height: 100vh;
+  max-height: calc(100vh - 100px - 151px);
   width: 96%;
   max-width: 1100px;
   display: flex;
@@ -123,10 +123,16 @@ const BoardScrapButton = styled.button`
 `;
 
 const QuestionsBlock = styled.div`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  max-height: calc(100% - 60px - 20px - 40px - 68px);
+  margin: 10px 0;
+  overflow: auto;
   > li {
     width: 988px;
     height: 65px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 18px;
     border: none;
     border-left: 12px solid #2e55e7;
