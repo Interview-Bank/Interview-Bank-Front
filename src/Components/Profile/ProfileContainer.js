@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../../Redux/Reducers/AuthReducer";
 import ProfileView from "./ProfileView";
 import axios from "axios";
+import { getCookieValue, deleteCookie } from '../../Pages/api/loginApi';
 
 
 const ProfileContainer = () => {
@@ -13,17 +14,17 @@ const ProfileContainer = () => {
   const token = useSelector((state) => state.Auth.token);
 
   const onLogoutClick = async () => {
-    console.log(token);
     const headers = {
-      "X-Auth-Token": `${token}`,
+      "X-Auth-Token": getCookieValue("authToken="),
     };
 
     await axios
       .post(API_URL + "logout", {}, { headers })
       .then((res) => {
         console.log(res);
-        dispatch(setToken(""));
-        localStorage.clear();
+        // dispatch(setToken(""));
+        deleteCookie('userId');
+        deleteCookie('user');
         window.location.reload();
       })
       .catch((e) => {

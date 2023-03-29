@@ -1,19 +1,16 @@
-import React, {useRef, useEffect, useState, useCallback} from "react";
+import React, {useRef, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Assets/Images/logo.svg";
 import Search from "../../Assets/Images/search.png";
 import Modal from "../../Components/Modal/LoginModal";
 import ProfileContainer from "../../Components/Profile/ProfileContainer";
-import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
 import LoginContainer from "../../Pages/Login/LoginContainer";
 
 const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
-  const [cookie, setCookie] = useState(false);
-  const CheckCookie = checkCookieExistence();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -25,73 +22,79 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    CheckCookie
-      ? setCookie(true)
-      : setCookie(false)
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ProfileRef, setProfile, document.location, cookie]);
+  }, [ProfileRef, setProfile]);
 
-  return (
-    <HeaderWrapper>
-      <HeaderContents>
-        <LogoBox>
-          <img src={Logo} alt="logo" onClick={() => navigate("/")} />
-        </LogoBox>
-        <SearchBox>
-          <SearchInput />
-          <img src={Search} alt="search" />
-        </SearchBox>
-        <NavigationBox>
-          {!cookie
-            ?
-              <>
-                <RegisterPageButton
-                  onClick={() => {
-                    navigate("/select");
-                  }}
-                >
-                  회원가입
-                </RegisterPageButton>
+  if (!isAuth) {
+    return (
+      <HeaderWrapper>
+        <HeaderContents>
+          <LogoBox>
+            <img src={Logo} alt="logo" onClick={() => navigate("/")} />
+          </LogoBox>
+          <SearchBox>
+            <SearchInput />
+            <img src={Search} alt="search" />
+          </SearchBox>
+          <NavigationBox>
+            <RegisterPageButton
+              onClick={() => {
+                navigate("/select");
+              }}
+            >
+              회원가입
+            </RegisterPageButton>
 
-                <LoginButton
-                  onClick={() => {
-                    setLoginModal(true);
-                  }}
-                >
-                  로그인
-                </LoginButton>
-                {loginModal && (
-                  <Modal
-                    CloseModal={() => {
-                      setLoginModal(!loginModal);
-                    }}
-                  >
-                    <LoginContainer />
-                  </Modal>
-                )}
-              </>
-            :
-              <>
-                <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
-                <UserButton
-                type="button"
-                ref = {UserButtonRef}
-                onClick={() => {
-                  setProfile(!profile);
-                }}>{getCookieValue("user=")} 님</UserButton>
-                <ProfileWrapper ref={ProfileRef}>
-                {profile && <ProfileContainer/>}
-                </ProfileWrapper>
-              </>
-          }  
-            
-        </NavigationBox>
-      </HeaderContents>
-    </HeaderWrapper>
-  )
+            <LoginButton
+              onClick={() => {
+                setLoginModal(true);
+              }}
+            >
+              로그인
+            </LoginButton>
+            {loginModal && (
+              <Modal
+                CloseModal={() => {
+                  setLoginModal(!loginModal);
+                }}
+              >
+                <LoginContainer />
+              </Modal>
+            )}
+          </NavigationBox>
+        </HeaderContents>
+      </HeaderWrapper>
+    );
+  } else {
+    return (
+      <HeaderWrapper>
+        <HeaderContents>
+          <LogoBox>
+            <img src={Logo} alt="logo" onClick={() => navigate("/")} />
+          </LogoBox>
+          <SearchBox>
+            <SearchInput />
+            <img src={Search} alt="search" />
+          </SearchBox>
+          <NavigationBox>
+            <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
+            <UserButton
+             type="button"
+             ref = {UserButtonRef}
+             onClick={() => {
+               setProfile(!profile);
+             }}>{sessionStorage.getItem("user")} 님</UserButton>
+             <ProfileWrapper ref={ProfileRef}>
+             {profile && <ProfileContainer/>}
+             </ProfileWrapper>
+          </NavigationBox>
+        </HeaderContents>
+      </HeaderWrapper>
+    );
+  }
 };
 
 const HeaderWrapper = styled.div`

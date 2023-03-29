@@ -2,14 +2,15 @@ import axios from "axios";
 import LoginView from "./LoginView";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { setToken, setUserId } from "../../Redux/Reducers/AuthReducer";
+import { setToken, setUserId } from "../../Redux/Reducers/AuthReducer.js";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
+import { setCookie, setCookieExpires } from '../api/loginApi';
 
 const LoginContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/";
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
   const [loginError, setLoginError] = useState({})
   const loginSubmit = async (values) => {
@@ -21,13 +22,13 @@ const LoginContainer = () => {
           password,
         })
         .then((res) => {
-          const userId = res.data.accountId;
-          const authToken = res.headers.get("X-Auth-Token");
-          dispatch(setToken(authToken));
-          dispatch(setUserId(userId));
-          localStorage.setItem("user", res.data.nickname);
+          // sessionStorage.setItem('authToken', res.headers.get("X-Auth-Token"));
+          setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
+          setCookie('userId', res.data.accountId);
+          setCookie('user', res.data.nickname);
           setLoginError({})
-          window.location.reload();
+          if ((window.location.pathname === '/select' || window.location.pathname === '/signup')) navigate('/');
+          else window.location.reload();
         });
     } catch (e) {
       setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
