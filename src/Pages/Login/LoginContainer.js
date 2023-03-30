@@ -36,8 +36,15 @@ const LoginContainer = () => {
   };
 
   const handleGoogleOauth = () => {
-    const oauthUrl = "https://bstaging.interbiewbank.net/account/oauth/google/login";
+    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
     //이 oauthUrl이 구글 로그인 URL이니까 이 URL로 접근했을 때 사용될 코드를 새로운 컴포넌트로 따야함.
+    window.location.assign(oauthUrl);
+    console.log(oauthUrl)
+    const width = 500;
+    const height = 600;
+    const left = (window.innerWidth / 2) - (width / 2);
+    const top = (window.innerHeight / 2) - (height / 2);
+  
     window.location.assign(oauthUrl);
   };
   
