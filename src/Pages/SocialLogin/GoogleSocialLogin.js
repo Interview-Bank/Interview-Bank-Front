@@ -13,8 +13,9 @@ const SocialLogin = () => {
         console.log(code)
         console.log(state)
         axios.post(`http://localhost:8084/account/oauth/google/login/redirect?code=${code}&state=${state}`)
-          .then(response => {
-            console.log(response);
+          .then((res) => {
+            console.log(res)
+            console.log("로그인 성공!");
             navigate("/")
           })
           .catch(error => {
