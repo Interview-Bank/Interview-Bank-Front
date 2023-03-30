@@ -2,11 +2,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik } from "formik";
 import styled from "styled-components";
 import Kakao from "../../Assets/Images/kakaotalk.png";
-import Github from "../../Assets/Images/github.png";
+import Naver from "../../Assets/Images/naver.png";
 import Google from "../../Assets/Images/google.png";
 
 
-const LoginView = ({ loginSubmit, navigate, loginError }) => {
+const LoginView = ({ loginSubmit, navigate, loginError, handleGoogleOauth }) => {
 
   return (
     <>
@@ -76,11 +76,12 @@ const LoginView = ({ loginSubmit, navigate, loginError }) => {
               <SocialLoginButton>
                 <img src={Kakao} alt="kakaotalk" />
               </SocialLoginButton>
-              <SocialLoginButton>
-                <img src={Google} alt="kakaotalk" />
+              <SocialLoginButton
+                onClick={handleGoogleOauth}>
+                <img src={Google} alt="Google" />
               </SocialLoginButton>
               <SocialLoginButton>
-                <img src={Github} alt="kakaotalk" />
+                <img src={Naver} alt="Naver" />
               </SocialLoginButton>
             </div>
           </SocialLoginBox>
