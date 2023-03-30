@@ -60,15 +60,16 @@ const RegisterSelect = () => {
 };
 
 const SelectionWrapper = styled.div`
-  margin: 64px auto auto;
+  margin: 60px auto auto;
   width: 346px;
-  height: 676px;
-  min-height: 100vh;
+  padding-top: 40px;
+  // height: 676px;
+  // min-height: 100vh;
   > h1 {
     font-weight: 700;
     text-align: center;
     color: #2e55e7;
-    margin-top: 100px;
+    // margin-top: 100px;
   }
   > p {
     font-weight: 600;
