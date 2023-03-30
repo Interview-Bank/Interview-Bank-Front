@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import PostView from "./PostView";
 import { useNavigate } from "react-router-dom";
+import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 function PostContainer() {
   const [title, setTitle] = useState("");
@@ -22,10 +22,7 @@ function PostContainer() {
   const [emptyInterviewContentModal, setEmptyInterviewContentModal] = useState(false)
   const [registerInterviewModal, setRegisterInterviewModal] = useState(false)
 
-  const token = useSelector((state) => state.Auth.token);
-  const headers = {
-    "X-Auth-Token": token,
-  };
+  const headers = setTokenHeaders();
 
   const navigate = useNavigate();
 

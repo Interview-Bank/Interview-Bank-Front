@@ -3,19 +3,15 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ScrapModalView from "./ScrapModalView";
+import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 
 const ScrapModalContainer = (props) => {
   const API_URL = "https://bstaging.interviewbank.net/";
   const navigate = useNavigate();
-  const token = useSelector((state) => state.Auth.token);
   const [scrapList, setScrapList] = useState([]);
 
-
-  const headers = {
-    "X-Auth-Token": `${token}`,
-  };
+  const headers = setTokenHeaders();
 
   useEffect(() => {
     const fetchData = async () => {

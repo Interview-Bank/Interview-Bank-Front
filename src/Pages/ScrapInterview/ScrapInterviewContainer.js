@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ScrapInterviewView from "./ScrapInterviewView";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
 const ScrapInterviewContainer = () => {
   const { scrap_id } = useParams();
@@ -13,10 +13,7 @@ const ScrapInterviewContainer = () => {
 
   const handleAddAnswer = () => {};
 
-  const token = useSelector((state) => state.Auth.token);
-  const headers = {
-    "X-Auth-Token": `${token}`,
-  };
+  const headers = setTokenHeaders();
 
   const navigate = useNavigate();
 
@@ -24,7 +21,7 @@ const ScrapInterviewContainer = () => {
     const getBoard = async () => {
       const { data } = await axios.get(
         `https://bstaging.interviewbank.net/scraps/${scrap_id}`,
-        { headers }
+        headers
       );
       setTitle(data.scrap.title);
       setBoardId(data.originalInterview.interviewId);
