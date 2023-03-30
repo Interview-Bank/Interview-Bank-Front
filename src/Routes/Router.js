@@ -10,7 +10,7 @@ import PostContainer from "../Pages/Post/PostPage/PostContainer";
 import MyPostsContainer from "../Pages/MyPost/MyPostsContainer";
 import MyScrapContainer from "../Pages/MyScrap/MyScrapContainer";
 import ScrapInterviewContainer from "../Pages/ScrapInterview/ScrapInterviewContainer";
-import SocialLogin from "../Pages/SocialLogin/SocialLogin";
+import SocialLogin from "../Pages/SocialLogin/GoogleSocialLogin";
 
 const Router = () => {
   return (
