@@ -15,7 +15,7 @@ const SocialLogin = () => {
         const state = urlParams.get("state")
         console.log(code)
         console.log(state)
-        axios.post(`http://localhost:8084/account/oauth/google/login/redirect?code=${code}&state=${state}`)
+        axios.post(`https://bstaging.interviewbank.net/account/oauth/google/login/redirect?code=${code}&state=${state}`)
           .then((res) => {
             setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
             setCookie('userId', res.data.accountId);

@@ -36,7 +36,7 @@ const LoginContainer = () => {
   };
 
   const handleGoogleOauth = () => {
-    const oauthUrl = "http://localhost:8084/account/oauth/google/login";
+    const oauthUrl = "https://bstaging.interbiewbank.net/account/oauth/google/login";
     //이 oauthUrl이 구글 로그인 URL이니까 이 URL로 접근했을 때 사용될 코드를 새로운 컴포넌트로 따야함.
     window.location.assign(oauthUrl);
   };
