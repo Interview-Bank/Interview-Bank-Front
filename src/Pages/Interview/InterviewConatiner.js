@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
 const InterviewConatiner = () => {
   const { interview_id } = useParams();
@@ -11,17 +12,13 @@ const InterviewConatiner = () => {
   const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
   const [scrapModal, setScrapModal] = useState(false)
-  const token = useSelector((state) => state.Auth.token);
   const userId = useSelector((state) => state.Auth.userId);
 
-  const headers = {
-    "X-Auth-Token": `${token}`,
-  };
+  const headers = setTokenHeaders();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(token);
     const getBoard = async () => {
       const { data } = await axios.get(
         `https://bstaging.interviewbank.net/interview/${interview_id}`
@@ -56,7 +53,7 @@ const InterviewConatiner = () => {
       interview={interview}
       contents={contents}
       navigate={navigate}
-      token={token}
+      token={headers['X-Auth-Token']}
       userId={userId}
       accountId={accountId}
       handleScrap={handleScrap}

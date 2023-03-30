@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import MyPostsView from "./MyPostsView";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
 const MyPostsContainer = () => {
   const [boardList, setBoardList] = useState([]);
@@ -10,9 +11,7 @@ const MyPostsContainer = () => {
   const newBoardList = boardList.filter(
     (boardList) => boardList.nickname === userName
   );
-  const headers = {
-    "X-Auth-Token": `${token}`,
-  };
+  const headers = setTokenHeaders();
 
   useEffect(() => {
     const fetchData = async () => {

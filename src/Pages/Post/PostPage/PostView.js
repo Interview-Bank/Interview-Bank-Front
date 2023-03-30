@@ -149,6 +149,7 @@ const PostButton = styled.button`
   font-weight: 600;
   color: #fff;
   justify-content: end;
+  cursor: pointer;
 `;
 
 export default PostView;

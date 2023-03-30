@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     background-color: #f9f9f9;
     font-family: "Inter", sans-serif;
   }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default GlobalStyle;

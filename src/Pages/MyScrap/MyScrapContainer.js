@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import MyScrapView from "./MyScrapView";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
-  const token = useSelector((state) => state.Auth.token);
-
-  const headers = {
-    "X-Auth-Token": `${token}`,
-  };
+  const headers = setTokenHeaders();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +18,7 @@ const MyScrapContainer = () => {
           console.log(pageNumber);
           const response = await axios.get(
             `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
-            { headers }
+            headers
           );
           data = response.data;
           allData = [...allData, ...data];
