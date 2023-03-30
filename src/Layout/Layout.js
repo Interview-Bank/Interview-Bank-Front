@@ -9,7 +9,7 @@ const Layout = (props) => {
   return (
     <>
       <HeaderContainer />
-      <MainWrapper locationHref={window.location.pathname === "/post"}>{props.children}</MainWrapper>
+      <MainWrapper locationHref={(window.location.pathname === "/post" || window.location.pathname === "/select")}>{props.children}</MainWrapper>
       <Footer />
     </>
   );
