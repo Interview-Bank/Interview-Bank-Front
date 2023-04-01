@@ -7,7 +7,7 @@ import Modal from "../../Components/Modal/LoginModal";
 import ProfileContainer from "../../Components/Profile/ProfileContainer";
 import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
 import LoginContainer from "../../Pages/Login/LoginContainer";
-
+import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
 const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
@@ -81,7 +81,11 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
                 ref = {UserButtonRef}
                 onClick={() => {
                   setProfile(!profile);
-                }}>{getCookieValue("user=")} 님</UserButton>
+                }}>
+                  <ProfilePhoto 
+                    src={BasicProfilePhoto} 
+                    alt="BasicProfilePhoto"/>
+                </UserButton>
                 <ProfileWrapper ref={ProfileRef}>
                 {profile && <ProfileContainer/>}
                 </ProfileWrapper>
@@ -150,14 +154,24 @@ const RegisterPageButton = styled.button`
 `;
 
 const UserButton = styled.button`
-  border: none;
+  /* border: none;
   background-color: #f9f9f9;
   cursor: pointer;
   color: #737373;
   font-size: 14px;
   font-weight: 600;
-  margin-left: 25px;
+  margin-left: 25px; */
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 `;
+const ProfilePhoto = styled.img`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+`
 
 const ProfileWrapper = styled.div`
   position: fixed;
@@ -171,6 +185,7 @@ const WriteButton = styled.button`
   cursor: pointer;
   color: #fff;
   padding: 5px 15px;
+  margin-right: 25px;
 `;
 
 const SearchBox = styled.div`
