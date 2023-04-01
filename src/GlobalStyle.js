@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
     background-color: #f9f9f9;
     font-family: "Inter", sans-serif;
   }
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 `;
 
 export default GlobalStyle;
