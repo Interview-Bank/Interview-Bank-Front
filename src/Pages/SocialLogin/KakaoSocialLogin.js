@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setCookie, setCookieExpires } from '../api/loginApi';
 
-const GoogleSocialLogin = () => {
+const KakaoSocialLogin = () => {
+    console.log("SocialLogin")
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -31,4 +32,4 @@ const GoogleSocialLogin = () => {
   )
 }
 
-export default GoogleSocialLogin
+export default KakaoSocialLogin
