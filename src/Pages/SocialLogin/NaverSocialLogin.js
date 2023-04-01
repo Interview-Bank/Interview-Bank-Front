@@ -15,13 +15,13 @@ const NaverSocialLogin = () => {
         const errorDescription = urlParams.get("error_description")
     
         if (error && errorDescription) {
-            axios.post(`https://bstaging.interviewbank.net/account/oauth/google/login/redirect?error=${error}&error_description=${errorDescription}`)
+            axios.post(`https://bstaging.interviewbank.net/account/oauth/naver/login/redirect?error=${error}&error_description=${errorDescription}`)
                 .catch(error => {
                     console.log(error);
                 });
             return;
         }
-        axios.post(`https://bstaging.interviewbank.net/account/oauth/google/login/redirect?code=${code}&state=${state}`)
+        axios.post(`https://bstaging.interviewbank.net/account/oauth/naver/login/redirect?code=${code}&state=${state}`)
           .then((res) => {
             setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
             setCookie('userId', res.data.accountId);
