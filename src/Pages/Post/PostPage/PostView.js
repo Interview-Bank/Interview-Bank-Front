@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../Layout/Layout";
 import QuestionList from "../QuestionsList/QuestionList";
 import styled from "styled-components";
-import PopUpModal from "../../../Components/Modal/PopUpModal"
+import PopUpModal from "../../../Components/Modal/CheckPopUpModal"
 import EmptyInterviewTitleModalContainer from "../../../Components/ModalContent/EmptyInterviewTitleModal/EmptyInterviewTitleModalContainer";
 import EmptyInterviewContentModalContainer from "../../../Components/ModalContent/EmptyInterviewContentModal/EmptyInterviewContentModalContainer";
 import RegisterInterviewModalContainer from "../../../Components/ModalContent/RegisterInterviewModal/RegisterInterviewModalContainer";

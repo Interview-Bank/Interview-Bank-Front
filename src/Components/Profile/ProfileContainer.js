@@ -31,11 +31,11 @@ const ProfileContainer = () => {
   };
 
   const onScrapClick = () => {
-    navigate("/scrap");
+    navigate("/mypage/my-scrap");
   };
 
   const onMyPostsClick = () => {
-    navigate("/my-posts");
+    navigate("/mypage/my-posts");
   };
 
   return (

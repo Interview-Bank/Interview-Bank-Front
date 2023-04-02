@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, useCallback} from "react";
+import React, {useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Assets/Images/logo.svg";
@@ -8,6 +8,9 @@ import ProfileContainer from "../../Components/Profile/ProfileContainer";
 import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
 import LoginContainer from "../../Pages/Login/LoginContainer";
 import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
+import WriteIconUrl from "../../Assets/Images/WriteIcon.png"
+
+
 const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
@@ -75,17 +78,20 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
               </>
             :
               <>
-                <WriteButton onClick={() => navigate("/post")}>글 쓰기</WriteButton>
-                <UserButton
-                type="button"
-                ref = {UserButtonRef}
-                onClick={() => {
-                  setProfile(!profile);
-                }}>
-                  <ProfilePhoto 
-                    src={BasicProfilePhoto} 
-                    alt="BasicProfilePhoto"/>
-                </UserButton>
+                <WriteButtonWrapper onClick={() => navigate("/post")}>
+                  <WriteIcon
+                    src = {WriteIconUrl}
+                    alt = "WriteIcon"/>
+                  <WriteButton>글쓰기</WriteButton>
+                </WriteButtonWrapper>
+  
+                <ProfilePhoto 
+                  src={BasicProfilePhoto} 
+                  alt="BasicProfilePhoto"
+                  ref = {UserButtonRef}
+                  onClick={() => {
+                    setProfile(!profile);
+                  }}/>
                 <ProfileWrapper ref={ProfileRef}>
                 {profile && <ProfileContainer/>}
                 </ProfileWrapper>
@@ -103,7 +109,7 @@ const HeaderWrapper = styled.div`
   left: 0;
   top: 0;
   width: 100%;
-  height: 100px;
+  height: 80px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.2);
   z-index: 999;
@@ -127,6 +133,10 @@ const LogoBox = styled.div`
 
 const NavigationBox = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  height: auto;
 `;
 
 const LoginButton = styled.button`
@@ -153,39 +163,51 @@ const RegisterPageButton = styled.button`
   }
 `;
 
-const UserButton = styled.button`
-  /* border: none;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  color: #737373;
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 25px; */
+const WriteButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction : row;
+  align-items: center;
+  justify-content: center;
+
+  width: 101px;
+  height: 35px;
+
+  border-radius: 4px;
+  background-color: #2e55e7;
   border: none;
-  background-color: #fff;
+
   cursor: pointer;
-  width: fit-content;
-  height: fit-content;
+
+  margin-right: 25px;
 `;
+const WriteIcon = styled.img`
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  margin-right: 12px;
+`;
+const WriteButton = styled.div`
+  position: relative;
+  width: 47px;
+  height: 20px;
+
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+`;
+
 const ProfilePhoto = styled.img`
-  position: absolute;
+  position: relative;
   width: 40px;
   height: 40px;
+
+  cursor: pointer;
 `
 
 const ProfileWrapper = styled.div`
   position: fixed;
-`;
-const WriteButton = styled.button`
-  font-weight: 700;
-  border-radius: 7px;
-  background-color: #2e55e7;
-  border: 3px solid #2e55e7;
-  font-size: 14px;
-  cursor: pointer;
-  color: #fff;
-  padding: 5px 15px;
-  margin-right: 25px;
 `;
 
 const SearchBox = styled.div`

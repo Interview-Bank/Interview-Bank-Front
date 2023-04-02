@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const PopUpModal = (props) => {
+const CheckPopUpModal = (props) => {
   const CloseModal = () => {
     props.CloseModal();
   };
@@ -52,4 +52,4 @@ const ModalBody = styled.div`
   }
 `;
 
-export default PopUpModal;
+export default CheckPopUpModal;

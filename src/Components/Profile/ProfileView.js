@@ -14,13 +14,13 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
               src={BasicProfilePhoto} 
               alt="BasicProfilePhoto"
               onClick={() => {
-                navigate("/mypage");
+                navigate("/mypage/usersetting");
               }}
               />
             </ProfilePhotoWrapper>
           <UserNicknameWrapper
             onClick={() => {
-              navigate("/mypage");
+              navigate("/mypage/usersetting");
             }}>
             {UserNickname}님
           </UserNicknameWrapper>
@@ -41,8 +41,8 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
   );
 };
 const ProfileContainer = styled.div`
-  top : 65px;
-  left: -45px;
+  top : 40px;
+  left: -30px;
   position: absolute;
   width: fit-content;
   height: 320px;
