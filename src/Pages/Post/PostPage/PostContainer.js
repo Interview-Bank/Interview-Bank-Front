@@ -28,7 +28,7 @@ function PostContainer() {
     console.log(category)
   }  
   
-
+  const [modal, setModal] = useState(false);
   const [emptyInterviewTitleModal, setEmptyInterviewTitleModal] = useState(false)
   const [emptyInterviewContentModal, setEmptyInterviewContentModal] = useState(false)
   const [registerInterviewModal, setRegisterInterviewModal] = useState(false)
@@ -119,6 +119,8 @@ function PostContainer() {
       handleClickSubmit={handleClickSubmit}
       inputs={inputs}
       onRemove={onRemove}
+      modal={modal}
+      setModal = {setModal}
       emptyInterviewTitleModal = {emptyInterviewTitleModal}
       setEmptyInterviewTitleModal = {setEmptyInterviewTitleModal}
       emptyInterviewContentModal = {emptyInterviewContentModal}

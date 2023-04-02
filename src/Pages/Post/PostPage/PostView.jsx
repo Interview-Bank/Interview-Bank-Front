@@ -11,6 +11,8 @@ const PostView = ({
 	onAddInput,
 	inputs,
 	onRemove,
+	modal,
+	setModal,
 	emptyInterviewTitleModal,
 	setEmptyInterviewTitleModal,
 	emptyInterviewContentModal,
@@ -32,6 +34,8 @@ const PostView = ({
 				onRemove={onRemove}
 				onChange={onChange}
 				onAddInput={onAddInput}
+				modal={modal}
+				setModal={setModal}
 				emptyInterviewTitleModal={emptyInterviewTitleModal}
 				setEmptyInterviewTitleModal={setEmptyInterviewTitleModal}
 				emptyInterviewContentModal={emptyInterviewContentModal}
