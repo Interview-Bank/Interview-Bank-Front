@@ -18,6 +18,17 @@ function PostContainer() {
     questionsId: inputId.current,
   }]);
 
+  const [category, setCategory] = useState({
+    primaryJobCategory: "",
+    secondaryJobCategory: ""
+  })
+
+  const isChangeCategory = (name, value) => {
+    setCategory(prev => { return { ...prev, [name]: value } })
+    console.log(category)
+  }  
+  
+
   const [emptyInterviewTitleModal, setEmptyInterviewTitleModal] = useState(false)
   const [emptyInterviewContentModal, setEmptyInterviewContentModal] = useState(false)
   const [registerInterviewModal, setRegisterInterviewModal] = useState(false)
@@ -26,12 +37,33 @@ function PostContainer() {
 
   const navigate = useNavigate();
 
+  const categoryValidationCheck = () => {
+    const { primaryJobCategory, secondaryJobCategory } = category;
+    if (!primaryJobCategory) {
+      console.log("1차직종 값 없어요");
+      return false;
+    }
+    if (!secondaryJobCategory) {
+      console.log("2차직종 값 없어요");
+      return false;
+    }
+    return true;
+  };
+
+
   const handleClickSubmit = async () => {
     const updatedQuestions = inputs;
+    const { primaryJobCategory, secondaryJobCategory } = category;
+
+    console.log(category);
+    // return false;
+    
     const data = {
+      primaryJobCategory,
       questionsRequest: {
         questions: updatedQuestions,
       },
+      secondaryJobCategory,
       title: title,
     };
 
@@ -92,7 +124,9 @@ function PostContainer() {
       emptyInterviewContentModal = {emptyInterviewContentModal}
       setEmptyInterviewContentModal = {setEmptyInterviewContentModal}
       registerInterviewModal = {registerInterviewModal}
-      setRegisterInterviewModal = {setRegisterInterviewModal}
+      setRegisterInterviewModal={setRegisterInterviewModal}
+      category={category}
+      isChangeCategory = {isChangeCategory}
     />
   );
 }
