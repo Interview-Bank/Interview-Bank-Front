@@ -1,47 +1,12 @@
 import React from "react";
+import {
+	CareerAge,
+	InterviewPeriod,
+	PrimaryJobCategory,
+	SecondaryJobCategory,
+} from "./PostSelectObject";
 
-const primaryJobCategory = [
-	{
-		id: 1,
-		name: "개발",
-		parent_id: null,
-	},
-	{
-		id: 2,
-		name: "R&D",
-		parent_id: null,
-	},
-	{
-		id: 3,
-		name: "디자인",
-		parent_id: null,
-	},
-	{
-		id: 4,
-		name: "기획/PM",
-		parent_id: null,
-	},
-	{
-		id: 5,
-		name: "마케팅",
-		parent_id: null,
-	},
-	{
-		id: 6,
-		name: "기타",
-		parent_id: null,
-	},
-];
-
-const secondaryJobCategory = [
-	{
-		id: 7,
-		name: "백엔드",
-		parent_id: 1,
-	},
-];
-
-const secondaryJobCategoryTestList = secondaryJobCategory.filter(
+const secondaryJobCategoryTestList = SecondaryJobCategory.filter(
 	(current) => current.parent_id === 1
 );
 
@@ -50,9 +15,21 @@ const PostSelect = ({ category, isChangeCategory }) => {
 		<div className="select__area">
 			<select name="interviewPeriod" id="interviewPeriod">
 				<option value="">면접 시기</option>
+				{InterviewPeriod &&
+					InterviewPeriod.map((current) => (
+						<option value={current.id} key={current.id} id={current.id}>
+							{current.name}
+						</option>
+					))}
 			</select>
 			<select name="careerAge" id="careerAge">
 				<option value="">경력</option>
+				{CareerAge &&
+					CareerAge.map((current) => (
+						<option value={current.id} key={current.id} id={current.id}>
+							{current.name}
+						</option>
+					))}
 			</select>
 			<select
 				name="primaryJobCategory"
@@ -62,9 +39,9 @@ const PostSelect = ({ category, isChangeCategory }) => {
 				onChange={(e) => isChangeCategory("primaryJobCategory", e.target.value)}
 			>
 				<option value="">직종</option>
-				{primaryJobCategory &&
-					primaryJobCategory.map((current) => (
-						<option value={current.name} key={current.id} id={current.id}>
+				{PrimaryJobCategory &&
+					PrimaryJobCategory.map((current) => (
+						<option value={current.id} key={current.id} id={current.id}>
 							{current.name}
 						</option>
 					))}
@@ -80,7 +57,7 @@ const PostSelect = ({ category, isChangeCategory }) => {
 				<option value="">세부직무</option>
 				{secondaryJobCategoryTestList &&
 					secondaryJobCategoryTestList.map((current) => (
-						<option value={current.name} key={current.id}>
+						<option value={current.id} key={current.id}>
 							{current.name}
 						</option>
 					))}
@@ -103,6 +80,7 @@ const PostSelect = ({ category, isChangeCategory }) => {
 					border-top: 0;
 					border-bottom: 0;
 					border-left: 0;
+					cursor: pointer;
 				}
 				select:first-child {
 					border-right: 1px solid #ddd;
