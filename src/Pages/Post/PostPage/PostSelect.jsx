@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import {
 	CareerAge,
 	InterviewPeriod,
@@ -11,21 +11,38 @@ const secondaryJobCategoryTestList = SecondaryJobCategory.filter(
 	(current) => current.parent_id === 1
 );
 
-const SelectBox = ({ selectTitle, selectArray }) => {
+const SelectBox = ({ selectTitle, selectArray, isChangeSelectBoxItems }) => {
 	const [selectActive, setSelectActive] = useState(false);
 	return (
-		<ul className={selectActive ? 'ul__select active' : 'ul__select'} onClick={()=>{setSelectActive(prev=>!prev)}}>
+		<ul
+			className={selectActive ? "ul__select active" : "ul__select"}
+			onClick={() => {
+				setSelectActive((prev) => !prev);
+			}}
+		>
 			<p>{selectTitle}</p>
-			<div className={selectActive ? 'select__option active' : 'select__option'}>
+			<div
+				className={selectActive ? "select__option active" : "select__option"}
+			>
 				<p>선택하세요</p>
 				{selectArray &&
-				selectArray.map((current) => (
-					<p key={current.id}>
-						{current.name}
-					</p>
-				))}
+					selectArray.map((current) => (
+						<p
+							key={current.id}
+							id={
+								selectTitle === "면접 시기" || selectTitle === "경력"
+									? current.value
+									: current.id
+							}
+							onClick={(e) =>
+								isChangeSelectBoxItems("secondaryJobCategory", e.target.id)
+							}
+						>
+							{current.name}
+						</p>
+					))}
 			</div>
-			<button className='btn__arrow'>{">"}</button>
+			<button className="btn__arrow">{">"}</button>
 			<style jsx>{`
 				.ul__select {
 					width: calc(25% - 60px - 3px);
@@ -70,13 +87,13 @@ const SelectBox = ({ selectTitle, selectArray }) => {
 				.ul__select:nth-child(4) {
 					border-right: 0;
 				}
-				.ul__select > p{
+				.ul__select > p {
 					width: 100%;
 					height: 100%;
 					margin: 0;
 					line-height: 66px;
 				}
-				.ul__select.active > p{
+				.ul__select.active > p {
 					opacity: 0;
 				}
 				.ul__select > li {
@@ -92,10 +109,10 @@ const SelectBox = ({ selectTitle, selectArray }) => {
 					right: 22px;
 					border: 0;
 					background-color: transparent;
-					
 				}
-				ul, li {
-					list-style:none;
+				ul,
+				li {
+					list-style: none;
 					margin: 0;
 					padding: 0;
 				}
@@ -125,17 +142,32 @@ const SelectBox = ({ selectTitle, selectArray }) => {
 				}
 			`}</style>
 		</ul>
-	)
-}
+	);
+};
 
-const PostSelect = ({ category, isChangeCategory }) => {
-	
+const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 	return (
 		<div className="select__area">
-			<SelectBox selectTitle={"면접 시기"} selectArray={InterviewPeriod} />
-			<SelectBox selectTitle={"경력"} selectArray={CareerAge} />
-			<SelectBox selectTitle={"직종"} selectArray={PrimaryJobCategory} />
-			<SelectBox selectTitle={"세부직무"} selectArray={secondaryJobCategoryTestList} />
+			<SelectBox
+				selectTitle={"면접 시기"}
+				selectArray={InterviewPeriod}
+				isChangeSelectBoxItems={isChangeSelectBoxItems}
+			/>
+			<SelectBox
+				selectTitle={"경력"}
+				selectArray={CareerAge}
+				isChangeSelectBoxItems={isChangeSelectBoxItems}
+			/>
+			<SelectBox
+				selectTitle={"직종"}
+				selectArray={PrimaryJobCategory}
+				isChangeSelectBoxItems={isChangeSelectBoxItems}
+			/>
+			<SelectBox
+				selectTitle={"세부직무"}
+				selectArray={secondaryJobCategoryTestList}
+				isChangeSelectBoxItems={isChangeSelectBoxItems}
+			/>
 			{/* <select name="interviewPeriod" id="interviewPeriod">
 				<option value="">면접 시기</option>
 				{InterviewPeriod &&

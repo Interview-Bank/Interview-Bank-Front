@@ -11,9 +11,9 @@ const PostView = ({
 	onAddInput,
 	inputs,
 	onRemove,
-	category,
-	isChangeCategory,
-	postValidationCheck
+	inputSelectBox,
+	isChangeSelectBoxItems,
+	postValidationCheck,
 }) => {
 	return (
 		<Layout>
@@ -23,7 +23,10 @@ const PostView = ({
 					handleClickSubmit={handleClickSubmit}
 					postValidationCheck={postValidationCheck}
 				/>
-				<PostSelect category={category} isChangeCategory={isChangeCategory} />
+				<PostSelect
+					inputSelectBox={inputSelectBox}
+					isChangeSelectBoxItems={isChangeSelectBoxItems}
+				/>
 			</div>
 			<PostBody
 				inputs={inputs}
