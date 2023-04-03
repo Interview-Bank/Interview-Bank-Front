@@ -38,7 +38,7 @@ const SelectBox = ({ selectTitle, selectArray }) => {
 					cursor: pointer;
 					border-right: 1px solid #ddd;
 					position: relative;
-					// overflow-y: hidden;
+					overflow-y: hidden;
 				}
 				.select__option {
 					position: absolute;
@@ -65,6 +65,7 @@ const SelectBox = ({ selectTitle, selectArray }) => {
 				}
 				.ul__select.active {
 					max-height: 100em;
+					overflow-y: unset;
 				}
 				.ul__select:nth-child(4) {
 					border-right: 0;
