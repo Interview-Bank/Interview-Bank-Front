@@ -102,7 +102,7 @@ const HeaderWrapper = styled.div`
   height: 100px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 7;
 `;
 
 const HeaderContents = styled.div`

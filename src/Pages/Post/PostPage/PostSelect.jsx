@@ -81,6 +81,10 @@ const PostSelect = ({ category, isChangeCategory }) => {
 					border-bottom: 0;
 					border-left: 0;
 					cursor: pointer;
+					// -o-appearance: none;
+					// -webkit-appearance: none;
+					// -moz-appearance: none;
+					// appearance: none;
 				}
 				select:first-child {
 					border-right: 1px solid #ddd;

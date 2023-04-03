@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostTitle = ({ setTitle, handleClickSubmit }) => {
+const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 	return (
 		<div className="title">
 			<input
@@ -13,7 +13,7 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 				}}
 			/>
 			<div className="btn__area">
-				<button className="btn-white">임시저장</button>
+				<button className="btn-white" onClick={postValidationCheck}>임시저장</button>
 				<button className="btn-blue" onClick={handleClickSubmit}>
 					발행하기
 				</button>

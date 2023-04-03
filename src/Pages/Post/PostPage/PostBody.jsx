@@ -1,24 +1,11 @@
 import React from "react";
 import QuestionList from "../QuestionsList/QuestionList";
-import PopUpModal from "../../../Components/Modal/PopUpModal";
-import EmptyInterviewTitleModalContainer from "../../../Components/ModalContent/EmptyInterviewTitleModal/EmptyInterviewTitleModalContainer";
-import EmptyInterviewContentModalContainer from "../../../Components/ModalContent/EmptyInterviewContentModal/EmptyInterviewContentModalContainer";
-import RegisterInterviewModalContainer from "../../../Components/ModalContent/RegisterInterviewModal/RegisterInterviewModalContainer";
-import CommonModal from "../../../Components/ModalContent/CommonModal";
 
 const PostBody = ({
 	inputs,
 	onRemove,
 	onChange,
 	onAddInput,
-	modal,
-	setModal,
-	emptyInterviewTitleModal,
-	setEmptyInterviewTitleModal,
-	emptyInterviewContentModal,
-	setEmptyInterviewContentModal,
-	registerInterviewModal,
-	setRegisterInterviewModal,
 }) => {
 	return (
 		<div className="write__area">
@@ -27,41 +14,6 @@ const PostBody = ({
 				+추가하기
 			</button>
 			{/* <AddButton onClick={onAddInput}>+추가하기</AddButton> */}
-			{modal && (
-				<CommonModal
-					CloseModal={() => {
-						setModal((prev) => !prev.modal);
-					}}
-				></CommonModal>
-			)}
-			{emptyInterviewTitleModal && (
-				<PopUpModal
-					CloseModal={() => {
-						setEmptyInterviewTitleModal(!emptyInterviewTitleModal);
-					}}
-				>
-					<EmptyInterviewTitleModalContainer />
-				</PopUpModal>
-			)}
-			{emptyInterviewContentModal && (
-				<PopUpModal
-					CloseModal={() => {
-						setEmptyInterviewContentModal(!emptyInterviewContentModal);
-					}}
-				>
-					<EmptyInterviewContentModalContainer />
-				</PopUpModal>
-			)}
-			{registerInterviewModal && (
-				<PopUpModal
-					CloseModal={() => {
-						setRegisterInterviewModal(false);
-						window.location.href = "/";
-					}}
-				>
-					<RegisterInterviewModalContainer />
-				</PopUpModal>
-			)}
 			<style jsx>{`
 				.write__area {
 					display: flex;
@@ -99,7 +51,6 @@ const PostBody = ({
 				}
 			`}</style>
 		</div>
-		// <div>PostBody</div>
 	);
 };
 

@@ -11,37 +11,25 @@ const PostView = ({
 	onAddInput,
 	inputs,
 	onRemove,
-	modal,
-	setModal,
-	emptyInterviewTitleModal,
-	setEmptyInterviewTitleModal,
-	emptyInterviewContentModal,
-	setEmptyInterviewContentModal,
-	registerInterviewModal,
-	setRegisterInterviewModal,
 	category,
 	isChangeCategory,
+	postValidationCheck
 }) => {
 	return (
 		<Layout>
-			<PostTitle
-				setTitle={setTitle}
-				handleClickSubmit={handleClickSubmit}
-			></PostTitle>
-			<PostSelect category={category} isChangeCategory={isChangeCategory} />
+			<div>
+				<PostTitle
+					setTitle={setTitle}
+					handleClickSubmit={handleClickSubmit}
+					postValidationCheck={postValidationCheck}
+				/>
+				<PostSelect category={category} isChangeCategory={isChangeCategory} />
+			</div>
 			<PostBody
 				inputs={inputs}
 				onRemove={onRemove}
 				onChange={onChange}
 				onAddInput={onAddInput}
-				modal={modal}
-				setModal={setModal}
-				emptyInterviewTitleModal={emptyInterviewTitleModal}
-				setEmptyInterviewTitleModal={setEmptyInterviewTitleModal}
-				emptyInterviewContentModal={emptyInterviewContentModal}
-				setEmptyInterviewContentModal={setEmptyInterviewContentModal}
-				registerInterviewModal={registerInterviewModal}
-				setRegisterInterviewModal={setRegisterInterviewModal}
 			/>
 		</Layout>
 	);
