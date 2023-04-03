@@ -3,15 +3,21 @@ import moment from "moment";
 import Layout from "../../Layout/Layout";
 import styled from "styled-components";
 import Banner from "../../Layout/Banner/Banner";
+import HomeSearch from './HomeSearch';
+import PostComponet from '../../Layout/PostList/PostComponent';
 
 const HomeView = ({ interviewList, navigate }) => {
   return (
     <Layout>
       <Banner />
+      <HomeSearch />
       <HomeWrapper>
         <HomeTitle>
           <h2>최신 글 보기</h2>
         </HomeTitle>
+        <PostComponet>
+          
+        </PostComponet>
         <HomeBody>
           {interviewList &&
             interviewList.slice(0,10).map((item, index) => (

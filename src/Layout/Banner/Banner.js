@@ -16,7 +16,7 @@ const Banner = () => {
 
 const BannerContainer = styled.div`
   top: 100px;
-  height: 300px;
+  height: 380px;
   background-color: #2e55e7;
 `;
 
