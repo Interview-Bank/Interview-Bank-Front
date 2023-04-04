@@ -18,8 +18,7 @@ const ProfileContainer = () => {
     await axios
       .post(API_URL + "logout", {}, { headers })
       .then((res) => {
-        console.log(res);
-        // dispatch(setToken(""));
+        deleteCookie('authToken');
         deleteCookie('userId');
         deleteCookie('user');
         window.location.reload();
