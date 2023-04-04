@@ -46,7 +46,7 @@ const InterviewPeriod = [
 	},
 ];
 
-const CareerAge = [
+const CareerYear = [
 	{
 		id: 1,
 		name: "신입",
@@ -120,4 +120,4 @@ const SecondaryJobCategory = [
 	},
 ];
 
-export { InterviewPeriod, CareerAge, PrimaryJobCategory, SecondaryJobCategory }
+export { InterviewPeriod, CareerYear, PrimaryJobCategory, SecondaryJobCategory }

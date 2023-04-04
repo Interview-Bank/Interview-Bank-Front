@@ -20,7 +20,7 @@ function PostContainer() {
 	]);
 	const [inputSelectBox, setInputSelectBox] = useState({
 		interviewPeriod: "",
-		careerAge: "",
+		careerYear: "",
 		primaryJobCategory: "",
 		secondaryJobCategory: "",
 	});
@@ -35,7 +35,7 @@ function PostContainer() {
 	const navigate = useNavigate();
 	const postValidationCheck = () => {
 		console.log(inputSelectBox);
-		const { primaryJobCategory, secondaryJobCategory } = inputSelectBox;
+		const { interviewPeriod, careerYear, primaryJobCategory, secondaryJobCategory } = inputSelectBox;
 
 		if (!title) {
 			dispatch({

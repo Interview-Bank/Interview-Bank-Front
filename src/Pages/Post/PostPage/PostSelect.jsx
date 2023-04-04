@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import {
-	CareerAge,
+	CareerYear,
 	InterviewPeriod,
 	PrimaryJobCategory,
 	SecondaryJobCategory,
@@ -11,7 +11,7 @@ const secondaryJobCategoryTestList = SecondaryJobCategory.filter(
 	(current) => current.parent_id === 1
 );
 
-const SelectBox = ({ selectTitle, selectArray, isChangeSelectBoxItems }) => {
+const SelectBox = ({ selectSection, selectTitle, selectArray, isChangeSelectBoxItems }) => {
 	const [selectActive, setSelectActive] = useState(false);
 	return (
 		<ul
@@ -24,7 +24,14 @@ const SelectBox = ({ selectTitle, selectArray, isChangeSelectBoxItems }) => {
 			<div
 				className={selectActive ? "select__option active" : "select__option"}
 			>
-				<p>선택하세요</p>
+				<p
+					id=""
+					onClick={(e) =>
+						isChangeSelectBoxItems(selectSection, e.target.id)
+					}
+				>
+					선택하세요
+				</p>
 				{selectArray &&
 					selectArray.map((current) => (
 						<p
@@ -35,7 +42,7 @@ const SelectBox = ({ selectTitle, selectArray, isChangeSelectBoxItems }) => {
 									: current.id
 							}
 							onClick={(e) =>
-								isChangeSelectBoxItems("secondaryJobCategory", e.target.id)
+								isChangeSelectBoxItems(selectSection, e.target.id)
 							}
 						>
 							{current.name}
@@ -116,106 +123,47 @@ const SelectBox = ({ selectTitle, selectArray, isChangeSelectBoxItems }) => {
 					margin: 0;
 					padding: 0;
 				}
-				select {
-					width: 25%;
-					height: 100%;
-					padding-left: 30px;
-					color: #5c5c5c;
-					border-top: 0;
-					border-bottom: 0;
-					border-left: 0;
-					cursor: pointer;
-					// -o-appearance: none;
-					// -webkit-appearance: none;
-					// -moz-appearance: none;
-					// appearance: none;
-				}
-				select:first-child {
-					border-right: 1px solid #ddd;
-					border-radius: 8px 0 0 8px;
-				}
-				select:nth-child(4) {
-					border-radius: 0 8px 8px 0;
-				}
-				select + select {
-					border-right: 1px solid #ddd;
-				}
 			`}</style>
 		</ul>
 	);
 };
 
 const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
+	console.log(inputSelectBox)
 	return (
 		<div className="select__area">
 			<SelectBox
-				selectTitle={"면접 시기"}
+				selectSection="interviewPeriod"
+				selectTitle={inputSelectBox.interviewPeriod === ""
+					? "면접 시기"
+					: InterviewPeriod.find((current)=>current.value === inputSelectBox.interviewPeriod).name}
 				selectArray={InterviewPeriod}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<SelectBox
-				selectTitle={"경력"}
-				selectArray={CareerAge}
+				selectSection="careerYear"
+				selectTitle={inputSelectBox.careerYear === ""
+					? "경력"
+					: CareerYear.find((current)=>current.value === inputSelectBox.careerYear).name}
+				selectArray={CareerYear}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<SelectBox
-				selectTitle={"직종"}
+				selectSection="primaryJobCategory"
+				selectTitle={inputSelectBox.primaryJobCategory === ""
+					? "직종"
+					: PrimaryJobCategory.find((current)=>current.id === Number(inputSelectBox.primaryJobCategory)).name}
 				selectArray={PrimaryJobCategory}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<SelectBox
-				selectTitle={"세부직무"}
+				selectSection="secondaryJobCategory"
+				selectTitle={inputSelectBox.secondaryJobCategory === ""
+					? "세부직무"
+					: SecondaryJobCategory.find((current)=>current.id === Number(inputSelectBox.secondaryJobCategory)).name}
 				selectArray={secondaryJobCategoryTestList}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
-			{/* <select name="interviewPeriod" id="interviewPeriod">
-				<option value="">면접 시기</option>
-				{InterviewPeriod &&
-					InterviewPeriod.map((current) => (
-						<option value={current.id} key={current.id} id={current.id}>
-							{current.name}
-						</option>
-					))}
-			</select>
-			<select name="careerAge" id="careerAge">
-				<option value="">경력</option>
-				{CareerAge &&
-					CareerAge.map((current) => (
-						<option value={current.id} key={current.id} id={current.id}>
-							{current.name}
-						</option>
-					))}
-			</select>
-			<select
-				name="primaryJobCategory"
-				id="primaryJobCategory"
-				defaultValue={category.primaryJobCategory}
-				onChange={(e) => isChangeCategory("primaryJobCategory", e.target.value)}
-			>
-				<option value="">직종</option>
-				{PrimaryJobCategory &&
-					PrimaryJobCategory.map((current) => (
-						<option value={current.id} key={current.id} id={current.id}>
-							{current.name}
-						</option>
-					))}
-			</select>
-			<select
-				name="secondaryJobCategory"
-				id="secondaryJobCategory"
-				defaultValue={category.secondaryJobCategory}
-				onChange={(e) =>
-					isChangeCategory("secondaryJobCategory", e.target.value)
-				}
-			>
-				<option value="">세부직무</option>
-				{secondaryJobCategoryTestList &&
-					secondaryJobCategoryTestList.map((current) => (
-						<option value={current.id} key={current.id}>
-							{current.name}
-						</option>
-					))}
-			</select> */}
 			<style jsx>{`
 				.select__area {
 					max-width: 1100px;
