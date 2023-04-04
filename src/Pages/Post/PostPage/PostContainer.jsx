@@ -35,7 +35,12 @@ function PostContainer() {
 	const navigate = useNavigate();
 	const postValidationCheck = () => {
 		console.log(inputSelectBox);
-		const { interviewPeriod, careerYear, primaryJobCategory, secondaryJobCategory } = inputSelectBox;
+		const {
+			interviewPeriod,
+			careerYear,
+			primaryJobCategory,
+			secondaryJobCategory,
+		} = inputSelectBox;
 
 		if (!title) {
 			dispatch({
@@ -69,16 +74,26 @@ function PostContainer() {
 
 	const handleClickSubmit = async () => {
 		const updatedQuestions = inputs;
-		const { primaryJobCategory, secondaryJobCategory } = inputSelectBox;
+		const {
+			interviewPeriod,
+			careerYear,
+			primaryJobCategory,
+			secondaryJobCategory,
+		} = inputSelectBox;
 
 		const data = {
-			primaryJobCategory,
+			interviewPeriod,
+			careerYear,
+			jobCategoryId: Number(primaryJobCategory),
+			// primaryJobCategory,
 			questionsRequest: {
 				questions: updatedQuestions,
 			},
-			secondaryJobCategory,
+			// secondaryJobCategory,
 			title: title,
 		};
+
+		console.log(data);
 
 		try {
 			const response = await axios.post(

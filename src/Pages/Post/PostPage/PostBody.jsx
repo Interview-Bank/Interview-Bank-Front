@@ -1,12 +1,7 @@
 import React from "react";
 import QuestionList from "../QuestionsList/QuestionList";
 
-const PostBody = ({
-	inputs,
-	onRemove,
-	onChange,
-	onAddInput,
-}) => {
+const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
 	return (
 		<div className="write__area">
 			<QuestionList inputs={inputs} onRemove={onRemove} onChange={onChange} />
