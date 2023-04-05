@@ -4,8 +4,15 @@ import PostView from "./PostView";
 import { useNavigate } from "react-router-dom";
 import { setTokenHeaders } from "../../api/apiGetTokenHeader";
 import { useDispatch } from "react-redux";
+import { getJobCategories } from '../../api/Post/jobCategoryAPI';
+import { useEffect } from 'react';
 
 function PostContainer() {
+  useEffect(() => {
+    getJobCategories().then(response => console.log(response)).catch(resolve => console.log(resolve));
+    // console.log(test);
+  }, [])
+
 	const inputId = useRef(0);
 	const generateId = () => {
 		inputId.current += 1;

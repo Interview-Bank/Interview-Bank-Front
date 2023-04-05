@@ -1,5 +1,7 @@
 import React from "react";
+import { useEffect } from 'react';
 import { useState } from "react";
+import { getFirstJobCategories, getJobCategories, getSecondJobCategories } from '../../api/Post/jobCategoryAPI';
 import {
 	CareerYear,
 	InterviewPeriod,
@@ -12,6 +14,7 @@ const secondaryJobCategoryTestList = SecondaryJobCategory.filter(
 );
 
 const SelectBox = ({ selectSection, selectTitle, selectArray, isChangeSelectBoxItems }) => {
+	console.log(selectArray);
 	const [selectActive, setSelectActive] = useState(false);
 	return (
 		<ul
@@ -129,7 +132,17 @@ const SelectBox = ({ selectSection, selectTitle, selectArray, isChangeSelectBoxI
 };
 
 const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
-	console.log(inputSelectBox)
+	const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
+	// const [firstJobCategoriesArray, setFirstJobCategoriesArray] = useState([]);
+	// const [secondJobCategoriesArray, setSecondJobCategoriesArray] = useState([]);
+
+	useEffect(() => {
+		getJobCategories()
+			.then(result => setJobCategoriesArray(result))
+			.catch(resolve => resolve);
+	}, []);
+
+	// console.log(getSecondJobCategories(jobCategoriesArray, Number(inputSelectBox.primaryJobCategory)))
 	return (
 		<div className="select__area">
 			<SelectBox
@@ -152,16 +165,16 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 				selectSection="primaryJobCategory"
 				selectTitle={inputSelectBox.primaryJobCategory === ""
 					? "직종"
-					: PrimaryJobCategory.find((current)=>current.id === Number(inputSelectBox.primaryJobCategory)).name}
-				selectArray={PrimaryJobCategory}
+					: getFirstJobCategories(jobCategoriesArray).find((current)=>current.id === Number(inputSelectBox.primaryJobCategory)).name}
+				selectArray={getFirstJobCategories(jobCategoriesArray)}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<SelectBox
 				selectSection="secondaryJobCategory"
 				selectTitle={inputSelectBox.secondaryJobCategory === ""
 					? "세부직무"
-					: SecondaryJobCategory.find((current)=>current.id === Number(inputSelectBox.secondaryJobCategory)).name}
-				selectArray={secondaryJobCategoryTestList}
+					: getSecondJobCategories(jobCategoriesArray, Number(inputSelectBox.primaryJobCategory)).find((current)=>current.id === Number(inputSelectBox.secondaryJobCategory)).name}
+				selectArray={inputSelectBox.primaryJobCategory === "" ? [] : getSecondJobCategories(jobCategoriesArray, Number(inputSelectBox.primaryJobCategory))}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<style jsx>{`
