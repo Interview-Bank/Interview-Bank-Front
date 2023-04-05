@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import RegisterSelect from "../Pages/Register/RegisterSelect";
 import RegisterEmailContainer from "../Pages/Register/RegisterEmail/RegisterEmailContianer";
-import HomeContainer from "../Pages/Home/HomeContainer";
 import HomePage from "../Pages/Home/HomePage";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import FindPasswordContainer from "../Pages/FindPassword/FindPasswordContainer";

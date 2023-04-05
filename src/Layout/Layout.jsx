@@ -4,8 +4,6 @@ import HeaderContainer from "./Header/HeaderContainer";
 import Footer from "./Footer/Footer";
 
 const Layout = (props) => {
-  console.log(window.location.pathname.includes("interview"))
-  console.log(props);
   return (
     <>
       <HeaderContainer />

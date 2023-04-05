@@ -2,17 +2,20 @@ import React from "react";
 import { useState } from "react";
 import whiteLike from "../../Assets/Images/Icons/white_heart.png";
 import blueLike from "../../Assets/Images/Icons/blue_heart.png";
+import { useNavigate } from 'react-router-dom';
 
 const PostComponent = ({
+  id,
 	title,
 	nickname,
 	firstCategoryName,
 	secondCategoryName,
 	createdAt,
 }) => {
+  const navigate = useNavigate();
 	const [like, setLike] = useState(false);
 	return (
-		<div className="write__area">
+		<div className="write__area" onClick={()=>navigate(`/interview/${id}`)}>
 			<div className="write__content">
 				<div className="write__job">
 					<span className="font-blue">{firstCategoryName}</span>
@@ -43,7 +46,15 @@ const PostComponent = ({
 					display: flex;
 					flex-wrap: wrap;
 					position: relative;
+          cursor: pointer;
 				}
+        .write__area:hover {
+          border: 1px solid #2E55E7;
+        }
+        .write__area:hover .btn__write {
+          background-color: #2E55E7;
+          color: white;
+        }
 				.write__content {
 					width: calc(100% - 40px);
 					height: calc(133px - 40px);

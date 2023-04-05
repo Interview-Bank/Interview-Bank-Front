@@ -1,7 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState }  from "react";
 import Banner from "../../Layout/Banner/Banner";
 import Layout from "../../Layout/Layout";
 import PostComponent from "../../Layout/PostList/PostComponent";
@@ -9,17 +6,14 @@ import { bringHomeInterviewListData } from "../api/Home/homeFetchDataAPI";
 import HomeSearch from "./HomeSearch";
 
 const HomePage = () => {
-	const navigate = useNavigate();
 	const [interviewList, setInterviewList] = useState([]);
 
 	useEffect(() => {
 		bringHomeInterviewListData()
 			.then((result) => setInterviewList(result))
 			.catch((resolve) => console.log(resolve));
-	}, []);
-
-	console.log(interviewList);
-
+  }, []);
+  
 	return (
 		<Layout>
 			<Banner />
@@ -30,7 +24,8 @@ const HomePage = () => {
 			<div className="post__list">
 				{interviewList &&
 					interviewList.map((current) => (
-						<PostComponent
+            <PostComponent
+              id={current.interviewId}
 							nickname={current.nickname}
 							createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
 							title={current.title}
@@ -48,7 +43,7 @@ const HomePage = () => {
 					display: grid;
 					width: 100%;
 					max-width: 1100px;
-					margin: 0 auto;
+					margin: 0 auto 20px;
 					grid-template-columns: repeat(4, 1fr);
 					gap: 20px;
 				}
