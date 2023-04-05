@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 const MyScrapView = ({ scrapList }) => {

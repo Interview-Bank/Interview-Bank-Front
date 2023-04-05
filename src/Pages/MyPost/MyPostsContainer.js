@@ -4,10 +4,11 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import MyPostsView from "./MyPostsView";
 import { jwtUtils } from "../../utils/jwtUtils";
+import { getToken } from "../../Redux/Reducers/AuthReducer";
 
 const MyPostsContainer = () => {
   const [boardList, setBoardList] = useState([]);
-  const token = useSelector((state) => state.Auth.token);
+  const token = useSelector((state) => getToken(state));
   const userName = localStorage.getItem("user");
   const newBoardList = boardList.filter(
     (boardList) => boardList.nickname === userName

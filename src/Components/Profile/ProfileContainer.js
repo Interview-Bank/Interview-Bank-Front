@@ -1,19 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../Redux/Reducers/AuthReducer";
+import {
+  setToken,
+  getToken,
+  setTokenExpiration,
+  setUserId,
+} from "../../Redux/Reducers/AuthReducer";
 import ProfileView from "./ProfileView";
 import axios from "axios";
-
 
 const ProfileContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/account/";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.Auth.token);
+  const token = useSelector((state) => getToken(state));
 
   const onLogoutClick = async () => {
-    console.log(token);
     const headers = {
       "X-Auth-Token": `${token}`,
     };
@@ -23,6 +26,9 @@ const ProfileContainer = () => {
       .then((res) => {
         console.log(res);
         dispatch(setToken(""));
+        dispatch(setUserId(""));
+        dispatch(setTokenExpiration(""));
+
         localStorage.clear();
         window.location.reload();
       })

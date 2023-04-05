@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../../Redux/Reducers/AuthReducer";
 
 const InterviewConatiner = () => {
   const { interview_id } = useParams();
@@ -11,7 +12,7 @@ const InterviewConatiner = () => {
   const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
 
-  const token = useSelector((state) => state.Auth.token);
+  const token = useSelector((state) => getToken(state));
   const userId = useSelector((state) => state.Auth.userId);
 
   const headers = {

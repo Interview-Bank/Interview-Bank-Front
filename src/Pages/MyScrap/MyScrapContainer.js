@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import MyScrapView from "./MyScrapView";
+import { getToken } from "../../Redux/Reducers/AuthReducer";
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
-  const token = useSelector((state) => state.Auth.token);
+  const token = useSelector((state) => getToken(state));
 
   const headers = {
     "X-Auth-Token": `${token}`,

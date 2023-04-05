@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import Layout from "../../Layout/Layout";
+import AnswerInput from "../../Components/AnswerInput/AnswerInput";
 
 const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
   return (
@@ -21,12 +22,14 @@ const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
               </GoToPost>
             </BoardDate>
           </BoardDetail>
+
           <QuestionsBlock>
             {contents.map((item, index) => (
-              <div>
-                <li key={index}>{item.content}</li>
-
-                <AnswerBlock>Answer</AnswerBlock>
+              <div key={index}>
+                <li>{item.content}</li>
+                <div>
+                  <AnswerInput contents={contents}></AnswerInput>
+                </div>
               </div>
             ))}
           </QuestionsBlock>
@@ -91,10 +94,9 @@ const QuestionsBlock = styled.div`
     padding-left: 30px;
     margin-top: 30px;
     border-radius: 5px;
-    border: 0px solid #b5b5b5;
+    border: 1px solid #e9e9e9;
     border-left: 17px solid #2e55e7;
     outline: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
     align-items: center;
     display: flex;
     background-color: #fff;
@@ -102,22 +104,16 @@ const QuestionsBlock = styled.div`
   }
 `;
 
-const AnswerBlock = styled.div`
-  font-weight: 700;
-  font-size: 18px;
-  height: 70px;
-  padding-left: 30px;
-  margin-top: 30px;
-  border-radius: 5px;
-  border: 0px solid #b5b5b5;
-  outline: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
-  align-items: center;
-  display: flex;
+const AnswerAddButton = styled.button`
+  font-family: "inter", sans-serif;
   background-color: #fff;
-  justify-content: space-between;
+  margin-right: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #444;
+  padding: 18px;
+  border: none;
+  outline: none;
 `;
-
-const InputAnswer = styled.input``;
 
 export default ScrapInterviewView;

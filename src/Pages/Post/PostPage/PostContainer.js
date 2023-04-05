@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PostView from "./PostView";
+import { getToken } from "../../../Redux/Reducers/AuthReducer";
 
 function PostContainer() {
   const [title, setTitle] = useState("");
@@ -13,7 +14,7 @@ function PostContainer() {
 
   const { content, questionsId } = inputs;
 
-  const token = useSelector((state) => state.Auth.token);
+  const token = useSelector((state) => getToken(state));
   const headers = {
     "X-Auth-Token": token,
   };
