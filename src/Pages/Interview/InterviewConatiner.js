@@ -14,7 +14,7 @@ const InterviewConatiner = () => {
   const [scrapModal, setScrapModal] = useState(false)
   const userId = useSelector((state) => state.Auth.userId);
 
-  const headers = setTokenHeaders();
+  // const headers = setTokenHeaders();
 
   const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ const InterviewConatiner = () => {
   }, []);
 
   const handleScrap = () => {
+    const headers = setTokenHeaders();
     axios
       .post(
         `https://bstaging.interviewbank.net/scraps`,
@@ -53,7 +54,7 @@ const InterviewConatiner = () => {
       interview={interview}
       contents={contents}
       navigate={navigate}
-      token={headers['X-Auth-Token']}
+      // token={headers['X-Auth-Token']}
       userId={userId}
       accountId={accountId}
       handleScrap={handleScrap}

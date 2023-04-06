@@ -4,16 +4,17 @@ import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 import ScrapModal from "../../Components/Modal/PopUpModal"
 import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapModalContainer";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 const InterviewView = ({
   interview,
   contents,
-  token,
   accountId,
   userId,
   handleScrap,
   scrapModal,
   setScrapModal
 }) => {
+  const token = setTokenHeaders()['X-Auth-Token'];
   return (
     <Layout>
       <BoardWrapper>
@@ -30,7 +31,7 @@ const InterviewView = ({
               </div>
             )}
             {jwtUtils.isAuth(token) && accountId !== userId && (
-              <BoardScrapButton onClick={handleScrap}>
+              <BoardScrapButton onClick={()=>handleScrap}>
                 ★ 스크랩
               </BoardScrapButton>
             )}
