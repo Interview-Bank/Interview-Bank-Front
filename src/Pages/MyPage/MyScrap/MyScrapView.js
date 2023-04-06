@@ -10,7 +10,7 @@ const MyScrapView = ({ scrapList }) => {
     <Layout>
       <MyScrapLayout>
         <ScrapPageContainer>
-          <MypageSidemenuContanier/>
+          <MypageSidemenuContanier currentMenu = "MyScrap"/>
           <MyScrapWrapper>
             <ScrapPageTitle>
               작성한 답변글

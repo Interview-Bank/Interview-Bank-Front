@@ -11,7 +11,7 @@ const MyPostView = ({ boardList }) => {
     <Layout>
       <MyPostLayout>
         <MyPostsContainer>
-          <MypageSidemenuContanier/>
+          <MypageSidemenuContanier currentMenu = "MyPost"/>
           <MyPostWrapper>
             <MyPostsTitle>
               작성한 게시글

@@ -11,16 +11,24 @@ const UserSettingContainer = () => {
   const [passwordUpdatedAt, setPasswordUpdatedAt] = useState("")
   const userNickname = getCookieValue("user=");
   const headers = setTokenHeaders();
+  
 
   useEffect(() => {
-    const response = axios.get(
-      `https://bstaging.interviewbank.net/account/me`
-    );
-    console.log(response)
-    setPasswordUpdatedAt(response.data.passwordUpdatedAt)
-    setUserEmail(response.data.email)
-  }, [])
-  
+    const getmydata = async () => {
+    try {
+      const response = await axios.get(
+        `https://bstaging.interviewbank.net/account/me`,
+        {headers}
+      );
+      console.log(response)
+      setPasswordUpdatedAt(response.data.passwordUpdatedAt)
+      setUserEmail(response.data.email)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getmydata();
+  }, [])  
   return (
     <UserSettingView
       userEmail = {userEmail}

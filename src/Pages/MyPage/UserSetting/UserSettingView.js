@@ -6,16 +6,13 @@ import BasicProfilePhoto from "../../../Assets/Images/BasicProfilePhoto.png"
 import Modal from '../../../Components/Modal/EditModal';
 import EditModalContainer from '../../../Components/ModalContent/EditModal/EditModalContainer';
 
-const UserSettingView = ({userNickname, editModal, setEditModal, userEmail, passwordUpdatedAt }) => {
+const UserSettingView = ({userEmail, passwordUpdatedAt, userNickname, editModal, setEditModal}) => {
   return (
     <Layout>
       <UserSettingLayout>
       <UserSettingContainer>
-        <MypageSidemenuContanier/>
+        <MypageSidemenuContanier currentMenu = "UserSetting"/>
         <UserSettingWrapper>
-          <UserSettingTitle>
-            계정 관리
-          </UserSettingTitle>
           <UserinfoTitle>
             기본 정보
           </UserinfoTitle>
@@ -24,26 +21,28 @@ const UserSettingView = ({userNickname, editModal, setEditModal, userEmail, pass
               <ProfilePhoto
                 src={BasicProfilePhoto}></ProfilePhoto>
               <Userinfo>
+                <UserNicknameWrapper>
+                <UserNickname>{userNickname}님</UserNickname>
+                <UserinfoEditBtn
+                  onClick={() => {
+                    setEditModal(true);
+                  }}>
+                    수정
+                </UserinfoEditBtn>
+                {editModal && (
+                      <Modal
+                        CloseModal={() => {
+                          setEditModal(!editModal);
+                        }}
+                      >
+                        <EditModalContainer />
+                      </Modal>
+                )}
+                </UserNicknameWrapper>
                 <UserEmailTitle>이메일</UserEmailTitle>
                 <UserEmail>{userEmail}</UserEmail>
-                <UserNickname>{userNickname}님</UserNickname>
               </Userinfo>
             </UserinfoWrapper>
-            <UserinfoEditBtn
-              onClick={() => {
-                setEditModal(true);
-              }}>
-                수정
-            </UserinfoEditBtn>
-            {editModal && (
-                  <Modal
-                    CloseModal={() => {
-                      setEditModal(!editModal);
-                    }}
-                  >
-                    <EditModalContainer />
-                  </Modal>
-            )}
           </UserinfoBox>
           <UserPassword>
             비밀번호
@@ -92,39 +91,20 @@ const UserSettingWrapper = styled.div`
   justify-content: left;
 `;
 
-const UserSettingTitle = styled.div`
+const UserinfoTitle = styled.div`
   position: relative;
-  width: 140px;
-  height: 39px;
+  width: 110px;
+  height: 35px;
 
-
-  font-family: 'Inter';
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 24px;
+  line-height: 35px;
   /* identical to box height */
 
   text-align: center;
 
-  color: #2E55E7;
-
-`;
-
-const UserinfoTitle = styled.div`
-  position: relative;
-  width: 120px;
-  height: 29px;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-
-  text-align: center;
-
-  margin-top: 27px;
   color: #000000;
 `;
 
@@ -132,42 +112,44 @@ const UserinfoBox = styled.div`
   box-sizing: border-box;
 
   position: relative;
-  width : 950px;
-  height: 400px;
+
+  width: 952px;
+  height: 169px;
 
   display: flex;
   flex-direction: column;
 
   background: #FFFFFF;
   border: 1px solid #D9D9D9;
-  border-radius: 20px;
+  border-radius: 8px;
 
-  margin-top: 15px;
+  margin-top: 16px;
 
 `;
 
 const UserinfoWrapper = styled.div`
   position: relative;
 
-  width : 659px;
-  height: 120px;
-
-  top : 46px;
-  left : 63px;
+  width : fit-content;
+  height: fit-content;
 
   display: flex;
   flex-direction: row;
+
+  padding-top: 36px;
+  padding-left: 35px;
+  padding-bottom: 36px;
 
 `;
 
 const ProfilePhoto = styled.img`
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 97px;
+  height: 97px;
 
-  border-radius: 100%;
+  border-radius: 8px;
 
-  margin-right: 31px;
+  margin-right: 48px;
 `;
 
 const Userinfo = styled.div`
@@ -181,132 +163,131 @@ const Userinfo = styled.div`
 
 `;
 
-const UserEmailTitle = styled.div`
+const UserNicknameWrapper = styled.div`
   position: relative;
 
-  width: 75px;
-  height: 29px;
-  /* left: 884px;
-  top: 334px; */
+  display: flex;
+  flex-direction: row;
 
-  font-family: 'Inter';
+  width: fit-content;
+  height: fit-content;
+
+  margin-bottom : 18px;
+`;
+
+const UserNickname = styled.div`
+  position: relative;
+  width: fit-content;
+  height: 29px;
+
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 29px;
-  /* identical to box height */
+  line-height: 35px;
+
+  color: #5C5C5C;
+
+  margin-right: 20px;
+
+`;
+
+
+const UserinfoEditBtn = styled.button`
+  position: relative;
+  width: 80px;
+  height: 35px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+
+  color: #FFFFFF;
+
+  background: #2E55E7;
+  border-radius: 4px;
+  border: #2E55E7;
+
+  cursor: pointer;
+`;
+const UserEmailTitle = styled.div`
+  position: relative;
+
+  width: 45px;
+  height: 20px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
 
   color: #5C5C5C;
 `;
 
 const UserEmail = styled.div`
   position: relative;
-  width: 508px;
-  height: 49px;
-  /* left: 884px;
-  top: 363px; */
+  width: fit-content;
+  height: 23px;
 
-  font-family: 'Montserrat';
+
+  font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 49px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
 
   color: #2E55E7;
-
-`;
-
-const UserNickname = styled.div`
-  position: relative;
-  width: 153px;
-  height: 29px;
-  /* left: 884px;
-  top: 417px; */
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-
-  color: #5C5C5C;
-
-  margin-top: 5px;
-`;
-
-const UserinfoEditBtn = styled.button`
-  position: absolute;
-  width: 80px;
-  height: 40px;
-  left: 820px;
-  top: 320px;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-
-  color: #FFFFFF;
-  background: #2E55E7;
-  border-radius: 3px;
-  border: #2E55E7;
-
-  cursor: pointer;
 `;
 
 const UserPassword = styled.div`
   position: relative;
   width: 100px;
-  height: 29px;
-  /* left: 670px;
-  top: 717px; */
+  height: 35px;
 
-  font-family: 'Inter';
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 29px;
+  line-height: 35px;
+  /* identical to box height */
 
   text-align: center;
 
   color: #000000;
-
-  margin-top: 37px;
+  
+  margin-top: 46px;
 `;
 
 const UserPasswordBox = styled.div`
   box-sizing: border-box;
 
   position: relative;
-  width: 950px;
-  height: 100px;
-  /* left: 670px;
-  top: 761px; */
+  width: 952px;
+  height: 87px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 
   background: #FFFFFF;
   border: 1px solid #D9D9D9;
-  border-radius: 20px;
-
-  margin-top: 15px;
-
-  & > div:not(:last-child) {
-    margin-right: 421px;
-  }
+  border-radius: 8px;
+  
+  margin-top: 16px;
 `;
 
 const Recentinfo = styled.div`
   position: relative;
-  width: 269px;
+  width: fit-content;
   height: 24px;
   /* left: 717px;
   top: 799px; */
-
+  white-space: nowrap;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -316,24 +297,25 @@ const Recentinfo = styled.div`
   color: #5C5C5C;
 
   margin-left: 47px;
+  /* 반응형하면 사이 간격 어떻게 하지? */
 `;
 
 const UserPasswordEditBtn = styled.button`
   position: relative;
-  width: 170px;
-  height: 40px;
-  /* left: 1407px;
-  top: 791px; */
+  width: 113px;
+  height: 35px;
 
-  font-family: 'Inter';
+  font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
   text-align: center;
 
   color: #FFFFFF;
   background: #2E55E7;
-  border-radius: 3px;
+  border-radius: 4px;
   border: #2E55E7;
+
+  margin-right: 36px;
 `;

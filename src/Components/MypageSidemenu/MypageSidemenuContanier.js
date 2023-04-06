@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import MypageSidemenuView from './MypageSidemenuView';
 
-const MypageSidemenuContanier = () => {
+const MypageSidemenuContanier = (props) => {
     const navigate = useNavigate()
 
     const onUserSettingClick = () => {
@@ -14,10 +14,10 @@ const MypageSidemenuContanier = () => {
     const onScrapClick = () => {
         navigate("/mypage/my-scrap");
       };
-    
-    
+    console.log(props)
   return (
     <MypageSidemenuView
+        currentMenu = {props.currentMenu}
         onUserSettingClick = {onUserSettingClick}
         onMyPostsClick = {onMyPostsClick}
         onScrapClick = {onScrapClick}

@@ -8,7 +8,7 @@ import ProfileContainer from "../../Components/Profile/ProfileContainer";
 import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
 import LoginContainer from "../../Pages/Login/LoginContainer";
 import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
-import WriteIconUrl from "../../Assets/Images/WriteIcon.png"
+import WriteIconUrl from "../../Assets/Icons/WriteIcon.png"
 
 
 const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
