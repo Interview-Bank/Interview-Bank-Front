@@ -6,7 +6,7 @@ import BasicProfilePhoto from "../../../Assets/Images/BasicProfilePhoto.png"
 import Modal from '../../../Components/Modal/EditModal';
 import EditModalContainer from '../../../Components/ModalContent/EditModal/EditModalContainer';
 
-const UserSettingView = ({userNickname, editModal, setEditModal}) => {
+const UserSettingView = ({userNickname, editModal, setEditModal, userEmail, passwordUpdatedAt }) => {
   return (
     <Layout>
       <UserSettingLayout>
@@ -25,7 +25,7 @@ const UserSettingView = ({userNickname, editModal, setEditModal}) => {
                 src={BasicProfilePhoto}></ProfilePhoto>
               <Userinfo>
                 <UserEmailTitle>이메일</UserEmailTitle>
-                <UserEmail>실제 이메일</UserEmail>
+                <UserEmail>{userEmail}</UserEmail>
                 <UserNickname>{userNickname}님</UserNickname>
               </Userinfo>
             </UserinfoWrapper>
@@ -50,7 +50,7 @@ const UserSettingView = ({userNickname, editModal, setEditModal}) => {
           </UserPassword>
           <UserPasswordBox>
             <Recentinfo>
-              최근 변경일
+              최근 변경일 : {passwordUpdatedAt}
             </Recentinfo>
             <UserPasswordEditBtn>비밀번호 변경</UserPasswordEditBtn>
           </UserPasswordBox>

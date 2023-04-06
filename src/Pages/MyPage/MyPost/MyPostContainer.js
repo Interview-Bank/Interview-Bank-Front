@@ -3,11 +3,13 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import MyPostsView from "./MyPostView";
 import { setTokenHeaders } from '../../api/apiGetTokenHeader';
+import { getCookieValue } from '../../api/loginApi';
+
 
 const MyPostContainer = () => {
   const [boardList, setBoardList] = useState([]);
   const token = useSelector((state) => state.Auth.token);
-  const userName = localStorage.getItem("user");
+  const userName = getCookieValue("user=");
   const newBoardList = boardList.filter(
     (boardList) => boardList.nickname === userName
   );
