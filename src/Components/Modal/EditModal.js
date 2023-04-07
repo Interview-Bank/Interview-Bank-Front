@@ -6,12 +6,14 @@ const EditModal = (props) => {
   const CloseModal = () => {
     props.CloseModal();
   };
-
+  const childrenWithProps = React.Children.map(props.children, child =>
+    React.cloneElement(child, { CloseModal })
+  );
   return (
     <ModalWrapper>
       <ModalBody>
         <ModalCloseButton onClick={CloseModal}>✕</ModalCloseButton>
-        {props.children}
+        {childrenWithProps}
       </ModalBody>
     </ModalWrapper>
   );

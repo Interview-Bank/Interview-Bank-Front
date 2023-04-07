@@ -14,8 +14,10 @@ const EditModalContainer = (props) => {
   const userNickname = getCookieValue("user=");
   const headers = setTokenHeaders();
   const [ErrorMsg, setErrorMsg] = useState("");
+  console.log(props);
 
   const handleUpdateNickname =  (newNickname) => {
+    console.log("jkkkkkkk");
     if (!newNickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,16}$/)){
       setErrorMsg("1글자 이상 16글자 이하로 입력해주세요.");
       return
