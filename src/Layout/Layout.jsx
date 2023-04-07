@@ -2,13 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import HeaderContainer from "./Header/HeaderContainer";
 import Footer from "./Footer/Footer";
+import Modal from '../Components/Modal/Modal';
+import { useSelector } from 'react-redux';
 
 const Layout = (props) => {
+  const modal = useSelector((state) => state.Modal);
   return (
     <>
       <HeaderContainer />
       <MainWrapper locationHref={(window.location.pathname === "/post" || window.location.pathname === "/select")}>{props.children}</MainWrapper>
       <Footer />
+      {modal.active && <Modal modal={modal} />}
     </>
   );
 };
