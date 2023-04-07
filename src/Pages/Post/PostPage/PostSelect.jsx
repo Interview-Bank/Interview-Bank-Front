@@ -126,8 +126,6 @@ const SelectBox = ({ selectSection, selectTitle, selectArray, isChangeSelectBoxI
 
 const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 	const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
-	// const [firstJobCategoriesArray, setFirstJobCategoriesArray] = useState([]);
-	// const [secondJobCategoriesArray, setSecondJobCategoriesArray] = useState([]);
 
 	useEffect(() => {
 		getJobCategories()
@@ -135,7 +133,6 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 			.catch(resolve => resolve);
 	}, []);
 
-	// console.log(getSecondJobCategories(jobCategoriesArray, Number(inputSelectBox.primaryJobCategory)))
 	return (
 		<div className="select__area">
 			<SelectBox

@@ -8,7 +8,6 @@ const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
 			<button className="btn__add" onClick={onAddInput}>
 				+추가하기
 			</button>
-			{/* <AddButton onClick={onAddInput}>+추가하기</AddButton> */}
 			<style jsx>{`
 				.write__area {
 					display: flex;
