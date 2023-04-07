@@ -73,9 +73,10 @@ const SelectBox = ({ selectSection, selectTitle, selectArray, isChangeSelectBoxI
 					z-index: 7;
 				}
 				.select__option.active {
-					max-height: 100em;
+					max-height: calc(100em / 3);
 					padding: 0 30px;
 					opacity: 1;
+					overflow-y: auto;
 				}
 				.select__option > p {
 					width: 100%;
