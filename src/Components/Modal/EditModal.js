@@ -50,15 +50,15 @@ const ModalBody = styled.div`
   box-sizing: border-box;
 
   position: absolute;
-  width: 725px;
-  height: 500px;
+  width: 628px;
+  height: 420px;
 
   padding: 40px;
   text-align: center;
   background: #FFFFFF;  
   border: 1px solid #D9D9D9;
-  border-radius: 3px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 
   z-index: 2;
   animation: modaldown 0.25s linear;

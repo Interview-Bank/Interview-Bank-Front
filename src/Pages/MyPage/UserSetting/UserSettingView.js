@@ -253,7 +253,6 @@ const UserPassword = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
 
   text-align: center;
 
@@ -287,13 +286,11 @@ const Recentinfo = styled.div`
   height: 24px;
   /* left: 717px;
   top: 799px; */
-  white-space: nowrap;
-  font-family: 'Inter';
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-
+  font-size: 16px;
+  line-height: 23px;
   color: #5C5C5C;
 
   margin-left: 47px;

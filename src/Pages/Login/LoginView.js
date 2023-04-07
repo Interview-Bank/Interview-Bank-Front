@@ -76,12 +76,11 @@ const LoginView = ({ loginSubmit, navigate, loginError, handleGoogleOauth }) => 
               <SocialLoginButton>
                 <img src={Kakao} alt="kakaotalk" />
               </SocialLoginButton>
-              <SocialLoginButton
-                onClick={handleGoogleOauth}>
-                <img src={Google} alt="Google" />
+              <SocialLoginButton>
+                <img src={Google} alt="kakaotalk" />
               </SocialLoginButton>
               <SocialLoginButton>
-                <img src={Naver} alt="Naver" />
+                <img src={Naver} alt="kakaotalk" />
               </SocialLoginButton>
             </div>
           </SocialLoginBox>
