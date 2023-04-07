@@ -101,6 +101,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   height: 100px;
   background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.2);
   z-index: 7;
 `;

@@ -41,12 +41,11 @@ const PostView = ({
 					z-index: 8;
 					width: 100%;
 					height: calc(100%);
-					/* padding-top: 60px; */
 					padding-bottom: 30px;
 					background-color: #f9f9f9;
 				}
 				.sticky {
-					border-bottom: 1px solid #ccc;
+					box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
 				}
 			`}</style>
 		</Layout>
