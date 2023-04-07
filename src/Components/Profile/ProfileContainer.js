@@ -18,11 +18,12 @@ const ProfileContainer = () => {
     await axios
       .post(API_URL + "logout", {}, { headers })
       .then((res) => {
-        console.log(res);
-        // dispatch(setToken(""));
+        deleteCookie('authToken');
         deleteCookie('userId');
         deleteCookie('user');
-        window.location.reload();
+        if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) navigate('/');
+        else window.location.reload();
+        // window.location.reload();
       })
       .catch((e) => {
         console.log(e);

@@ -6,10 +6,7 @@ import Modal from '../Components/Modal/Modal';
 import { useSelector } from 'react-redux';
 
 const Layout = (props) => {
-  console.log(window.location.pathname.includes("interview"))
-  console.log(props);
   const modal = useSelector((state) => state.Modal);
-  console.log(modal)
   return (
     <>
       <HeaderContainer />
