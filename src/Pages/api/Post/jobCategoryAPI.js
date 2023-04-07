@@ -13,7 +13,6 @@ const getJobCategories = async () => {
 }
 
 const getFirstJobCategories = (array) => {
-  
   return array.map((current) => {return {id: current.firstLevelId, name: current.firstLevelName}});
 }
 
