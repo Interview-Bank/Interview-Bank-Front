@@ -8,6 +8,7 @@ const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 				name="title"
 				id="title"
 				placeholder="제목을 입력하세요"
+				maxLength={128}
 				onChange={(e) => {
 					setTitle(e.target.value);
 				}}

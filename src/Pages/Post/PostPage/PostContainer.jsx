@@ -8,7 +8,7 @@ function PostContainer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const inputId = useRef(0);  // useRef로 제일 최근 글 받아와서 그 id 값 넣을 필요있음
+  const inputId = useRef(0);
   const [title, setTitle] = useState("");
 	const [inputs, setInputs] = useState([
 		{
@@ -107,13 +107,30 @@ function PostContainer() {
 			return input;
 		});
 		setInputs(newInputs);
-	};
-	const onAddInput = () => {
-		const newInput = {
-			content: "",
-			questionsId: generateId(),
-		};
-		setInputs([...inputs, newInput]);
+  };
+
+  const checkGenerateQuestionCountOver = () => {
+    if (inputs.length >= 1000) {
+      dispatch({
+				type: "OPEN",
+				payload: {
+					title: "질문이 너무 많아요!",
+					content: "1000개 이상은 생성 불가능합니다.",
+				},
+			});
+			return false;
+    }
+    return true;
+  }
+  
+  const onAddInput = () => {
+    if (checkGenerateQuestionCountOver()) {
+      const newInput = {
+        content: "",
+        questionsId: generateId(),
+      };
+      setInputs([...inputs, newInput]); 
+    }
 	};
 
 	const onRemove = (id) => {
