@@ -17,7 +17,7 @@ const PostView = ({
 }) => {
 	return (
 		<Layout>
-			<div>
+			<div className={inputs.length > 1 ?  'post__header sticky': 'post__header'}>
 				<PostTitle
 					setTitle={setTitle}
 					handleClickSubmit={handleClickSubmit}
@@ -34,6 +34,21 @@ const PostView = ({
 				onChange={onChange}
 				onAddInput={onAddInput}
 			/>
+			<style jsx>{`
+				.post__header {
+					position: sticky;
+					top: 101px;
+					z-index: 8;
+					width: 100%;
+					height: calc(100%);
+					/* padding-top: 60px; */
+					padding-bottom: 30px;
+					background-color: #f9f9f9;
+				}
+				.sticky {
+					border-bottom: 1px solid #ccc;
+				}
+			`}</style>
 		</Layout>
 	);
 };

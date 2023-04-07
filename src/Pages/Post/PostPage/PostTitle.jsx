@@ -2,7 +2,7 @@ import React from "react";
 
 const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 	return (
-		<div className="title">
+		<div className="post__title">
 			<input
 				type="text"
 				name="title"
@@ -20,12 +20,17 @@ const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 				</button>
 			</div>
 			<style jsx>{`
-				.title {
+				.post__title {
+					// max-width: 1100px;
+					// margin: 60px auto 0;
+					// width: calc(100% - 30px);
+					// display: flex;
+					// padding: 0 10px 0 20;
 					max-width: 1100px;
-					margin: 60px auto 0;
+					padding-top: 60px;
+					margin: 0 auto;
 					width: calc(100% - 30px);
 					display: flex;
-					padding: 0 10px 0 20;
 				}
 				input {
 					border: 0;

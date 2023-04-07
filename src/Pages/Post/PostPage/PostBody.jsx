@@ -13,7 +13,7 @@ const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
 					display: flex;
 					width: 96%;
 					max-width: 1100px;
-					margin: 30px auto 0;
+					margin: 0 auto;
 					align-items: center;
 					justify-content: end;
 					flex-wrap: wrap;
