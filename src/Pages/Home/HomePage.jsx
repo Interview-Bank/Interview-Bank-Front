@@ -1,7 +1,7 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../../Layout/Banner/Banner";
 import Layout from "../../Layout/Layout";
-import PostComponent from "../../Layout/PostList/PostComponent";
+import PostComponent from "../../Components/PostList/PostComponent";
 import { bringHomeInterviewListData } from "../api/Home/homeFetchDataAPI";
 import HomeSearch from "./HomeSearch";
 
@@ -12,8 +12,8 @@ const HomePage = () => {
 		bringHomeInterviewListData()
 			.then((result) => setInterviewList(result))
 			.catch((resolve) => console.log(resolve));
-  }, []);
-  
+	}, []);
+
 	return (
 		<Layout>
 			<Banner />
@@ -24,8 +24,8 @@ const HomePage = () => {
 			<div className="post__list">
 				{interviewList &&
 					interviewList.map((current) => (
-            <PostComponent
-              id={current.interviewId}
+						<PostComponent
+							id={current.interviewId}
 							nickname={current.nickname}
 							createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
 							title={current.title}
