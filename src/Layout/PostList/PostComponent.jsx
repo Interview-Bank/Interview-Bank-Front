@@ -2,20 +2,20 @@ import React from "react";
 import { useState } from "react";
 import whiteLike from "../../Assets/Images/Icons/white_heart.png";
 import blueLike from "../../Assets/Images/Icons/blue_heart.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const PostComponent = ({
-  id,
+	id,
 	title,
 	nickname,
 	firstCategoryName,
 	secondCategoryName,
 	createdAt,
 }) => {
-  const navigate = useNavigate();
-	const [like, setLike] = useState(false);
+	const navigate = useNavigate();
+	// const [like, setLike] = useState(false);
 	return (
-		<div className="write__area" onClick={()=>navigate(`/interview/${id}`)}>
+		<div className="write__area" onClick={() => navigate(`/interview/${id}`)}>
 			<div className="write__content">
 				<div className="write__job">
 					<span className="font-blue">{firstCategoryName}</span>
@@ -30,13 +30,13 @@ const PostComponent = ({
 				</div>
 			</div>
 			<div className="btn__write">지금 작성하기</div>
-			<div className="btn__like">
+			{/* <div className="btn__like">
 				{like ? (
 					<img src={blueLike} alt="좋아요 아이콘" />
 				) : (
 					<img src={whiteLike} alt="좋아요 아이콘" />
 				)}
-			</div>
+			</div> */}
 			<style jsx>{`
 				.write__area {
 					max-width: 304px;
@@ -46,15 +46,15 @@ const PostComponent = ({
 					display: flex;
 					flex-wrap: wrap;
 					position: relative;
-          cursor: pointer;
+					cursor: pointer;
 				}
-        .write__area:hover {
-          border: 1px solid #2E55E7;
-        }
-        .write__area:hover .btn__write {
-          background-color: #2E55E7;
-          color: white;
-        }
+				.write__area:hover {
+					border: 1px solid #2e55e7;
+				}
+				.write__area:hover .btn__write {
+					background-color: #2e55e7;
+					color: white;
+				}
 				.write__content {
 					width: calc(100% - 40px);
 					height: calc(133px - 40px);
