@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionList from "../QuestionsList/QuestionList";
+import QuestionList from "../../../Pages/Post/QuestionsList/QuestionList";
 
 const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
 	return (
