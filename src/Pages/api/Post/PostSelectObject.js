@@ -79,45 +79,4 @@ const CareerYear = [
 	},
 ];
 
-const PrimaryJobCategory = [
-	{
-		id: 1,
-		name: "개발",
-		parent_id: null,
-	},
-	{
-		id: 2,
-		name: "R&D",
-		parent_id: null,
-	},
-	{
-		id: 3,
-		name: "디자인",
-		parent_id: null,
-	},
-	{
-		id: 4,
-		name: "기획/PM",
-		parent_id: null,
-	},
-	{
-		id: 5,
-		name: "마케팅",
-		parent_id: null,
-	},
-	{
-		id: 6,
-		name: "기타",
-		parent_id: null,
-	},
-];
-
-const SecondaryJobCategory = [
-	{
-		id: 7,
-		name: "백엔드",
-		parent_id: 1,
-	},
-];
-
-export { InterviewPeriod, CareerYear, PrimaryJobCategory, SecondaryJobCategory }
+export { InterviewPeriod, CareerYear }

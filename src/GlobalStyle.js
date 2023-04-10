@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
     display: none;
   }
+  
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 `;
 
 export default GlobalStyle;
