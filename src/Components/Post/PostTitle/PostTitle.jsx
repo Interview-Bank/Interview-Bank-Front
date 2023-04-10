@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
+const PostTitle = ({ setTitle, handleClickSubmit }) => {
 	return (
 		<div className="post__title">
 			<input
@@ -14,7 +14,7 @@ const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 				}}
 			/>
 			<div className="btn__area">
-				<button className="btn-white" onClick={postValidationCheck}>임시저장</button>
+				{/* <button className="btn-white" onClick={postValidationCheck}>임시저장</button> */}
 				<button className="btn-blue" onClick={handleClickSubmit}>
 					발행하기
 				</button>
@@ -55,6 +55,7 @@ const PostTitle = ({ setTitle, handleClickSubmit,postValidationCheck }) => {
 					width: calc(35% + 12px);
 					font-size: 20px;
 					font-weight: 500;
+					flex-direction: row-reverse;
 				}
 				.btn-white {
 					border-radius: 8px;
