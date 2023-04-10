@@ -4,6 +4,7 @@ import styled from "styled-components";
 import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
 import ProfileEditiconURL from "../../../Assets/Icons/Profile_Edit.png"
 const EditModalView = ({handleUpdateNickname, onClose, handleNicknameChange, ErrorMsg, userNickname}) => {
+  console.log(userNickname)
   return (
     <Formik
       initialValues={{
@@ -11,34 +12,43 @@ const EditModalView = ({handleUpdateNickname, onClose, handleNicknameChange, Err
       }}
       onSubmit={handleUpdateNickname}
     >{({values, handleSubmit, handleChange}) => (
-      <EditModalWrapper
-        onSubmit={handleSubmit} autoComplete="off">
-        <EditProfilePhotoWrapper>
-          <ProfilePhoto src={BasicProfilePhotoURL}/>
-          <ProfileEditIcon src = {ProfileEditiconURL}/>
-        </EditProfilePhotoWrapper>
+      <form 
+        onSubmit={handleSubmit} 
+        autoComplete="off"
+        onKeyDown={e => {
+          if (e.key === "Enter") {
+            e.preventDefault(); // form 태그의 submit 기본 동작을 방지합니다.
+            handleSubmit(); // handleSubmit 함수를 실행합니다.
+          }
+        }}>
+        <EditModalWrapper>
+          <EditProfilePhotoWrapper>
+            <ProfilePhoto src={BasicProfilePhotoURL}/>
+            <ProfileEditIcon src = {ProfileEditiconURL}/>
+          </EditProfilePhotoWrapper>
 
-        <EditUserNicknameWrapper>
-          <NicknameTitle>
-            닉네임
-          </NicknameTitle>
-          <NewNicknameInput
-            type='text'
-            value={values.nickname}
-            name="nickname"
-            variant="outlined"
-            onChange={handleChange}
-          >
-          </NewNicknameInput>
-          <ErrorMessage >
-                {ErrorMsg}
-          </ErrorMessage>
-        </EditUserNicknameWrapper>
-        <ButtonWarraper>
-              <CloseButton onClick={onClose}>취소</CloseButton>
-              <SaveButton type="submit">저장</SaveButton>
-          </ButtonWarraper>
-      </EditModalWrapper>
+          <EditUserNicknameWrapper>
+            <NicknameTitle>
+              닉네임
+            </NicknameTitle>
+            <NewNicknameInput
+              type='text'
+              value={values.nickname}
+              name="nickname"
+              variant="outlined"
+              onChange={handleChange}
+            >
+            </NewNicknameInput>
+            <ErrorMessage >
+                  {ErrorMsg}
+            </ErrorMessage>
+          </EditUserNicknameWrapper>
+          <ButtonWarraper>
+                <CloseButton onClick={onClose}>취소</CloseButton>
+                <SaveButton type="submit">저장</SaveButton>
+            </ButtonWarraper>
+        </EditModalWrapper>
+      </form>
 
     )}
     </Formik>

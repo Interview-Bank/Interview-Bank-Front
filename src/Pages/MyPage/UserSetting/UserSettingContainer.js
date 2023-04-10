@@ -8,8 +8,8 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 const UserSettingContainer = () => {
   const [editModal, setEditModal] = useState(false);
   const [userEmail, setUserEmail] = useState("")
+  const [userNickname, setUserNickname] = useState("")
   const [passwordUpdatedAt, setPasswordUpdatedAt] = useState("")
-  const userNickname = getCookieValue("user=");
   const headers = setTokenHeaders();
   
 
@@ -23,6 +23,7 @@ const UserSettingContainer = () => {
       console.log(response)
       setPasswordUpdatedAt(response.data.passwordUpdatedAt)
       setUserEmail(response.data.email)
+      setUserNickname(response.data.nickname)
     } catch (error) {
       console.error(error);
     }

@@ -7,6 +7,7 @@ import Modal from '../../../Components/Modal/EditModal';
 import EditModalContainer from '../../../Components/ModalContent/EditModal/EditModalContainer';
 
 const UserSettingView = ({userEmail, passwordUpdatedAt, userNickname, editModal, setEditModal}) => {
+  console.log(userNickname)
   return (
     <Layout>
       <UserSettingLayout>
