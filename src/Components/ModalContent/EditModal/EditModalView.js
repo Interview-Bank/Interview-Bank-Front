@@ -61,6 +61,7 @@ const EditModalWrapper = styled.div`
   display : flex;
   flex-direction : column;
   justify-content: center;
+  align-items: center;
 `;
 
 const EditProfilePhotoWrapper = styled.div`
@@ -68,6 +69,8 @@ const EditProfilePhotoWrapper = styled.div`
 
   width: fit-content;
   height: fit-content;
+
+  margin-bottom: 40px;
 `;
 
 const ProfilePhoto = styled.img`
@@ -83,6 +86,10 @@ const ProfileEditIcon = styled.img`
   position: absolute;
   width: 36px;
   height: 36px;
+  top : 125px;
+  left : 125px;
+  cursor: pointer;
+
 
 `;
 
@@ -96,6 +103,9 @@ const EditUserNicknameWrapper = styled.div`
 
   flex-direction: column;
   justify-content: left;
+
+  margin-bottom: 48px;
+
 `;
 
 const NicknameTitle = styled.div`
@@ -108,9 +118,11 @@ const NicknameTitle = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  text-align: center;
+  text-align: left;
 
   color: #000000;
+
+  margin-bottom: 8px;
 `;
 
 const NewNicknameInput = styled.input`
@@ -121,13 +133,14 @@ const NewNicknameInput = styled.input`
   height: 55px;
 
   background: #FFFFFF;
-  border: 1px solid #2E55E7;
+  border: 2px solid #2E55E7;
   border-radius: 8px;
 `;
 
 const ErrorMessage = styled.div`
+    position: relative;
+    top : 20px;
     color: red;
-    margin-top: 20px;
     font-size: 13px;
     font-family: "Inter", sans-serif;
 `;
@@ -146,6 +159,8 @@ const ButtonWarraper = styled.div`
 const CloseButton = styled.button`
   width: 80px;
   height: 35px;
+  background: #AAAAAA;
+  border-radius: 4px;
 
   cursor: pointer;
 
@@ -169,6 +184,7 @@ const SaveButton = styled.button`
   cursor: pointer;
   background-color: #2E55E7;
   border: none;
+  border-radius: 4px;
 
   font-family: 'Noto Sans KR';
   font-style: normal;

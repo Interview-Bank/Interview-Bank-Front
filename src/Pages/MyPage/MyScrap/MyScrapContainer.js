@@ -15,10 +15,9 @@ const MyScrapContainer = () => {
         let pageNumber = 0;
         let data = [];
         do {
-          console.log(pageNumber);
           const response = await axios.get(
             `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
-            headers
+            {headers}
           );
           data = response.data;
           allData = [...allData, ...data];

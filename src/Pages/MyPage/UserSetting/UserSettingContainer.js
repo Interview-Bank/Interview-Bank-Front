@@ -16,6 +16,7 @@ const UserSettingContainer = () => {
   useEffect(() => {
     const getmydata = async () => {
     try {
+      console.log(headers)
       const response = await axios.get(
         `https://bstaging.interviewbank.net/account/me`,
         {headers}

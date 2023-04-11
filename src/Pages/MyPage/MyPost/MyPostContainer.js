@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import MyPostsView from "./MyPostView";
 import { setTokenHeaders } from '../../api/apiGetTokenHeader';
-import { getCookieValue } from '../../api/loginApi';
 
 
 const MyPostContainer = () => {
   const [boardList, setBoardList] = useState([]);
-  const token = useSelector((state) => state.Auth.token);
-  const userName = getCookieValue("user=");
-  const newBoardList = boardList.filter(
-    (boardList) => boardList.nickname === userName
-  );
   const headers = setTokenHeaders();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let allData = [];
+        let allData = []
+        let data = []
         let pageSize = 10;
         let pageNumber = 0;
-        let data = [];
         do {
           console.log(pageNumber);
           const response = await axios.get(
-            `https://bstaging.interviewbank.net/interview?page=${pageNumber}&size=${pageSize}`
+            `https://bstaging.interviewbank.net/interview/me?page=${pageNumber}&size=${pageSize}`,
+             {headers}
           );
+        
           data = response.data.interviews;
           allData = [...allData, ...data];
           setBoardList(allData);
@@ -40,7 +34,7 @@ const MyPostContainer = () => {
     fetchData();
   }, []);
 
-  return <MyPostsView boardList={newBoardList} />;
+  return <MyPostsView boardList={boardList} />;
 };
 
 export default MyPostContainer;

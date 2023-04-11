@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Layout from "../../../Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
+import MyScrapComponent from "../../../Layout/MyScrapList/MyScrapComponent";
 
 const MyScrapView = ({ scrapList }) => {
   const navigate = useNavigate();
@@ -16,17 +17,16 @@ const MyScrapView = ({ scrapList }) => {
               작성한 답변글
             </ScrapPageTitle>
             <ScrapPageBody>
-              {scrapList.map((item, index) => (
-                <CardWrapper
-                  key={index}
-                  onClick={() => {
-                    navigate(`/scraps/${item.scrapId}`);
-                  }}
-                >
-                  <CardBody>
-                    <CardBodyTitle>{item.title}</CardBodyTitle>
-                  </CardBody>
-                </CardWrapper>
+              {scrapList && 
+                scrapList.map((current) => (
+                <MyScrapComponent
+                  id={current.interviewId}
+                  nickname={current.nickname}
+                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  title={current.title}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
+                />
               ))}
             </ScrapPageBody>
           </MyScrapWrapper>
@@ -67,22 +67,29 @@ const MyScrapWrapper = styled.div`
 
 const ScrapPageTitle = styled.div`
   position: absolute;
-  width: 200px;
-  height: 39px;
+  width: 160px;
+  height: 35px;
 
-  font-family: 'Inter';
+
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 24px;
+  line-height: 35px;
+  /* identical to box height */
 
-  text-align: center;
 
-  color: #2E55E7;
+  color: #000000;
 `;
 
 const ScrapPageBody = styled.div`
-  margin-top: 30px;
+  margin-top: 50px;
+  display: grid;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 `;
 
 // const ScrapPageFooter = styled.div`

@@ -4,9 +4,11 @@ import Layout from "../../../Layout/Layout";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
+import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
 
 const MyPostView = ({ boardList }) => {
   const navigate = useNavigate();
+  console.log(boardList)
   return (
     <Layout>
       <MyPostLayout>
@@ -17,23 +19,16 @@ const MyPostView = ({ boardList }) => {
               작성한 게시글
             </MyPostsTitle>
             <MyPostsBody>
-              {boardList.map((item, index) => (
-                <CardWrapper
-                  key={index}
-                  onClick={() => {
-                    navigate(`/interview/${item.interviewId}`);
-                  }}
-                >
-                  <CardBody>
-                    <CardBodyTitle>{item.title}</CardBodyTitle>
-                    <CardBodyDetail>
-                      <CardBodyDate>
-                        {moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
-                      </CardBodyDate>
-                      <CardBodyUser>{item.nickname}</CardBodyUser>
-                    </CardBodyDetail>
-                  </CardBody>
-                </CardWrapper>
+              {boardList &&
+                boardList.map((current) => (
+                  <MyPostComponent
+                  id={current.interviewId}
+                  nickname={current.nickname}
+                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  title={current.title}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
+                />
               ))}
             </MyPostsBody>
           </MyPostWrapper>
@@ -72,71 +67,30 @@ const MyPostWrapper = styled.div`
 
 const MyPostsTitle = styled.div`
   position: absolute;
-  width: 200px;
-  height: 39px;
+  width: 160px;
+  height: 35px;
 
-  font-family: 'Inter';
+
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 24px;
+  line-height: 35px;
+  /* identical to box height */
 
-  text-align: center;
 
-  color: #2E55E7;
+  color: #000000;
 `;
 
 const MyPostsBody = styled.div`
-  margin-top: 30px;
-`;
-
-const CardWrapper = styled.div`
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  padding: 15px 30px;
-  height: 60px;
-  margin-bottom: 10px;
-  border: none;
-  background-color: #fff;
-  font-weight: 700;
-  color: #252525;
-  font-size: 0.9rem;
+  margin-top: 50px;
+  display: grid;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
-  :hover {
-    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
-    color: #2e55e7;
-  }
-`;
-const CardBody = styled.div`
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-`;
-const CardBodyTitle = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 700;
-`;
-const CardBodyDate = styled.div`
-  font-size: 1rem;
-`;
-const CardBodyUser = styled.div`
-  font-size: 1rem;
 `;
 
-const CardBodyDetail = styled.div`
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 30px;
-`;
+
 export default MyPostView;

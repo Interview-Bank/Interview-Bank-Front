@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const EditModal = (props) => {
-  console.log(props)
+const ProfielPhotoModal = (props) => {
   const CloseModal = () => {
     props.CloseModal();
   };
@@ -12,7 +11,6 @@ const EditModal = (props) => {
   return (
     <ModalWrapper>
       <ModalBody>
-        <ModalCloseButton onClick={CloseModal}>✕</ModalCloseButton>
         {childrenWithProps}
       </ModalBody>
     </ModalWrapper>
@@ -32,35 +30,15 @@ const ModalWrapper = styled.div`
   z-index: 2;
 `;
 
-const ModalCloseButton = styled.button`
-  font-weight: 400;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  border: none;
-  color: #999999;
-  font-size: 16px;
-  background-color: #fff;
-  z-index: 2;
-  cursor: pointer;
-  :hover {
-    color: red;
-  }
-`;
-
 const ModalBody = styled.div`
-  box-sizing: border-box;
-
   position: absolute;
-  width: 628px;
-  height: 420px;
-
+  width: 240px;
+  height: 150px;
+  padding: 40px 40px 10px 40px;
   text-align: center;
-  background: #FFFFFF;  
-  border: 1px solid #D9D9D9;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   z-index: 2;
   animation: modaldown 0.25s linear;
 
@@ -74,4 +52,4 @@ const ModalBody = styled.div`
   }
 `;
 
-export default EditModal;
+export default ProfielPhotoModal;
