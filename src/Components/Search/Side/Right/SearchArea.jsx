@@ -1,7 +1,7 @@
 import PostComponent from '../../../../Layout/PostList/PostComponent';
 
 const SearchArea = ({ searchParam, interviewList }) => {
-	const { category } = searchParam;
+  const { category } = searchParam;
 	return (
 		<div className="search__area">
 			{interviewList.length ? (
@@ -11,7 +11,8 @@ const SearchArea = ({ searchParam, interviewList }) => {
                 .filter((current) => current.category === category)
                 .map((current) =>
                   <PostComponent
-                    id={current.id}
+                    key={current.interviewId}
+                    id={current.interviewId}
                     title={current.title}
                     nickname={current.nickname}
                     firstCategoryName={current.jobCategory.firstLevelName}
@@ -20,8 +21,9 @@ const SearchArea = ({ searchParam, interviewList }) => {
                   />
                 )
 						: interviewList.map((current) => (
-								<PostComponent
-									id={current.id}
+              <PostComponent
+                  key={current.interviewId}
+									id={current.interviewId}
 									title={current.title}
 									nickname={current.nickname}
 									firstCategoryName={current.jobCategory.firstLevelName}

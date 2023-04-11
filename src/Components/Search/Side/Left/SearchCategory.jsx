@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getJobCategories, getFirstJobCategories } from '../../../../Pages/api/Post/jobCategoryAPI';
+import { getJobCategories, getFirstJobCategories, getSecondJobCategories } from '../../../../Pages/api/Post/jobCategoryAPI';
 import SearchCategoryCheckBox from './SearchCategoryCheckBox';
+import SearchLeftTitle from './SearchLeftTitle';
 
 const SearchCategory = ({ isChangeCategory }) => {
   const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
@@ -12,14 +13,15 @@ const SearchCategory = ({ isChangeCategory }) => {
   },[])
 
 	return (
-		<>
-			<h2>직무 구분</h2>
+    <>
+      <SearchLeftTitle title="직무 구분" />
 			{getFirstJobCategories(jobCategoriesArray) &&
 				getFirstJobCategories(jobCategoriesArray).map((current) => (
 					<SearchCategoryCheckBox
 						data={current}
 						key={current.id}
-						isChangeCategory={isChangeCategory}
+            isChangeCategory={isChangeCategory}
+            secondJobCategories={getSecondJobCategories(jobCategoriesArray, current.id)}
 					/>
 				))}
 		</>
