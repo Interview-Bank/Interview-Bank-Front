@@ -13,8 +13,8 @@ const SearchCategoryCheckBox = ({ data, isChangeCategory, secondJobCategories })
 	return (
 		<div className="check__area" onClick={() => onClick(category)}>
 			<div className="check__select" onClick={() => setToggle((prev) => !prev)}>
-				<input type="checkbox" name={category} value={category} />
 				<label for={category} style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em"}}>
+				  <input type="checkbox" name={category} value={category} /> 
 					{name}
 				</label>
         <button className="btn__arrow">
@@ -62,9 +62,9 @@ const SearchCategoryCheckBox = ({ data, isChangeCategory, secondJobCategories })
 					max-height: 100em;
 				}
 
-				label {
-					padding-left: 13px;
-				}
+				// label {
+				// 	padding-left: 13px;
+				// }
 
 				.btn__arrow {
 					position: absolute;
@@ -73,6 +73,14 @@ const SearchCategoryCheckBox = ({ data, isChangeCategory, secondJobCategories })
 					right: 0;
 					// top: 6px;
 				}
+
+        .acordian.active > li > label {
+          cursor: pointer;
+        } 
+        label > input {
+          vertical-align: middle;
+          margin-right: 8px;
+        }
 
 				li {
 					width: calc(100% - 15%);
