@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import EditModalView from './EditModalView';
 import { getCookieValue } from '../../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 import { setCookie, } from '../../../Pages/api/loginApi';
-
+import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
 const EditModalContainer = (props) => {
@@ -17,8 +17,32 @@ const EditModalContainer = (props) => {
   const [ErrorMsg, setErrorMsg] = useState("");
   console.log(props);
 
+  const [profielModal, setProfielModal] = useState(false)
  
+  const [selectedFile, setSelectedFile] = useState("")
+  const inputFileRef = useRef(null);
+  const [fileError, setFileError] = useState("");
 
+
+  const handleClickEditIcon = () => {
+    inputFileRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+      setSelectedFile(file);
+      setProfielModal(true);
+      setFileError(""); // 이미지 파일이면 에러 메시지를 초기화합니다.
+    } else {
+      setFileError("이미지 파일만 가능합니다.");
+    }
+  };
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState(BasicProfilePhotoURL);
+  const handleUploadComplete = (uploadedFileUrl) => {
+    setProfilePhotoUrl(uploadedFileUrl);
+  }
   const handleUpdateNickname =  (values) => {
     console.log(values.nickname);
     if (!values.nickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,16}$/)){
@@ -54,7 +78,18 @@ const EditModalContainer = (props) => {
     onClose = {props.CloseModal}
     handleNicknameChange= {handleNicknameChange}
     ErrorMsg = {ErrorMsg}
-    userNickname = {userNickname}/>
+    userNickname = {userNickname}
+    profielModal = {profielModal}
+    setProfielModal = {setProfielModal}
+    selectedFile = {selectedFile} 
+    setSelectedFile = {setSelectedFile}
+    handleClickEditIcon = {handleClickEditIcon}
+    handleFileChange = {handleFileChange}
+    inputFileRef = {inputFileRef}
+    fileError = {fileError}
+    setFileError = {setFileError}
+    profilePhotoUrl = {profilePhotoUrl}
+    handleUploadComplete = {handleUploadComplete}/>
   )
 }
 

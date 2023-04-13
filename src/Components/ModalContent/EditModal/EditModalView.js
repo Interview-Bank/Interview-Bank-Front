@@ -1,9 +1,27 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import { Formik } from "formik";
 import styled from "styled-components";
 import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
+import Modal from '../../../Components/Modal/ProfilePhotoModal';
+import ProfilePhotoModalContainer from '../ProfilePhotoModal/ProfilePhotoModalContainer';
 import ProfileEditiconURL from "../../../Assets/Icons/Profile_Edit.png"
-const EditModalView = ({handleUpdateNickname, onClose, handleNicknameChange, ErrorMsg, userNickname}) => {
+const EditModalView = ({
+  handleUpdateNickname, 
+  onClose, 
+  handleNicknameChange, 
+  ErrorMsg, 
+  userNickname, 
+  profielModal, 
+  setProfielModal,
+  selectedFile, 
+  setSelectedFile,
+  handleClickEditIcon,
+  handleFileChange,
+  inputFileRef,
+  fileError,
+  setFileError,
+  profilePhotoUrl,
+  handleUploadComplete}) => {
   console.log(userNickname)
   return (
     <Formik
@@ -23,9 +41,27 @@ const EditModalView = ({handleUpdateNickname, onClose, handleNicknameChange, Err
         }}>
         <EditModalWrapper>
           <EditProfilePhotoWrapper>
-            <ProfilePhoto src={BasicProfilePhotoURL}/>
-            <ProfileEditIcon src = {ProfileEditiconURL}/>
+            <ProfilePhoto src={profilePhotoUrl}/>
+            <ProfileEditIcon 
+              src = {ProfileEditiconURL}
+              onClick={handleClickEditIcon}/>
+              <input
+                type="file"
+                ref={inputFileRef}
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              {profielModal && (
+                  <Modal
+                    CloseModal={() => {
+                      setProfielModal(!profielModal);
+                    }}
+                  >
+                    <ProfilePhotoModalContainer selectedFile={selectedFile} handleUploadComplete = {handleUploadComplete}/>
+                  </Modal>
+                  )}
           </EditProfilePhotoWrapper>
+          {fileError && <FileErrorMessage>{fileError}</FileErrorMessage>}
 
           <EditUserNicknameWrapper>
             <NicknameTitle>
@@ -70,7 +106,7 @@ const EditProfilePhotoWrapper = styled.div`
   width: fit-content;
   height: fit-content;
 
-  margin-bottom: 40px;
+  margin-bottom: 22px;
 `;
 
 const ProfilePhoto = styled.img`
@@ -92,7 +128,12 @@ const ProfileEditIcon = styled.img`
 
 
 `;
-
+const FileErrorMessage = styled.div`
+  color: red;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  margin-top: 8px;
+`;
 const EditUserNicknameWrapper = styled.div`
   position: relative;
 
