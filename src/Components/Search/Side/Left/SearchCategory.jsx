@@ -19,7 +19,7 @@ const SearchCategory = ({ isChangeCategory }) => {
 				getFirstJobCategories(jobCategoriesArray).map((current) => (
 					<SearchCategoryCheckBox
 						data={current}
-						key={current.id}
+						key={`${current.name},${current.id}`}
             isChangeCategory={isChangeCategory}
             secondJobCategories={getSecondJobCategories(jobCategoriesArray, current.id)}
 					/>

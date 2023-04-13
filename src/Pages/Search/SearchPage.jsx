@@ -19,10 +19,12 @@ const SearchInterviewView = () => {
 		bringSearchInterviewListData()
 			.then((result) => setInterviewList(result))
 			.catch((resolve) => console.log(resolve));
-	}, []);
+	}, [searchParam]);
+	console.log(searchParam)
 
 
 	const isChangeCategory = useCallback((value) => {
+		console.log(value);
 		setSearchParam((prev) => {
 			return { ...prev, category: value };
 		});
@@ -49,7 +51,6 @@ const SearchInterviewView = () => {
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
-								<h2>기간</h2>
 								<SearchDateInput />
 							</SearchItemArea>
 						</SearchItem>

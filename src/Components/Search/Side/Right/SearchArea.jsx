@@ -3,11 +3,12 @@ import PostComponent from '../../../../Layout/PostList/PostComponent';
 const SearchArea = ({ searchParam, interviewList }) => {
   const { category } = searchParam;
 	return (
-		<div className="search__area">
+		<div className="search__right">
 			{interviewList.length ? (
 				<div className="search-list">
-					{interviewList.length && category
-						? interviewList
+          {interviewList.length
+            ? category
+						  ? interviewList
                 .filter((current) => current.category === category)
                 .map((current) =>
                   <PostComponent
@@ -20,17 +21,19 @@ const SearchArea = ({ searchParam, interviewList }) => {
                     createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   />
                 )
-						: interviewList.map((current) => (
-              <PostComponent
-                  key={current.interviewId}
-									id={current.interviewId}
-									title={current.title}
-									nickname={current.nickname}
-									firstCategoryName={current.jobCategory.firstLevelName}
-									secondCategoryName={current.jobCategory.secondLevelName}
-									createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-								/>
-						  ))}
+						  : interviewList.map((current) => (
+                <PostComponent
+                    key={current.interviewId}
+                    id={current.interviewId}
+                    title={current.title}
+                    nickname={current.nickname}
+                    firstCategoryName={current.jobCategory.firstLevelName}
+                    secondCategoryName={current.jobCategory.secondLevelName}
+                    createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  />
+              ))
+            : null
+          }
 				</div>
 			) : (
 				<div className="search-empty">
@@ -42,8 +45,8 @@ const SearchArea = ({ searchParam, interviewList }) => {
 				</div>
 			)}
 			<style jsx>{`
-				.search__area {
-					width: 68%;
+				.search__right {
+					width: 100%;
 					min-height: calc(100vh - 60px - 151px);
 				}
 				.search-empty {

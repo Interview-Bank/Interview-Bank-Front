@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import "react-datepicker/dist/react-datepicker.css";
+import SearchLeftTitle from './SearchLeftTitle';
 
 const SearchDateInput = () => {
   const defaultValue = { startDate: new Date(), endDate: new Date() };
-
   const [date, setDate] = useState(defaultValue);
   return (
     <>
+      <SearchLeftTitle title="기간" />
       <DatePicker 
         selected={date.startDate} 
         // onChange={(date) => setDate((prev)=>({...prev, startDate: date}))}
@@ -31,7 +32,7 @@ const SearchDateInput = () => {
           height: 40px;
           font-size: 1.1rem;
         }
-        
+
         .react-datepicker__current-month {
           color: white;
         }
