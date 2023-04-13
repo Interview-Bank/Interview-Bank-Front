@@ -70,7 +70,10 @@ const UserSettingLayout = styled.div`
   height: 750px;
   justify-content: center; 
   top : 50px;
-  left : 40px;
+
+  margin : 0 auto;
+
+
 `;
 
 const UserSettingContainer = styled.div`
@@ -80,14 +83,16 @@ const UserSettingContainer = styled.div`
   display: flex;
   flex-direction: row;  
   justify-content: center; 
-  margin-left: 130px;
 `;
 
 const UserSettingWrapper = styled.div`
   position: relative;
   display: flex;
-  width : fit-content;
-  height : fit-content;
+  
+  min-height: 100vh;
+  width: 880px;
+  max-width: 1100px;
+
   flex-direction: column;
   justify-content: left;
 `;

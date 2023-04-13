@@ -15,10 +15,17 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
-  const [cookie, setCookie] = useState(false);
-  const CheckCookie = checkCookieExistence();
+  const [loading, setLoading] = useState(null);
 
+  const [cookie, setCookie] = useState(false);
+
+  const checkCookie = () => {
+    const cookieExists = checkCookieExistence();
+    setCookie(cookieExists);
+    setLoading(false);
+  };
   useEffect(() => {
+
     function handleClickOutside(event) {
       if (
         UserButtonRef.current && !UserButtonRef.current.contains(event.target) && ProfileRef.current && !ProfileRef.current.contains(event.target)
@@ -28,14 +35,12 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    CheckCookie
-      ? setCookie(true)
-      : setCookie(false)
+    checkCookie();
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ProfileRef, setProfile, document.location, cookie]);
+  }, [ProfileRef, setProfile, loading]);
 
   return (
     <HeaderWrapper>
@@ -48,9 +53,9 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
           <img src={Search} alt="search" />
         </SearchBox>
         <NavigationBox>
-          {!cookie
-            ?
-              <>
+        {loading === false && // 로딩 상태가 false일 때만 내부 컴포넌트를 렌더링합니다.
+          (!cookie
+            ? <>
                 <RegisterPageButton
                   onClick={() => {
                     navigate("/select");
@@ -76,15 +81,14 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
                   </Modal>
                 )}
               </>
-            :
-              <>
+            : <>
                 <WriteButtonWrapper onClick={() => navigate("/post")}>
                   <WriteIcon
                     src = {WriteIconUrl}
                     alt = "WriteIcon"/>
                   <WriteButton>글쓰기</WriteButton>
                 </WriteButtonWrapper>
-  
+
                 <ProfilePhoto 
                   src={BasicProfilePhoto} 
                   alt="BasicProfilePhoto"
@@ -96,8 +100,8 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
                 {profile && <ProfileContainer/>}
                 </ProfileWrapper>
               </>
-          }  
-            
+          )
+        }
         </NavigationBox>
       </HeaderContents>
     </HeaderWrapper>
@@ -117,21 +121,24 @@ const HeaderWrapper = styled.div`
 
 const HeaderContents = styled.div`
   display: flex;
+  flex-direction: row;
   width: 96%;
-  max-width: 1100px;
+  max-width: 1255px;
   height: 100%;
   margin: 0 auto;
   align-items: center;
-  justify-content: space-between;
 `;
 
 const LogoBox = styled.div`
+  position: relative;
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  margin-right: 140px;
 `;
 
 const NavigationBox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,6 +147,8 @@ const NavigationBox = styled.div`
 `;
 
 const LoginButton = styled.button`
+  width: 80px;
+  height: 35px;
   font-weight: 700;
   border-radius: 7px;
   background-color: #2e55e7;
@@ -152,6 +161,8 @@ const LoginButton = styled.button`
 `;
 
 const RegisterPageButton = styled.button`
+  width: 80px;
+  height: 35px;
   border: none;
   background-color: #f9f9f9;
   cursor: pointer;
@@ -212,23 +223,26 @@ const ProfileWrapper = styled.div`
 
 const SearchBox = styled.div`
   position: relative;
-  margin-left: 100px;
+  margin-right: 234px;
   > img {
     position: absolute;
     width: 21px;
-    top: 7px;
+    top: 12px;
     right: 12px;
     margin: 0;
   }
 `;
 
 const SearchInput = styled.input`
-  width: 300px;
-  height: 30px;
-  border-radius: 30px;
-  border: 2px solid #2e55e7;
-  padding-left: 30px;
-  margin-left: 50px;
+  box-sizing: border-box;
+
+  position: relative;
+  width: 480px;
+  height: 48px;
+
+
+  border: 2px solid #2E55E7;
+  border-radius: 26px;
 `;
 
 export default HeaderView;

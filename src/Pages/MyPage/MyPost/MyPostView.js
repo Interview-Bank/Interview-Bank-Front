@@ -26,8 +26,10 @@ const MyPostView = ({ boardList }) => {
                   nickname={current.nickname}
                   createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   title={current.title}
-                  firstCategoryName={current.jobCategory.firstLevelName}
-                  secondCategoryName={current.jobCategory.secondLevelName}
+                  firstCategoryName={""}
+                  secondCategoryName={""}
+                  // firstCategoryName={current.jobCategory.firstLevelName}
+                  // secondCategoryName={current.jobCategory.secondLevelName}
                 />
               ))}
             </MyPostsBody>
@@ -45,7 +47,9 @@ const MyPostLayout = styled.div`
   height: 750px;
   justify-content: center; 
   top : 50px;
-  left : 40px;
+
+
+  margin : 0 auto;
   
 `;
 const MyPostsContainer = styled.div`
@@ -55,13 +59,17 @@ const MyPostsContainer = styled.div`
   display: flex;
   flex-direction: row;  
   justify-content: center; 
-  margin-left: 130px;
+ 
 `;
 
 const MyPostWrapper = styled.div`
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+
   min-height: 100vh;
-  width: 950px;
+  width: 880px;
   max-width: 1100px;
 `;
 
@@ -83,11 +91,12 @@ const MyPostsTitle = styled.div`
 `;
 
 const MyPostsBody = styled.div`
-  margin-top: 50px;
   display: grid;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto 20px;
+  margin-top: 50px;
+
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 `;

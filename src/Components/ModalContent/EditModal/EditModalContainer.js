@@ -71,7 +71,26 @@ const EditModalContainer = (props) => {
   const handleNicknameChange = () => {
 
   }
+  const handleUpdateProfilePhoto = async () =>{
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    console.log(formData.get('file'));
 
+
+    try {
+      const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
+      formData, 
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          ...headers
+        }
+      })
+      console.log(response)
+    } catch (error) {
+      console.log(error);
+    };
+  }
   return (
     <EditModalView
     handleUpdateNickname = {handleUpdateNickname}
@@ -89,7 +108,8 @@ const EditModalContainer = (props) => {
     fileError = {fileError}
     setFileError = {setFileError}
     profilePhotoUrl = {profilePhotoUrl}
-    handleUploadComplete = {handleUploadComplete}/>
+    handleUploadComplete = {handleUploadComplete}
+    handleUpdateProfilePhoto = {handleUpdateProfilePhoto}/>
   )
 }
 

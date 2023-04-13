@@ -6,6 +6,7 @@ import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSi
 import MyScrapComponent from "../../../Layout/MyScrapList/MyScrapComponent";
 
 const MyScrapView = ({ scrapList }) => {
+  console.log(scrapList)
   const navigate = useNavigate();
   return (
     <Layout>
@@ -22,10 +23,13 @@ const MyScrapView = ({ scrapList }) => {
                 <MyScrapComponent
                   id={current.interviewId}
                   nickname={current.nickname}
-                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  createdAt={""}
+                  // createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   title={current.title}
-                  firstCategoryName={current.jobCategory.firstLevelName}
-                  secondCategoryName={current.jobCategory.secondLevelName}
+                  firstCategoryName={""}
+                  secondCategoryName={""}
+                  // firstCategoryName={current.jobCategory.firstLevelName}
+                  // secondCategoryName={current.jobCategory.secondLevelName}
                 />
               ))}
             </ScrapPageBody>
@@ -44,7 +48,9 @@ const MyScrapLayout = styled.div`
   height: 750px;
   justify-content: center; 
   top : 50px;
-  left : 40px;
+
+
+  margin : 0 auto;
   
 `;
 
@@ -55,13 +61,16 @@ const ScrapPageContainer = styled.div`
   display: flex;
   flex-direction: row;  
   justify-content: center; 
-  margin-left: 130px;
 `;
 
 const MyScrapWrapper = styled.div`
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+
   min-height: 100vh;
-  width: 950px;
+  width: 880px;
   max-width: 1100px;
 `;
 
@@ -83,11 +92,12 @@ const ScrapPageTitle = styled.div`
 `;
 
 const ScrapPageBody = styled.div`
-  margin-top: 50px;
   display: grid;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto 20px;
+  margin-top: 50px;
+
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 `;
@@ -100,38 +110,5 @@ const ScrapPageBody = styled.div`
 //   margin-top: 50px;
 // `;
 
-const CardWrapper = styled.div`
-  justify-content: space-between;
-  padding: 15px 30px;
-  height: 60px;
-  margin-bottom: 10px;
-  border: none;
-  background-color: #fff;
-  font-weight: 700;
-  color: #252525;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: start;
-  gap: 20px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
-  :hover {
-    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
-    color: #2e55e7;
-  }
-`;
-const CardBody = styled.div`
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-`;
-const CardBodyTitle = styled.div`
-  margin: 30px 0px 20px 35px;
-  font-size: 1.1rem;
-  font-weight: 700;
-`;
 
 export default MyScrapView;

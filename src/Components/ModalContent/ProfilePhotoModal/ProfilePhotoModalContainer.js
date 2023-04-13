@@ -8,10 +8,11 @@ const ProfilePhotoModalContainer = (props) => {
   const navigate = useNavigate();
 
   const [profilePhotoUrl,setProfilePhotoUrl ] = useState("")
+
   useEffect(() => {
     setProfilePhotoUrl(URL.createObjectURL(props.selectedFile))
     props.handleUploadComplete(URL.createObjectURL(props.selectedFile))
-  }, [props, props.selectedFile])
+  }, [props.selectedFile])
   
 
   return <ProfilePhotoModalView navigate={navigate} onClose = {props.CloseModal} profilePhotoUrl = {profilePhotoUrl}/>;

@@ -21,7 +21,8 @@ const EditModalView = ({
   fileError,
   setFileError,
   profilePhotoUrl,
-  handleUploadComplete}) => {
+  handleUploadComplete,
+  handleUpdateProfilePhoto}) => {
   console.log(userNickname)
   return (
     <Formik
@@ -81,7 +82,7 @@ const EditModalView = ({
           </EditUserNicknameWrapper>
           <ButtonWarraper>
                 <CloseButton onClick={onClose}>취소</CloseButton>
-                <SaveButton type="submit">저장</SaveButton>
+                <SaveButton type="submit" onClick = {handleUpdateProfilePhoto} >저장</SaveButton>
             </ButtonWarraper>
         </EditModalWrapper>
       </form>
