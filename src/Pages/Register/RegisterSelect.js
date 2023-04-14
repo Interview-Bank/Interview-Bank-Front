@@ -6,15 +6,26 @@ import { HiOutlineMail } from "react-icons/hi";
 
 const RegisterSelect = () => {
   const navigate = useNavigate();
+  const handleGoogleOauth = () => {
+    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
+    window.location.assign(oauthUrl);
+  };
+  
+  const handleKakaoOauth = () => {
+    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
+    window.location.assign(oauthUrl);
+  };
+  const handleNaverOauth = () => {
+    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
+    window.location.assign(oauthUrl);
+  };
   return (
     <Layout>
       <SelectionWrapper>
         <h1>회원가입</h1>
         <p>회원가입 방식을 선택하세요.</p>
         <SelectButton
-          onClick={() => {
-            navigate("/signup");
-          }}
+          onClick={handleKakaoOauth}
         >
           <IconWrapper>
             <HiOutlineMail />
@@ -23,20 +34,16 @@ const RegisterSelect = () => {
         </SelectButton>
 
         <SelectButton
-          onClick={() => {
-            navigate("/signup");
-          }}
+          onClick={handleGoogleOauth}
         >
           <IconWrapper>
             <HiOutlineMail />
           </IconWrapper>
-          깃허브로 회원가입
+          구글로 회원가입
         </SelectButton>
 
         <SelectButton
-          onClick={() => {
-            navigate("/signup");
-          }}
+          onClick={handleNaverOauth}
         >
           <IconWrapper>
             <HiOutlineMail />

@@ -6,7 +6,7 @@ import Naver from "../../Assets/Images/naver.png";
 import Google from "../../Assets/Images/google.png";
 
 
-const LoginView = ({ loginSubmit, navigate, loginError, handleGoogleOauth }) => {
+const LoginView = ({ loginSubmit, navigate, loginError, handleGoogleOauth, handleKakaoOauth, handleNaverOauth }) => {
 
   return (
     <>
@@ -73,14 +73,17 @@ const LoginView = ({ loginSubmit, navigate, loginError, handleGoogleOauth }) => 
           <SocialLoginBox>
             <h5>다른 방식으로 로그인</h5>
             <div>
-              <SocialLoginButton>
+              <SocialLoginButton
+                onClick={handleKakaoOauth}>
                 <img src={Kakao} alt="kakaotalk" />
               </SocialLoginButton>
-              <SocialLoginButton>
-                <img src={Google} alt="kakaotalk" />
+              <SocialLoginButton
+                onClick={handleGoogleOauth}>
+                <img src={Google} alt="Google" />
               </SocialLoginButton>
-              <SocialLoginButton>
-                <img src={Naver} alt="kakaotalk" />
+              <SocialLoginButton
+                onClick={handleNaverOauth}>
+                <img src={Naver} alt="Naver" />
               </SocialLoginButton>
             </div>
           </SocialLoginBox>
