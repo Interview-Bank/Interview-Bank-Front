@@ -15,7 +15,7 @@ const MyScrapComponent = ({
 	const navigate = useNavigate();
 	// const [like, setLike] = useState(false);
 	return (
-		<div className="write__area" onClick={() => navigate(`/interview/${id}`)}>
+		<div className="write__area" onClick={() => navigate(`/scraps/${id}`)}>
 			<div className="write__content">
 				<div className="write__job">
 					<span className="font-blue">{firstCategoryName}</span>

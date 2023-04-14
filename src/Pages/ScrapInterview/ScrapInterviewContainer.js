@@ -11,17 +11,13 @@ const ScrapInterviewContainer = () => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState([]);
 
-  const handleAddAnswer = () => {};
-
   const headers = setTokenHeaders();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getBoard = async () => {
       const { data } = await axios.get(
         `https://bstaging.interviewbank.net/scraps/${scrap_id}`,
-        headers
+        {headers}
       );
       setTitle(data.scrap.title);
       setBoardId(data.originalInterview.interviewId);

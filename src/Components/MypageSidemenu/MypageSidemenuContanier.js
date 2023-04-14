@@ -14,7 +14,6 @@ const MypageSidemenuContanier = (props) => {
     const onScrapClick = () => {
         navigate("/mypage/my-scrap");
       };
-    console.log(props)
   return (
     <MypageSidemenuView
         currentMenu = {props.currentMenu}

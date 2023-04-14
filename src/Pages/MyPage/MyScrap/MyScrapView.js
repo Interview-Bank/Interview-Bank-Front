@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../../Layout/Layout";
-import { useNavigate } from "react-router-dom";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyScrapComponent from "../../../Layout/MyScrapList/MyScrapComponent";
 
 const MyScrapView = ({ scrapList }) => {
   console.log(scrapList)
-  const navigate = useNavigate();
   return (
     <Layout>
       <MyScrapLayout>
@@ -21,7 +19,7 @@ const MyScrapView = ({ scrapList }) => {
               {scrapList && 
                 scrapList.map((current) => (
                 <MyScrapComponent
-                  id={current.interviewId}
+                  id={current.scrapId}
                   nickname={current.nickname}
                   createdAt={""}
                   // createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
@@ -34,7 +32,6 @@ const MyScrapView = ({ scrapList }) => {
               ))}
             </ScrapPageBody>
           </MyScrapWrapper>
-          {/* <ScrapPageFooter></ScrapPageFooter> */}
         </ScrapPageContainer>
       </MyScrapLayout>
     </Layout>
@@ -70,7 +67,7 @@ const MyScrapWrapper = styled.div`
   flex-direction: column;
 
   min-height: 100vh;
-  width: 880px;
+  width: 950px;
   max-width: 1100px;
 `;
 
@@ -85,8 +82,6 @@ const ScrapPageTitle = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
-
 
   color: #000000;
 `;
@@ -101,14 +96,5 @@ const ScrapPageBody = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 `;
-
-// const ScrapPageFooter = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 0 auto;
-//   margin-top: 50px;
-// `;
-
 
 export default MyScrapView;

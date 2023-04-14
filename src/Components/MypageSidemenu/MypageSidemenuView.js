@@ -72,15 +72,12 @@ const SidemenuContainer = styled.div`
     flex-direction : column;
 
     margin-right: 58px;
-    padding-left: 23px;
 `;
 
 const SidemenuTitle = styled.div`
     position: relative;
     width: 190px;
     height: 46px;
-    /* left: 320px;
-    top: 140px; */
 
     font-family: 'Noto Sans KR';
     font-style: normal;
@@ -111,7 +108,7 @@ const SidemenuContentWrapper = styled.div`
     background: ${props => props.backgroundColor};
     border-radius: 8px;
     
-    padding-left: 18px;
+    padding-left: 12px;
 
     & > div:not(:last-child) {
     margin-bottom: 4px;

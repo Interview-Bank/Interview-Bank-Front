@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../../Layout/Layout";
-import moment from "moment";
-import { useNavigate } from "react-router-dom";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
 
 const MyPostView = ({ boardList }) => {
-  const navigate = useNavigate();
   console.log(boardList)
   return (
     <Layout>
@@ -69,7 +66,7 @@ const MyPostWrapper = styled.div`
   flex-direction: column;
 
   min-height: 100vh;
-  width: 880px;
+  width: 950px;
   max-width: 1100px;
 `;
 
@@ -84,7 +81,6 @@ const MyPostsTitle = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
 
 
   color: #000000;

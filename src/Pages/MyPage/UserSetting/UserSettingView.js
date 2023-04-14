@@ -72,8 +72,6 @@ const UserSettingLayout = styled.div`
   top : 50px;
 
   margin : 0 auto;
-
-
 `;
 
 const UserSettingContainer = styled.div`
@@ -88,9 +86,9 @@ const UserSettingContainer = styled.div`
 const UserSettingWrapper = styled.div`
   position: relative;
   display: flex;
-  
+
   min-height: 100vh;
-  width: 880px;
+  width: 950px;
   max-width: 1100px;
 
   flex-direction: column;

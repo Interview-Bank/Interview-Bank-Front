@@ -1,25 +1,21 @@
-import React, {useRef, useState} from 'react'
+import React from 'react'
 import { Formik } from "formik";
 import styled from "styled-components";
-import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
 import Modal from '../../../Components/Modal/ProfilePhotoModal';
 import ProfilePhotoModalContainer from '../ProfilePhotoModal/ProfilePhotoModalContainer';
 import ProfileEditiconURL from "../../../Assets/Icons/Profile_Edit.png"
 const EditModalView = ({
-  handleUpdateNickname, 
+  handleUpdateUserinfo, 
   onClose, 
-  handleNicknameChange, 
   ErrorMsg, 
   userNickname, 
   profielModal, 
   setProfielModal,
   selectedFile, 
-  setSelectedFile,
   handleClickEditIcon,
   handleFileChange,
   inputFileRef,
   fileError,
-  setFileError,
   profilePhotoUrl,
   handleUploadComplete,
   handleUpdateProfilePhoto}) => {
@@ -29,15 +25,15 @@ const EditModalView = ({
       initialValues={{
         nickname : userNickname
       }}
-      onSubmit={handleUpdateNickname}
+      onSubmit={handleUpdateUserinfo}
     >{({values, handleSubmit, handleChange}) => (
       <form 
         onSubmit={handleSubmit} 
         autoComplete="off"
         onKeyDown={e => {
           if (e.key === "Enter") {
-            e.preventDefault(); // form 태그의 submit 기본 동작을 방지합니다.
-            handleSubmit(); // handleSubmit 함수를 실행합니다.
+            e.preventDefault();
+            handleSubmit();
           }
         }}>
         <EditModalWrapper>
@@ -133,7 +129,6 @@ const FileErrorMessage = styled.div`
   color: red;
   font-size: 13px;
   font-family: "Inter", sans-serif;
-  margin-top: 8px;
 `;
 const EditUserNicknameWrapper = styled.div`
   position: relative;

@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import EditModalView from './EditModalView';
 import { getCookieValue } from '../../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
@@ -9,18 +8,14 @@ import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
 const EditModalContainer = (props) => {
-  //프로필 변경 아이콘 클릭 시 이벤트 함수(api 호출)
-  //저장버튼 눌렀을 때 닉네임 변경되는 api 호출을 포함한 이벤트 함수
-  const navigate = useNavigate()
   const userNickname = getCookieValue("user=")
   const headers = setTokenHeaders();
-  const [ErrorMsg, setErrorMsg] = useState("");
-  console.log(props);
 
   const [profielModal, setProfielModal] = useState(false)
- 
   const [selectedFile, setSelectedFile] = useState("")
+
   const inputFileRef = useRef(null);
+  const [ErrorMsg, setErrorMsg] = useState("");
   const [fileError, setFileError] = useState("");
 
 
@@ -34,16 +29,18 @@ const EditModalContainer = (props) => {
     if (file && file.type.startsWith("image/")) {
       setSelectedFile(file);
       setProfielModal(true);
-      setFileError(""); // 이미지 파일이면 에러 메시지를 초기화합니다.
+      setFileError(""); 
     } else {
       setFileError("이미지 파일만 가능합니다.");
     }
   };
+
   const [profilePhotoUrl, setProfilePhotoUrl] = useState(BasicProfilePhotoURL);
   const handleUploadComplete = (uploadedFileUrl) => {
     setProfilePhotoUrl(uploadedFileUrl);
   }
-  const handleUpdateNickname =  (values) => {
+  
+  const handleUpdateUserinfo =  (values) => {
     console.log(values.nickname);
     if (!values.nickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,16}$/)){
       setErrorMsg("1글자 이상 16글자 이하로 입력해주세요.");
@@ -68,9 +65,6 @@ const EditModalContainer = (props) => {
     }
   }
 
-  const handleNicknameChange = () => {
-
-  }
   const handleUpdateProfilePhoto = async () =>{
     const formData = new FormData();
     formData.append('file', selectedFile);
@@ -93,9 +87,8 @@ const EditModalContainer = (props) => {
   }
   return (
     <EditModalView
-    handleUpdateNickname = {handleUpdateNickname}
+    handleUpdateUserinfo = {handleUpdateUserinfo}
     onClose = {props.CloseModal}
-    handleNicknameChange= {handleNicknameChange}
     ErrorMsg = {ErrorMsg}
     userNickname = {userNickname}
     profielModal = {profielModal}

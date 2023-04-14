@@ -122,7 +122,7 @@ const HeaderWrapper = styled.div`
 const HeaderContents = styled.div`
   display: flex;
   flex-direction: row;
-  width: 96%;
+  width: 100%;
   max-width: 1255px;
   height: 100%;
   margin: 0 auto;
@@ -131,6 +131,9 @@ const HeaderContents = styled.div`
 
 const LogoBox = styled.div`
   position: relative;
+  width: 270px;
+  height: 32px;
+
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -144,6 +147,7 @@ const NavigationBox = styled.div`
   align-items: center;
   width: auto;
   height: auto;
+
 `;
 
 const LoginButton = styled.button`
@@ -223,6 +227,9 @@ const ProfileWrapper = styled.div`
 
 const SearchBox = styled.div`
   position: relative;
+  width: fit-content;
+  height: fit-content;
+
   margin-right: 234px;
   > img {
     position: absolute;
