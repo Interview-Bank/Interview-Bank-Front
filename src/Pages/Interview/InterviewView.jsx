@@ -2,7 +2,7 @@ import { jwtUtils } from "../../utils/jwtUtils";
 import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-import ScrapModal from "../../Components/Modal/PopUpModal"
+import ScrapModal from "../../Components/Modal/CheckPopUpModal"
 import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapModalContainer";
 import { setTokenHeaders } from '../api/apiGetTokenHeader';
 const InterviewView = ({
