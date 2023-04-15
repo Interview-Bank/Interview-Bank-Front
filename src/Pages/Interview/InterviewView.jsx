@@ -31,7 +31,7 @@ const InterviewView = ({
               </div>
             )}
             {jwtUtils.isAuth(token) && accountId !== userId && (
-              <BoardScrapButton onClick={()=>handleScrap}>
+              <BoardScrapButton onClick={handleScrap}>
                 ★ 스크랩
               </BoardScrapButton>
             )}

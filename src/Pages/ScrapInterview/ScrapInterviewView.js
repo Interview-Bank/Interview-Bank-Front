@@ -3,11 +3,25 @@ import styled from "styled-components";
 import moment from "moment";
 import Layout from "../../Layout/Layout";
 
-const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
+const ScrapInterviewView = ({
+   title, 
+   board, 
+   navigate, 
+   boardId, 
+   contents, 
+   answers, 
+   setAnswers, 
+   inputValues, 
+   toggleAnswerInput, 
+   handleInputChange, 
+   handleWrapperClick, 
+   handleInputLimit,
+   handleScrapAnswer  }) => {
+    console.log(contents)
   return (
     <Layout>
       <BoardWrapper>
-        <div className="board-body">
+        <BoardBody>
           <BoardTitle>{title}</BoardTitle>
           <BoardDetail>
             <BoardDate>
@@ -23,15 +37,26 @@ const ScrapInterviewView = ({ title, board, navigate, boardId, contents }) => {
           </BoardDetail>
           <QuestionsBlock>
             {contents.map((item, index) => (
-              <div key={index}>
-                <li>
-                  {item.content}
-                  <AddAnswerButton>+</AddAnswerButton>
-                </li>
-              </div>
+              <StyledLi key={index} onClick={() => toggleAnswerInput(index)}>
+                <div className="content">{item.content}</div>
+                {answers[index] && (
+                  <InputWrapper onClick={handleWrapperClick}>
+                    <DividignLine></DividignLine>
+
+                    <StyledInput
+                      placeholder="답변을 입력해주세요."
+                      value={inputValues[index]}
+                      onChange={(e) => handleInputChange(index, e)}
+                      onInput={(e) => handleInputLimit(e)}
+                    />
+                  </InputWrapper>
+                )}
+              </StyledLi>
             ))}
           </QuestionsBlock>
-        </div>
+          <SaveBtn onClick={handleScrapAnswer}>저장</SaveBtn>
+
+        </BoardBody>
       </BoardWrapper>
     </Layout>
   );
@@ -43,7 +68,10 @@ const BoardWrapper = styled.div`
   display: flex;
   margin: 0 auto;
 `;
-
+const BoardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const BoardTitle = styled.div`
   border-bottom: 1px solid #b5b5b5;
   border-top: none;
@@ -82,37 +110,106 @@ const GoToPost = styled.button`
   right: 0;
   justify-content: end;
 `;
-const AddAnswerButton = styled.button`
-  border: none;
-  font-weight: 400;
-  color: #747474;
-  cursor: pointer;
-  background-color: #fff;
-  font-size: 1.3rem;
-  margin-right: 20px;
-  :hover {
-    color: #2e55e7;
-  }
-`;
 
 const QuestionsBlock = styled.div`
-  > div > li {
-    font-weight: 700;
-    font-size: 18px;
-    width: 1047px;
-    height: 100px;
-    padding-left: 30px;
-    margin-top: 30px;
-    border-radius: 5px;
-    border: 0px solid #b5b5b5;
-    border-left: 17px solid #2e55e7;
-    outline: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
-    align-items: center;
-    display: flex;
-    background-color: #fff;
-    justify-content: space-between;
+  position: relative;
+
+  margin-top : 66px;
+`;
+
+const StyledLi = styled.li`
+  display: flex;
+  flex-direction: column;
+
+  width: 1047px;
+  min-height: 100px;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  padding-left: 66px;
+  border-radius: 5px;
+  border: 0px solid #b5b5b5;
+  border-left: 17px solid #2e55e7;
+  outline: none;
+
+  background-color: #fff;
+  margin-bottom: 12px;
+
+  .content {
+    align-self: flex-start;
+    padding-top: 32px;
   }
+`;
+const InputWrapper = styled.div`
+  position: relative;
+  height: fit-content;
+  margin-bottom: 20px;
+
+`;
+const DividignLine = styled.div`
+  width: 98%;
+  height : 0px;
+  border: 1px solid #D9D9D9;
+
+  margin-top : 32px;
+
+`;
+const StyledInput = styled.textarea`
+  width: 95%;
+  height : fit-content;
+  max-height: 300px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow : auto;
+
+  box-sizing: border-box;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #000000;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #cf0606;
+    border-radius: 3px;
+  }
+
+  margin-top : 20px;
+
+`;
+
+const SaveBtn = styled.button`
+  position: relative;
+  width: 80px;
+  height: 35px;
+  cursor: pointer;
+
+  border: none;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+
+  color: #FFFFFF;
+  background-color: #2E55E7;
+
+  z-index: 2;
+
+  margin-top : 38px;
+  margin-bottom : 50px;
+  margin-left: auto;
 `;
 
 export default ScrapInterviewView;
