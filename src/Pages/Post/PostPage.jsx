@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { postInterview } from "../../api/Post/postAPI";
-import Layout from "../../../Layout/Layout";
-import PostTitle from "../../../Components/Post/PostTitle/PostTitle";
-import PostSelect from "../../../Components/Post/PostSelect/PostSelect";
-import PostBody from "../../../Components/Post/PostBody/PostBody";
+import { postInterview } from "../api/Post/postAPI";
+import Layout from "../../Layout/Layout";
+import PostTitle from "../../Components/Post/PostTitle/PostTitle";
+import PostSelect from "../../Components/Post/PostSelect/PostSelect";
+import PostBody from "../../Components/Post/PostBody/PostBody";
 
 function PostContainer() {
 	const dispatch = useDispatch();
@@ -77,6 +77,16 @@ function PostContainer() {
 				payload: {
 					title: "직종이 선택되지 않았어요!",
 					content: "직종을 선택해주세요.",
+				},
+			});
+			return false;
+		}
+		if (inputs.length === 0) {
+			dispatch({
+				type: "OPEN",
+				payload: {
+					title: "질문이 없어요!",
+					content: "최소 하나의 질문은 적어주세요.",
 				},
 			});
 			return false;

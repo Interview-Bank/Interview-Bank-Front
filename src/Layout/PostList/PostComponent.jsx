@@ -59,6 +59,8 @@ const PostComponent = ({
 					width: calc(100% - 40px);
 					height: calc(133px - 40px);
 					padding: 20px;
+					background-color: white;
+					border-radius: 8px;
 				}
 				.write__title > p {
 					margin: 6px 0;

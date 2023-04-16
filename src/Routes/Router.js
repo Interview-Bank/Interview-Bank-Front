@@ -6,7 +6,7 @@ import HomePage from "../Pages/Home/HomePage";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import FindPasswordContainer from "../Pages/FindPassword/FindPasswordContainer";
 import InterviewConatiner from "../Pages/Interview/InterviewConatiner";
-import PostPage from "../Pages/Post/PostPage/PostPage";
+import PostPage from "../Pages/Post/PostPage";
 import MyPostsContainer from "../Pages/MyPost/MyPostsContainer";
 import MyScrapContainer from "../Pages/MyScrap/MyScrapContainer";
 import ScrapInterviewContainer from "../Pages/ScrapInterview/ScrapInterviewContainer";

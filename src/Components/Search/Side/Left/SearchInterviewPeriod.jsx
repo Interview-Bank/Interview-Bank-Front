@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import ArrowDown from "../../../Assets/Images/Icons/arrow_down.png";
 
-const PostSelectBox = ({
+const SearchInterviewPeriod = ({
 	selectSection,
 	selectTitle,
 	selectArray,
@@ -42,12 +41,10 @@ const PostSelectBox = ({
 						</p>
 					))}
 			</div>
-			<button className="btn__arrow">
-				<img src={ArrowDown} alt="화살표" />
-			</button>
+			<button className="btn__arrow">{">"}</button>
 			<style jsx>{`
 				.ul__select {
-					width: calc(25% - 60px - 1px);
+					width: calc(25% - 60px - 3px);
 					max-height: 66px;
 					padding: 0px 30px;
 					color: #5c5c5c;
@@ -124,4 +121,4 @@ const PostSelectBox = ({
 	);
 };
 
-export default PostSelectBox;
+export default SearchInterviewPeriod;

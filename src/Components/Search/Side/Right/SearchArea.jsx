@@ -1,39 +1,23 @@
-import PostComponent from '../../../../Layout/PostList/PostComponent';
+import PostComponent from "../../../../Layout/PostList/PostComponent";
 
 const SearchArea = ({ searchParam, interviewList }) => {
-  const { category } = searchParam;
+	const { category } = searchParam;
+	console.log(interviewList);
 	return (
 		<div className="search__right">
 			{interviewList.length ? (
 				<div className="search-list">
-          {interviewList.length
-            ? category
-						  ? interviewList
-                .filter((current) => current.category === category)
-                .map((current) =>
-                  <PostComponent
-                    key={current.interviewId}
-                    id={current.interviewId}
-                    title={current.title}
-                    nickname={current.nickname}
-                    firstCategoryName={current.jobCategory.firstLevelName}
-                    secondCategoryName={current.jobCategory.secondLevelName}
-                    createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-                  />
-                )
-						  : interviewList.map((current) => (
-                <PostComponent
-                    key={current.interviewId}
-                    id={current.interviewId}
-                    title={current.title}
-                    nickname={current.nickname}
-                    firstCategoryName={current.jobCategory.firstLevelName}
-                    secondCategoryName={current.jobCategory.secondLevelName}
-                    createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-                  />
-              ))
-            : null
-          }
+					{interviewList.map((current) => (
+						<PostComponent
+							key={current.interviewId}
+							id={current.interviewId}
+							title={current.title}
+							nickname={current.nickname}
+							firstCategoryName={current.jobCategory.firstLevelName}
+							secondCategoryName={current.jobCategory.secondLevelName}
+							createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+						/>
+					))}
 				</div>
 			) : (
 				<div className="search-empty">
@@ -53,21 +37,28 @@ const SearchArea = ({ searchParam, interviewList }) => {
 					text-align: center;
 					width: 100%;
 					height: 100%;
+					min-height: 320px;
 					border-radius: 16px;
 					border: 1px solid #d9d9d9;
 					background-color: white;
 					color: #ababab;
 					font-size: 24px;
-					padding-top: 12rem;
+					position: relative;
 				}
-				.search-empty > span {
+				.search-empty > h4 {
+					position: absolute;
+					top: 50%;
+					left: 50%;
 					width: 100%;
+					transform: translate(-50%, -50%);
+					margin: 0;
+					font-size: 0.83em;
 				}
 				.search-list {
 					display: grid;
 					width: 100%;
 					grid-template-columns: repeat(3, 1fr);
-					gap: 30px;
+					gap: 20px;
 				}
 			`}</style>
 		</div>
