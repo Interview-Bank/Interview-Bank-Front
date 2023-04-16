@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ScrapInterviewView from "./ScrapInterviewView";
 import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
@@ -10,7 +10,7 @@ const ScrapInterviewContainer = () => {
   const [boardId, setBoardId] = useState(0);
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState([]);
-
+  const navigate = useNavigate();
   const headers = setTokenHeaders();
 
   const [answers, setAnswers] = useState({});
@@ -46,6 +46,17 @@ const ScrapInterviewContainer = () => {
       e.target.setCustomValidity("");
     }
   };
+
+  const inputRefs = useRef([]);
+
+  useEffect(() => {
+    inputRefs.current.forEach((inputRef, index) => {
+      if (answers[index]) {
+        inputRef.style.height = "auto";
+        inputRef.style.height = inputRef.scrollHeight + "px";
+      }
+    });
+  }, [answers]);
 
   useEffect(() => {
     setInputValues(
@@ -105,6 +116,7 @@ const ScrapInterviewContainer = () => {
       boardId={boardId}
       title={title}
       board={board}
+      navigate={navigate}
       answers = {answers}
       setAnswers = {setAnswers}
       inputValues = {inputValues}
@@ -113,6 +125,7 @@ const ScrapInterviewContainer = () => {
       handleWrapperClick = {handleWrapperClick}
       handleInputLimit = {handleInputLimit}
       handleScrapAnswer = {handleScrapAnswer}
+      inputRefs = {inputRefs}
     />
   );
 };

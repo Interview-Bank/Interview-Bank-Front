@@ -16,7 +16,8 @@ const ScrapInterviewView = ({
    handleInputChange, 
    handleWrapperClick, 
    handleInputLimit,
-   handleScrapAnswer  }) => {
+   handleScrapAnswer,
+   inputRefs }) => {
     console.log(contents)
   return (
     <Layout>
@@ -44,6 +45,7 @@ const ScrapInterviewView = ({
                     <DividignLine></DividignLine>
 
                     <StyledInput
+                      ref={(el) => (inputRefs.current[index] = el)}
                       placeholder="답변을 입력해주세요."
                       value={inputValues[index]}
                       onChange={(e) => handleInputChange(index, e)}
@@ -143,7 +145,7 @@ const StyledLi = styled.li`
 `;
 const InputWrapper = styled.div`
   position: relative;
-  height: fit-content;
+  height: auto;
   margin-bottom: 20px;
 
 `;
@@ -157,7 +159,6 @@ const DividignLine = styled.div`
 `;
 const StyledInput = styled.textarea`
   width: 95%;
-  height : fit-content;
   max-height: 300px;
   border: none;
   outline: none;
