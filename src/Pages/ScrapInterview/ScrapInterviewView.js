@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import Layout from "../../Layout/Layout";
+import ArrowDownIconURL from "../../Assets/Icons/ArrowDownIcon.png"
+import ArrowUpIconURL from "../../Assets/Icons/ArrowUpIcon.png"
 
 const ScrapInterviewView = ({
    title, 
@@ -10,7 +12,6 @@ const ScrapInterviewView = ({
    boardId, 
    contents, 
    answers, 
-   setAnswers, 
    inputValues, 
    toggleAnswerInput, 
    handleInputChange, 
@@ -18,7 +19,6 @@ const ScrapInterviewView = ({
    handleInputLimit,
    handleScrapAnswer,
    inputRefs }) => {
-    console.log(contents)
   return (
     <Layout>
       <BoardWrapper>
@@ -39,11 +39,13 @@ const ScrapInterviewView = ({
           <QuestionsBlock>
             {contents.map((item, index) => (
               <StyledLi key={index} onClick={() => toggleAnswerInput(index)}>
-                <div className="content">{item.content}</div>
+                <QuestionContents>
+                  <div className="content">{item.content}</div>
+                  <ArrowIcon src={answers[index] ? ArrowUpIconURL : ArrowDownIconURL} alt="arrow" />
+                </QuestionContents>
                 {answers[index] && (
                   <InputWrapper onClick={handleWrapperClick}>
                     <DividignLine></DividignLine>
-
                     <StyledInput
                       ref={(el) => (inputRefs.current[index] = el)}
                       placeholder="답변을 입력해주세요."
@@ -124,10 +126,7 @@ const StyledLi = styled.li`
   flex-direction: column;
 
   width: 1047px;
-  min-height: 100px;
-
-  font-weight: 700;
-  font-size: 18px;
+  min-height: 88px;
 
   padding-left: 66px;
   border-radius: 5px;
@@ -137,12 +136,39 @@ const StyledLi = styled.li`
 
   background-color: #fff;
   margin-bottom: 12px;
+`;
 
+const QuestionContents = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1047px;
+  min-height: 88px;
+  
   .content {
-    align-self: flex-start;
-    padding-top: 32px;
+    align-self: center;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+
+    color: #000000;
+
   }
 `;
+
+const ArrowIcon = styled.img`
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  margin-right : 32px;
+
+`;
+
 const InputWrapper = styled.div`
   position: relative;
   height: auto;
@@ -150,11 +176,9 @@ const InputWrapper = styled.div`
 
 `;
 const DividignLine = styled.div`
-  width: 98%;
+  width: 90%;
   height : 0px;
   border: 1px solid #D9D9D9;
-
-  margin-top : 32px;
 
 `;
 const StyledInput = styled.textarea`
@@ -176,16 +200,22 @@ const StyledInput = styled.textarea`
   color: #000000;
 
   &::-webkit-scrollbar {
-    height: 6px;
-    background-color: #f5f5f5;
+    width: 6px;
+    background: #DDDDDD;
+    border-radius: 20px;
+    display: block;
+
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #cf0606;
-    border-radius: 3px;
+    width: 6px;
+    background: #2E55E7;
+    border-radius: 20px;
   }
 
   margin-top : 20px;
+  padding-right: 35px;
+  padding-left: 0px;
 
 `;
 

@@ -118,7 +118,6 @@ const ScrapInterviewContainer = () => {
       board={board}
       navigate={navigate}
       answers = {answers}
-      setAnswers = {setAnswers}
       inputValues = {inputValues}
       toggleAnswerInput = {toggleAnswerInput}
       handleInputChange = {handleInputChange}
