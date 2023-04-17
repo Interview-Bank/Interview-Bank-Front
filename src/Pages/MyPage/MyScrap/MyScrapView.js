@@ -16,7 +16,7 @@ const MyScrapView = ({ scrapList }) => {
               작성한 답변글
             </ScrapPageTitle>
             <ScrapPageBody>
-              {scrapList && 
+              {scrapList.length > 0 ? 
                 scrapList.map((current) => (
                 <MyScrapComponent
                   id={current.scrapId}
@@ -29,7 +29,8 @@ const MyScrapView = ({ scrapList }) => {
                   // firstCategoryName={current.jobCategory.firstLevelName}
                   // secondCategoryName={current.jobCategory.secondLevelName}
                 />
-              ))}
+              )) :
+              <NoScrap>작성한 답변이 없습니다.</NoScrap>}
             </ScrapPageBody>
           </MyScrapWrapper>
         </ScrapPageContainer>
@@ -95,6 +96,28 @@ const ScrapPageBody = styled.div`
 
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+`;
+
+const NoScrap = styled.div`
+  position: absolute;
+  display: flex;
+  width: 954px;
+  height: 326px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+  color: #ABABAB;
+
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
 `;
 
 export default MyScrapView;

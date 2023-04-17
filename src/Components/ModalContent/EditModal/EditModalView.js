@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Modal from '../../../Components/Modal/ProfilePhotoModal';
 import ProfilePhotoModalContainer from '../ProfilePhotoModal/ProfilePhotoModalContainer';
 import ProfileEditiconURL from "../../../Assets/Icons/Profile_Edit.png"
+import DeleteIconURL from "../../../Assets/Icons/DeleteIcon.png"
+import AlertIconURL from "../../../Assets/Icons/alertIcon.png"
 const EditModalView = ({
   handleUpdateUserinfo, 
   onClose, 
@@ -58,23 +60,35 @@ const EditModalView = ({
                   </Modal>
                   )}
           </EditProfilePhotoWrapper>
-          {fileError && <FileErrorMessage>{fileError}</FileErrorMessage>}
+          {fileError && 
+            <FileErrorMessageWrapper>
+              <AlertIcon src = {AlertIconURL}/>
+              <FileErrorMessage>{fileError}</FileErrorMessage>
+            </FileErrorMessageWrapper>
+          }
 
           <EditUserNicknameWrapper>
             <NicknameTitle>
               닉네임
             </NicknameTitle>
-            <NewNicknameInput
-              type='text'
-              value={values.nickname}
-              name="nickname"
-              variant="outlined"
-              onChange={handleChange}
-            >
-            </NewNicknameInput>
-            <ErrorMessage >
-                  {ErrorMsg}
-            </ErrorMessage>
+            <NewNicknameInputWrapper>
+              <NewNicknameInput
+                type='text'
+                value={values.nickname}
+                name="nickname"
+                variant="outlined"
+                onChange={handleChange}
+              >
+              </NewNicknameInput>
+              <DeleteIcon onClick={() => handleChange({ target: { name: "nickname", value: "" } })} src={DeleteIconURL} />
+            </NewNicknameInputWrapper>
+            {ErrorMsg && 
+                        <ErrorMessageWrapper>
+                          <AlertIcon src = {AlertIconURL}/>
+                          <ErrorMessage >
+                                {ErrorMsg}
+                          </ErrorMessage>
+                      </ErrorMessageWrapper>}
           </EditUserNicknameWrapper>
           <ButtonWarraper>
                 <CloseButton onClick={onClose}>취소</CloseButton>
@@ -125,10 +139,27 @@ const ProfileEditIcon = styled.img`
 
 
 `;
+
+const FileErrorMessageWrapper = styled.div`
+  position: absolute; // 절대 위치 설정
+  bottom: 197px; // EditUserNicknameWrapper의 하단에서 적절한 거리로 조정
+
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 const FileErrorMessage = styled.div`
-  color: red;
-  font-size: 13px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #F50D0D;
 `;
 const EditUserNicknameWrapper = styled.div`
   position: relative;
@@ -141,7 +172,7 @@ const EditUserNicknameWrapper = styled.div`
   flex-direction: column;
   justify-content: left;
 
-  margin-bottom: 48px;
+  padding-bottom: 48px;
 
 `;
 
@@ -162,9 +193,11 @@ const NicknameTitle = styled.div`
   margin-bottom: 8px;
 `;
 
-const NewNicknameInput = styled.input`
+const NewNicknameInputWrapper = styled.div`
   box-sizing: border-box;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   position: relative;
   width: 452px;
   height: 55px;
@@ -172,14 +205,72 @@ const NewNicknameInput = styled.input`
   background: #FFFFFF;
   border: 2px solid #2E55E7;
   border-radius: 8px;
+
+  padding-left: 16px;
 `;
 
+const NewNicknameInput = styled.input`
+  box-sizing: border-box;
+
+  position: relative;
+  width: 400px;
+  height: 45px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+
+  color: #000000;
+
+  background: #FFFFFF;
+  border: none;
+  outline: none;
+
+`;
+
+const DeleteIcon = styled.img`
+  position: relative;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+`;
+const ErrorMessageWrapper = styled.div`
+  position: absolute; // 절대 위치 설정
+  bottom: 25px; // EditUserNicknameWrapper의 하단에서 적절한 거리로 조정
+
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const AlertIcon = styled.img`
+  position: relative;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+
+  margin-right: 2px;
+`;
 const ErrorMessage = styled.div`
-    position: relative;
-    top : 20px;
-    color: red;
-    font-size: 13px;
-    font-family: "Inter", sans-serif;
+  position: relative;
+  width: 326px;
+  height: 21px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  /* identical to box height */
+
+
+  color: #F50D0D;
 `;
 const ButtonWarraper = styled.div`
   position: relative;

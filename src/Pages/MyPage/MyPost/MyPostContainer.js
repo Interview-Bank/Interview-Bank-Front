@@ -20,7 +20,8 @@ const MyPostContainer = () => {
             `https://bstaging.interviewbank.net/interview/me?page=${pageNumber}&size=${pageSize}`,
              {headers}
           );
-        
+          console.log(response)
+          console.log(headers)
           data = response.data.interviews;
           allData = [...allData, ...data];
           setBoardList(allData);
