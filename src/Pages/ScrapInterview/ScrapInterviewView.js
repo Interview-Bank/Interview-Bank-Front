@@ -4,6 +4,7 @@ import moment from "moment";
 import Layout from "../../Layout/Layout";
 import ArrowDownIconURL from "../../Assets/Icons/ArrowDownIcon.png"
 import ArrowUpIconURL from "../../Assets/Icons/ArrowUpIcon.png"
+import ReturnToOriginPostURL from "../../Assets/Icons/RetrunToOriginPostIcon.png"
 
 const ScrapInterviewView = ({
    title, 
@@ -27,14 +28,17 @@ const ScrapInterviewView = ({
           <BoardDetail>
             <BoardDate>
               {moment(board.created).add(9, "hour").format("YYYY-MM-DD")}
-              <GoToPost
-                onClick={(e) => {
-                  navigate(`/interview/${boardId}`);
-                }}
-              >
-                원본 글로 이동하기
-              </GoToPost>
             </BoardDate>
+            <GoToPostWrapper>
+                <ReturnIcon src = {ReturnToOriginPostURL} alt = "RetrunIcon"></ReturnIcon>
+                <GoToPost
+                  onClick={(e) => {
+                    navigate(`/interview/${boardId}`);
+                  }}
+                >
+                  원본 글로 이동하기
+                </GoToPost>
+              </GoToPostWrapper>
           </BoardDetail>
           <QuestionsBlock>
             {contents.map((item, index) => (
@@ -84,6 +88,7 @@ const BoardTitle = styled.div`
   height: 40px;
   width: 1096px;
   padding-top: 20px;
+  padding-bottom: 36px;
   font-size: 28px;
   font-weight: 700;
   background-color: #f9f9f9;
@@ -93,16 +98,36 @@ const BoardTitle = styled.div`
 `;
 
 const BoardDetail = styled.div`
-  margin-top: 30px;
+  margin-top: 12px;
   font-weight: 700;
   display: flex;
-  width: 96%;
+  flex-direction: row;
+
+  justify-content: space-between;
+  width: 100%;
   max-width: 1100px;
 `;
 
 const BoardDate = styled.div`
   color: #747474;
   font-weight: 700;
+`;
+
+const GoToPostWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  width: fit-content;
+  height: fit-content;
+
+`;
+
+const ReturnIcon = styled.img`
+  width: 18px;
+  height: 18px;
+
+  margin-right: 4px;
 `;
 
 const GoToPost = styled.button`
@@ -112,7 +137,7 @@ const GoToPost = styled.button`
   cursor: pointer;
   background-color: #f9f9f9;
   right: 0;
-  justify-content: end;
+  padding: 0%;
 `;
 
 const QuestionsBlock = styled.div`
@@ -125,7 +150,7 @@ const StyledLi = styled.li`
   display: flex;
   flex-direction: column;
 
-  width: 1047px;
+  width: 93%;
   min-height: 88px;
 
   padding-left: 66px;
@@ -144,7 +169,7 @@ const QuestionContents = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 1047px;
+  width: 100%;
   min-height: 88px;
   
   .content {
