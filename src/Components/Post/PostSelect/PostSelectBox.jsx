@@ -8,6 +8,7 @@ const PostSelectBox = ({
 	isChangeSelectBoxItems,
 }) => {
 	const [selectActive, setSelectActive] = useState(false);
+	console.log(selectArray)
 	return (
 		<ul
 			className={selectActive ? "ul__select active" : "ul__select"}
@@ -15,7 +16,7 @@ const PostSelectBox = ({
 				setSelectActive((prev) => !prev);
 			}}
 		>
-			<p>{selectTitle}</p>
+			<p className={(selectSection === "secondLevelId" && !selectArray.length) && 'font-grey'}>{selectTitle}</p>
 			<div
 				className={selectActive ? "select__option active" : "select__option"}
 			>
@@ -29,11 +30,7 @@ const PostSelectBox = ({
 					selectArray.map((current) => (
 						<p
 							key={current.id}
-							id={
-								selectTitle === "면접 시기" || selectTitle === "경력"
-									? current.value
-									: current.id
-							}
+							id={current.id}
 							onClick={(e) =>
 								isChangeSelectBoxItems(selectSection, e.target.id)
 							}
@@ -118,6 +115,10 @@ const PostSelectBox = ({
 					list-style: none;
 					margin: 0;
 					padding: 0;
+				}
+
+				.font-grey {
+					color: #ddd;	
 				}
 			`}</style>
 		</ul>

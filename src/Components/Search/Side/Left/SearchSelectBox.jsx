@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ArrowDown from "../../../../Assets/Images/Icons/arrow_down.png";
+import ArrowUp from "../../../../Assets/Images/Icons/arrow_up.png";
 
 const SearchSelectBox = ({
-	selectSection,
 	selectTitle,
 	selectArray,
 	isChangeSelectBoxItems,
@@ -20,8 +20,8 @@ const SearchSelectBox = ({
 				className={selectActive ? "select__option active" : "select__option"}
 			>
 				<p
-					id=""
-					onClick={(e) => isChangeSelectBoxItems(selectSection, e.target.id)}
+					data-id=""
+					onClick={(e) => isChangeSelectBoxItems(e.target.getAttribute("data-id"))}
 				>
 					선택하세요
 				</p>
@@ -29,13 +29,9 @@ const SearchSelectBox = ({
 					selectArray.map((current) => (
 						<p
 							key={current.id}
-							id={
-								selectTitle === "면접 시기" || selectTitle === "경력"
-									? current.value
-									: current.id
-							}
+							data-id={current.id}
 							onClick={(e) =>
-								isChangeSelectBoxItems(selectSection, e.target.id)
+								isChangeSelectBoxItems(e.target.getAttribute("data-id"))
 							}
 						>
 							{current.name}
@@ -43,7 +39,10 @@ const SearchSelectBox = ({
 					))}
 			</div>
 			<button className="btn__arrow">
-				<img src={ArrowDown} alt="화살표" />
+				{selectActive
+					? <img src={ArrowUp} alt="화살표" />
+					: <img src={ArrowDown} alt="화살표" />
+				}
 			</button>
 			<style jsx>{`
 				.ul__select {
@@ -95,6 +94,7 @@ const SearchSelectBox = ({
 					width: 100%;
 					height: 100%;
 					margin: 0;
+					font-size: 0.83em;
 					line-height: 40px;
 				}
 				.ul__select.active > p {
@@ -113,6 +113,23 @@ const SearchSelectBox = ({
 					right: 11px;
 					border: 0;
 					background-color: transparent;
+				}
+				.search__item-area > .ul__select {
+					border-radius: 4px;
+				}
+				.search__item-area > .ul__select.active > p {
+					opacity: 1
+				}
+				.search__item-area > .ul__select > .select__option {
+					top: 41px;
+					border-radius: 4px;
+				}
+				.search__item-area > .ul__select > .select__option.active {
+					max-height: calc(100em / 9);
+				}
+				.search__item-area > .ul__select > .select__option > p{
+					font-size: 0.83em;
+					height: 46px;
 				}
 				ul,
 				li {

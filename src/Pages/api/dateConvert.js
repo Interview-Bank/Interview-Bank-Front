@@ -14,4 +14,14 @@ const getDateFormatString = (date) => { //yyyy-mm-dd
   return `${year}-${month}-${day}`;
 }
 
-export { getDateFormatString };
+const setCaculateYear = (month) => {
+  const today = new Date();
+  return new Date(today.setFullYear(today.getFullYear() + month));
+}
+
+const setCaculateMonth = (month) => {
+  const today = new Date();
+  return new Date(today.setMonth(today.getMonth() + month));
+}
+
+export { getDateFormatString, setCaculateYear, setCaculateMonth };

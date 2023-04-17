@@ -53,6 +53,7 @@ const SearchArea = ({ searchParam, interviewList }) => {
 					transform: translate(-50%, -50%);
 					margin: 0;
 					font-size: 0.83em;
+					font-weight: 500;
 				}
 				.search-list {
 					display: grid;

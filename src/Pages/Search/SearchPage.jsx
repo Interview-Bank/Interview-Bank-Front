@@ -10,14 +10,19 @@ import SearchDateInput from "../../Components/Search/Side/Left/SearchDateInput";
 import SearchLeftTitle from "../../Components/Search/Side/Left/SearchLeftTitle";
 import SearchSelectBox from "../../Components/Search/Side/Left/SearchSelectBox";
 import { InterviewPeriod } from "../api/Post/PostSelectObject";
+import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
+import { setCaculateYear, setCaculateMonth } from '../api/dateConvert';
 
 const SearchInterviewView = () => {
-	const defaultValue = { startDate: new Date(), endDate: new Date() };
+	const today = new Date();
+	const defaultValue = { startDate: today, endDate: today };
+	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({
 		title: "",
 		category: "",
 		interviewPeriod: "",
-		...defaultValue,
+		startDate: "",
+		endDate: ""
 	});
 	const [interviewList, setInterviewList] = useState([]);
 
@@ -43,6 +48,52 @@ const SearchInterviewView = () => {
 		});
 	}, []);
 
+	const isChangeCreatedDateRadio = useCallback((value) => {
+		setSearchRadio((prev) => value);
+		isValidationCheckForDateInput(value);
+	}, []);
+	
+	const isValidationCheckForDateInput = useCallback((value) => {
+		let dateObject = {
+			startDate: "",
+			endDate: "",
+		}
+		console.log(value)
+		switch (value) {
+			case "ALL":
+				dateObject.startDate = "";
+				dateObject.endDate = "";
+				break;
+			case "RECENT_1MONTH":
+				dateObject.startDate = setCaculateMonth(-1);
+				dateObject.endDate = today;
+				break;
+			case "RECENT_3MONTH":
+				dateObject.startDate = setCaculateMonth(-3);
+				dateObject.endDate = today;
+				break;
+			case "RECENT_6MONTH":
+				dateObject.startDate = setCaculateMonth(-6);
+				dateObject.endDate = today;
+				break;
+			case "RECENT_1YEAR":
+				dateObject.startDate = setCaculateYear(-1);
+				dateObject.endDate = today;
+				break;
+			case "DIRECT_SELECT":
+				dateObject = {...defaultValue};
+				break;
+			default:
+				break;
+		}
+		console.log(dateObject);
+
+		setSearchParam((prev) => {
+			return { ...prev, startDate: dateObject.startDate, endDate: dateObject.endDate };
+		})
+
+	}, []);
+
 	const isChangeStrDate = useCallback((value) => {
 		setSearchParam((prev) => {
 			return { ...prev, startDate: value };
@@ -55,6 +106,12 @@ const SearchInterviewView = () => {
 		});
 	}, []);
 
+	const isChangeInterviewPeriod = useCallback((value) => {
+		setSearchParam((prev) => {
+			return { ...prev, interviewPeriod: value };
+		});
+	}, []);
+	
 	const onKeyDown = (e) => {
 		if (e.key === "Enter") {
 			console.log("hh");
@@ -78,25 +135,23 @@ const SearchInterviewView = () => {
 							<SearchItemArea>
 								<SearchLeftTitle title={"면접시기"} />
 								<SearchSelectBox
-									selectSection="interviewPeriod"
 									selectTitle={
 										searchParam.interviewPeriod === ""
 											? "면접 시기"
-											: InterviewPeriod.find(
-													(current) =>
-														current.value === searchParam.interviewPeriod
-											  ).name
+											: getInterviewNameFromValue(searchParam.interviewPeriod)
 									}
 									selectArray={InterviewPeriod}
-									// isChangeSelectBoxItems={isChangeSelectBoxItems}
+									isChangeSelectBoxItems={isChangeInterviewPeriod}
 								/>
 							</SearchItemArea>
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
 								<SearchDateInput
+									searchRadio={searchRadio}
 									startDate={searchParam.startDate}
 									endDate={searchParam.endDate}
+									isChangeCreatedDateRadio={isChangeCreatedDateRadio}
 									isChangeStrDate={isChangeStrDate}
 									isChangeEndDate={isChangeEndDate}
 								/>

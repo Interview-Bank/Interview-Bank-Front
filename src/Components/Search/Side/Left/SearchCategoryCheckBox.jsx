@@ -18,7 +18,7 @@ const FirstSearchCategoriesCheckBox = ({
 				style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em" }}
 				onClick={() => isChangeSelectCategories(category)}
 			>
-				<input type="checkbox" name={name} value={category} />
+				<input type="checkbox" name={name} value={category} id={category} />
 				{name}
 			</label>
 			{secondJobCategories.length ? (
@@ -65,9 +65,9 @@ const SearchCategoryCheckBox = ({
 				secondJobCategories={secondJobCategories}
 				isChangeSelectCategories={isChangeSelectCategories}
 			/>
-			{secondJobCategories &&
-				secondJobCategories.map((current) => (
-					<ul className={toggle ? "acordian active" : "acordian"}>
+			<ul className={toggle ? "acordian active" : "acordian"}>
+				{secondJobCategories &&
+					secondJobCategories.map((current) => (
 						<SearchCategoryCheckBoxItem
 							category={current.id}
 							categoryDivide={name}
@@ -75,8 +75,8 @@ const SearchCategoryCheckBox = ({
 							key={current.name}
 							isChangeSelectCategories={isChangeSelectCategories}
 						/>
-					</ul>
-				))}
+					))}
+			</ul>
 			{/* </ul> */}
 			<style jsx>{`
 				.check__area {
@@ -123,7 +123,10 @@ const SearchCategoryCheckBox = ({
 					cursor: pointer;
 					// top: 6px;
 				}
-
+				.acordian.active > li {
+					width: calc(100% - 15%);
+					padding: 10px 0 5px 15%;
+				}
 				.acordian.active > li > label {
 					cursor: pointer;
 				}
@@ -131,11 +134,6 @@ const SearchCategoryCheckBox = ({
 				label > input {
 					vertical-align: middle;
 					margin-right: 8px;
-				}
-
-				li {
-					width: calc(100% - 15%);
-					padding: 10px 0 5px 15%;
 				}
 			`}</style>
 		</div>
