@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import SearchCategoryCheckBoxItem from "./SearchCategoryCheckBoxItem";
 import ArrowUp from "../../../../Assets/Images/Icons/arrow_up.png";
 import ArrowDown from "../../../../Assets/Images/Icons/arrow_down.png";
@@ -9,14 +9,14 @@ const FirstSearchCategoriesCheckBox = ({
 	toggle,
 	setToggle,
 	secondJobCategories,
-	isChangeSelectCategories,
+	isChangeCategory,
 }) => {
 	return (
 		<div className="check__select">
 			<label
-				for={category}
+				htmlFor={category}
 				style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em" }}
-				onClick={() => isChangeSelectCategories(category)}
+				onClick={(e) => isChangeCategory(category, e.target.getAttribute("name"))}
 			>
 				<input type="checkbox" name={name} value={category} id={category} />
 				{name}
@@ -48,13 +48,8 @@ const SearchCategoryCheckBox = ({
 	secondJobCategories,
 }) => {
 	const [toggle, setToggle] = useState(false);
-	const selectCategoryArray = [];
 	const { name, id } = data;
 
-	const isChangeSelectCategories = (value) => {
-		selectCategoryArray.push(value);
-		isChangeCategory(...selectCategoryArray.sort((a, b) => a - b));
-	};
 	return (
 		<div className="check__area">
 			<FirstSearchCategoriesCheckBox
@@ -63,7 +58,7 @@ const SearchCategoryCheckBox = ({
 				toggle={toggle}
 				setToggle={setToggle}
 				secondJobCategories={secondJobCategories}
-				isChangeSelectCategories={isChangeSelectCategories}
+				isChangeCategory={isChangeCategory}
 			/>
 			<ul className={toggle ? "acordian active" : "acordian"}>
 				{secondJobCategories &&
@@ -73,7 +68,7 @@ const SearchCategoryCheckBox = ({
 							categoryDivide={name}
 							name={current.name}
 							key={current.name}
-							isChangeSelectCategories={isChangeSelectCategories}
+							isChangeCategory={isChangeCategory}
 						/>
 					))}
 			</ul>

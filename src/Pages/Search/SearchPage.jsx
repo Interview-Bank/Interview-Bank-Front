@@ -9,7 +9,7 @@ import SearchItemArea from "../../Components/Search/Side/Left/SearchItemArea";
 import SearchDateInput from "../../Components/Search/Side/Left/SearchDateInput";
 import SearchLeftTitle from "../../Components/Search/Side/Left/SearchLeftTitle";
 import SearchSelectBox from "../../Components/Search/Side/Left/SearchSelectBox";
-import { InterviewPeriod } from "../api/Post/PostSelectObject";
+import { CareerYear, InterviewPeriod } from "../api/Post/PostSelectObject";
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { setCaculateYear, setCaculateMonth } from '../api/dateConvert';
 
@@ -32,8 +32,6 @@ const SearchInterviewView = () => {
 			.catch((resolve) => console.log(resolve));
 	}, [searchParam]);
 
-	// console.log(document.getElementsByName("개발")[0].checked);
-
 	const isChangeTitle = useCallback((value) => {
 		if (value.key === "Enter") {
 			setSearchParam((prev) => {
@@ -42,10 +40,22 @@ const SearchInterviewView = () => {
 		}
 	}, []);
 
-	const isChangeCategory = useCallback((value) => {
-		setSearchParam((prev) => {
-			return { ...prev, category: value };
-		});
+	const isChangeCategory = useCallback((value, parent) => {
+		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
+																				.filter(current => current.checked === true);
+		
+		if (checkedCategoriesArray.map((current) => current.name).find(current => current !== parent)) {
+			if (parent) {
+				checkedCategoriesArray.filter(current => current.name !== parent).forEach(current => current.checked = false);
+				setSearchParam((prev) => {
+					return { ...prev, category: value };
+				});
+			}
+		} else {
+			setSearchParam((prev) => {
+				return { ...prev, category: checkedCategoriesArray.map(current => current.value).join(",") };
+			});
+		}
 	}, []);
 
 	const isChangeCreatedDateRadio = useCallback((value) => {
@@ -86,7 +96,6 @@ const SearchInterviewView = () => {
 			default:
 				break;
 		}
-		console.log(dateObject);
 
 		setSearchParam((prev) => {
 			return { ...prev, startDate: dateObject.startDate, endDate: dateObject.endDate };
@@ -112,11 +121,6 @@ const SearchInterviewView = () => {
 		});
 	}, []);
 	
-	const onKeyDown = (e) => {
-		if (e.key === "Enter") {
-			console.log("hh");
-		}
-	};
 	return (
 		<Layout>
 			<section className="search__area">
@@ -154,6 +158,21 @@ const SearchInterviewView = () => {
 									isChangeCreatedDateRadio={isChangeCreatedDateRadio}
 									isChangeStrDate={isChangeStrDate}
 									isChangeEndDate={isChangeEndDate}
+								/>
+							</SearchItemArea>
+						</SearchItem>
+						<SearchItem>
+							<SearchItemArea>
+								<SearchLeftTitle title={"경력"} />
+								<SearchSelectBox
+									selectTitle={
+										searchParam.interviewPeriod === ""
+											? "경력"
+											// : getInterviewNameFromValue(searchParam.interviewPeriod)
+											: null
+									}
+									selectArray={CareerYear}
+									// isChangeSelectBoxItems={isChangeInterviewPeriod}
 								/>
 							</SearchItemArea>
 						</SearchItem>
@@ -198,7 +217,7 @@ const SearchInterviewView = () => {
 				.search__left {
 					display: flex;
 					flex-wrap: wrap;
-					width: calc(32% - 21px);
+					width: calc(40% - 21px);
 					margin-right: 21px;
 					height: 100%;
 				}

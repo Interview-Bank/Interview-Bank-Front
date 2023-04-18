@@ -4,14 +4,13 @@ const SearchCategoryCheckBoxItem = ({
 	category,
 	name,
 	categoryDivide,
-	isChangeSelectCategories,
+	isChangeCategory,
 }) => {
 	return (
-		<li>
+		<li onClick={(e) => isChangeCategory(category, e.target.getAttribute("name"))}>
 			<label
-				for={category}
+				htmlFor={category}
 				style={{ width: "100%", fontSize: "0.83em", display: "block" }}
-				onClick={() => isChangeSelectCategories(category)}
 			>
 				<input
 					type="checkbox"

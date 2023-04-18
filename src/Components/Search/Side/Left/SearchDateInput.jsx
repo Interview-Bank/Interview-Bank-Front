@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import SearchLeftTitle from "./SearchLeftTitle";
 import SearchRadio from './SearchRadio';
+import CalendarIcon from '../../../../Assets/Images/Icons/calendar.png'
 
 const SearchDateInput = ({
 	searchRadio,
@@ -48,23 +49,29 @@ const SearchDateInput = ({
 				)}
 			</div>
 			<div className="date__area">
-				<DatePicker
-					selected={startDate}
-					onChange={(date) => isChangeStrDate(date)}
-					locale={ko}
-					dateFormat="yyyy-MM-dd"
-					className={searchRadio==="DIRECT_SELECT" ? "date__input" : "date__input readonly"}
-					readOnly={searchRadio==="DIRECT_SELECT" ? false : true}
-				/>
+				<div className="date__picker">
+					<DatePicker
+						selected={startDate}
+						onChange={(date) => isChangeStrDate(date)}
+						locale={ko}
+						dateFormat="yyyy-MM-dd"
+						className={searchRadio==="DIRECT_SELECT" ? "date__input" : "date__input readonly"}
+						readOnly={searchRadio==="DIRECT_SELECT" ? false : true}
+					/>
+					<img src={CalendarIcon} alt="달력 아이콘" />
+				</div>
 				<span> ~ </span>
-				<DatePicker
-					selected={endDate}
-					onChange={(date) => isChangeEndDate(date)}
-					locale={ko}
-					dateFormat="yyyy-MM-dd"
-					className={searchRadio==="DIRECT_SELECT" ? "date__input" : "date__input readonly"}
-					readOnly={searchRadio==="DIRECT_SELECT" ? false : true}
-				/>
+				<div className="date__picker">
+					<DatePicker
+						selected={endDate}
+						onChange={(date) => isChangeEndDate(date)}
+						locale={ko}
+						dateFormat="yyyy-MM-dd"
+						className={searchRadio==="DIRECT_SELECT" ? "date__input" : "date__input readonly"}
+						readOnly={searchRadio==="DIRECT_SELECT" ? false : true}
+					/>
+					<img src={CalendarIcon} alt="달력 아이콘" />
+				</div>
 			</div>
 			<style jsx>{`
 				.react-datepicker__input-container > input {
@@ -102,13 +109,23 @@ const SearchDateInput = ({
 					margin: 0 5px;
 				}
 
+				.date__picker {
+					position: relative;
+				}
+
+				.date__picker > img {
+					position: absolute;
+					top: 6.5px;
+					left: 6px;
+				}
+
 				.date__input.readonly {
 					background-color: #eee;
 					color: #aaa;
 				}
 
 				.react-datepicker__input-container {
-					width: calc(100% - 20px);
+					width: calc(100% - 40px);
 				}
 
 				.react-datepicker__current-month {
@@ -144,7 +161,7 @@ const SearchDateInput = ({
 					font-size: 0.83em;
 					border: 1px solid #aaa;
 					border-radius: 4px;
-					padding: 0 10px;
+					padding: 0 10px 0 30px;
 				}
 			`}</style>
 		</>

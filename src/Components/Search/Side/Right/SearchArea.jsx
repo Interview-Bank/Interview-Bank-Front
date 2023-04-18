@@ -1,8 +1,6 @@
 import PostComponent from "../../../../Layout/PostList/PostComponent";
 
 const SearchArea = ({ searchParam, interviewList }) => {
-	const { category } = searchParam;
-	console.log(interviewList);
 	return (
 		<div className="search__right">
 			{interviewList.length ? (

@@ -12,12 +12,17 @@ const SearchTitle = ({ isChangeTitle }) => {
 			<img src={Search} alt="search" />
 			<style jsx>{`
 				.search__item > input {
-					width: calc(100% - 20px);
+					width: calc(100% - 32px);
 					border: 1px solid #2e55e7;
 					border-radius: 8px;
-					font-size: 1.2rem;
-					padding: 0 10px;
+					font-size: 1rem;
+					padding: 0 16px;
 					height: 45px;
+					font-weight: 700;
+				}
+
+				.search__item > input:focus {
+					outline: 0;
 				}
 
 				.search__item > img {
