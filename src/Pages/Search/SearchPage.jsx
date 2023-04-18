@@ -16,14 +16,15 @@ import { setCaculateYear, setCaculateMonth } from '../api/dateConvert';
 const SearchInterviewView = () => {
 	const today = new Date();
 	const defaultValue = { startDate: today, endDate: today };
-	const [searchRadio, setSearchRadio] = useState("ALL");
-	const [searchParam, setSearchParam] = useState({
+	const defaultParamValue = {
 		title: "",
 		category: "",
 		interviewPeriod: "",
 		startDate: "",
 		endDate: ""
-	});
+	}
+	const [searchRadio, setSearchRadio] = useState("ALL");
+	const [searchParam, setSearchParam] = useState({...defaultParamValue});
 	const [interviewList, setInterviewList] = useState([]);
 
 	useEffect(() => {
@@ -32,6 +33,31 @@ const SearchInterviewView = () => {
 			.catch((resolve) => console.log(resolve));
 	}, [searchParam]);
 
+	const resetSearchParams = useCallback((value) => {
+		console.log(value);
+		switch (value) {
+			case "CATEGORIES":
+				resetCategories();
+				isChangeCategory("");
+				break;
+			case "INTERVIEWPERIOD":
+				// setDataObject.startDate = "";
+				// setDataObject.endDate = "";
+				break;
+			case "CREATEDAT":
+				// setDataObject.startDate = "";
+				// setDataObject.endDate = "";
+				break;
+			case "CARRERYEAR":
+				break;
+			default:
+				break;
+		}
+		// setSearchParam((prev) => {
+
+		// })
+	}, [])
+
 	const isChangeTitle = useCallback((value) => {
 		if (value.key === "Enter") {
 			setSearchParam((prev) => {
@@ -39,6 +65,12 @@ const SearchInterviewView = () => {
 			});
 		}
 	}, []);
+
+	const resetCategories = useCallback(() => {
+		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
+																				.filter(current => current.checked === true);
+		checkedCategoriesArray.forEach(current => current.checked = false);
+	}, [])
 
 	const isChangeCategory = useCallback((value, parent) => {
 		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
@@ -132,12 +164,12 @@ const SearchInterviewView = () => {
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
-								<SearchCategory isChangeCategory={isChangeCategory} />
+								<SearchCategory isChangeCategory={isChangeCategory} resetSearchParams={resetSearchParams} />
 							</SearchItemArea>
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
-								<SearchLeftTitle title={"면접시기"} />
+								<SearchLeftTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
 								<SearchSelectBox
 									selectTitle={
 										searchParam.interviewPeriod === ""
@@ -163,7 +195,7 @@ const SearchInterviewView = () => {
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
-								<SearchLeftTitle title={"경력"} />
+								<SearchLeftTitle title={"경력"} field="carrerYear" resetSearchParams={resetSearchParams} />
 								<SearchSelectBox
 									selectTitle={
 										searchParam.interviewPeriod === ""

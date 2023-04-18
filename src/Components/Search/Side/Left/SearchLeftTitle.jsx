@@ -1,10 +1,10 @@
 import React from "react";
 
-const SearchLeftTitle = ({ title }) => {
+const SearchLeftTitle = ({ title, field, resetSearchParams }) => {
 	return (
 		<div className="search__title">
 			<h5>{title}</h5>
-			<span>초기화 하기</span>
+			<span onClick={() => resetSearchParams(field)}>초기화 하기</span>
 			<style jsx>{`
 				.search__title {
 					display: flex;

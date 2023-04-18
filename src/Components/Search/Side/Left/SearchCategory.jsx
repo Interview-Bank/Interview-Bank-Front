@@ -3,7 +3,7 @@ import { getJobCategories, getFirstJobCategories, getSecondJobCategories } from 
 import SearchCategoryCheckBox from './SearchCategoryCheckBox';
 import SearchLeftTitle from './SearchLeftTitle';
 
-const SearchCategory = ({ isChangeCategory }) => {
+const SearchCategory = ({ isChangeCategory, resetSearchParams }) => {
   const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const SearchCategory = ({ isChangeCategory }) => {
 
 	return (
     <>
-      <SearchLeftTitle title="직무 구분" />
+			<SearchLeftTitle title="직무 구분" field="CATEGORIES" resetSearchParams={resetSearchParams} />
 			{getFirstJobCategories(jobCategoriesArray) &&
 				getFirstJobCategories(jobCategoriesArray).map((current) => (
 					<SearchCategoryCheckBox
