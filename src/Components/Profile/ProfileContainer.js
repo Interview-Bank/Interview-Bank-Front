@@ -5,13 +5,14 @@ import ProfileView from "./ProfileView";
 import axios from "axios";
 import { deleteCookie } from '../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../Pages/api/apiGetTokenHeader';
+import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
 
 
 const ProfileContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/account/";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const UserNickname = getCookieValue("user=");
   const onLogoutClick = async () => {
     const headers = setTokenHeaders();
 
@@ -31,11 +32,11 @@ const ProfileContainer = () => {
   };
 
   const onScrapClick = () => {
-    navigate("/scrap");
+    navigate("/mypage/my-scrap");
   };
 
   const onMyPostsClick = () => {
-    navigate("/my-posts");
+    navigate("/mypage/my-posts");
   };
 
   return (
@@ -43,6 +44,8 @@ const ProfileContainer = () => {
       onLogoutClick={onLogoutClick}
       onScrapClick={onScrapClick}
       onMyPostsClick={onMyPostsClick}
+      UserNickname = {UserNickname}
+      navigate = {navigate}
     />
   );
 };

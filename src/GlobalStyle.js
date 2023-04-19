@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background-color: #f9f9f9;
     font-family: "Inter", sans-serif;
+    height: fit-content;
   }
   
   ::-webkit-scrollbar {

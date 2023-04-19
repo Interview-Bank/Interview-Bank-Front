@@ -2,7 +2,7 @@ import { jwtUtils } from "../../utils/jwtUtils";
 import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-import ScrapModal from "../../Components/Modal/PopUpModal";
+import ScrapModal from "../../Components/Modal/CheckPopUpModal"
 import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapModalContainer";
 import { setTokenHeaders } from "../api/apiGetTokenHeader";
 const InterviewView = ({
@@ -14,46 +14,45 @@ const InterviewView = ({
 	scrapModal,
 	setScrapModal,
 }) => {
-	const token = setTokenHeaders()["X-Auth-Token"];
-	return (
-		<Layout>
-			<BoardWrapper>
-				<div className="board-body">
-					<BoardTitle>{interview.title}</BoardTitle>
-					<BoardDetail>
-						<BoardDate>
-							{moment(interview.created).add(9, "hour").format("YYYY-MM-DD")}
-						</BoardDate>
-						{jwtUtils.isAuth(token) && accountId === userId && (
-							<div>
-								<BoardDelete>삭제하기</BoardDelete>
-								<BoardEdit>수정하기</BoardEdit>
-							</div>
-						)}
-						{jwtUtils.isAuth(token) && accountId !== userId && (
-							<BoardScrapButton onClick={() => handleScrap}>
-								★ 스크랩
-							</BoardScrapButton>
-						)}
-						{scrapModal && (
-							<ScrapModal
-								CloseModal={() => {
-									setScrapModal(!scrapModal);
-								}}
-							>
-								<ScrapModalContainer />
-							</ScrapModal>
-						)}
-					</BoardDetail>
-					<QuestionsBlock>
-						{contents.map((item, index) => (
-							<li key={index}>{item.content}</li>
-						))}
-					</QuestionsBlock>
-				</div>
-			</BoardWrapper>
-		</Layout>
-	);
+  const token = setTokenHeaders()['X-Auth-Token'];
+  return (
+    <Layout>
+      <BoardWrapper>
+        <div className="board-body">
+          <BoardTitle>{interview.title}</BoardTitle>
+          <BoardDetail>
+            <BoardDate>
+              {moment(interview.created).add(9, "hour").format("YYYY-MM-DD")}
+            </BoardDate>
+            {jwtUtils.isAuth(token) && accountId === userId && (
+              <div>
+                <BoardDelete>삭제하기</BoardDelete>
+                <BoardEdit>수정하기</BoardEdit>
+              </div>
+            )}
+            {jwtUtils.isAuth(token) && accountId !== userId && (
+              <BoardScrapButton onClick={handleScrap}>
+                ★ 스크랩
+              </BoardScrapButton>
+            )}
+            {scrapModal&&(
+              <ScrapModal
+              CloseModal={() => {
+                setScrapModal(!scrapModal);
+              }}>
+                <ScrapModalContainer/>
+              </ScrapModal>
+            )}
+          </BoardDetail>
+          <QuestionsBlock>
+            {contents.map((item, index) => (
+              <li key={index}>{item.content}</li>
+            ))}
+          </QuestionsBlock>
+        </div>
+      </BoardWrapper>
+    </Layout>
+  );
 };
 
 const BoardWrapper = styled.div`
