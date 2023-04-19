@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import ArrowDown from "../../../Assets/Images/Icons/arrow_down.png";
+import ArrowDown from "../../../../Assets/Images/Icons/arrow_down.png";
+import ArrowUp from "../../../../Assets/Images/Icons/arrow_up.png";
 
-const PostSelectBox = ({
-	selectSection,
+const SearchSelectBox = ({
 	selectTitle,
 	selectArray,
 	isChangeSelectBoxItems,
 }) => {
 	const [selectActive, setSelectActive] = useState(false);
-	console.log(selectArray)
 	return (
 		<ul
 			className={selectActive ? "ul__select active" : "ul__select"}
@@ -16,13 +15,13 @@ const PostSelectBox = ({
 				setSelectActive((prev) => !prev);
 			}}
 		>
-			<p className={(selectSection === "secondLevelId" && !selectArray.length) && 'font-grey'}>{selectTitle}</p>
+			<p>{selectTitle}</p>
 			<div
 				className={selectActive ? "select__option active" : "select__option"}
 			>
 				<p
-					id=""
-					onClick={(e) => isChangeSelectBoxItems(selectSection, e.target.id)}
+					data-id=""
+					onClick={(e) => isChangeSelectBoxItems(e.target.getAttribute("data-id"))}
 				>
 					선택하세요
 				</p>
@@ -30,9 +29,9 @@ const PostSelectBox = ({
 					selectArray.map((current) => (
 						<p
 							key={current.id}
-							id={current.id}
+							data-id={current.id}
 							onClick={(e) =>
-								isChangeSelectBoxItems(selectSection, e.target.id)
+								isChangeSelectBoxItems(e.target.getAttribute("data-id"))
 							}
 						>
 							{current.name}
@@ -40,27 +39,31 @@ const PostSelectBox = ({
 					))}
 			</div>
 			<button className="btn__arrow">
-				<img src={ArrowDown} alt="화살표" />
+				{selectActive
+					? <img src={ArrowUp} alt="화살표" />
+					: <img src={ArrowDown} alt="화살표" />
+				}
 			</button>
 			<style jsx>{`
 				.ul__select {
-					width: calc(25% - 60px - 1px);
-					max-height: 66px;
-					padding: 0px 30px;
+					width: calc(100% - 32px - 1px);
+					max-height: 40px;
+					padding: 0px 16px;
 					color: #5c5c5c;
 					border-top: 0;
 					border-bottom: 0;
 					border-left: 0;
 					cursor: pointer;
-					border-right: 1px solid #ddd;
 					position: relative;
 					overflow-y: hidden;
+					border-radius: 8px;
+					border: 1px solid #aaa;
 				}
 				.select__option {
 					position: absolute;
 					top: 0;
 					left: 0;
-					width: calc(100% - 30px * 2);
+					width: calc(100% - 16px * 2);
 					max-height: 0;
 					opacity: 0;
 					box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
@@ -70,14 +73,14 @@ const PostSelectBox = ({
 				}
 				.select__option.active {
 					max-height: calc(100em / 4);
-					padding: 0 30px;
+					padding: 0 16px;
 					opacity: 1;
 					overflow-y: auto;
 				}
 				.select__option > p {
 					width: 100%;
-					height: 66px;
-					line-height: 66px;
+					height: 40px;
+					line-height: 40px;
 					margin: 0;
 				}
 				.ul__select.active {
@@ -91,7 +94,8 @@ const PostSelectBox = ({
 					width: 100%;
 					height: 100%;
 					margin: 0;
-					line-height: 66px;
+					font-size: 0.83em;
+					line-height: 40px;
 				}
 				.ul__select.active > p {
 					opacity: 0;
@@ -101,14 +105,31 @@ const PostSelectBox = ({
 					height: 66px;
 					line-height: 66px;
 				}
-				.btn__arrow {
+				.ul__select > .btn__arrow {
 					position: absolute;
 					margin: 0;
 					padding: 0;
-					top: 25px;
-					right: 22px;
+					top: 11px;
+					right: 11px;
 					border: 0;
 					background-color: transparent;
+				}
+				.search__item-area > .ul__select {
+					border-radius: 4px;
+				}
+				.search__item-area > .ul__select.active > p {
+					opacity: 1
+				}
+				.search__item-area > .ul__select > .select__option {
+					top: 41px;
+					border-radius: 4px;
+				}
+				.search__item-area > .ul__select > .select__option.active {
+					max-height: calc(100em / 9);
+				}
+				.search__item-area > .ul__select > .select__option > p{
+					font-size: 0.83em;
+					height: 46px;
 				}
 				ul,
 				li {
@@ -116,13 +137,9 @@ const PostSelectBox = ({
 					margin: 0;
 					padding: 0;
 				}
-
-				.font-grey {
-					color: #ddd;	
-				}
 			`}</style>
 		</ul>
 	);
 };
 
-export default PostSelectBox;
+export default SearchSelectBox;

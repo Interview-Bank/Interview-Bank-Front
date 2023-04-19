@@ -26,6 +26,7 @@ const HomePage = () => {
 					interviewList.map((current) => (
 						<PostComponent
 							id={current.interviewId}
+							key={current.interviewId}
 							nickname={current.nickname}
 							createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
 							title={current.title}

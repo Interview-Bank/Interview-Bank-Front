@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import ArrowDown from "../../../Assets/Images/Icons/arrow_down.png";
 
-const PostSelectBox = ({
+const SearchInterviewPeriod = ({
 	selectSection,
 	selectTitle,
 	selectArray,
 	isChangeSelectBoxItems,
 }) => {
 	const [selectActive, setSelectActive] = useState(false);
-	console.log(selectArray)
 	return (
 		<ul
 			className={selectActive ? "ul__select active" : "ul__select"}
@@ -16,7 +14,7 @@ const PostSelectBox = ({
 				setSelectActive((prev) => !prev);
 			}}
 		>
-			<p className={(selectSection === "secondLevelId" && !selectArray.length) && 'font-grey'}>{selectTitle}</p>
+			<p>{selectTitle}</p>
 			<div
 				className={selectActive ? "select__option active" : "select__option"}
 			>
@@ -30,7 +28,11 @@ const PostSelectBox = ({
 					selectArray.map((current) => (
 						<p
 							key={current.id}
-							id={current.id}
+							id={
+								selectTitle === "면접 시기" || selectTitle === "경력"
+									? current.value
+									: current.id
+							}
 							onClick={(e) =>
 								isChangeSelectBoxItems(selectSection, e.target.id)
 							}
@@ -39,12 +41,10 @@ const PostSelectBox = ({
 						</p>
 					))}
 			</div>
-			<button className="btn__arrow">
-				<img src={ArrowDown} alt="화살표" />
-			</button>
+			<button className="btn__arrow">{">"}</button>
 			<style jsx>{`
 				.ul__select {
-					width: calc(25% - 60px - 1px);
+					width: calc(25% - 60px - 3px);
 					max-height: 66px;
 					padding: 0px 30px;
 					color: #5c5c5c;
@@ -116,13 +116,9 @@ const PostSelectBox = ({
 					margin: 0;
 					padding: 0;
 				}
-
-				.font-grey {
-					color: #ddd;	
-				}
 			`}</style>
 		</ul>
 	);
 };
 
-export default PostSelectBox;
+export default SearchInterviewPeriod;

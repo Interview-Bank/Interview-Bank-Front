@@ -48,7 +48,10 @@ const HomeSearch = () => {
 					border: 2px solid #2e55e7;
 					border-radius: 26px;
 					font-size: 14px;
-					color: #aaa;
+					color: #000;
+				}
+				.search__input > input:focus {					
+					outline: 0;
 				}
 				.search__input > img {
 					width: 24px;
