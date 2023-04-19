@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import XIcon from "../../Assets/Images/Icons/icon_x.png"
 const LoginModal = (props) => {
   console.log(props)
   const CloseModal = () => {
@@ -10,7 +10,7 @@ const LoginModal = (props) => {
   return (
     <ModalWrapper>
       <ModalBody>
-        <ModalCloseButton onClick={CloseModal}>✕</ModalCloseButton>
+        <ModalCloseButton src={XIcon} onClick={CloseModal}></ModalCloseButton>
         {props.children}
       </ModalBody>
     </ModalWrapper>
@@ -30,31 +30,28 @@ const ModalWrapper = styled.div`
   z-index: 2;
 `;
 
-const ModalCloseButton = styled.button`
-  font-weight: 400;
+const ModalCloseButton = styled.img`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top : 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
   border: none;
   color: #999999;
   font-size: 16px;
-  background-color: #fff;
   z-index: 2;
   cursor: pointer;
-  :hover {
-    color: red;
-  }
 `;
 
 const ModalBody = styled.div`
   position: absolute;
-  width: 330px;
-  height: 430px;
-  padding: 40px;
+  width: 410px;
+  height: 553px;
+
   text-align: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  background: #FFFFFF;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
   z-index: 2;
   animation: modaldown 0.25s linear;
 
