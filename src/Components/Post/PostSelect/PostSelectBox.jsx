@@ -44,8 +44,8 @@ const PostSelectBox = ({
 			<button className="btn__arrow">{">"}</button>
 			<style jsx>{`
 				.ul__select {
-					width: calc(25% - 60px - 3px);
-					max-height: 66px;
+					width: calc(25% - 60px - 1px);
+					max-height: 52px;
 					padding: 0px 30px;
 					color: #5c5c5c;
 					border-top: 0;
@@ -69,15 +69,15 @@ const PostSelectBox = ({
 					z-index: 7;
 				}
 				.select__option.active {
-					max-height: calc(100em / 3);
+					max-height: calc(100em / 5);
 					padding: 0 30px;
 					opacity: 1;
 					overflow-y: auto;
 				}
 				.select__option > p {
 					width: 100%;
-					height: 66px;
-					line-height: 66px;
+					height: 52px;
+					line-height: 52px;
 					margin: 0;
 				}
 				.ul__select.active {
@@ -91,7 +91,7 @@ const PostSelectBox = ({
 					width: 100%;
 					height: 100%;
 					margin: 0;
-					line-height: 66px;
+					line-height: 52px;
 				}
 				.ul__select.active > p {
 					opacity: 0;

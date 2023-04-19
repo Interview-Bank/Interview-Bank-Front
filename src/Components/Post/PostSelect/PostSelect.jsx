@@ -84,7 +84,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 					max-width: 1100px;
 					width: calc(100% - 40px);
 					margin: 58px auto 0;
-					height: 66px;
+					height: 52px;
 					color: #5c5c5c;
 					box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
 					border-radius: 8px;
