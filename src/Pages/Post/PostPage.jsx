@@ -181,7 +181,7 @@ function PostContainer() {
 				.post__header {
 					position: sticky;
 					top: 101px;
-					z-index: 8;
+					z-index: 2;
 					width: 100%;
 					height: calc(100%);
 					padding-bottom: 30px;
