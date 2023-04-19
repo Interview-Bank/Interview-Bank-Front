@@ -7,8 +7,6 @@ import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import FindPasswordContainer from "../Pages/FindPassword/FindPasswordContainer";
 import InterviewConatiner from "../Pages/Interview/InterviewConatiner";
 import PostPage from "../Pages/Post/PostPage/PostPage";
-// import MyPostsContainer from "../Pages/MyPost/MyPostsContainer";
-// import MyScrapContainer from "../Pages/MyScrap/MyScrapContainer";
 import ScrapInterviewContainer from "../Pages/ScrapInterview/ScrapInterviewContainer";
 import GoogleSocialLogin from "../Pages/SocialLogin/GoogleSocialLogin";
 import NaverSocialLogin from "../Pages/SocialLogin/NaverSocialLogin";
@@ -16,6 +14,8 @@ import KakaoSocialLogin from "../Pages/SocialLogin/KakaoSocialLogin";
 import UserSettingContainer from "../Pages/MyPage/UserSetting/UserSettingContainer";
 import MyPostContainer from "../Pages/MyPage/MyPost/MyPostContainer";
 import MyScrapContainer from "../Pages/MyPage/MyScrap/MyScrapContainer";
+import ResetPasswordContainer from "../Pages/ResetPassword/ResetPasswordContainer";
+
 
 const Router = () => {
   return (
@@ -25,18 +25,17 @@ const Router = () => {
       <Route path="/signup" element={<RegisterEmailContainer />} />
       <Route path="/find" element={<FindPasswordContainer />} />
       <Route path="/post" element={<PostPage />} />
-      {/* <Route path="/my-posts" element={<MyPostsContainer />} />
-      <Route path="/scrap" element={<MyScrapContainer />} /> */}
       <Route path="/interview/:interview_id" element={<InterviewConatiner />} />
       <Route path="/scraps/:scrap_id" element={<ScrapInterviewContainer />} />
       <Route path="/*" element={<PageNotFound />} />
       <Route path="/oauth2/google/redirect" element={<GoogleSocialLogin/>}/>
       <Route path="/oauth2/naver/redirect" element={<NaverSocialLogin/>}/>
       <Route path="/oauth2/kakao/redirect" element={<KakaoSocialLogin/>}/>
-
       <Route path="/mypage/usersetting" element = {<UserSettingContainer/>}/>
       <Route path="/mypage/my-posts" element = {<MyPostContainer/>}/>
       <Route path="/mypage/my-scrap" element = {<MyScrapContainer/>}/>
+      <Route path="/reset-password" element = {<ResetPasswordContainer/>}/>
+
 
     </Routes>
   );
