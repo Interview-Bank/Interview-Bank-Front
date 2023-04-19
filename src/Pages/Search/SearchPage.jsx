@@ -12,6 +12,7 @@ import SearchSelectBox from "../../Components/Search/Side/Left/SearchSelectBox";
 import { CareerYear, InterviewPeriod } from "../api/Post/PostSelectObject";
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { setCaculateYear, setCaculateMonth } from '../api/dateConvert';
+import { getCareerYearNameFromValue } from '../api/getCareerYearName';
 
 const SearchInterviewView = () => {
 	const today = new Date();
@@ -21,8 +22,10 @@ const SearchInterviewView = () => {
 		category: "",
 		interviewPeriod: "",
 		startDate: "",
-		endDate: ""
+		endDate: "",
+		careerYear: "",
 	}
+	console.log(CareerYear);
 	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({...defaultParamValue});
 	const [interviewList, setInterviewList] = useState([]);
@@ -34,7 +37,6 @@ const SearchInterviewView = () => {
 	}, [searchParam]);
 
 	const resetSearchParams = useCallback((value) => {
-		console.log(value);
 		switch (value) {
 			case "CATEGORIES":
 				resetCategories();
@@ -48,7 +50,7 @@ const SearchInterviewView = () => {
 				// setDataObject.startDate = "";
 				// setDataObject.endDate = "";
 				break;
-			case "CARRERYEAR":
+			case "CAREERYEAR":
 				break;
 			default:
 				break;
@@ -152,6 +154,12 @@ const SearchInterviewView = () => {
 			return { ...prev, interviewPeriod: value };
 		});
 	}, []);
+
+	const isChangeCareerYear = useCallback((value) => {
+		setSearchParam((prev) => {
+			return { ...prev, careerYear: value };
+		});
+	}, []);
 	
 	return (
 		<Layout>
@@ -195,16 +203,15 @@ const SearchInterviewView = () => {
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
-								<SearchLeftTitle title={"경력"} field="carrerYear" resetSearchParams={resetSearchParams} />
+								<SearchLeftTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
 								<SearchSelectBox
 									selectTitle={
-										searchParam.interviewPeriod === ""
+										searchParam.careerYear === ""
 											? "경력"
-											// : getInterviewNameFromValue(searchParam.interviewPeriod)
-											: null
+											: getCareerYearNameFromValue(searchParam.careerYear)
 									}
 									selectArray={CareerYear}
-									// isChangeSelectBoxItems={isChangeInterviewPeriod}
+									isChangeSelectBoxItems={isChangeCareerYear}
 								/>
 							</SearchItemArea>
 						</SearchItem>
