@@ -67,9 +67,9 @@ const RegisterSelect = () => {
 };
 
 const SelectionWrapper = styled.div`
-  margin: 60px auto auto;
+  margin: 0px auto auto;
   width: 346px;
-  padding-top: 40px;
+  padding-top: 60px;
   // height: 676px;
   // min-height: 100vh;
   > h1 {

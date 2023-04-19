@@ -17,11 +17,12 @@ const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
 					align-items: center;
 					justify-content: end;
 					flex-wrap: wrap;
+					margin-top: 30px;
 				}
 				.btn__add {
 					width: 100%;
 					height: 100px;
-					margin-top: 30px;
+					// margin-top: 30px;
 					margin-bottom: 18px;
 					border: none;
 					background-color: #fff;
