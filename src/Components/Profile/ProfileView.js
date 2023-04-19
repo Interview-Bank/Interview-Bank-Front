@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
 
 
-const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname, navigate }) => {
+const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname, navigate, profileImeageUrl }) => {
   return (
     <ProfileContainer>
       <Triangle/>
@@ -11,7 +11,7 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
         <UserInfo>
           <ProfilePhotoWrapper>
             <ProfilePhoto 
-              src={BasicProfilePhoto} 
+              src={profileImeageUrl} 
               alt="BasicProfilePhoto"
               onClick={() => {
                 navigate("/mypage/usersetting");

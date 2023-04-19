@@ -1,47 +1,34 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Suspense} from 'react'
 import UserSettingView from './UserSettingView'
-import { getCookieValue } from '../../api/loginApi';
-import axios from 'axios';
-import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 import { useNavigate } from 'react-router-dom';
+import { FetchUserData } from '../../api/FetchUserData';
 
 const UserSettingContainer = () => {
   const [editModal, setEditModal] = useState(false);
-  const [userEmail, setUserEmail] = useState("")
-  const [userNickname, setUserNickname] = useState("")
-  const [passwordUpdatedAt, setPasswordUpdatedAt] = useState("")
-  const headers = setTokenHeaders();
   const navigate = useNavigate()
 
-  
+  const [data, setData] = useState(null)
 
-  useEffect(() => {
-    const getmydata = async () => {
-    try {
-      console.log(headers)
-      const response = await axios.get(
-        `https://bstaging.interviewbank.net/account/me`,
-        {headers}
-      );
-      console.log(response)
-      setPasswordUpdatedAt(response.data.passwordUpdatedAt)
-      setUserEmail(response.data.email)
-      setUserNickname(response.data.nickname)
-    } catch (error) {
-      console.error(error);
-    }
+  useEffect(()=> {
+    FetchUserData().then((fetchedData) => {
+      setData(fetchedData)
+    });
+  }, []);
+
+  
+  if (!data) {
+    return <div></div>;
   }
-  getmydata();
-  }, [])  
+  
   return (
-    <UserSettingView
-      userEmail = {userEmail}
-      passwordUpdatedAt = {passwordUpdatedAt}
-      userNickname = {userNickname}
-      editModal = {editModal}
-      setEditModal = {setEditModal}
-      navigate = {navigate}
-    />
+    <Suspense fallback={<div></div>}>
+      <UserSettingView 
+        data={data}
+        editModal = {editModal}
+        setEditModal = {setEditModal}
+        navigate = {navigate} 
+      />
+    </Suspense>
   )
 }
 
