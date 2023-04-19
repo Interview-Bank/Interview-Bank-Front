@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { getCareerYearNameFromValue } from "../../../Pages/api/getCareerYearName";
+import { getInterviewNameFromValue } from "../../../Pages/api/getInterviewPeriodName";
 import {
 	getFirstJobCategories,
 	getJobCategories,
@@ -26,9 +28,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 				selectTitle={
 					inputSelectBox.interviewPeriod === ""
 						? "면접 시기"
-						: InterviewPeriod.find(
-								(current) => current.value === inputSelectBox.interviewPeriod
-						  ).name
+						: getInterviewNameFromValue(inputSelectBox.interviewPeriod)
 				}
 				selectArray={InterviewPeriod}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
@@ -38,9 +38,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 				selectTitle={
 					inputSelectBox.careerYear === ""
 						? "경력"
-						: CareerYear.find(
-								(current) => current.value === inputSelectBox.careerYear
-						  ).name
+						: getCareerYearNameFromValue(inputSelectBox.careerYear)
 				}
 				selectArray={CareerYear}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
@@ -84,7 +82,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 					max-width: 1100px;
 					width: calc(100% - 40px);
 					margin: 58px auto 0;
-					height: 66px;
+					height: 52px;
 					color: #5c5c5c;
 					box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
 					border-radius: 8px;

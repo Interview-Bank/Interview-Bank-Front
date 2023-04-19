@@ -8,21 +8,36 @@ const PostSelectBox = ({
 	isChangeSelectBoxItems,
 }) => {
 	const [selectActive, setSelectActive] = useState(false);
-	console.log(selectArray)
 	return (
 		<ul
 			className={selectActive ? "ul__select active" : "ul__select"}
 			onClick={() => {
-				setSelectActive((prev) => !prev);
+				if (!(selectSection === "secondLevelId" && !selectArray.length))
+					setSelectActive((prev) => !prev);
 			}}
 		>
-			<p className={(selectSection === "secondLevelId" && !selectArray.length) && 'font-grey'}>{selectTitle}</p>
+			<p
+				className={
+					selectSection === "secondLevelId"
+						? !selectArray.length
+							? "font-grey"
+							: null
+						: null
+				}
+			>
+				{selectTitle}
+			</p>
 			<div
 				className={selectActive ? "select__option active" : "select__option"}
 			>
 				<p
-					id=""
-					onClick={(e) => isChangeSelectBoxItems(selectSection, e.target.id)}
+					data-id=""
+					onClick={(e) =>
+						isChangeSelectBoxItems(
+							selectSection,
+							e.target.getAttribute("data-id")
+						)
+					}
 				>
 					선택하세요
 				</p>
@@ -30,9 +45,12 @@ const PostSelectBox = ({
 					selectArray.map((current) => (
 						<p
 							key={current.id}
-							id={current.id}
+							data-id={current.id}
 							onClick={(e) =>
-								isChangeSelectBoxItems(selectSection, e.target.id)
+								isChangeSelectBoxItems(
+									selectSection,
+									e.target.getAttribute("data-id")
+								)
 							}
 						>
 							{current.name}
@@ -40,7 +58,9 @@ const PostSelectBox = ({
 					))}
 			</div>
 			<button className="btn__arrow">
-				<img src={ArrowDown} alt="화살표" />
+				{!(selectSection === "secondLevelId" && !selectArray.length) ? (
+					<img src={ArrowDown} alt="화살표" />
+				) : null}
 			</button>
 			<style jsx>{`
 				.ul__select {
@@ -69,15 +89,15 @@ const PostSelectBox = ({
 					z-index: 7;
 				}
 				.select__option.active {
-					max-height: calc(100em / 4);
+					max-height: calc(100em / 5);
 					padding: 0 30px;
 					opacity: 1;
 					overflow-y: auto;
 				}
 				.select__option > p {
 					width: 100%;
-					height: 66px;
-					line-height: 66px;
+					height: 52px;
+					line-height: 52px;
 					margin: 0;
 				}
 				.ul__select.active {
@@ -91,21 +111,21 @@ const PostSelectBox = ({
 					width: 100%;
 					height: 100%;
 					margin: 0;
-					line-height: 66px;
+					line-height: 52px;
 				}
 				.ul__select.active > p {
 					opacity: 0;
 				}
 				.ul__select > li {
 					width: 100%;
-					height: 66px;
-					line-height: 66px;
+					height: 52px;
+					line-height: 52px;
 				}
 				.btn__arrow {
 					position: absolute;
 					margin: 0;
 					padding: 0;
-					top: 25px;
+					top: 16px;
 					right: 22px;
 					border: 0;
 					background-color: transparent;
@@ -118,7 +138,7 @@ const PostSelectBox = ({
 				}
 
 				.font-grey {
-					color: #ddd;	
+					color: #ddd;
 				}
 			`}</style>
 		</ul>

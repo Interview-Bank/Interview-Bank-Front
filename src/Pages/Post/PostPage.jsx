@@ -159,7 +159,7 @@ function PostContainer() {
 	return (
 		<Layout>
 			<div
-				className={inputs.length > 1 ? "post__header sticky" : "post__header"}
+				className={inputs.length > 3 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
 					setTitle={setTitle}
@@ -180,7 +180,7 @@ function PostContainer() {
 			<style jsx>{`
 				.post__header {
 					position: sticky;
-					top: 101px;
+					top: 81px;
 					z-index: 2;
 					width: 100%;
 					height: calc(100%);
@@ -191,17 +191,6 @@ function PostContainer() {
 					box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
 				}
 			`}</style>
-			{/* <PostView
-				setTitle={setTitle}
-				onChange={onChange}
-				onAddInput={onAddInput}
-				handleClickSubmit={handleClickSubmit}
-				inputs={inputs}
-				onRemove={onRemove}
-				inputSelectBox={inputSelectBox}
-				isChangeSelectBoxItems={isChangeSelectBoxItems}
-				postValidationCheck={postValidationCheck}
-			/> */}
 		</Layout>
 	);
 }

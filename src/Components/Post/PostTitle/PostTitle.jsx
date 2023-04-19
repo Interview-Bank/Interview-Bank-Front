@@ -70,9 +70,10 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 				.btn-blue {
 					border-radius: 8px;
 					width: 50%;
+					max-width: 143px;
 					height: 48px;
 					cursor: pointer;
-					border: 1px solid #5c5c5c;
+					border: 0;
 					background-color: #2e55e7;
 					color: white;
 				}

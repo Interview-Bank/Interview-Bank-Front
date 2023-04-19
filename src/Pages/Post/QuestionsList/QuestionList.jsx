@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import DeleteButton from "../../../Assets/Images/Icons/icon_x.png";
 
 const QuestionList = ({ inputs, onRemove, onChange }) => {
 	return (
@@ -17,7 +18,7 @@ const QuestionList = ({ inputs, onRemove, onChange }) => {
 								autoComplete="off"
 							/>
 							<RemoveButton onClick={() => onRemove(input.questionsId)}>
-								X
+								<img src={DeleteButton} alt="삭제 버튼" />
 							</RemoveButton>
 						</Block>
 					</BlockWrapper>
@@ -48,9 +49,9 @@ const InsertForm = styled.div`
 	position: relative;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
 	width: 800px;
-	height: 80px;
+	min-height: calc(88px - 32 * 2px);
 	border: none;
 	background-color: #fff;
 	font-weight: 700;
@@ -61,8 +62,10 @@ const Input = styled.input`
 	justify-content: center;
 	gap: 20px;
 	border-radius: 8px;
-
+	margin: 0;
+	padding: 0;
 	outline: none;
+	resize: none;
 `;
 
 const BlockWrapper = styled.div`
@@ -70,25 +73,28 @@ const BlockWrapper = styled.div`
 	width: max-content;
 `;
 const Block = styled.div`
-	display: flex;
 	flex-direction: row;
+	-webkit-box-pack: justify;
 	justify-content: space-between;
 	width: 984px;
-	height: 80px;
-	margin-bottom: 15px;
-	margin-top: 30px;
-	border: none;
-	border-left: 16px solid #2e55e7;
-	background-color: #fff;
+	height: calc(88px - 32 * 2px);
+	margin-bottom: 20px;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+	border-image: initial;
+	border-left: 16px solid rgb(46, 85, 231);
+	background-color: rgb(255, 255, 255);
 	font-weight: 700;
-	color: #252525;
+	color: rgb(37, 37, 37);
 	font-size: 1.2rem;
 	display: flex;
+	-webkit-box-align: center;
 	align-items: center;
 	gap: 20px;
 	border-radius: 8px;
-	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-	padding: 20px 50px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px;
+	padding: 32px 50px;
 	outline: none;
 `;
 export default QuestionList;
