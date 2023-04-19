@@ -19,8 +19,14 @@ const EditModalContainer = (props) => {
   const [fileError, setFileError] = useState("");
 
 
+  // const handleClickEditIcon = () => {
+  //   inputFileRef.current.click();
+  // };
+
+  const [showImageOptions, setShowImageOptions] = useState(false);
+
   const handleClickEditIcon = () => {
-    inputFileRef.current.click();
+    setShowImageOptions(!showImageOptions);
   };
 
   const handleFileChange = (event) => {
@@ -65,7 +71,8 @@ const EditModalContainer = (props) => {
     }
   }
 
-  const handleUpdateProfilePhoto = async () =>{
+  const handleUpdateProfilePhoto = async (e) =>{
+    e.preventdefault()
     const formData = new FormData();
     formData.append('file', selectedFile);
     console.log(formData.get('file'));
@@ -102,7 +109,10 @@ const EditModalContainer = (props) => {
     setFileError = {setFileError}
     profilePhotoUrl = {profilePhotoUrl}
     handleUploadComplete = {handleUploadComplete}
-    handleUpdateProfilePhoto = {handleUpdateProfilePhoto}/>
+    handleUpdateProfilePhoto = {handleUpdateProfilePhoto}
+    showImageOptions = {showImageOptions}
+    setShowImageOptions = {setShowImageOptions}/>
+
   )
 }
 

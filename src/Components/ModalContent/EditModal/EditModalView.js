@@ -6,6 +6,8 @@ import ProfilePhotoModalContainer from '../ProfilePhotoModal/ProfilePhotoModalCo
 import ProfileEditiconURL from "../../../Assets/Icons/Profile_Edit.png"
 import DeleteIconURL from "../../../Assets/Icons/DeleteIcon.png"
 import AlertIconURL from "../../../Assets/Icons/alertIcon.png"
+import ImageOptionsModal from '../../Modal/ImageOptionsModal';
+
 const EditModalView = ({
   handleUpdateUserinfo, 
   onClose, 
@@ -20,7 +22,10 @@ const EditModalView = ({
   fileError,
   profilePhotoUrl,
   handleUploadComplete,
-  handleUpdateProfilePhoto}) => {
+  handleUpdateProfilePhoto,
+  showImageOptions,
+  setShowImageOptions}) => {
+
   console.log(userNickname)
   return (
     <Formik
@@ -44,6 +49,18 @@ const EditModalView = ({
             <ProfileEditIcon 
               src = {ProfileEditiconURL}
               onClick={handleClickEditIcon}/>
+              {showImageOptions && (
+                <ImageOptionsModal
+                  onUploadClick={() => {
+                    inputFileRef.current.click();
+                    setShowImageOptions(false);
+                  }}
+                  onResetClick={() => {
+                    // handleUpdateProfilePhoto(null);
+                    // 이 부분은 프로필 이미지 초기화 api를 따로 호출함
+                    setShowImageOptions(false);
+                  }}/>
+              )}
               <input
                 type="file"
                 ref={inputFileRef}

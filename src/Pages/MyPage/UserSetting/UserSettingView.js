@@ -6,7 +6,7 @@ import BasicProfilePhoto from "../../../Assets/Images/BasicProfilePhoto.png"
 import Modal from '../../../Components/Modal/EditModal';
 import EditModalContainer from '../../../Components/ModalContent/EditModal/EditModalContainer';
 
-const UserSettingView = ({userEmail, passwordUpdatedAt, userNickname, editModal, setEditModal}) => {
+const UserSettingView = ({userEmail, passwordUpdatedAt, userNickname, editModal, setEditModal, navigate}) => {
   console.log(userNickname)
   return (
     <Layout>
@@ -52,7 +52,7 @@ const UserSettingView = ({userEmail, passwordUpdatedAt, userNickname, editModal,
             <Recentinfo>
               최근 변경일 : {passwordUpdatedAt}
             </Recentinfo>
-            <UserPasswordEditBtn>비밀번호 변경</UserPasswordEditBtn>
+            <UserPasswordEditBtn onClick={()=>{navigate("/reset-password")}}>비밀번호 변경</UserPasswordEditBtn>
           </UserPasswordBox>
         </UserSettingWrapper>
       </UserSettingContainer>
@@ -288,8 +288,7 @@ const Recentinfo = styled.div`
   position: relative;
   width: fit-content;
   height: 24px;
-  /* left: 717px;
-  top: 799px; */
+
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
@@ -319,4 +318,6 @@ const UserPasswordEditBtn = styled.button`
   border: #2E55E7;
 
   margin-right: 36px;
+
+  cursor: pointer;
 `;

@@ -3,7 +3,7 @@ import UserSettingView from './UserSettingView'
 import { getCookieValue } from '../../api/loginApi';
 import axios from 'axios';
 import { setTokenHeaders } from '../../api/apiGetTokenHeader';
-
+import { useNavigate } from 'react-router-dom';
 
 const UserSettingContainer = () => {
   const [editModal, setEditModal] = useState(false);
@@ -11,6 +11,8 @@ const UserSettingContainer = () => {
   const [userNickname, setUserNickname] = useState("")
   const [passwordUpdatedAt, setPasswordUpdatedAt] = useState("")
   const headers = setTokenHeaders();
+  const navigate = useNavigate()
+
   
 
   useEffect(() => {
@@ -38,6 +40,7 @@ const UserSettingContainer = () => {
       userNickname = {userNickname}
       editModal = {editModal}
       setEditModal = {setEditModal}
+      navigate = {navigate}
     />
   )
 }
