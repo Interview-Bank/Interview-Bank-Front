@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "../../Assets/Images/search.png";
-import { SearchTag } from "../../Pages/api/Home/HomeSearchObject";
+// import { SearchTag } from "../../Pages/api/Home/HomeSearchObject";
 
 const HomeSearch = () => {
 	return (
@@ -11,18 +11,18 @@ const HomeSearch = () => {
 					type="text"
 					name="search"
 					id="search"
-					placeholder="#회사,태그,포지션"
+					placeholder="회사, 직무 등을 검색해주세요!"
 					maxLength={48}
 				/>
 				<img src={Search} alt="검색 버튼" />
 			</div>
 			<div className="search__tag">
-				{SearchTag &&
+				{/* {SearchTag &&
 					SearchTag.map((current) => (
 						<span className="font-grey" key={current.id}>
 							#{current.name}
 						</span>
-					))}
+					))} */}
 			</div>
 			<style jsx>{`
 				.search__area {
