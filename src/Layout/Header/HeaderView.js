@@ -124,7 +124,7 @@ const HeaderContents = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1255px;
+  max-width: 1276px;
   height: 100%;
   margin: 0 auto;
   align-items: center;
@@ -243,14 +243,13 @@ const SearchBox = styled.div`
 
 const SearchInput = styled.input`
   box-sizing: border-box;
-
   position: relative;
-  width: 480px;
+  width: calc(480px - 28px);
   height: 48px;
-
-
-  border: 2px solid #2E55E7;
+  border: 2px solid rgb(46, 85, 231);
   border-radius: 26px;
+  padding-left: 28px;
+  outline: 0;
 `;
 
 export default HeaderView;

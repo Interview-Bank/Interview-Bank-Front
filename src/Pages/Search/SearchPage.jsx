@@ -228,7 +228,7 @@ const SearchInterviewView = () => {
 				.search__area {
 					min-height: calc(100vh - 60px - 151px);
 					width: 96%;
-					max-width: 1100px;
+					max-width: 1276px;
 					display: flex;
 					margin: 0 auto;
 					flex-wrap: wrap;
@@ -256,7 +256,7 @@ const SearchInterviewView = () => {
 				.search__left {
 					display: flex;
 					flex-wrap: wrap;
-					width: calc(40% - 21px);
+					width: calc(35% - 21px);
 					margin-right: 21px;
 					height: 100%;
 				}
