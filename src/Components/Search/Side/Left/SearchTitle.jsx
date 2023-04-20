@@ -8,6 +8,7 @@ const SearchTitle = ({ isChangeTitle }) => {
 				type="text"
 				// onChange={(e) => isChangeTitle(e)}
 				onKeyDown={(e) => isChangeTitle(e)}
+				maxLength={128}
 			/>
 			<img src={Search} alt="search" />
 			<style jsx>{`
