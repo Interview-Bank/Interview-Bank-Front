@@ -120,6 +120,9 @@ function PostContainer() {
 			return input;
 		});
 		setInputs(newInputs);
+		e.target.style.height = "inherit";
+		e.target.style.height = `${e.target.scrollHeight}px`;
+		console.log(document.querySelector("write__area").height);
 	};
 
 	const checkGenerateQuestionCountOver = () => {
@@ -156,10 +159,24 @@ function PostContainer() {
 		// }
 	};
 
+	const handleInputLimit = (e) => {
+    const maxLengthInBytes = 65535;
+    const inputText = e.target.value;
+    const byteCount = new Blob([inputText]).size;
+  
+    if (byteCount > maxLengthInBytes) {
+      e.target.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
+      e.target.reportValidity();
+      e.target.value = inputText.slice(0, maxLengthInBytes);
+    } else {
+      e.target.setCustomValidity("");
+    }
+  };
+
 	return (
 		<Layout>
 			<div
-				className={inputs.length > 3 ? "post__header sticky" : "post__header"}
+				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
 					setTitle={setTitle}
@@ -176,6 +193,7 @@ function PostContainer() {
 				onRemove={onRemove}
 				onChange={onChange}
 				onAddInput={onAddInput}
+				handleInputLimit={handleInputLimit}
 			/>
 			<style jsx>{`
 				.post__header {
@@ -183,7 +201,7 @@ function PostContainer() {
 					top: 81px;
 					z-index: 2;
 					width: 100%;
-					height: calc(100%);
+					height: 100%;
 					padding-bottom: 30px;
 					background-color: #f9f9f9;
 				}

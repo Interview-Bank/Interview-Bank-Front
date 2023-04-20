@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import InterviewView from "./InterviewView";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +10,7 @@ const InterviewConatiner = () => {
   const [interview, setInterview] = useState({});
   const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
-  const [scrapModal, setScrapModal] = useState(false)
-  const userId = useSelector((state) => state.Auth.userId);
+  const [scrapModal, setScrapModal] = useState(false);
 
   // const headers = setTokenHeaders();
 
@@ -54,8 +52,7 @@ const InterviewConatiner = () => {
       interview={interview}
       contents={contents}
       navigate={navigate}
-      // token={headers['X-Auth-Token']}
-      userId={userId}
+      // token={headers['X-Auth-Token']}      
       accountId={accountId}
       handleScrap={handleScrap}
       scrapModal = {scrapModal}

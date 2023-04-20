@@ -12,7 +12,7 @@ const ProfileContainer = () => {
   const API_URL = "https://bstaging.interviewbank.net/account/";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const UserNickname = getCookieValue("user=");
+  const UserNickname = getCookieValue("user");
   const onLogoutClick = async () => {
     const headers = setTokenHeaders();
 

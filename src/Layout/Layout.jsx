@@ -29,8 +29,9 @@ const MainWrapper = styled.div`
 	top: 81px;
 	min-height: ${(props) =>
 		props.locationHref
-			? "calc(((100vh - 100px) - 60px) - 91px);;"
-			: "calc(100vh - 100px - 151px);"};
+    ? "calc(((100vh - 100px) - 60px) - 91px);;"
+    : "calc(100vh - 100px - 151px);"};
+  font-family: 'Noto Sans KR';
 `;
 
 export default Layout;

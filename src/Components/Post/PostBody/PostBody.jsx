@@ -1,10 +1,10 @@
 import React from "react";
-import QuestionList from "../../../Pages/Post/QuestionsList/QuestionList";
+import PostWrite from '../PostWrite/PostWrite';
 
-const PostBody = ({ inputs, onRemove, onChange, onAddInput }) => {
+const PostBody = ({ inputs, onRemove, onChange, onAddInput, handleInputLimit }) => {
 	return (
 		<div className="write__area">
-			<QuestionList inputs={inputs} onRemove={onRemove} onChange={onChange} />
+			<PostWrite inputs={inputs} onRemove={onRemove} onChange={onChange} handleInputLimit={handleInputLimit} />
 			<button className="btn__add" onClick={onAddInput}>
 				+추가하기
 			</button>
