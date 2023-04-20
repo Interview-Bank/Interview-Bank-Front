@@ -9,9 +9,9 @@ const HomeSearch = () => {
 		navigate("/search");
 	}
 	return (
-		<div className="search__area" onClick={()=>onClick()}>
+		<div className="search__area">
 			<h1>면접 정보 인터뷰 뱅크에서 알려드려요</h1>
-			<div className="search__input">
+			<div className="search__input" onClick={()=>onClick()}>
 				<input
 					type="text"
 					name="search"
