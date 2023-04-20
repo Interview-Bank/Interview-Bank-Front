@@ -2,8 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-import { HiOutlineMail } from "react-icons/hi";
-
+import GoogleIconUrl from "../../Assets/Images/google.png"
+import KakaoIconUrl from "../../Assets/Images/kakaotalk.png"
+import NaverIconUrl from "../../Assets/Images/naver.png"
+import EmailIconUrl from "../../Assets/Icons/EmailIcon.png"
 const RegisterSelect = () => {
   const navigate = useNavigate();
   const handleGoogleOauth = () => {
@@ -22,101 +24,150 @@ const RegisterSelect = () => {
   return (
     <Layout>
       <SelectionWrapper>
-        <h1>회원가입</h1>
-        <p>회원가입 방식을 선택하세요.</p>
-        <SelectButton
-          onClick={handleKakaoOauth}
-        >
-          <IconWrapper>
-            <HiOutlineMail />
-          </IconWrapper>
-          카카오로 회원가입
-        </SelectButton>
+        <RegisterTitle>회원가입</RegisterTitle>
+        <RegisterDesc>회원가입 방식을 선택하세요.</RegisterDesc>
+        <SelectButtonWrapper>
+          <SelectButton
+            onClick={handleGoogleOauth}
+          >
+            <SocialIcon src = {GoogleIconUrl}/>
+            Google로 회원가입
+          </SelectButton>
 
-        <SelectButton
-          onClick={handleGoogleOauth}
-        >
-          <IconWrapper>
-            <HiOutlineMail />
-          </IconWrapper>
-          구글로 회원가입
-        </SelectButton>
+          <SelectButton
+            onClick={handleKakaoOauth}
+          >
+            <SocialIcon src = {KakaoIconUrl}/>
+            KaKao로 회원가입
+          </SelectButton>
 
-        <SelectButton
-          onClick={handleNaverOauth}
-        >
-          <IconWrapper>
-            <HiOutlineMail />
-          </IconWrapper>
-          네이버로 회원가입
-        </SelectButton>
+          <SelectButton
+            onClick={handleNaverOauth}
+          >
+            <SocialIcon src = {NaverIconUrl}/>
+            Naver로 회원가입
+          </SelectButton>
 
-        <SelectButton
-          onClick={() => {
-            navigate("/signup");
-          }}
-        >
-          <IconWrapper>
-            <HiOutlineMail />
-          </IconWrapper>
-          이메일로 회원가입
-        </SelectButton>
+          <SelectButton
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            <EmailIcon src = {EmailIconUrl} />
+            이메일로 회원가입
+          </SelectButton>
+        </SelectButtonWrapper>
       </SelectionWrapper>
     </Layout>
   );
 };
 
 const SelectionWrapper = styled.div`
-  margin: 0px auto auto;
-  width: 346px;
-  padding-top: 60px;
-  // height: 676px;
-  // min-height: 100vh;
-  > h1 {
-    font-weight: 700;
-    text-align: center;
-    color: #2e55e7;
-    // margin-top: 100px;
-  }
-  > p {
-    font-weight: 600;
-    text-align: center;
-    color: #737373;
-    font-size: 14px;
-    margin-bottom: 30px;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  padding-top: 80px;
+  margin: 0px auto;
+
+
+`;
+const RegisterTitle = styled.div`
+  position: relative;
+  width: 100px;
+  height: 35px;
+
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+
+  text-align: center;
+
+  color: #2E55E7;
+
+  margin: 0px auto;
+  margin-bottom: 18px;
 `;
 
-const SelectButton = styled.button`
-  width: 100%;
-  height: 60px;
-  margin-bottom: 18px;
-  border: none;
-  background-color: #fff;
-  font-weight: 700;
-  color: #747474;
-  font-size: 0.9rem;
+const RegisterDesc = styled.div`
+  position: relative;
+  width: 220px;
+  height: 21px;
+
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #646464;
+
+  margin: 0px auto;
+  margin-bottom: 52px;
+`;
+
+const SelectButtonWrapper = styled.div`
+  position: relative;
   display: flex;
+  flex-direction: column;
+`;
+
+const SelectButton = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+
+  width: 350px;
+  height: 60px;
+
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
   border-radius: 8px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+
+  color: #646464;
+
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 10px;
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
+
+  margin-bottom: 12px;
+
   :hover {
     box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.2);
     color: #2e55e7;
   }
 `;
 
-const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  color: #747474;
-  font-size: 1.2rem;
-  margin-bottom: 2px;
+const SocialIcon = styled.img`
+  position: relative;
+  width: 32px;
+  height: 32px;
+
+  margin-left: 30px;
+  margin-right: 59px;
+`;
+
+const EmailIcon  = styled.img`
+  position: relative;
+  width: 36px;
+  height: 36px;
+
+  margin-left: 28px;
+  margin-right: 57px;
 `;
 
 export default RegisterSelect;
