@@ -1,28 +1,33 @@
 import React from "react";
+import { useNavigate } from 'react-router';
 import Search from "../../Assets/Images/search.png";
-import { SearchTag } from "../../Pages/api/Home/HomeSearchObject";
+// import { SearchTag } from "../../Pages/api/Home/HomeSearchObject";
 
 const HomeSearch = () => {
+	const navigate = useNavigate();
+	const onClick = () => {
+		navigate("/search");
+	}
 	return (
-		<div className="search__area">
+		<div className="search__area" onClick={()=>onClick()}>
 			<h1>면접 정보 인터뷰 뱅크에서 알려드려요</h1>
 			<div className="search__input">
 				<input
 					type="text"
 					name="search"
 					id="search"
-					placeholder="#회사,태그,포지션"
+					placeholder="회사, 직무 등을 검색해주세요!"
 					maxLength={48}
 				/>
 				<img src={Search} alt="검색 버튼" />
 			</div>
 			<div className="search__tag">
-				{SearchTag &&
+				{/* {SearchTag &&
 					SearchTag.map((current) => (
 						<span className="font-grey" key={current.id}>
 							#{current.name}
 						</span>
-					))}
+					))} */}
 			</div>
 			<style jsx>{`
 				.search__area {
@@ -40,6 +45,7 @@ const HomeSearch = () => {
 					padding: 0 20px;
 					height: 48px;
 					position: relative;
+					cursor: pointer;
 				}
 				.search__input > input {
 					padding: 0 28px;

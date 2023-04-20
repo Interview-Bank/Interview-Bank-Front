@@ -38,12 +38,12 @@ const HomePage = () => {
 			<style jsx>{`
 				.title {
 					margin: 0 auto;
-					max-width: 1100px;
+					max-width: 1276px;
 				}
 				.post__list {
 					display: grid;
 					width: 100%;
-					max-width: 1100px;
+					max-width: 1276px;
 					margin: 0 auto 20px;
 					grid-template-columns: repeat(4, 1fr);
 					gap: 20px;
