@@ -25,8 +25,9 @@ const EditModalView = ({
   handleUpdateProfilePhoto,
   showImageOptions,
   setShowImageOptions,
-  handleResetClick}) => {
-
+  handleResetClick,
+  }) => {
+  console.log(profileImageUrl)
   console.log(userNickname)
   return (
     <Formik
@@ -56,11 +57,7 @@ const EditModalView = ({
                     inputFileRef.current.click();
                     setShowImageOptions(false);
                   }}
-                  onResetClick={() => {
-                    // handleUpdateProfilePhoto(null);
-                    // 이 부분은 프로필 이미지 초기화 api를 따로 호출함
-                    setShowImageOptions(false);
-                  }}/>
+                  onResetClick={handleResetClick}/>
               )}
               <input
                 type="file"

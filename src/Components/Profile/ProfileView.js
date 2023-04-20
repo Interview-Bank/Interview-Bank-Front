@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
 
 
-const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname, navigate, profileImeageUrl }) => {
+const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname, navigate, profileImageUrl }) => {
   return (
     <ProfileContainer>
       <Triangle/>
@@ -11,7 +10,7 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
         <UserInfo>
           <ProfilePhotoWrapper>
             <ProfilePhoto 
-              src={profileImeageUrl} 
+              src={profileImageUrl} 
               alt="ProfilePhoto"
               onClick={() => {
                 navigate("/mypage/usersetting");

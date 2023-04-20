@@ -35,7 +35,7 @@ const UserSettingView = ({data, editModal, setEditModal, navigate}) => {
                           setEditModal(!editModal);
                         }}
                       >
-                        <EditModalContainer profileimageUrl = {imageUrl} />
+                        <EditModalContainer/>
                       </Modal>
                 )}
                 </UserNicknameWrapper>
@@ -104,7 +104,6 @@ const UserinfoTitle = styled.div`
   font-weight: 700;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
 
   text-align: center;
 

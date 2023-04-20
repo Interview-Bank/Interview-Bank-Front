@@ -4,12 +4,11 @@ import EditModalView from './EditModalView';
 import { getCookieValue } from '../../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 import { setCookie, } from '../../../Pages/api/loginApi';
-import BasicProfileImageURL from "../../../Assets/Images/BasicProfilePhoto.png"
+import BasicProfilePhotoUrl from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
-const EditModalContainer = (props,{profileimageUrl}) => {
+const EditModalContainer = (props) => {
   console.log(props)
-  console.log(profileimageUrl)
   const userNickname = getCookieValue("user")
   const headers = setTokenHeaders();
 
@@ -20,12 +19,9 @@ const EditModalContainer = (props,{profileimageUrl}) => {
   const [ErrorMsg, setErrorMsg] = useState("");
   const [fileError, setFileError] = useState("");
 
-
-  // const handleClickEditIcon = () => {
-  //   inputFileRef.current.click();
-  // };
-
   const [showImageOptions, setShowImageOptions] = useState(false);
+
+  const [isResetimage, setIsResetimage] = useState(false)
 
   const handleClickEditIcon = () => {
     setShowImageOptions(!showImageOptions);
@@ -61,17 +57,15 @@ const EditModalContainer = (props,{profileimageUrl}) => {
       }
     }
     getmydata();
-  },[headers])
+  },[])
 
   const handleUploadComplete = (uploadedFileUrl) => {
     setProfileImageUrl(uploadedFileUrl);
   }
   
   const handleUpdateUserinfo =  (values) => {
-    console.log(values.nickname);
     if (!values.nickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,16}$/)){
       setErrorMsg("1글자 이상 16글자 이하로 입력해주세요.");
-      console.log("nickname check")
       return
     }else{
       const updateNickname = async () => {
@@ -92,40 +86,43 @@ const EditModalContainer = (props,{profileimageUrl}) => {
     }
   }
 
-  const handleUpdateProfilePhoto = async (e) =>{
-    e.preventdefault()
+  const handleUpdateProfilePhoto = async () =>{
     const formData = new FormData();
     formData.append('file', selectedFile);
     console.log(formData.get('file'));
 
-    try {
-      const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
-      formData, 
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          ...headers
-        }
-      })
-      console.log(response)
-    } catch (error) {
-      console.log(error);
-    };
+    if (isResetimage){
+      try{
+        const response = await axios.put(
+          "https://bstaging.interviewbank.net/account/initialize/profile-image",
+          null,
+          {headers}
+        );
+        console.log(response)
+      }catch(error){
+        console.log(error);
+      }
+    }else{
+      try {
+        const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
+        formData, 
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            ...headers
+          }
+        })
+        console.log(response)
+      } catch (error) {
+        console.log(error);
+      };
+    }
   }
 
-  const handleResetClick = async () => {
-
-    try{
-      const response = await axios.put(
-        `https://bstaging.interviewbank.net/account/initialize/profile-image`,
-        {headers}
-      );
-      console.log(response)
-    }catch(error){
-      console.log(error);
-    }
-
-
+  const handleResetClick = () => {
+    setShowImageOptions(false);
+    setProfileImageUrl(BasicProfilePhotoUrl)
+    setIsResetimage(true)
   };
   return (
     <EditModalView
@@ -146,7 +143,9 @@ const EditModalContainer = (props,{profileimageUrl}) => {
     handleUploadComplete = {handleUploadComplete}
     handleUpdateProfilePhoto = {handleUpdateProfilePhoto}
     showImageOptions = {showImageOptions}
-    setShowImageOptions = {setShowImageOptions}/>
+    setShowImageOptions = {setShowImageOptions}
+    handleResetClick = {handleResetClick}
+    />
 
   )
 }
