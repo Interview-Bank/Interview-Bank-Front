@@ -79,7 +79,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 			/>
 			<style jsx>{`
 				.select__area {
-					max-width: 1100px;
+					max-width: 1276px;
 					width: calc(100% - 40px);
 					margin: 58px auto 0;
 					height: 52px;
@@ -91,6 +91,7 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 					align-items: center;
 					// justify-content: space-between;
 					background-color: white;
+					font-size: 1rem;
 				}
 			`}</style>
 		</div>

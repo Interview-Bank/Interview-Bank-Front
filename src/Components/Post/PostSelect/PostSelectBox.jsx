@@ -80,7 +80,8 @@ const PostSelectBox = ({
 					position: absolute;
 					top: 0;
 					left: 0;
-					width: calc(100% - 30px * 2);
+					// width: calc(100% - 30px * 2);
+					width: 100%;
 					max-height: 0;
 					opacity: 0;
 					box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
@@ -90,16 +91,22 @@ const PostSelectBox = ({
 				}
 				.select__option.active {
 					max-height: calc(100em / 5);
-					padding: 0 30px;
+					// padding: 0 30px;
 					opacity: 1;
 					overflow-y: auto;
 				}
 				.select__option > p {
-					width: 100%;
+					width: calc(100% - 30 * 2 px);
+					padding: 0 30px;
 					height: 52px;
 					line-height: 52px;
 					margin: 0;
 				}
+				.select__option > p:hover {
+					background: rgba(46, 85, 231, 0.1);
+					color: #2E55E7;
+				}
+
 				.ul__select.active {
 					max-height: 100em;
 					overflow-y: unset;

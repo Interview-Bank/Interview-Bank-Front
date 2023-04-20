@@ -21,12 +21,9 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 			</div>
 			<style jsx>{`
 				.post__title {
-					// max-width: 1100px;
 					// margin: 60px auto 0;
-					// width: calc(100% - 30px);
-					// display: flex;
 					// padding: 0 10px 0 20;
-					max-width: 1100px;
+					max-width: 1276px;
 					padding-top: 60px;
 					margin: 0 auto;
 					width: calc(100% - 30px);
@@ -34,7 +31,7 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 				}
 				input {
 					border: 0;
-					height: 48px;
+					height: 41px;
 					width: calc(65% - 12px - 20px);
 					padding: 0 10px;
 					font-size: 28px;
@@ -68,10 +65,10 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 					border: 1px solid #5c5c5c;
 				}
 				.btn-blue {
-					border-radius: 8px;
+					border-radius: 4px;
 					width: 50%;
-					max-width: 143px;
-					height: 48px;
+					max-width: 84px;
+					height: 35px;
 					cursor: pointer;
 					border: 0;
 					background-color: #2e55e7;
