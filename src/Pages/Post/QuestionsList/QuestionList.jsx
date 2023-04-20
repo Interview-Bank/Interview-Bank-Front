@@ -38,10 +38,13 @@ const RemoveButton = styled.button`
 	background-color: #fff;
 	color: #b5b5b5;
 	font-size: 1.1rem;
-	:hover {
-		color: red;
-		cursor: pointer;
-	}
+	position: absolute;
+	right: 32px;
+	top: 32px;
+	// :hover {
+	// 	color: red;
+	// 	cursor: pointer;
+	// }
 `;
 
 const InsertForm = styled.div`
@@ -51,21 +54,24 @@ const InsertForm = styled.div`
 
 const Input = styled.textarea`
 	width: 800px;
-	min-height: calc(88px - 32 * 2px);
+	// min-height: calc(88px - 32 * 2px);
+	// max-height: calc(133px - 32 * 2px);
+	height: 100%;
 	border: none;
 	background-color: #fff;
 	font-weight: 700;
 	color: #252525;
 	font-size: 1.2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	// display: flex;
+	// align-items: center;
+	// justify-content: center;
 	gap: 20px;
 	border-radius: 8px;
 	margin: 0;
 	padding: 0;
 	outline: none;
 	resize: none;
+	font-family: 'Noto Sans KR';
 `;
 
 const BlockWrapper = styled.div`
@@ -77,7 +83,9 @@ const Block = styled.div`
 	-webkit-box-pack: justify;
 	justify-content: space-between;
 	width: 984px;
-	height: calc(88px - 32 * 2px);
+	// height: calc(88px - 32 * 2px);
+	// max-height: calc(133px - 32 * 2px);
+	height: 100%;
 	margin-bottom: 20px;
 	border-top: none;
 	border-right: none;

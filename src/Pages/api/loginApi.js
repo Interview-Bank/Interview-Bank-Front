@@ -1,7 +1,7 @@
 const getCookie = (key) => {
   const checkKeyExistence = document.cookie
                               .split("; ")
-                              .find((current) => current.startsWith(key));
+                              .find((current) => current.startsWith(`${key}=`));
   return checkKeyExistence ? true : false;
 }
 
@@ -9,14 +9,14 @@ const getCookieValue = (key) => {
   if (getCookie(key)) {
     const CookieValue = document.cookie
                           .split("; ")
-                          .find((current) => current.startsWith(key))
+                          .find((current) => current.startsWith(`${key}=`))
                           .split("=")[1];
     return CookieValue;
   } else return false;  
 }
 
 const checkCookieExistence = () => {
-  const CheckCookieArray = ["authToken=", "userId="];
+  const CheckCookieArray = ["authToken", "userId"];
   const CheckArray = CheckCookieArray
                       .map((current) => getCookie(current))
                       .find((current) => current === false);

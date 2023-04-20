@@ -8,7 +8,7 @@ import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
 const EditModalContainer = (props) => {
-  const userNickname = getCookieValue("user=")
+  const userNickname = getCookieValue("user")
   const headers = setTokenHeaders();
 
   const [profielModal, setProfielModal] = useState(false)
