@@ -21,13 +21,10 @@ const MyScrapView = ({ scrapList }) => {
                 <MyScrapComponent
                   id={current.scrapId}
                   nickname={current.nickname}
-                  createdAt={""}
-                  // createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   title={current.title}
-                  firstCategoryName={""}
-                  secondCategoryName={""}
-                  // firstCategoryName={current.jobCategory.firstLevelName}
-                  // secondCategoryName={current.jobCategory.secondLevelName}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
                 />
               )) :
               <NoScrap>작성한 답변이 없습니다.</NoScrap>}

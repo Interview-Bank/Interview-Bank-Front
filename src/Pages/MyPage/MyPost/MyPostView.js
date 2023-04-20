@@ -24,8 +24,6 @@ const MyPostView = ({ boardList }) => {
                   nickname={current.nickname}
                   createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   title={current.title}
-                  // firstCategoryName={""}
-                  // secondCategoryName={""}
                   firstCategoryName={current.jobCategory.firstLevelName}
                   secondCategoryName={current.jobCategory.secondLevelName}
                 />
