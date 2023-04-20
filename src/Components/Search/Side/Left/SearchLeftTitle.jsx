@@ -18,7 +18,8 @@ const SearchLeftTitle = ({ title, field, resetSearchParams }) => {
 				.search__title > span {
 					color: #737373;
 					margin: 1.67em 0;
-					font-size: 1rem;
+					line-height: 2rem;
+					font-size: 0.83rem;
 					cursor: pointer;
 				}
 			`}</style>
