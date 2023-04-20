@@ -1,10 +1,15 @@
 import React from "react";
+import { useNavigate } from 'react-router';
 import Search from "../../Assets/Images/search.png";
 // import { SearchTag } from "../../Pages/api/Home/HomeSearchObject";
 
 const HomeSearch = () => {
+	const navigate = useNavigate();
+	const onClick = () => {
+		navigate("/search");
+	}
 	return (
-		<div className="search__area">
+		<div className="search__area" onClick={()=>onClick()}>
 			<h1>면접 정보 인터뷰 뱅크에서 알려드려요</h1>
 			<div className="search__input">
 				<input
@@ -40,6 +45,7 @@ const HomeSearch = () => {
 					padding: 0 20px;
 					height: 48px;
 					position: relative;
+					cursor: pointer;
 				}
 				.search__input > input {
 					padding: 0 28px;
