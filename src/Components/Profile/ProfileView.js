@@ -12,7 +12,7 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
           <ProfilePhotoWrapper>
             <ProfilePhoto 
               src={profileImeageUrl} 
-              alt="BasicProfilePhoto"
+              alt="ProfilePhoto"
               onClick={() => {
                 navigate("/mypage/usersetting");
               }}

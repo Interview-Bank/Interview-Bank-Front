@@ -4,10 +4,12 @@ import EditModalView from './EditModalView';
 import { getCookieValue } from '../../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 import { setCookie, } from '../../../Pages/api/loginApi';
-import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
+import BasicProfileImageURL from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
-const EditModalContainer = (props) => {
+const EditModalContainer = (props,{profileimageUrl}) => {
+  console.log(props)
+  console.log(profileimageUrl)
   const userNickname = getCookieValue("user")
   const headers = setTokenHeaders();
 
@@ -41,9 +43,28 @@ const EditModalContainer = (props) => {
     }
   };
 
-  const [profilePhotoUrl, setProfilePhotoUrl] = useState(BasicProfilePhotoURL);
+  const [profileImageUrl, setProfileImageUrl] = useState(null);
+
+  useEffect(() => {
+    const getmydata = async () => {
+      try {
+        console.log(headers)
+        const response = await axios.get(
+          `https://bstaging.interviewbank.net/account/me`,
+          {headers}
+        );
+        console.log(response)
+        setProfileImageUrl(response.data.imageUrl)
+        return response.data.imageUrl;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getmydata();
+  },[headers])
+
   const handleUploadComplete = (uploadedFileUrl) => {
-    setProfilePhotoUrl(uploadedFileUrl);
+    setProfileImageUrl(uploadedFileUrl);
   }
   
   const handleUpdateUserinfo =  (values) => {
@@ -77,7 +98,6 @@ const EditModalContainer = (props) => {
     formData.append('file', selectedFile);
     console.log(formData.get('file'));
 
-
     try {
       const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
       formData, 
@@ -92,6 +112,21 @@ const EditModalContainer = (props) => {
       console.log(error);
     };
   }
+
+  const handleResetClick = async () => {
+
+    try{
+      const response = await axios.put(
+        `https://bstaging.interviewbank.net/account/initialize/profile-image`,
+        {headers}
+      );
+      console.log(response)
+    }catch(error){
+      console.log(error);
+    }
+
+
+  };
   return (
     <EditModalView
     handleUpdateUserinfo = {handleUpdateUserinfo}
@@ -107,7 +142,7 @@ const EditModalContainer = (props) => {
     inputFileRef = {inputFileRef}
     fileError = {fileError}
     setFileError = {setFileError}
-    profilePhotoUrl = {profilePhotoUrl}
+    profileImageUrl = {profileImageUrl}
     handleUploadComplete = {handleUploadComplete}
     handleUpdateProfilePhoto = {handleUpdateProfilePhoto}
     showImageOptions = {showImageOptions}

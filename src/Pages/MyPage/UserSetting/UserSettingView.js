@@ -35,7 +35,7 @@ const UserSettingView = ({data, editModal, setEditModal, navigate}) => {
                           setEditModal(!editModal);
                         }}
                       >
-                        <EditModalContainer />
+                        <EditModalContainer profileimageUrl = {imageUrl} />
                       </Modal>
                 )}
                 </UserNicknameWrapper>

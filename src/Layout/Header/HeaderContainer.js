@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import HeaderView from "./HeaderView";
 import { jwtUtils } from "../../utils/jwtUtils";
 import { useSelector } from "react-redux";
-import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
 import { setTokenHeaders } from "../../Pages/api/apiGetTokenHeader";
 import axios from "axios";
 
@@ -11,8 +10,8 @@ const HeaderContainer = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [profile, setProfile] = useState(false)
   const token = useSelector((state) => state.Auth.token);
-  const [profileImeageUrl, setProfileImeageUrl] = useState(null)
-  //기본 이미지가 s3에 올라가면 초기값 그냥 ""으로 하면 됨
+  const [profileImageUrl, setProfileImageUrl] = useState(null)
+
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
@@ -31,7 +30,7 @@ const HeaderContainer = () => {
           {headers}
         );
         console.log(response)
-        setProfileImeageUrl(response.data.imageUrl)
+        setProfileImageUrl(response.data.imageUrl)
         return response.data.imageUrl;
       } catch (error) {
         console.error(error);
@@ -45,7 +44,7 @@ const HeaderContainer = () => {
     profile = {profile} 
     setProfile={setProfile} 
     isAuth={isAuth}
-    profileImeageUrl = {profileImeageUrl}/>;
+    profileImageUrl = {profileImageUrl}/>;
 };
 
 export default HeaderContainer;

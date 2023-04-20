@@ -20,11 +20,12 @@ const EditModalView = ({
   handleFileChange,
   inputFileRef,
   fileError,
-  profilePhotoUrl,
+  profileImageUrl,
   handleUploadComplete,
   handleUpdateProfilePhoto,
   showImageOptions,
-  setShowImageOptions}) => {
+  setShowImageOptions,
+  handleResetClick}) => {
 
   console.log(userNickname)
   return (
@@ -45,7 +46,7 @@ const EditModalView = ({
         }}>
         <EditModalWrapper>
           <EditProfilePhotoWrapper>
-            <ProfilePhoto src={profilePhotoUrl}/>
+            <ProfilePhoto src={profileImageUrl}/>
             <ProfileEditIcon 
               src = {ProfileEditiconURL}
               onClick={handleClickEditIcon}/>

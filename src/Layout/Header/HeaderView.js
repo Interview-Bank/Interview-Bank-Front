@@ -10,7 +10,7 @@ import LoginContainer from "../../Pages/Login/LoginContainer";
 import WriteIconUrl from "../../Assets/Icons/WriteIcon.png"
 
 
-const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileImeageUrl }) => {
+const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileImageUrl }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
@@ -90,7 +90,7 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileIme
                 </WriteButtonWrapper>
 
                 <ProfilePhoto 
-                  src={profileImeageUrl} 
+                  src={profileImageUrl} 
                   alt="ProfilePhoto"
                   ref = {UserButtonRef}
                   onClick={() => {
@@ -100,7 +100,7 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileIme
                 />
                 {!imageLoaded && <ProfilePhotoPlaceholder />}
                 <ProfileWrapper ref={ProfileRef}>
-                {profile && <ProfileContainer profileImeageUrl = {profileImeageUrl} />}
+                {profile && <ProfileContainer profileImageUrl = {profileImageUrl} />}
                 </ProfileWrapper>
               </>
           )
