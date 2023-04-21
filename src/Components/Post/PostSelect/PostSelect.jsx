@@ -14,6 +14,18 @@ import PostSelectBox from "./PostSelectBox";
 
 const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 	const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
+	const defaultSelectActiveValue = {
+		interviewPeriod: false,
+		careerYear: false,
+		firstLevelId: false,
+		secondLevelId: false
+	};
+	const [selectActive, setSelectActive] = useState(defaultSelectActiveValue);
+	const isChangeSelectActive = (name) => {
+		setSelectActive((prev) => {
+			return { ...defaultSelectActiveValue, [name]: !prev[name] }
+		})
+	}
 
 	useEffect(() => {
 		getJobCategories()
@@ -31,6 +43,8 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 						: getInterviewNameFromValue(inputSelectBox.interviewPeriod)
 				}
 				selectArray={InterviewPeriod}
+				selectActive={selectActive}
+				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<PostSelectBox
@@ -41,6 +55,8 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 						: getCareerYearNameFromValue(inputSelectBox.careerYear)
 				}
 				selectArray={CareerYear}
+				selectActive={selectActive}
+				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<PostSelectBox
@@ -53,6 +69,8 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 						  ).name
 				}
 				selectArray={getFirstJobCategories(jobCategoriesArray)}
+				selectActive={selectActive}
+				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<PostSelectBox
@@ -75,6 +93,8 @@ const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 								Number(inputSelectBox.firstLevelId)
 						  )
 				}
+				selectActive={selectActive}
+				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
 			<style jsx>{`

@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import ArrowDown from "../../../Assets/Images/Icons/arrow_down.png";
 
 const PostSelectBox = ({
 	selectSection,
 	selectTitle,
 	selectArray,
+	selectActive,
+	isChangeSelectActive,
 	isChangeSelectBoxItems,
 }) => {
-	const [selectActive, setSelectActive] = useState(false);
 	return (
 		<ul
-			className={selectActive ? "ul__select active" : "ul__select"}
+			className={selectActive[selectSection] ? "ul__select active" : "ul__select"}
 			onClick={() => {
 				if (!(selectSection === "secondLevelId" && !selectArray.length))
-					setSelectActive((prev) => !prev);
+				isChangeSelectActive(selectSection);
 			}}
 		>
 			<p
@@ -28,7 +29,7 @@ const PostSelectBox = ({
 				{selectTitle}
 			</p>
 			<div
-				className={selectActive ? "select__option active" : "select__option"}
+				className={selectActive[selectSection] ? "select__option active" : "select__option"}
 			>
 				<p
 					data-id=""
@@ -152,4 +153,4 @@ const PostSelectBox = ({
 	);
 };
 
-export default PostSelectBox;
+export default React.memo(PostSelectBox);
