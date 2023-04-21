@@ -4,7 +4,7 @@ import axios from 'axios'
 import { setCookie, setCookieExpires } from '../api/loginApi';
 
 const KakaoSocialLogin = () => {
-    console.log("SocialLogin")
+    const AccountOauthBaseUrl = process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const KakaoSocialLogin = () => {
         const state = urlParams.get("state")
         console.log(code)
         console.log(state)
-        axios.post(`https://bstaging.interviewbank.net/account/oauth/kakao/login/redirect?code=${code}&state=${state}`)
+        axios.post(`${AccountOauthBaseUrl}/kakao/login/redirect?code=${code}&state=${state}`)
           .then((res) => {
             setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
             setCookie('userId', res.data.accountId);

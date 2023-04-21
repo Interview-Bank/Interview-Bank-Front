@@ -5,6 +5,8 @@ import { setTokenHeaders } from "../api/apiGetTokenHeader";
 import { getCookieValue } from "../api/loginApi";
 import { useNavigate } from "react-router-dom";
 const ResetPasswordContainer = () => {
+    const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
+
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [pwdMsg, setPwdMsg] = useState("");
@@ -12,7 +14,7 @@ const ResetPasswordContainer = () => {
     const headers = setTokenHeaders();
     const token = getCookieValue()
     const navigate = useNavigate()
-    console.log(token)
+    
 
 
     const validatePwd = (password) => {
@@ -52,7 +54,7 @@ const ResetPasswordContainer = () => {
           };
         console.log(body)
         try {
-          const response = await axios.post(`https://bstaging.interviewbank.net/account/reset-password`, body, {headers:headers} )
+          const response = await axios.post(`${AccountBaseUrl}/reset-password`, body, {headers:headers} )
 
           console.log(response)
         //   navigate("/")  

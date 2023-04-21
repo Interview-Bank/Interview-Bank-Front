@@ -7,7 +7,7 @@ import ScrapModalView from "./ScrapModalView";
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 
 const ScrapModalContainer = (props) => {
-  const API_URL = "https://bstaging.interviewbank.net/";
+  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
   const navigate = useNavigate();
   const [scrapList, setScrapList] = useState([]);
 
@@ -22,10 +22,11 @@ const ScrapModalContainer = (props) => {
         let data = [];
         do {
           const response = await axios.get(
-            `${API_URL}scraps?page=${pageNumber}&size=${pageSize}`,
+            `${ScrapBaseUrl}?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
-          data = response.data;
+          console.log(response)
+          data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
           pageNumber++;
@@ -36,7 +37,7 @@ const ScrapModalContainer = (props) => {
       }
     };
     fetchData();
-  }, [scrapList]);
+  }, []);
 
 const onMove = () =>{
   navigate(`/scraps/${scrapList[0].scrapId}`);

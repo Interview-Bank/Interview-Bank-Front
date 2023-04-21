@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const baseUrl = `https://bstaging.interviewbank.net/interview`
+const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
 
 const bringHomeInterviewListData = async (pageSize = 10, pageNumber = 0) => {
     try {
       const response = await axios.get(
-        baseUrl, { params: { page: pageNumber, size: pageSize } }
+        InterviewBaseUrl, { params: { page: pageNumber, size: pageSize } }
       );
       return response.data.interviews;
     } catch (error) {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { setCookie, setCookieExpires } from '../api/loginApi';
 
 const NaverSocialLogin = () => {
-    console.log("SocialLogin")
+    const AccountOauthBaseUrl = process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -15,13 +15,13 @@ const NaverSocialLogin = () => {
         const errorDescription = urlParams.get("error_description")
     
         if (error && errorDescription) {
-            axios.post(`https://bstaging.interviewbank.net/account/oauth/naver/login/redirect?error=${error}&error_description=${errorDescription}`)
+            axios.post(`${AccountOauthBaseUrl}/naver/login/redirect?error=${error}&error_description=${errorDescription}`)
                 .catch(error => {
                     console.log(error);
                 });
             return;
         }
-        axios.post(`https://bstaging.interviewbank.net/account/oauth/naver/login/redirect?code=${code}&state=${state}`)
+        axios.post(`${AccountOauthBaseUrl}/naver/login/redirect?code=${code}&state=${state}`)
           .then((res) => {
             setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
             setCookie('userId', res.data.accountId);

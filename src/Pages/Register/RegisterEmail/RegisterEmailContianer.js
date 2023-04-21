@@ -4,7 +4,8 @@ import RegisterEmailView from "./RegisterEmailView";
 import axios from "axios";
 
 const RegisterEmailContainer = () => {
-  const API_URL = "https://bstaging.interviewbank.net/account/";
+  const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
+
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -94,7 +95,7 @@ const RegisterEmailContainer = () => {
       passwordConfirm: passwordConfirm,
     };
     try {
-      await axios.post(API_URL + "register", body);
+      await axios.post(AccountBaseUrl + "/register", body);
       alert("회원가입 성공");
       setTimeout(() => {
         navigate("/");

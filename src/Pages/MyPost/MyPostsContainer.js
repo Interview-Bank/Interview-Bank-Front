@@ -12,6 +12,8 @@ const MyPostsContainer = () => {
     (boardList) => boardList.nickname === userName
   );
   const headers = setTokenHeaders();
+  const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +25,8 @@ const MyPostsContainer = () => {
         do {
           console.log(pageNumber);
           const response = await axios.get(
-            `https://bstaging.interviewbank.net/interview?page=${pageNumber}&size=${pageSize}`
+            `${InterviewBaseUrl}?page=${pageNumber}&size=${pageSize}`,
+            {headers}
           );
           data = response.data.interviews;
           allData = [...allData, ...data];

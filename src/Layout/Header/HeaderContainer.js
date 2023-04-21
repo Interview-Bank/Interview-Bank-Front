@@ -6,6 +6,8 @@ import { setTokenHeaders } from "../../Pages/api/apiGetTokenHeader";
 import axios from "axios";
 
 const HeaderContainer = () => {
+  const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
+
   const [LoginModal, setLoginModal] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [profile, setProfile] = useState(false)
@@ -26,7 +28,7 @@ const HeaderContainer = () => {
       try {
         console.log(headers)
         const response = await axios.get(
-          `https://bstaging.interviewbank.net/account/me`,
+          `${AccountBaseUrl}/me`,
           {headers}
         );
         console.log(response)
