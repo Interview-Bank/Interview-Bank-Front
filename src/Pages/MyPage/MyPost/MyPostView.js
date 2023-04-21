@@ -6,6 +6,7 @@ import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
 
 const MyPostView = ({ boardList }) => {
   console.log(boardList)
+  console.log(boardList.length)
   return (
     <Layout>
       <MyPostLayout>
@@ -16,19 +17,18 @@ const MyPostView = ({ boardList }) => {
               작성한 게시글
             </MyPostsTitle>
             <MyPostsBody>
-              {boardList &&
+              {boardList.length > 0 ? 
                 boardList.map((current) => (
                   <MyPostComponent
                   id={current.interviewId}
                   nickname={current.nickname}
                   createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
                   title={current.title}
-                  firstCategoryName={""}
-                  secondCategoryName={""}
-                  // firstCategoryName={current.jobCategory.firstLevelName}
-                  // secondCategoryName={current.jobCategory.secondLevelName}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
                 />
-              ))}
+              )):
+              <NoPost>작성한 게시글이 없습니다.</NoPost>}
             </MyPostsBody>
           </MyPostWrapper>
         </MyPostsContainer>
@@ -97,5 +97,26 @@ const MyPostsBody = styled.div`
   gap: 20px;
 `;
 
+const NoPost = styled.div`
+  position: absolute;
+  display: flex;
+  width: 954px;
+  height: 326px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+
+  justify-content: center;
+  align-items: center;
+  color: #ABABAB;
+
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+`;
 
 export default MyPostView;

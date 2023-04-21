@@ -5,20 +5,20 @@ import Logo from "../../Assets/Images/logo.svg";
 import Search from "../../Assets/Images/search.png";
 import Modal from "../../Components/Modal/LoginModal";
 import ProfileContainer from "../../Components/Profile/ProfileContainer";
-import { checkCookieExistence, getCookieValue } from '../../Pages/api/loginApi';
+import { checkCookieExistence } from '../../Pages/api/loginApi';
 import LoginContainer from "../../Pages/Login/LoginContainer";
-import BasicProfilePhoto from "../../Assets/Images/BasicProfilePhoto.png"
 import WriteIconUrl from "../../Assets/Icons/WriteIcon.png"
 
 
-const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) => {
+const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileImageUrl }) => {
   const navigate = useNavigate();
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
   const [loading, setLoading] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
 
   const [cookie, setCookie] = useState(false);
-
   const checkCookie = () => {
     const cookieExists = checkCookieExistence();
     setCookie(cookieExists);
@@ -90,14 +90,17 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, isAuth }) 
                 </WriteButtonWrapper>
 
                 <ProfilePhoto 
-                  src={BasicProfilePhoto} 
-                  alt="BasicProfilePhoto"
+                  src={profileImageUrl} 
+                  alt="ProfilePhoto"
                   ref = {UserButtonRef}
                   onClick={() => {
                     setProfile(!profile);
-                  }}/>
+                  }}onLoad={() => setImageLoaded(true)}
+                  style={{ display: imageLoaded ? "block" : "none" }}
+                />
+                {!imageLoaded && <ProfilePhotoPlaceholder />}
                 <ProfileWrapper ref={ProfileRef}>
-                {profile && <ProfileContainer/>}
+                {profile && <ProfileContainer profileImageUrl = {profileImageUrl} />}
                 </ProfileWrapper>
               </>
           )
@@ -251,6 +254,12 @@ const SearchInput = styled.input`
 
   border: 2px solid #2E55E7;
   border-radius: 26px;
+`;
+
+const ProfilePhotoPlaceholder = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #f9f9f9; // You can choose a color for the placeholder
 `;
 
 export default HeaderView;

@@ -93,6 +93,10 @@ const SidemenuContensContainer = styled.div`
     flex-direction : column;
     
     margin-top: 24px;
+
+    & > div:not(:last-child) {
+    margin-bottom: 4px;
+  }
 `;
 
 const SidemenuContentWrapper = styled.div`
@@ -109,10 +113,6 @@ const SidemenuContentWrapper = styled.div`
     border-radius: 8px;
     
     padding-left: 12px;
-
-    & > div:not(:last-child) {
-    margin-bottom: 4px;
-  }
 
     :hover {
         background: ${props => props.backgroundColor === "transparent" ? "rgba(46, 85, 231, 0.1)" : "rgba(46, 85, 231, 0.1)"};

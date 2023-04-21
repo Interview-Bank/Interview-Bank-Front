@@ -4,10 +4,11 @@ import EditModalView from './EditModalView';
 import { getCookieValue } from '../../../Pages/api/loginApi';
 import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
 import { setCookie, } from '../../../Pages/api/loginApi';
-import BasicProfilePhotoURL from "../../../Assets/Images/BasicProfilePhoto.png"
+import BasicProfilePhotoUrl from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
 const EditModalContainer = (props) => {
+  console.log(props)
   const userNickname = getCookieValue("user")
   const headers = setTokenHeaders();
 
@@ -18,9 +19,12 @@ const EditModalContainer = (props) => {
   const [ErrorMsg, setErrorMsg] = useState("");
   const [fileError, setFileError] = useState("");
 
+  const [showImageOptions, setShowImageOptions] = useState(false);
+
+  const [isResetimage, setIsResetimage] = useState(false)
 
   const handleClickEditIcon = () => {
-    inputFileRef.current.click();
+    setShowImageOptions(!showImageOptions);
   };
 
   const handleFileChange = (event) => {
@@ -35,16 +39,33 @@ const EditModalContainer = (props) => {
     }
   };
 
-  const [profilePhotoUrl, setProfilePhotoUrl] = useState(BasicProfilePhotoURL);
+  const [profileImageUrl, setProfileImageUrl] = useState(null);
+
+  useEffect(() => {
+    const getmydata = async () => {
+      try {
+        console.log(headers)
+        const response = await axios.get(
+          `https://bstaging.interviewbank.net/account/me`,
+          {headers}
+        );
+        console.log(response)
+        setProfileImageUrl(response.data.imageUrl)
+        return response.data.imageUrl;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getmydata();
+  },[])
+
   const handleUploadComplete = (uploadedFileUrl) => {
-    setProfilePhotoUrl(uploadedFileUrl);
+    setProfileImageUrl(uploadedFileUrl);
   }
   
   const handleUpdateUserinfo =  (values) => {
-    console.log(values.nickname);
     if (!values.nickname.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,16}$/)){
       setErrorMsg("1글자 이상 16글자 이하로 입력해주세요.");
-      console.log("nickname check")
       return
     }else{
       const updateNickname = async () => {
@@ -70,21 +91,39 @@ const EditModalContainer = (props) => {
     formData.append('file', selectedFile);
     console.log(formData.get('file'));
 
-
-    try {
-      const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
-      formData, 
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          ...headers
-        }
-      })
-      console.log(response)
-    } catch (error) {
-      console.log(error);
-    };
+    if (isResetimage){
+      try{
+        const response = await axios.put(
+          "https://bstaging.interviewbank.net/account/initialize/profile-image",
+          null,
+          {headers}
+        );
+        console.log(response)
+      }catch(error){
+        console.log(error);
+      }
+    }else{
+      try {
+        const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
+        formData, 
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            ...headers
+          }
+        })
+        console.log(response)
+      } catch (error) {
+        console.log(error);
+      };
+    }
   }
+
+  const handleResetClick = () => {
+    setShowImageOptions(false);
+    setProfileImageUrl(BasicProfilePhotoUrl)
+    setIsResetimage(true)
+  };
   return (
     <EditModalView
     handleUpdateUserinfo = {handleUpdateUserinfo}
@@ -100,9 +139,14 @@ const EditModalContainer = (props) => {
     inputFileRef = {inputFileRef}
     fileError = {fileError}
     setFileError = {setFileError}
-    profilePhotoUrl = {profilePhotoUrl}
+    profileImageUrl = {profileImageUrl}
     handleUploadComplete = {handleUploadComplete}
-    handleUpdateProfilePhoto = {handleUpdateProfilePhoto}/>
+    handleUpdateProfilePhoto = {handleUpdateProfilePhoto}
+    showImageOptions = {showImageOptions}
+    setShowImageOptions = {setShowImageOptions}
+    handleResetClick = {handleResetClick}
+    />
+
   )
 }
 
