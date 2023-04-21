@@ -8,17 +8,18 @@ import NaverIconUrl from "../../Assets/Images/naver.png"
 import EmailIconUrl from "../../Assets/Icons/EmailIcon.png"
 const RegisterSelect = () => {
   const navigate = useNavigate();
+  const AccountOauthBaseUrl = process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL
   const handleGoogleOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/google/login`;
     window.location.assign(oauthUrl);
   };
   
   const handleKakaoOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/kakao/login`;
     window.location.assign(oauthUrl);
   };
   const handleNaverOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/naver/login`;
     window.location.assign(oauthUrl);
   };
   return (

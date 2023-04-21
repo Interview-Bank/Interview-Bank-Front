@@ -2,11 +2,13 @@ import axios from 'axios';
 import { getDateFormatString } from '../dateConvert';
 
 const baseUrl = `https://bstaging.interviewbank.net/interview/search`
+const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
+
 
 const bringSearchInterviewListData = async (searchParam, pageSize = 15, pageNumber = 0) => {
     try {
       const response = await axios.get(
-        baseUrl,
+        `${InterviewBaseUrl}/search`,
         {
           params: {
             "query": searchParam.title,

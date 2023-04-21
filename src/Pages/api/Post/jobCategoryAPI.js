@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const baseUrl = 'https://bstaging.interviewbank.net/job-categories';
-
+const JobCategoryBaseUrl = process.env.REACT_APP_API_JOBCATEGORY_BASE_URL
 const getJobCategories = async () => {
   try {
-    const response = await axios.get(baseUrl);
+    const response = await axios.get(JobCategoryBaseUrl);
     // getSecondJobCategories(response.data);
     return response.data;
   } catch (error) {

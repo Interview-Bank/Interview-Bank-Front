@@ -14,12 +14,15 @@ const InterviewConatiner = () => {
 
   // const headers = setTokenHeaders();
 
+  const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
+  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const getBoard = async () => {
       const { data } = await axios.get(
-        `https://bstaging.interviewbank.net/interview/${interview_id}`
+        `${InterviewBaseUrl}/${interview_id}`
       );
       return data;
     };
@@ -34,7 +37,7 @@ const InterviewConatiner = () => {
     const headers = setTokenHeaders();
     axios
       .post(
-        `https://bstaging.interviewbank.net/scraps`,
+        `${ScrapBaseUrl}`,
         {
           interviewId: interview.interviewId,
         },
@@ -42,7 +45,7 @@ const InterviewConatiner = () => {
           headers,
         }
       )
-      .then((result) => {})
+      .then((result) => {console.log(result)})
       .catch((err) => console.log(err));
     setScrapModal(true)
   };

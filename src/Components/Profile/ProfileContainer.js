@@ -8,20 +8,19 @@ import { getCookieValue } from '../../Pages/api/loginApi';
 
 
 const ProfileContainer = ({profileImageUrl}) => {
-  console.log(profileImageUrl)
-  const API_URL = "https://bstaging.interviewbank.net/account/";
+  const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
   const navigate = useNavigate();
   const UserNickname = getCookieValue("user");
   const onLogoutClick = async () => {
     const headers = setTokenHeaders();
 
     await axios
-      .post(API_URL + "logout", {}, { headers })
+      .post(AccountBaseUrl + "/logout", {}, { headers })
       .then((res) => {
         deleteCookie('authToken');
         deleteCookie('userId');
         deleteCookie('user');
-        if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) navigate('/');
+        if ((window.location.pathname === '/post' || window.location.pathname === '/mypage/usersetting' || window.location.pathname === `/mypage/my-posts` || window.location.pathname ===  `/mypage/my-scrap`)) navigate('/');
         else window.location.reload();
       })
       .catch((e) => {

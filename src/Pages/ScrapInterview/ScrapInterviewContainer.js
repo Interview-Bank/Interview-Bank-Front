@@ -5,6 +5,8 @@ import ScrapInterviewView from "./ScrapInterviewView";
 import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
 const ScrapInterviewContainer = () => {
+  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
+  
   const { scrap_id } = useParams();
   const [board, setBoard] = useState({});
   const [boardId, setBoardId] = useState(0);
@@ -71,7 +73,7 @@ const ScrapInterviewContainer = () => {
   useEffect(() => {
     const getBoard = async () => {
       const { data } = await axios.get(
-        `https://bstaging.interviewbank.net/scraps/${scrap_id}`,
+        `${ScrapBaseUrl}/${scrap_id}`,
         {headers}
       );
       setTitle(data.scrap.title);
@@ -95,7 +97,7 @@ const ScrapInterviewContainer = () => {
           ? (item.scrapAnswerResponseList[0].content === null ? "" : item.scrapAnswerResponseList[0].content)
           : inputValues[index];
 
-          const url = `https://bstaging.interviewbank.net/scraps/${scrap_id}/questions/${item.scrapQuestionId}/answers/${item.scrapAnswerResponseList[0].scrapAnswerId}`;
+          const url = `${ScrapBaseUrl}/${scrap_id}/questions/${item.scrapQuestionId}/answers/${item.scrapAnswerResponseList[0].scrapAnswerId}`;
           const response = await axios.put(url, { content : updatecontent }, {headers});
 
           if (response.status !== 200) {
