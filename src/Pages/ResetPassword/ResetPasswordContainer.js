@@ -13,7 +13,13 @@ const ResetPasswordContainer = () => {
     const [pwdMsg, setPwdMsg] = useState("");
     const [confirmPwdMsg, setConfirmPwdMsg] = useState("");
     const headers = setTokenHeaders();
+<<<<<<< HEAD
     const navigate = useNavigate();
+=======
+    const token = getCookieValue()
+    const navigate = useNavigate()
+    
+>>>>>>> 6fc6ca5 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
 
 
     const validatePwd = (password) => {
