@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { setTokenHeaders } from '../apiGetTokenHeader';
 
-const baseUrl = 'https://bstaging.interviewbank.net/interview';
+const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
+
 const headers = setTokenHeaders();
 
 const postInterview = async (postTitle, postObject, postArray) => {
@@ -24,7 +25,7 @@ const postInterview = async (postTitle, postObject, postArray) => {
 
   try {
     const response = await axios.post(
-      baseUrl,
+      InterviewBaseUrl,
       postData,
       {
         headers,
