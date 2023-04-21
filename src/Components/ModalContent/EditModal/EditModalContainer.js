@@ -8,7 +8,8 @@ import BasicProfilePhotoUrl from "../../../Assets/Images/BasicProfilePhoto.png"
 
 
 const EditModalContainer = (props) => {
-  console.log(props)
+  const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
+
   const userNickname = getCookieValue("user")
   const headers = setTokenHeaders();
 
@@ -46,7 +47,7 @@ const EditModalContainer = (props) => {
       try {
         console.log(headers)
         const response = await axios.get(
-          `https://bstaging.interviewbank.net/account/me`,
+          `${AccountBaseUrl}/me`,
           {headers}
         );
         console.log(response)
@@ -71,7 +72,7 @@ const EditModalContainer = (props) => {
       const updateNickname = async () => {
         try{
           const response = await axios.put(
-            `https://bstaging.interviewbank.net/account/nickname`,
+            `${AccountBaseUrl}/nickname`,
             {nickname: values.nickname}, {headers}
           );
           console.log(response)
@@ -90,11 +91,11 @@ const EditModalContainer = (props) => {
     const formData = new FormData();
     formData.append('file', selectedFile);
     console.log(formData.get('file'));
-
+    console.log(isResetimage)
     if (isResetimage){
       try{
         const response = await axios.put(
-          "https://bstaging.interviewbank.net/account/initialize/profile-image",
+          `${AccountBaseUrl}/initialize/profile-image`,
           null,
           {headers}
         );
@@ -104,7 +105,7 @@ const EditModalContainer = (props) => {
       }
     }else{
       try {
-        const response = await axios.post("https://bstaging.interviewbank.net/account/profile-image", 
+        const response = await axios.post(`${AccountBaseUrl}/profile-image`, 
         formData, 
         {
           headers: {
