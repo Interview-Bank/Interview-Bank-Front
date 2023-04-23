@@ -12,7 +12,7 @@ const PostBody = ({ inputs, onRemove, onChange, onAddInput, handleInputLimit }) 
 				.write__area {
 					display: flex;
 					width: 96%;
-					max-width: 1100px;
+					max-width: 1276px;
 					margin: 0 auto;
 					align-items: center;
 					justify-content: end;

@@ -10,11 +10,16 @@ const SearchLeftTitle = ({ title, field, resetSearchParams }) => {
 					display: flex;
 					justify-content: space-between;
 					width: 100%;
+					font-size: 1rem;
+				}
+				.search__title > h5 {
+					font-size: 1rem;
 				}
 				.search__title > span {
 					color: #737373;
 					margin: 1.67em 0;
-					font-size: 0.83em;
+					line-height: 2rem;
+					font-size: 0.83rem;
 					cursor: pointer;
 				}
 			`}</style>

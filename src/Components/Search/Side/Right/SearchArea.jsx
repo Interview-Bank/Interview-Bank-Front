@@ -1,22 +1,25 @@
 import PostComponent from "../../../../Layout/PostList/PostComponent";
+// import Pagination from '../../../Pagination/Pagination';
 
-const SearchArea = ({ searchParam, interviewList }) => {
+const SearchArea = ({ totalPages, interviewList }) => {
 	return (
 		<div className="search__right">
 			{interviewList.length ? (
-				<div className="search-list">
-					{interviewList.map((current) => (
-						<PostComponent
-							key={current.interviewId}
-							id={current.interviewId}
-							title={current.title}
-							nickname={current.nickname}
-							firstCategoryName={current.jobCategory.firstLevelName}
-							secondCategoryName={current.jobCategory.secondLevelName}
-							createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-						/>
-					))}
-				</div>
+				<>
+					<div className="search-list">
+						{interviewList.map((current) => (
+							<PostComponent
+								key={current.interviewId}
+								id={current.interviewId}
+								title={current.title}
+								nickname={current.nickname}
+								firstCategoryName={current.jobCategory.firstLevelName}
+								secondCategoryName={current.jobCategory.secondLevelName}
+								createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+							/>
+						))}
+					</div>
+				</>
 			) : (
 				<div className="search-empty">
 					<h4>
@@ -58,6 +61,9 @@ const SearchArea = ({ searchParam, interviewList }) => {
 					width: 100%;
 					grid-template-columns: repeat(3, 1fr);
 					gap: 20px;
+				}
+				.search__page {
+					width: 100%;
 				}
 			`}</style>
 		</div>

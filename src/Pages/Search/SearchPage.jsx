@@ -25,14 +25,14 @@ const SearchInterviewView = () => {
 		endDate: "",
 		careerYear: "",
 	}
-	console.log(CareerYear);
 	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({...defaultParamValue});
+	const [totalPages, setTotalPages] = useState(0);
 	const [interviewList, setInterviewList] = useState([]);
 
 	useEffect(() => {
 		bringSearchInterviewListData(searchParam)
-			.then((result) => setInterviewList(result))
+			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages)})
 			.catch((resolve) => console.log(resolve));
 	}, [searchParam]);
 
@@ -43,14 +43,13 @@ const SearchInterviewView = () => {
 				isChangeCategory("");
 				break;
 			case "INTERVIEWPERIOD":
-				// setDataObject.startDate = "";
-				// setDataObject.endDate = "";
+				isChangeInterviewPeriod("");
 				break;
 			case "CREATEDAT":
-				// setDataObject.startDate = "";
-				// setDataObject.endDate = "";
+				isChangeCreatedDateRadio("ALL");
 				break;
 			case "CAREERYEAR":
+				isChangeCareerYear("");
 				break;
 			default:
 				break;
@@ -102,7 +101,6 @@ const SearchInterviewView = () => {
 			startDate: "",
 			endDate: "",
 		}
-		console.log(value)
 		switch (value) {
 			case "ALL":
 				dateObject.startDate = "";
@@ -218,6 +216,7 @@ const SearchInterviewView = () => {
 					</div>
 					<div className="search__right">
 						<SearchArea
+							totalPages={totalPages}
 							searchParam={searchParam}
 							interviewList={interviewList}
 						/>
@@ -228,7 +227,7 @@ const SearchInterviewView = () => {
 				.search__area {
 					min-height: calc(100vh - 60px - 151px);
 					width: 96%;
-					max-width: 1100px;
+					max-width: 1276px;
 					display: flex;
 					margin: 0 auto;
 					flex-wrap: wrap;
@@ -256,7 +255,7 @@ const SearchInterviewView = () => {
 				.search__left {
 					display: flex;
 					flex-wrap: wrap;
-					width: calc(40% - 21px);
+					width: calc(35% - 21px);
 					margin-right: 21px;
 					height: 100%;
 				}

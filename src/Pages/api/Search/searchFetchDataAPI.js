@@ -19,7 +19,7 @@ const bringSearchInterviewListData = async (searchParam, pageSize = 15, pageNumb
           }
         }
       );
-      return response.data.interviews;
+      return response.data;
     } catch (error) {
       throw new Error(`Error: ${error}`);
     }

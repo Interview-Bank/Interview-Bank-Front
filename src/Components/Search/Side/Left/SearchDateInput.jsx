@@ -92,11 +92,14 @@ const SearchDateInput = ({
 					width: 100%;
 					font-size: 0.83em;
 					cursor: pointer;
+					margin-bottom: 12px;
 				}
 
 				.date__radio > label > input[type=radio] {
 					padding: 0;
 					margin: 6px 12px 6px 0;
+					width: 1rem;
+					height: 1rem;
 				}
 
 				.date__area {

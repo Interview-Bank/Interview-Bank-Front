@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import ArrowDown from "../../../Assets/Images/Icons/arrow_down.png";
 
 const PostSelectBox = ({
 	selectSection,
 	selectTitle,
 	selectArray,
+	selectActive,
+	isChangeSelectActive,
 	isChangeSelectBoxItems,
 }) => {
-	const [selectActive, setSelectActive] = useState(false);
 	return (
 		<ul
-			className={selectActive ? "ul__select active" : "ul__select"}
+			className={selectActive[selectSection] ? "ul__select active" : "ul__select"}
 			onClick={() => {
 				if (!(selectSection === "secondLevelId" && !selectArray.length))
-					setSelectActive((prev) => !prev);
+				isChangeSelectActive(selectSection);
 			}}
 		>
 			<p
@@ -28,7 +29,7 @@ const PostSelectBox = ({
 				{selectTitle}
 			</p>
 			<div
-				className={selectActive ? "select__option active" : "select__option"}
+				className={selectActive[selectSection] ? "select__option active" : "select__option"}
 			>
 				<p
 					data-id=""
@@ -80,7 +81,8 @@ const PostSelectBox = ({
 					position: absolute;
 					top: 0;
 					left: 0;
-					width: calc(100% - 30px * 2);
+					// width: calc(100% - 30px * 2);
+					width: 100%;
 					max-height: 0;
 					opacity: 0;
 					box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
@@ -90,16 +92,22 @@ const PostSelectBox = ({
 				}
 				.select__option.active {
 					max-height: calc(100em / 5);
-					padding: 0 30px;
+					// padding: 0 30px;
 					opacity: 1;
 					overflow-y: auto;
 				}
 				.select__option > p {
-					width: 100%;
+					width: calc(100% - 30 * 2 px);
+					padding: 0 30px;
 					height: 52px;
 					line-height: 52px;
 					margin: 0;
 				}
+				.select__option > p:hover {
+					background: rgba(46, 85, 231, 0.1);
+					color: #2E55E7;
+				}
+
 				.ul__select.active {
 					max-height: 100em;
 					overflow-y: unset;
@@ -145,4 +153,4 @@ const PostSelectBox = ({
 	);
 };
 
-export default PostSelectBox;
+export default React.memo(PostSelectBox);

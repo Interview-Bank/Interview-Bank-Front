@@ -127,7 +127,7 @@ const HeaderContents = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1255px;
+  max-width: 1276px;
   height: 100%;
   margin: 0 auto;
   align-items: center;
@@ -165,18 +165,20 @@ const LoginButton = styled.button`
   cursor: pointer;
   color: #fff;
   padding: 5px 15px;
-  margin-left: 25px;
+  margin-left: 10px;
 `;
 
 const RegisterPageButton = styled.button`
   width: 80px;
-  height: 35px;
-  border: none;
+  height: 35px;  
   background-color: #f9f9f9;
   cursor: pointer;
-  color: #737373;
+  color: #5C5C5C;
   font-size: 14px;
   font-weight: 600;
+  border: 1px solid #5C5C5C;
+  border-radius: 4px;
+  margin-left: 15px;
   :hover {
     color: #252525;
   }
@@ -246,14 +248,13 @@ const SearchBox = styled.div`
 
 const SearchInput = styled.input`
   box-sizing: border-box;
-
   position: relative;
-  width: 480px;
+  width: calc(480px - 28px);
   height: 48px;
-
-
-  border: 2px solid #2E55E7;
+  border: 2px solid rgb(46, 85, 231);
   border-radius: 26px;
+  padding-left: 28px;
+  outline: 0;
 `;
 
 const ProfilePhotoPlaceholder = styled.div`
