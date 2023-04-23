@@ -19,13 +19,6 @@ const SearchArea = ({ totalPages, interviewList }) => {
 							/>
 						))}
 					</div>
-					<div className="search__page">
-						{totalPages && null
-							// <Pagination />
-						}
-						{/* {interviewList.totalPages} */}
-							1,2,3,4,5
-					</div>
 				</>
 			) : (
 				<div className="search-empty">
