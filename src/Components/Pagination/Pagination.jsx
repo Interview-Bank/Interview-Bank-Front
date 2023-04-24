@@ -7,8 +7,6 @@ const Pagination = ({ page, totalPosts, limit, setPage, totalPages }) => {
   const [currPage, setCurrPage] = useState(page)
   let firstNum = currPage - (currPage % 5) + 1;
 	let lastNum = currPage - (currPage % 5) + 5;
-	console.log(page);
-	console.log(firstNum);
 
   return (
 		<div className='page__area'>

@@ -57,9 +57,8 @@ const SearchInterviewView = () => {
 			default:
 				break;
 		}
-		// setSearchParam((prev) => {
-
-		// })
+		
+		isChangeCurrentPage(1);
 	}, [])
 
 	const isChangeTitle = useCallback((value) => {
