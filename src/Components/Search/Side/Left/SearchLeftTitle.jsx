@@ -1,6 +1,7 @@
 import React from "react";
 
 const SearchLeftTitle = ({ title, field, resetSearchParams }) => {
+	console.log(field)
 	return (
 		<div className="search__title">
 			<h5>{title}</h5>
