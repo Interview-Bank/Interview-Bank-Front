@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import PostComponent from "../../../../Layout/PostList/PostComponent";
-// import Pagination from '../../../Pagination/Pagination';
+import Pagination from '../../../Pagination/Pagination';
 
-const SearchArea = ({ totalPages, interviewList }) => {
+const SearchArea = ({ totalPosts, totalPages, interviewList, limit, setPage, searchParam }) => {
 	return (
 		<div className="search__right">
 			{interviewList.length ? (
@@ -18,6 +19,11 @@ const SearchArea = ({ totalPages, interviewList }) => {
 								createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
 							/>
 						))}
+					</div>
+					<div className="search__page">
+						{totalPages && 
+							<Pagination limit={limit} setPage={setPage} page={searchParam.page} totalPosts={totalPosts} totalPages={totalPages} />
+						}
 					</div>
 				</>
 			) : (

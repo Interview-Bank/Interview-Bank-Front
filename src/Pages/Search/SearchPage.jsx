@@ -24,15 +24,18 @@ const SearchInterviewView = () => {
 		startDate: "",
 		endDate: "",
 		careerYear: "",
+		page: 1,
 	}
+	const limit = 15;
 	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({...defaultParamValue});
 	const [totalPages, setTotalPages] = useState(0);
+	const [totalPosts, setTotalPosts] = useState(0);
 	const [interviewList, setInterviewList] = useState([]);
-
+	
 	useEffect(() => {
 		bringSearchInterviewListData(searchParam)
-			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages)})
+			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements)})
 			.catch((resolve) => console.log(resolve));
 	}, [searchParam]);
 
@@ -54,9 +57,8 @@ const SearchInterviewView = () => {
 			default:
 				break;
 		}
-		// setSearchParam((prev) => {
-
-		// })
+		
+		isChangeCurrentPage(1);
 	}, [])
 
 	const isChangeTitle = useCallback((value) => {
@@ -135,6 +137,12 @@ const SearchInterviewView = () => {
 
 	}, []);
 
+	const isChangeCurrentPage = useCallback((value) => {
+		setSearchParam((prev) => {
+			return { ...prev, page: value };
+		});
+	}, []);
+
 	const isChangeStrDate = useCallback((value) => {
 		setSearchParam((prev) => {
 			return { ...prev, startDate: value };
@@ -196,6 +204,7 @@ const SearchInterviewView = () => {
 									isChangeCreatedDateRadio={isChangeCreatedDateRadio}
 									isChangeStrDate={isChangeStrDate}
 									isChangeEndDate={isChangeEndDate}
+									resetSearchParams={resetSearchParams}
 								/>
 							</SearchItemArea>
 						</SearchItem>
@@ -217,6 +226,9 @@ const SearchInterviewView = () => {
 					<div className="search__right">
 						<SearchArea
 							totalPages={totalPages}
+							totalPosts={totalPosts}
+							limit={limit}
+							setPage={isChangeCurrentPage}
 							searchParam={searchParam}
 							interviewList={interviewList}
 						/>

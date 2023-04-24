@@ -13,6 +13,7 @@ const SearchDateInput = ({
 	isChangeCreatedDateRadio,
 	isChangeStrDate,
 	isChangeEndDate,
+	resetSearchParams
 }) => {
 	const DateRadioArray = [
 		{
@@ -42,7 +43,7 @@ const SearchDateInput = ({
 	]
 	return (
 		<>
-			<SearchLeftTitle title="작성기간" field="CREATEDAT"/>
+			<SearchLeftTitle title="작성기간" field="CREATEDAT" resetSearchParams={resetSearchParams}/>
 			<div className="date__radio">
 				{DateRadioArray.map((current, index) =>
 					<SearchRadio type="createdAt" name={current.name} id={current.id} key={index} searchRadio={searchRadio} isChangeCreatedDateRadio={isChangeCreatedDateRadio} />
