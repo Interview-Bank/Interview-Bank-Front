@@ -6,7 +6,6 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 const MyPostContainer = () => {
   const [boardList, setBoardList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const headers = setTokenHeaders();
   const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL;
 
@@ -34,7 +33,7 @@ const MyPostContainer = () => {
     fetchData();
   }, []);
 
-  return <MyPostsView boardList={boardList} isLoading={isLoading} />;
+  return <MyPostsView boardList={boardList} />;
 };
 
 export default MyPostContainer;

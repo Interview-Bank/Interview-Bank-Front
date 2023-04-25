@@ -15,22 +15,18 @@ const MyPostView = ({ boardList }) => {
               작성한 게시글
             </MyPostsTitle>
             <MyPostsBody>
-            {!isLoading && boardList.length > 0 ? (
+              {boardList.length > 0 ? 
                 boardList.map((current) => (
                   <MyPostComponent
-                    id={current.interviewId}
-                    nickname={current.nickname}
-                    createdAt={current.createdAt
-                      .slice(0, 10)
-                      .replaceAll("-", ".")}
-                    title={current.title}
-                    firstCategoryName={current.jobCategory.firstLevelName}
-                    secondCategoryName={current.jobCategory.secondLevelName}
-                  />
-                ))
-              ) : (
-                !isLoading && <NoPost>작성한 게시글이 없습니다.</NoPost>
-              )}
+                  id={current.interviewId}
+                  nickname={current.nickname}
+                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  title={current.title}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
+                />
+              )):
+              <NoPost>작성한 게시글이 없습니다.</NoPost>}
             </MyPostsBody>
           </MyPostWrapper>
         </MyPostsContainer>
