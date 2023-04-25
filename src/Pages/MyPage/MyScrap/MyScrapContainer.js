@@ -5,6 +5,8 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const headers = setTokenHeaders();
 
   useEffect(() => {
@@ -27,12 +29,14 @@ const MyScrapContainer = () => {
         setScrapList(allData);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  return <MyScrapView scrapList={scrapList} />;
+  return <MyScrapView scrapList={scrapList} isLoading={isLoading} />;
 };
 
 export default MyScrapContainer;
