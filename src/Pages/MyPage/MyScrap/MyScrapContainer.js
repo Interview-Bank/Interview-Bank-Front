@@ -30,12 +30,14 @@ const MyScrapContainer = () => {
         setScrapList(allData);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  return <MyScrapView scrapList={scrapList} />;
+  return <MyScrapView scrapList={scrapList} isLoading={isLoading} />;
 };
 
 export default MyScrapContainer;
