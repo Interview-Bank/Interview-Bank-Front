@@ -5,7 +5,10 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const headers = setTokenHeaders();
+  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,10 +19,10 @@ const MyScrapContainer = () => {
         let data = [];
         do {
           const response = await axios.get(
-            `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
-            {headers}
+            `${ScrapBaseUrl}?page=${pageNumber}&size=${pageSize}`,
+              {headers}
           );
-          data = response.data;
+          data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
           pageNumber++;
@@ -27,12 +30,14 @@ const MyScrapContainer = () => {
         setScrapList(allData);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  return <MyScrapView scrapList={scrapList} />;
+  return <MyScrapView scrapList={scrapList} isLoading={isLoading} />;
 };
 
 export default MyScrapContainer;
