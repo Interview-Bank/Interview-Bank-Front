@@ -30,8 +30,6 @@ const MyScrapContainer = () => {
         setScrapList(allData);
       } catch (error) {
         console.log(error);
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchData();
