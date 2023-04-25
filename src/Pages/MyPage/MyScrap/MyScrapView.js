@@ -4,7 +4,7 @@ import Layout from "../../../Layout/Layout";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyScrapComponent from "../../../Layout/MyScrapList/MyScrapComponent";
 
-const MyScrapView = ({ scrapList , isLoading}) => {
+const MyScrapView = ({ scrapList }) => {
   console.log(scrapList)
   return (
     <Layout>
@@ -16,20 +16,18 @@ const MyScrapView = ({ scrapList , isLoading}) => {
               작성한 답변글
             </ScrapPageTitle>
             <ScrapPageBody>
-              {!isLoading && scrapList.length > 0 ? (
+              {scrapList.length > 0 ? 
                 scrapList.map((current) => (
-                  <MyScrapComponent
-                    id={current.scrapId}
-                    nickname={current.nickname}
-                    createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-                    title={current.title}
-                    firstCategoryName={current.jobCategory.firstLevelName}
-                    secondCategoryName={current.jobCategory.secondLevelName}
-                  />
-                ))
-               ) :(
-                !isLoading &&<NoScrap>작성한 답변이 없습니다.</NoScrap>
-              )}
+                <MyScrapComponent
+                  id={current.scrapId}
+                  nickname={current.nickname}
+                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                  title={current.title}
+                  firstCategoryName={current.jobCategory.firstLevelName}
+                  secondCategoryName={current.jobCategory.secondLevelName}
+                />
+              )) :
+              <NoScrap>작성한 답변이 없습니다.</NoScrap>}
             </ScrapPageBody>
           </MyScrapWrapper>
         </ScrapPageContainer>
