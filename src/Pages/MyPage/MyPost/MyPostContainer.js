@@ -6,6 +6,8 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 const MyPostContainer = () => {
   const [boardList, setBoardList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const headers = setTokenHeaders();
   useEffect(() => {
     const fetchData = async () => {
@@ -30,12 +32,14 @@ const MyPostContainer = () => {
         setBoardList(allData);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  return <MyPostsView boardList={boardList} />;
+  return <MyPostsView boardList={boardList} isLoading={isLoading}/>;
 };
 
 export default MyPostContainer;
