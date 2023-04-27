@@ -36,38 +36,6 @@ const RegisterPage = () => {
         <RegisterButtonType onClickEvent={handleNaverOauth} icon={"NAVER"} content={"Naver로 회원가입"}/>
         <RegisterButtonType onClickEvent={handleEmailOauth} icon={"EMAIL"} content={"이메일로 회원가입"} />
       </div>
-        {/* <RegisterDesc>회원가입 방식을 선택하세요.</RegisterDesc>
-        <SelectButtonWrapper>
-          <SelectButton
-            onClick={handleGoogleOauth}
-          >
-            <SocialIcon src = {GoogleIconUrl}/>
-            Google로 회원가입
-          </SelectButton>
-
-          <SelectButton
-            onClick={handleKakaoOauth}
-          >
-            <SocialIcon src = {KakaoIconUrl}/>
-            KaKao로 회원가입
-          </SelectButton>
-
-          <SelectButton
-            onClick={handleNaverOauth}
-          >
-            <SocialIcon src = {NaverIconUrl}/>
-            Naver로 회원가입
-          </SelectButton>
-
-          <SelectButton
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            <EmailIcon src = {EmailIconUrl} />
-            이메일로 회원가입
-          </SelectButton>
-        </SelectButtonWrapper> */}
     </section>
   );
 }

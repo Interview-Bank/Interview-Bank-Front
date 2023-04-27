@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { checkCookieExistence } from '@/pages/api/login/login';
+import { checkCookieExistence } from '@/pages/api/login/loginCheck';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
 import { Input } from '@/components/atoms/Input/Input';
 import { Button } from '@/components/atoms/Button/Button';
+import { LoginModal } from '@/components/molecules/LoginModal';
 
 type Props = {}
 
 const Header = (props: Props) => {
-  const [LoginModal, setLoginModal] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [profile, setProfile] = useState(false)
   // const token = useSelector((state) => state.Auth.token);
@@ -32,6 +33,10 @@ const Header = (props: Props) => {
   
   const linkRegisterPage = () => {
     router.push('/register');
+  }
+
+  const openLoginPopupEvent = () => {
+    setModalActive((prev)=>!prev);
   }
 
   // const checkCookie = () => {
@@ -73,13 +78,17 @@ const Header = (props: Props) => {
         </div>
         <div className={styles.navigation}>
           {cookie
-            ? <>
-              <Button value="로그인" />
+            ?
+              <>
+                <Button value="로그인" />
               </>
-            : <>
+            :
+              <>
                 <Button value="회원가입" onClickEvent={linkRegisterPage}/>
-                <Button value="로그인" backgroundColor='blue' color='white' borderColor='0' />
-                
+                <Button value="로그인" backgroundColor='blue' color='white' borderColor='0' onClickEvent={openLoginPopupEvent}/>
+                {modalActive
+                  && <LoginModal onClickEvent={openLoginPopupEvent}/>
+                }
               </>
           }
         </div>

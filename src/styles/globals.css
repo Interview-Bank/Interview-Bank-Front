@@ -111,7 +111,7 @@ a {
 body {  
   margin: 0;
   background-color: #f9f9f9;
-  font-family: "Inter", sans-serif;
+  font-family: 'Noto Sans KR';
   height: fit-content;
 }
 
@@ -131,8 +131,7 @@ ul, li {
 	/* min-height: ${(props) =>
 		props.locationHref
     ? "calc(((100vh - 100px) - 60px) - 91px);;"
-    : "calc(100vh - 100px - 151px);"}; */
-  font-family: 'Noto Sans KR';
+    : "calc(100vh - 100px - 151px);"}; */  
 }
 
 .register__area > h1 {
@@ -140,7 +139,7 @@ ul, li {
   padding-top: 80px;
   width: 100px;
   /* height: 35px; */
-  font-family: 'Noto Sans KR';
+  /* font-family: 'Noto Sans KR'; */
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
