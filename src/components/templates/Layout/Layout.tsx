@@ -1,4 +1,6 @@
-import Header from '@/components/organisms/Header/Header';
+// import Modal from '@/components/molecules/Modal/Modal';
+import { Footer } from '@/components/organisms/Footer/Footer';
+import { Header } from '@/components/organisms/Header/Header';
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react'
 
@@ -14,6 +16,7 @@ const Layout = ({children} :LayOutProps) => {
       <main className={router.pathname.includes('/detail') ? `main background-gray` : `main`}>
         {children}
       </main>
+      <Footer />
       {/* <Modal /> */}
     </div>
   )

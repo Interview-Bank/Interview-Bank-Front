@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
-import Input from '@/components/atoms/Input/Input';
-import Button from '@/components/atoms/Button/Button';
+import { Input } from '@/components/atoms/Input/Input';
+import { Button } from '@/components/atoms/Button/Button';
 
 type Props = {}
 
@@ -28,7 +28,11 @@ const Header = (props: Props) => {
   useEffect(() => {
     const cookieExists = checkCookieExistence();
     setCookie(cookieExists);
-  },[])
+  }, [])
+  
+  const linkRegisterPage = () => {
+    router.push('/register');
+  }
 
   // const checkCookie = () => {
   //   const cookieExists = checkCookieExistence();
@@ -70,11 +74,12 @@ const Header = (props: Props) => {
         <div className={styles.navigation}>
           {cookie
             ? <>
-              <Button value="로그인"/>
+              <Button value="로그인" />
               </>
             : <>
-              <Button value="회원가입"/>
-              <Button value="로그인"/>
+                <Button value="회원가입" onClickEvent={linkRegisterPage}/>
+                <Button value="로그인" backgroundColor='blue' color='white' borderColor='0' />
+                
               </>
           }
         </div>
@@ -174,4 +179,4 @@ const Header = (props: Props) => {
   // },[headers])
 }
 
-export default Header
+export { Header };
