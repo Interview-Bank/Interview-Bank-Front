@@ -19,7 +19,7 @@ const MyScrapContainer = () => {
             `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
             {headers}
           );
-          data = response.data;
+          data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
           pageNumber++;
