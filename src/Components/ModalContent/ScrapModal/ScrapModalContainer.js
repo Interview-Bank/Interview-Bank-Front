@@ -25,7 +25,7 @@ const ScrapModalContainer = (props) => {
             `${API_URL}scraps?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
-          data = response.data;
+          data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
           pageNumber++;
