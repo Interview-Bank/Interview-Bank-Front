@@ -26,7 +26,7 @@ const loginSubmit = async (values) => {
         setCookie('userId', res.data.accountId);
         setCookie('user', res.data.nickname);
         setLoginError({})
-        if ((window.location.pathname === '/select' || window.location.pathname === '/signup')) navigate('/');
+        if ((window.location.pathname === '/select' || window.location.pathname === '/register/emailignup')) navigate('/');
         else window.location.reload();
       });
   } catch (e) {

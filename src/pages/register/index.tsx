@@ -21,7 +21,7 @@ const RegisterPage = () => {
   };
 
   const handleEmailOauth = () => {
-    const oauthUrl = "/signup";
+    const oauthUrl = "/register/email";
     router.push(oauthUrl);
   }
   return (
