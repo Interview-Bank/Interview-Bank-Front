@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useCallback } from "react";
 import MyScrapView from "./MyScrapView";
-import { setTokenHeaders } from '../../api/apiGetTokenHeader';
+import bringScrapListData from "../../api/MyPage/MyScrap/bringScrapListData";
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const headers = setTokenHeaders();
+  const defaultParamValue = {
+		page: 1
+	}
+  const limit = 15;
+  const [scrapParam, setScrapParam] = useState({...defaultParamValue});
+	const [totalPages, setTotalPages] = useState(0);
+	const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let allData = [];
-        let pageSize = 10;
-        let pageNumber = 0;
-        let data = [];
-        do {
-          const response = await axios.get(
-            `https://bstaging.interviewbank.net/scraps?page=${pageNumber}&size=${pageSize}`,
-            {headers}
-          );
-          data = response.data.scraps;
-          allData = [...allData, ...data];
-          setScrapList(allData);
-          pageNumber++;
-        } while (data.length === pageSize);
-        setScrapList(allData);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+      bringScrapListData(scrapParam)
+        .then((result) => {console.log(result);setScrapList(result.scraps); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements); setIsLoading(false)})
+        .catch((resolve) => console.log(resolve))
+  }, [scrapParam]);
 
-  return <MyScrapView scrapList={scrapList} isLoading={isLoading} />;
+
+  const isChangeCurrentPage = useCallback((value) => {
+		setScrapParam((prev) => {
+			return { ...prev, page: value };
+		});
+	}, []);
+
+  return (
+    <MyScrapView
+      totalPages={totalPages}
+      totalPosts={totalPosts}
+      limit={limit}
+      setPage={isChangeCurrentPage}
+      scrapParam={scrapParam}
+      scrapList={scrapList} 
+      isLoading={isLoading} />
+    )
 };
 
 export default MyScrapContainer;

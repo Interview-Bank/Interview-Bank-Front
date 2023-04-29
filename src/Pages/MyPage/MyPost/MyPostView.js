@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Layout from "../../../Layout/Layout";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
+import Pagination from "../../../Components/Pagination/Pagination";
 
-const MyPostView = ({ boardList, isLoading }) => {
+const MyPostView = ({ totalPosts, totalPages, limit, setPage, myPostParam, boardList, isLoading }) => {
   console.log(boardList)
   console.log(boardList.length)
   return (
@@ -18,18 +19,27 @@ const MyPostView = ({ boardList, isLoading }) => {
             </MyPostsTitle>
             <MyPostsBody>
             {!isLoading && boardList.length > 0 ? (
-                boardList.map((current) => (
-                  <MyPostComponent
-                    id={current.interviewId}
-                    nickname={current.nickname}
-                    createdAt={current.createdAt
-                      .slice(0, 10)
-                      .replaceAll("-", ".")}
-                    title={current.title}
-                    firstCategoryName={current.jobCategory.firstLevelName}
-                    secondCategoryName={current.jobCategory.secondLevelName}
-                  />
-                ))
+              <>
+                <MyPostList>
+                  {boardList.map((current) => (
+                    <MyPostComponent
+                      id={current.interviewId}
+                      nickname={current.nickname}
+                      createdAt={current.createdAt
+                        .slice(0, 10)
+                        .replaceAll("-", ".")}
+                      title={current.title}
+                      firstCategoryName={current.jobCategory.firstLevelName}
+                      secondCategoryName={current.jobCategory.secondLevelName}
+                    />
+                  ))}
+                </MyPostList>
+                <PaginationWrapper>
+                    {totalPages && 
+                      <Pagination limit={limit} setPage={setPage} page={myPostParam.page} totalPosts={totalPosts} totalPages={totalPages} />
+                    }
+                </PaginationWrapper>
+              </>
               ) : (
                 !isLoading && <NoPost>작성한 게시글이 없습니다.</NoPost>
               )}
@@ -42,15 +52,15 @@ const MyPostView = ({ boardList, isLoading }) => {
 };
 
 const MyPostLayout = styled.div`
-  position: absolute;
   display: flex; 
   width: 100%;
-  height: 750px;
+  min-height: 100vh; 
   justify-content: center; 
   top : 50px;
 
 
   margin : 0 auto;
+  padding-top: 50px;
   
 `;
 const MyPostsContainer = styled.div`
@@ -75,7 +85,7 @@ const MyPostWrapper = styled.div`
 `;
 
 const MyPostsTitle = styled.div`
-  position: absolute;
+  position: relative;
   width: 160px;
   height: 35px;
 
@@ -91,11 +101,25 @@ const MyPostsTitle = styled.div`
 `;
 
 const MyPostsBody = styled.div`
-  display: grid;
   width: 100%;
   max-width: 1100px;
+  height: 100%;
   margin: 0 auto 20px;
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const PaginationWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+`;
+
+const MyPostList = styled.div`
+  position: relative;
+  display: grid;
+  width: 100%;
 
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
