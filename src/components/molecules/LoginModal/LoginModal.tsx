@@ -5,6 +5,9 @@ import Close from 'public/Icons/close.png';
 import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/router';
 import { isLogin } from '@/pages/api/login/loginProcess';
+import { setCookie, setCookieExpires } from '@/pages/api/login/loginCheck';
+import { useDispatch } from 'react-redux';
+import { modalSlice } from '@/redux/modalReducer';
 
 interface LoginModalProps {
   onClickEvent: () => void;
@@ -17,6 +20,7 @@ interface LoginModalRequestDataProps {
 
 const LoginModal = ({ onClickEvent }: LoginModalProps) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const defaultValue: LoginModalRequestDataProps = {
     email: "",
     password: "",
@@ -27,34 +31,40 @@ const LoginModal = ({ onClickEvent }: LoginModalProps) => {
   }
 
   const isLoginSubmit = () => {
-    isLogin(loginData);
+    validationCheckForLogin()
+      && isLogin(loginData)
+        .then(response => {
+          dispatch(modalSlice.actions.CLOSE());
+          setCookieExpires('authToken', response.headers["x-auth-token"]);
+          setCookie('userId', response.data.accountId);
+          setCookie('user', response.data.nickname);
+          if (router.pathname.includes('/register')) router.push('/');
+          else router.reload();
+          // dispatch(modalSlice.actions.CLOSE());
+        })
+        .catch(reject => console.log(reject))
   }
-  // const API_URL = "https://bstaging.interviewbank.net/";
-
-  // const [loginError, setLoginError] = useState({})
-  // const loginSubmit = async (values) => {
-  //   const { email, password } = values;
-  //   try {
-  //     await axios
-  //       .post(API_URL + "account/login", {
-  //         email,
-  //         password,
-  //       })
-  //       .then((res) => {
-  //         setCookieExpires('authToken', res.headers.get("X-Auth-Token"));
-  //         setCookie('userId', res.data.accountId);
-  //         setCookie('user', res.data.nickname);
-  //         setLoginError({})
-  //         if ((window.location.pathname === '/select' || window.location.pathname === '/signup')) navigate('/');
-  //         else window.location.reload();
-  //       });
-  //   } catch (e) {
   //     setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
-  //   }
-  // };
   const linkRegisterPage = () => {
     router.push("/register");
     onClickEvent()
+  }
+
+  const validationCheckForLogin = () => {
+    const { email, password } = loginData;
+    if (!email) {
+      dispatch(modalSlice.actions.OPEN(
+        { title: "아이디를 입력해주세요.", content: "" }
+      ));
+			return false;
+		}
+    if (!password) {
+      dispatch(modalSlice.actions.OPEN(
+        { title: "비밀번호를 입력해주세요.", content: "" }
+      ))
+			return false;
+		}
+    return true;
   }
 
   const handleGoogleOauth = () => {
@@ -88,7 +98,10 @@ const LoginModal = ({ onClickEvent }: LoginModalProps) => {
             type="password"
             value={loginData.password}
             name="password"
-            onChange={(e)=>onChange("password", e.target.value)}
+            onChange={(e) => onChange("password", e.target.value)}
+            onKeyDown={(e) => {
+              e.key === 'Enter' && isLoginSubmit();
+            }}
             placeholder="비밀번호"
           />
           <Button width='100' height='45px' backgroundColor='blue' value='로그인' color='white' onClickEvent={isLoginSubmit} />

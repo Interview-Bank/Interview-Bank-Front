@@ -18,9 +18,7 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     CLOSE: (state) => {
-      state.active = !state.active;
-      state.title = initialState.title;
-      state.content = initialState.content;
+      state = initialState;
     },
     OPEN: (state, action) => {
       state.active = !state.active;

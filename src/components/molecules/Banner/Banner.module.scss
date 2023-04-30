@@ -1,0 +1,44 @@
+.banner__area {
+  width: 100vw;
+  height: 380px;
+  background-color: #2e55e7;
+}
+.banner {
+  // height: 380px;
+  background-color: #2e55e7;
+  width: calc(100% - 437px);
+  max-width: 1100px;
+  margin-left: 437px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  >h1 {
+    width: 100%;
+    margin-top: 83px;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 45px;
+    text-align: left;
+    z-index: 1;
+    font-size: 2rem;
+  }
+
+  >h3 {
+    width: 100%;
+    color: #fff;
+    margin: 0;
+    font-weight: 400;
+    z-index: 1;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+  }
+
+  >img {
+    position: absolute;
+    z-index: 0;
+  }
+}

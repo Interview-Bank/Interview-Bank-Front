@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Title.module.scss';
 
-type Props = {}
-
-const Title = (props: Props) => {
+const Title = ({title}: any) => {
   return (
-    <h2>Title</h2>
+    <div className={styles.title}>
+      <h1>{title}</h1>
+    </div>
   )
 }
 

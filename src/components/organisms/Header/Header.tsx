@@ -35,6 +35,10 @@ const Header = (props: Props) => {
     router.push('/register');
   }
 
+  const linkWritePage = () => {
+    router.push('/post');
+  }
+
   const openLoginPopupEvent = () => {
     setModalActive((prev)=>!prev);
   }
@@ -80,7 +84,8 @@ const Header = (props: Props) => {
           {cookie
             ?
               <>
-                <Button value="로그인" />
+              <Button value="글쓰기" backgroundColor='blue' color='white' borderColor='0' onClickEvent={linkWritePage} image={"WRITE"} imgWidth={20} imgHeight={20} />
+              <Button value="로그아웃" onClickEvent={linkRegisterPage}/>
               </>
             :
               <>
@@ -94,51 +99,8 @@ const Header = (props: Props) => {
         </div>
       </nav>
 
-      {/* <HeaderContents>
-        <LogoBox>
-          <img src={Logo} alt="logo" onClick={() => navigate("/")} />
-        </LogoBox> */}
-        {/* <SearchBox>
-          <SearchInput />
-          <img src={Search} alt="search" />
-        </SearchBox> */}
-        {/* <NavigationBox>
-        {loading === false && // 로딩 상태가 false일 때만 내부 컴포넌트를 렌더링합니다.
-          (!cookie
-            ? <>
-                <RegisterPageButton
-                  onClick={() => {
-                    navigate("/select");
-                  }}
-                >
-                  회원가입
-                </RegisterPageButton>
-
-                <LoginButton
-                  onClick={() => {
-                    setLoginModal(true);
-                  }}
-                >
-                  로그인
-                </LoginButton>
-                {loginModal && (
-                  <Modal
-                    CloseModal={() => {
-                      setLoginModal(!loginModal);
-                    }}
-                  >
-                    <LoginContainer />
-                  </Modal>
-                )}
-              </>
+        {/* 
             : <>
-                <WriteButtonWrapper onClick={() => navigate("/post")}>
-                  <WriteIcon
-                    src = {WriteIconUrl}
-                    alt = "WriteIcon"/>
-                  <WriteButton>글쓰기</WriteButton>
-                </WriteButtonWrapper>
-
                 <ProfilePhoto 
                   src={profileImageUrl} 
                   alt="ProfilePhoto"

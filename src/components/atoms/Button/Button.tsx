@@ -14,9 +14,12 @@ interface ButtonProps {
   image?: "GOOGLE"
   | "KAKAO"
   | "NAVER"
+  | "WRITE"
   | undefined;
   width?: string;
   height?: string;
+  imgWidth?: number;
+  imgHeight?: number;
   onClickEvent: () => void;
 }
 
@@ -34,7 +37,7 @@ interface ButtonProps {
 // }
 
 const Button = ({ value, color = 'black', backgroundColor = 'white', borderColor = 'black', onClickEvent, image,
-  width = 'default', height = 'default' }: ButtonProps) => {
+  width = 'default', height = 'default', imgWidth = 24, imgHeight = 24 }: ButtonProps) => {
   // const Image: any = isDiscernIcon({ image });
   const btnClassName = `${styles[`font-${color}`]} ${styles[`background-${backgroundColor}`]} ${styles[`border-${borderColor}`]} 
                         ${styles[`width-${width}`]} ${styles[`height-${height}`]}`;
@@ -44,7 +47,7 @@ const Button = ({ value, color = 'black', backgroundColor = 'white', borderColor
       onClick={()=>onClickEvent()}
     >
       {image
-        && <IconImage icon={image} width={50} height={50} />
+        && <IconImage icon={image} width={imgWidth} height={imgHeight} />
       }
       {/* {image
         && <Image src={Image} alt="버튼 이미지" width="24" height="24" />} */}

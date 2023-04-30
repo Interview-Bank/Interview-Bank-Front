@@ -3,13 +3,15 @@ import Google from 'public/Icons/google.png';
 import Kakao from 'public/Icons/kakaotalk.png';
 import Naver from 'public/Icons/naver.png';
 import Email from 'public/Icons/email.png';
+import Write from 'public/Icons/writeIcon.png';
 import Image from 'next/image';
 
 interface IconProps {
   icon: 'GOOGLE'
       | 'KAKAO'
       | 'NAVER'
-      | 'EMAIL';
+      | 'EMAIL'
+      | 'WRITE';
 }
 
 interface IconImageProps extends IconProps {
@@ -27,6 +29,8 @@ const isDiscernIcon = ({ icon }: IconProps) => {
       return Naver;
     case 'EMAIL':
       return Email;
+    case 'WRITE':
+      return Write;
     default:
       break;
   };

@@ -1,0 +1,86 @@
+.write__area {
+  max-width: 304px;
+  height: 177px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+}
+
+.write__area:hover {
+  border: 1px solid #2e55e7;
+}
+
+.write__area:hover .btn__write {
+  background-color: #2e55e7;
+  color: white;
+}
+
+.write__content {
+  // width: calc(100% - 40px);
+  // height: calc(133px - 40px);
+  width: 100%;
+  // height: calc(133px - 40px);
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.write__title>p {
+  margin: 6px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  min-height: 41px;
+}
+
+.write__create>span {
+  font-size: 14px;
+  margin: 0 10px;
+  position: relative;
+}
+
+.write__create>span::before {
+  content: "";
+  width: 1px;
+  // height: 1rem;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 0;
+  left: -10px;
+  bottom: 0;
+}
+
+.write__create>span:first-child {
+  margin-left: 0;
+}
+
+.write__create>span:first-child::before {
+  display: none;
+}
+
+.btn__write {
+  // width: calc(100% - 40px);
+  width: 100%;
+  // height: calc(44px - 20px);
+  padding: 10px 20px;
+  background-color: #ddd;
+  border: 0;
+  border-radius: 0 0 8px 8px;
+  color: #aaa;
+  font-weight: 700;
+}
+
+.btn__like {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.font-blue {
+  color: #2e55e7;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 10px;
+}
