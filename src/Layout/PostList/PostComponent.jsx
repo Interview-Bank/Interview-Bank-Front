@@ -95,7 +95,7 @@ const PostComponent = ({
 					padding: 10px 20px;
 					background-color: #ddd;
 					border: 0;
-					border-radius: 0 0 8px 8px;
+					border-radius: 0 0 7px 7px;
 					color: #aaa;
 					font-weight: 700;
 				}
