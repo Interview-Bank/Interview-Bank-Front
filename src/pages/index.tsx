@@ -15,6 +15,7 @@ const HomePage = ({interviewList}) => {
 	// 		.then((result) => setInterviewList(result))
 	// 		.catch((resolve) => console.log(resolve));
 	// }, []);
+
   return (
     <>
       <SeoHead title='인터뷰 뱅크' />
@@ -47,7 +48,7 @@ const HomePage = ({interviewList}) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await axios.get(`https://bstaging.interviewbank.net/interview`);
+  const response = await axios.get(`https://bstaging.interviewbank.net/interview`, { params: { page: 0, size: 12 } });
   return {
 		props: {
 			interviewList: response.data.interviews

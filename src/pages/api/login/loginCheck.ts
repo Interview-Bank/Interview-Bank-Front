@@ -1,8 +1,10 @@
 const getCookie = (key) => {
-  const checkKeyExistence = document.cookie
-                              .split("; ")
-                              .find((current) => current.startsWith(`${key}=`));
-  return checkKeyExistence ? true : false;
+  if (document !== undefined) {
+    const checkKeyExistence = document.cookie
+                                .split("; ")
+                                .find((current) => current.startsWith(`${key}=`));
+    return checkKeyExistence ? true : false;
+  }
 }
 
 const getCookieValue = (key) => {

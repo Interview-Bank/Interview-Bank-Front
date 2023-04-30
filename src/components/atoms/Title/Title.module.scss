@@ -4,14 +4,15 @@
   border-left: none;
   border-right: none;
   // height: 40px;
-  width: 1096px;
+  // width: 1096px;
+  max-width: 1100px;
   padding-top: 20px;
   font-size: 28px;
   font-weight: 700;
   background-color: #f9f9f9;
-  font-weight: 700;
   // margin-top: 60px;
   margin: 0 auto;
   display: flex;
   padding-bottom: 4px;
+  width: calc(100% - 128px);
 }

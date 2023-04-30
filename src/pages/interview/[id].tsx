@@ -1,9 +1,11 @@
+import { SeoHead } from '@/components/atoms/SeoHead';
 import { Title } from '@/components/atoms/Title';
 import InterviewView from '@/components/molecules/InterviewView/InterviewView';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
+import { getDateFormatString } from '../api/dateConvert';
 import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
 
 const InterviewPage = ({ response }) => {
@@ -15,14 +17,13 @@ const InterviewPage = ({ response }) => {
 	
 	const token = setTokenHeaders()["X-Auth-Token"];
 	const userId = Number(getCookieValue("userId"));
+	console.log(response)
 
 	useEffect(() => {
 		setAccountId(response.accountId);
 		setInterview(response);
 		setContents(response.questions);
 	}, []);
-	
-	console.log(response)
 
   // const handleScrap = () => {
   //   const headers = setTokenHeaders();
@@ -41,8 +42,10 @@ const InterviewPage = ({ response }) => {
   //   setScrapModal(true)
   // };
   return (
-    <section className='interview__area'>
+		<section className='interview__area'>
+			<SeoHead title={response.title} />
 			<div className="interview__body">
+				{response.createdAt.slice(0, 10)}
 				<Title title={response.title} />
 				{response.questions &&
 					response.questions.map((item, index) => (

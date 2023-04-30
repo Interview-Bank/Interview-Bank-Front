@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { checkCookieExistence } from '@/pages/api/login/loginCheck';
+import { checkCookieExistence, deleteCookie, setTokenHeaders } from '@/pages/api/login/loginCheck';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
@@ -8,6 +8,8 @@ import Logo from 'public/logo.svg';
 import { Input } from '@/components/atoms/Input/Input';
 import { Button } from '@/components/atoms/Button/Button';
 import { LoginModal } from '@/components/molecules/LoginModal';
+import axios from 'axios';
+import { isLogout } from '@/pages/api/login/loginProcess';
 
 type Props = {}
 
@@ -37,6 +39,28 @@ const Header = (props: Props) => {
 
   const linkWritePage = () => {
     router.push('/post');
+  }
+
+  const isLogoutEvent = async () => {
+    const headers = setTokenHeaders();
+    // console.log(headers);
+
+    isLogout(headers)
+      .then(response => console.log(response))
+      .catch(reject => console.log(reject))
+
+    // await axios
+    //   .post(process.env.NEXT_PUBLIC_API_URL + "/account/logout", {}, { headers })
+    //   .then((res) => {
+    //     deleteCookie('authToken');
+    //     deleteCookie('userId');
+    //     deleteCookie('user');
+    //     if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) router.push('/');
+    //     else window.location.reload();
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   }
 
   const openLoginPopupEvent = () => {
@@ -85,7 +109,7 @@ const Header = (props: Props) => {
             ?
               <>
               <Button value="글쓰기" backgroundColor='blue' color='white' borderColor='0' onClickEvent={linkWritePage} image={"WRITE"} imgWidth={20} imgHeight={20} />
-              <Button value="로그아웃" onClickEvent={linkRegisterPage}/>
+              <Button value="로그아웃" onClickEvent={isLogoutEvent}/>
               </>
             :
               <>

@@ -14,7 +14,7 @@ const Layout = ({children} :LayOutProps) => {
   const modal = useSelector((state: any) => state.modal);
 
   useEffect(() => {
-    console.log(document.location);
+
   }, [])
 
   return (
