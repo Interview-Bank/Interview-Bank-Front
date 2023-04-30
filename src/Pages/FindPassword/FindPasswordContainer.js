@@ -35,10 +35,10 @@ const FindPasswordContainer = () => {
       email: email
     };
     try {
-      const response = await axios.post(API_URL + "/account/reset-password/send-email", body);
+      const response = await axios.post(API_URL + "reset-password/send-email", body);
       console.log(response)
     } catch (e) {
-      alert(e.response.data.message + "😭");
+      console.log(e)
     }
   }
   return (
@@ -46,6 +46,7 @@ const FindPasswordContainer = () => {
     onChangeEmail={onChangeEmail}
     isEmailValid = {isEmailValid}
     emailMsg = {emailMsg}
+    handleEmailTransmit = {handleEmailTransmit}
     />
     
     );

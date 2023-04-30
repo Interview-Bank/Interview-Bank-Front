@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 
-const FindPasswordView = ({onChangeEmail, isEmailValid, emailMsg}) => {
+const FindPasswordView = ({onChangeEmail, isEmailValid, emailMsg, handleEmailTransmit}) => {
   return (
     <>
       <Layout>
@@ -21,7 +21,8 @@ const FindPasswordView = ({onChangeEmail, isEmailValid, emailMsg}) => {
           <OutputText className={isEmailValid ? "success" : "error"}>
               {emailMsg}
           </OutputText>
-          <Button>이메일 전송하기</Button>
+          <Button
+            onClick={handleEmailTransmit}>이메일 전송하기</Button>
         </FindPasswordContainer>
       </Layout>
     </>

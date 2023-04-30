@@ -3,6 +3,7 @@ import HeaderView from "./HeaderView";
 import { jwtUtils } from "../../utils/jwtUtils";
 import { useSelector } from "react-redux";
 import { setTokenHeaders } from "../../Pages/api/apiGetTokenHeader";
+import { checkCookieExistence } from "../../Pages/api/loginApi";
 import axios from "axios";
 
 const HeaderContainer = () => {
@@ -20,6 +21,8 @@ const HeaderContainer = () => {
     }
   }, [token]);
 
+  const isUserLogin = checkCookieExistence()
+  
   const headers = setTokenHeaders();
   useEffect(() => {
     const getmydata = async () => {
@@ -36,7 +39,10 @@ const HeaderContainer = () => {
         console.error(error);
       }
     }
-    getmydata();
+    if(isUserLogin){
+      getmydata();
+
+    }
   },[headers])
   return <HeaderView 
     loginModal={LoginModal} 
