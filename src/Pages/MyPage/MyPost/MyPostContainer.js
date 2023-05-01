@@ -28,8 +28,6 @@ const MyPostContainer = () => {
         setBoardList(allData);
       } catch (error) {
         console.log(error);
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchData();
