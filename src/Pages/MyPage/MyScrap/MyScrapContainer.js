@@ -35,7 +35,7 @@ const MyScrapContainer = () => {
     fetchData();
   }, []);
 
-  return <MyScrapView scrapList={scrapList} isLoading={isLoading} />;
+  return <MyScrapView scrapList={scrapList}/>;
 };
 
 export default MyScrapContainer;
