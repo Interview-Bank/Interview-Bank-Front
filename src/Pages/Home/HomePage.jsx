@@ -19,7 +19,7 @@ const HomePage = () => {
 			<Banner />
 			<HomeSearch />
 			<div className="title">
-				<h2>최신 글 보기</h2>
+				<h2>최신 인터뷰 글 보기</h2>
 			</div>
 			<div className="post__list">
 				{interviewList &&

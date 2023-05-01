@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
 import Layout from "../../Layout/Layout";
 import ArrowDownIconURL from "../../Assets/Icons/ArrowDownIcon.png"
 import ArrowUpIconURL from "../../Assets/Icons/ArrowUpIcon.png"
@@ -27,7 +26,7 @@ const ScrapInterviewView = ({
           <BoardTitle>{title}</BoardTitle>
           <BoardDetail>
             <BoardDate>
-              {moment(board.created).add(9, "hour").format("YYYY-MM-DD")}
+              {board.createdAt !== undefined && board.createdAt.slice(0,10)}
             </BoardDate>
             <GoToPostWrapper>
                 <ReturnIcon src = {ReturnToOriginPostURL} alt = "RetrunIcon"></ReturnIcon>

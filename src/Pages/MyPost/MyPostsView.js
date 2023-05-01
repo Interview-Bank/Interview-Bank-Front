@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 const MyPostsView = ({ boardList }) => {
@@ -24,7 +23,7 @@ const MyPostsView = ({ boardList }) => {
                 <CardBodyTitle>{item.title}</CardBodyTitle>
                 <CardBodyDetail>
                   <CardBodyDate>
-                    {moment(item.createdAt).add(9, "hour").format("YYYY.MM.DD")}
+                    {item.createdAt !== undefined && item.createdAt.slice(0,10).replaceAll('-', '.')}
                   </CardBodyDate>
                   <CardBodyUser>{item.nickname}</CardBodyUser>
                 </CardBodyDetail>

@@ -1,5 +1,4 @@
 import { jwtUtils } from "../../utils/jwtUtils";
-import moment from "moment";
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
 import ScrapModal from "../../Components/Modal/CheckPopUpModal";
@@ -7,6 +6,7 @@ import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapM
 import { setTokenHeaders } from "../api/apiGetTokenHeader";
 import { getCookieValue } from '../api/loginApi';
 import ScrapIconUrl from "../../Assets/Icons/scrapIcon.png"
+
 const InterviewView = ({
 	interview,
 	contents,
@@ -32,7 +32,8 @@ const InterviewView = ({
           </BoardTitleWrapper>
 					<BoardDetail>
 						<BoardDate>
-							{moment(interview.created).add(9, "hour").format("YYYY-MM-DD")}
+							{interview.createdAt !== undefined &&
+								interview.createdAt.slice(0, 10)}
 						</BoardDate>
 						{token && accountId === userId && (
 							<div>
