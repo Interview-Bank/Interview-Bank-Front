@@ -4,7 +4,7 @@ import Layout from "../../../Layout/Layout";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
 
-const MyPostView = ({ boardList, isLoading }) => {
+const MyPostView = ({ boardList }) => {
   return (
     <Layout>
       <MyPostLayout>

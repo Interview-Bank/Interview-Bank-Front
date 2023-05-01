@@ -5,7 +5,7 @@ import { setTokenHeaders } from '../../api/apiGetTokenHeader';
 
 const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
   const headers = setTokenHeaders();
   const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL;
 

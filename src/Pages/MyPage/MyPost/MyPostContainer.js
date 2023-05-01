@@ -28,7 +28,7 @@ const MyPostContainer = () => {
         setBoardList(allData);
       } catch (error) {
         console.log(error);
-      }
+      } 
     };
     fetchData();
   }, []);

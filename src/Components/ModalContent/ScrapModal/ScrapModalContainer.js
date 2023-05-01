@@ -25,6 +25,10 @@ const ScrapModalContainer = (props) => {
             `${ScrapBaseUrl}?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
+<<<<<<< HEAD
+=======
+          console.log(response)
+>>>>>>> 309241773aa3b357fb0165204e1707a590a18c36
           data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
