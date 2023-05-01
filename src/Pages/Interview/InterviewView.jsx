@@ -4,7 +4,9 @@ import Layout from "../../Layout/Layout";
 import ScrapModal from "../../Components/Modal/CheckPopUpModal";
 import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapModalContainer";
 import { setTokenHeaders } from "../api/apiGetTokenHeader";
-import { getCookieValue } from "../api/loginApi";
+import { getCookieValue } from '../api/loginApi';
+import ScrapIconUrl from "../../Assets/Icons/scrapIcon.png"
+
 const InterviewView = ({
 	interview,
 	contents,
@@ -19,7 +21,15 @@ const InterviewView = ({
 		<Layout>
 			<BoardWrapper>
 				<div className="board-body">
-					<BoardTitle>{interview.title}</BoardTitle>
+          <BoardTitleWrapper>
+            <BoardTitle>{interview.title}</BoardTitle>
+            <BoardScrapButtonWrapper  onClick={handleScrap}>
+              <ScrapIcon src = {ScrapIconUrl}/>
+              <BoardScrapButton>
+                답변 작성하기
+              </BoardScrapButton>
+            </BoardScrapButtonWrapper>
+          </BoardTitleWrapper>
 					<BoardDetail>
 						<BoardDate>
 							{interview.createdAt !== undefined &&
@@ -30,11 +40,6 @@ const InterviewView = ({
 								<BoardDelete>삭제하기</BoardDelete>
 								<BoardEdit>수정하기</BoardEdit>
 							</div>
-						)}
-						{token && accountId !== userId && (
-							<BoardScrapButton onClick={handleScrap}>
-								★ 스크랩
-							</BoardScrapButton>
 						)}
 						{scrapModal && (
 							<ScrapModal
@@ -65,19 +70,28 @@ const BoardWrapper = styled.div`
 	margin: 0 auto;
 `;
 
-const BoardTitle = styled.div`
-	border-bottom: 1px solid #b5b5b5;
+const BoardTitleWrapper = styled.div`
+  display: flex;
+  width: 1100px;
+  height: fit-content;
+	justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #b5b5b5;
 	border-top: none;
 	border-left: none;
 	border-right: none;
+
+  margin-top: 62px;
+  padding-bottom: 28px;
+`;
+
+const BoardTitle = styled.div`
 	height: 40px;
-	width: 1096px;
-	padding-top: 20px;
+	width: fit-content;
 	font-size: 28px;
 	font-weight: 700;
 	background-color: #f9f9f9;
 	font-weight: 700;
-	margin-top: 60px;
 	display: flex;
 `;
 
@@ -113,16 +127,38 @@ const BoardDelete = styled.button`
 	}
 `;
 
-const BoardScrapButton = styled.button`
-	display: block;
-	border-radius: 30px;
-	border: none;
-	background-color: #2e55e7;
-	color: #fff;
-	font-weight: 700;
-	width: 100px;
-	height: 30px;
-	cursor: pointer;
+const BoardScrapButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  align-items: center;
+
+  cursor: pointer;
+
+
+`;
+
+const ScrapIcon = styled.img`
+  position: relative;
+  width: 18px;
+  height: 18px;
+  
+  margin-right : 4px;
+`;
+
+const BoardScrapButton = styled.div`
+  width: 110px;
+  height: 23px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+
+  color: #000000;
+
 `;
 
 const QuestionsBlock = styled.div`
@@ -132,6 +168,7 @@ const QuestionsBlock = styled.div`
 	max-height: calc(100% - 60px - 20px - 40px - 68px);
 	margin: 10px 0;
 	overflow: auto;
+  margin-top: 20px;
 	> li {
 		width: 988px;
 		min-height: calc(88px - 32 * 2px);
