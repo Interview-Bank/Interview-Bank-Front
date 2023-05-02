@@ -10,7 +10,7 @@ const SearchItemArea = ({children}) => {
           background-color: white;
           border: 1px solid #d9d9d9;
           border-radius: 8px;
-          padding: 0px 24px 16px;
+          padding: 0px 24px 24px;
         }
       `}</style>
     </div>

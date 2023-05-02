@@ -27,7 +27,7 @@ const PostBody = ({ inputs, onRemove, onChange, onAddInput, handleInputLimit }) 
 					border: none;
 					background-color: #fff;
 					font-weight: 800;
-					color: #747474;
+					color: #2E55E7;
 					font-size: 1.2rem;
 
 					display: flex;

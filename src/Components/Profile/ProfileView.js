@@ -15,6 +15,7 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
               onClick={() => {
                 navigate("/mypage/usersetting");
               }}
+              style={{ borderRadius: '4px' }}
               />
             </ProfilePhotoWrapper>
           <UserNicknameWrapper
@@ -106,7 +107,6 @@ const ProfilePhoto = styled.img`
   cursor: pointer;
   width: 69px;
   height: 69px;
-  border-radius: 2px;
 `
 const UserNicknameWrapper = styled.div`
   position: absolute;

@@ -49,7 +49,7 @@ const Modal = ({ modal }) => {
 					left: 50%;
 					background-color: white;
 					width: 100%;
-					max-width: 400px;
+					max-width: calc(360px - 80px);
 					// height: calc(100% - 80px);
 					max-height: 275px;
 					z-index: 9;
@@ -67,14 +67,14 @@ const Modal = ({ modal }) => {
 					margin-bottom: 16px;
 					font-family: "Inter", sans-serif;
 					font-weight: bolder;
-					font-size: 20px;
+					font-size: 18px;
 					text-align: center;
 					color: #2e62e7;
 				}
 				.title-grey {
 					margin: 0;
 					width: 100%;
-					font-size: 15px;
+					font-size: 16px;
 					font-family: "Inter", sans-serif;
 					font-weight: bolder;
 					text-align: center;
@@ -87,11 +87,11 @@ const Modal = ({ modal }) => {
 					background-color: #2e55e7;
 					border: none;
 					color: #fff;
-					border-radius: 10px;
+					border-radius: 4px;
 					margin-top: 24px;
 					font-family: "Inter", sans-serif;
 					font-weight: bolder;
-					font-size: 20px;
+					font-size: 14px;
 					z-index: 2;
 				}
 			`}</style>
