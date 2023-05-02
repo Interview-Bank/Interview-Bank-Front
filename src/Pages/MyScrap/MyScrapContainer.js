@@ -1,34 +1,30 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
-import ScrapModalView from "./ScrapModalView";
-import { setTokenHeaders } from '../../../Pages/api/apiGetTokenHeader';
+import axios from "axios";
+import MyScrapView from "./MyScrapView";
+import { setTokenHeaders } from '../api/apiGetTokenHeader';
 
-const ScrapModalContainer = (props) => {
-  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
-  const navigate = useNavigate();
+const MyScrapContainer = () => {
   const [scrapList, setScrapList] = useState([]);
-
   const headers = setTokenHeaders();
+  const API_URL = "https://bstaging.interviewbank.net/";
+  const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
+
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("SSSS")
       try {
         let allData = [];
         let pageSize = 10;
         let pageNumber = 0;
         let data = [];
         do {
+          console.log(pageNumber);
           const response = await axios.get(
             `${ScrapBaseUrl}?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
-<<<<<<< HEAD
-=======
           console.log(response)
->>>>>>> f835ee1 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
           data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
@@ -42,12 +38,7 @@ const ScrapModalContainer = (props) => {
     fetchData();
   }, []);
 
-const onMove = () =>{
-  navigate(`/scraps/${scrapList[0].scrapId}`);
+  return <MyScrapView scrapList={scrapList} />;
 };
 
-
-  return <ScrapModalView navigate={navigate} onClose = {props.CloseModal} onMove = {onMove}/>;
-};
-
-export default ScrapModalContainer;
+export default MyScrapContainer;
