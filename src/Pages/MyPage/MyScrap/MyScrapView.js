@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Layout from "../../../Layout/Layout";
 import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
 import MyScrapComponent from "../../../Layout/MyScrapList/MyScrapComponent";
+import Pagination from "../../../Components/Pagination/Pagination";
 
-const MyScrapView = ({ scrapList }) => {
+const MyScrapView = ({ totalPosts, totalPages, limit, setPage, scrapParam, scrapList, isLoading }) => {
   console.log(scrapList)
   return (
     <Layout>
@@ -16,18 +17,30 @@ const MyScrapView = ({ scrapList }) => {
               작성한 답변글
             </ScrapPageTitle>
             <ScrapPageBody>
-              {scrapList.length > 0 ? 
-                scrapList.map((current) => (
-                <MyScrapComponent
-                  id={current.scrapId}
-                  nickname={current.nickname}
-                  createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-                  title={current.title}
-                  firstCategoryName={current.jobCategory.firstLevelName}
-                  secondCategoryName={current.jobCategory.secondLevelName}
-                />
-              )) :
-              <NoScrap>작성한 답변이 없습니다.</NoScrap>}
+              {!isLoading && scrapList.length > 0 ? (
+                <>
+                  <ScrapList>
+                    {scrapList.map((current) => (
+                      <MyScrapComponent
+                        key={current.scrapId}
+                        id={current.scrapId}
+                        nickname={current.nickname}
+                        createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                        title={current.title}
+                        firstCategoryName={current.jobCategory.firstLevelName}
+                        secondCategoryName={current.jobCategory.secondLevelName}
+                      />
+                    ))}
+                  </ScrapList>
+                  <PaginationWrapper>
+                    {totalPages && 
+                      <Pagination limit={limit} setPage={setPage} page={scrapParam.page} totalPosts={totalPosts} totalPages={totalPages} />
+                    }
+                  </PaginationWrapper>
+                </>
+                ) :(
+                  !isLoading &&<NoScrap>작성한 답변이 없습니다.</NoScrap>
+                )}
             </ScrapPageBody>
           </MyScrapWrapper>
         </ScrapPageContainer>
@@ -37,20 +50,19 @@ const MyScrapView = ({ scrapList }) => {
 };
 
 const MyScrapLayout = styled.div`
-  position: absolute;
   display: flex; 
   width: 100%;
-  height: 750px;
+  min-height: 100vh; 
   justify-content: center; 
   top : 50px;
 
 
   margin : 0 auto;
+  padding-top: 50px;
   
 `;
 
 const ScrapPageContainer = styled.div`
-  position: absolute;
   width : 100%;
   height: 100%;
   display: flex;
@@ -70,7 +82,7 @@ const MyScrapWrapper = styled.div`
 `;
 
 const ScrapPageTitle = styled.div`
-  position: absolute;
+  position: relative;
   width: 160px;
   height: 35px;
 
@@ -85,11 +97,26 @@ const ScrapPageTitle = styled.div`
 `;
 
 const ScrapPageBody = styled.div`
-  display: grid;
   width: 100%;
   max-width: 1100px;
+  height: 100%;
   margin: 0 auto 20px;
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+
+`;
+
+const PaginationWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+`;
+
+const ScrapList = styled.div`
+  position: relative;
+  display: grid;
+  width: 100%;
 
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;

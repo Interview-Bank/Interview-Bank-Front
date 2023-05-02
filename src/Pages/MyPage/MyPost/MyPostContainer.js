@@ -1,41 +1,44 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useCallback } from "react";
 import MyPostsView from "./MyPostView";
-import { setTokenHeaders } from '../../api/apiGetTokenHeader';
-
+import bringMyPostListData from "../../api/MyPage/MyPost/bringMyPostListData";
 
 const MyPostContainer = () => {
   const [boardList, setBoardList] = useState([]);
-  const headers = setTokenHeaders();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let allData = []
-        let data = []
-        let pageSize = 10;
-        let pageNumber = 0;
-        do {
-          console.log(pageNumber);
-          const response = await axios.get(
-            `https://bstaging.interviewbank.net/interview/me?page=${pageNumber}&size=${pageSize}`,
-             {headers}
-          );
-          console.log(response)
-          console.log(headers)
-          data = response.data.interviews;
-          allData = [...allData, ...data];
-          setBoardList(allData);
-          pageNumber++;
-        } while (data.length === pageSize);
-        setBoardList(allData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return <MyPostsView boardList={boardList} />;
+  const defaultParamValue = {
+		page: 1
+	}
+  const limit = 15;
+  const [myPostParam, setMyPostParam] = useState({...defaultParamValue});
+	const [totalPages, setTotalPages] = useState(0);
+	const [totalPosts, setTotalPosts] = useState(0);
+
+  useEffect(() => {
+      bringMyPostListData(myPostParam)
+        .then((result) => {console.log(result);setBoardList(result.interviews); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements); setIsLoading(false)})
+        .catch((resolve) => console.log(resolve))
+  }, [myPostParam]);
+
+
+  const isChangeCurrentPage = useCallback((value) => {
+		setMyPostParam((prev) => {
+			return { ...prev, page: value };
+		});
+	}, []);
+
+
+  return (
+    <MyPostsView 
+      totalPages={totalPages}
+      totalPosts={totalPosts}
+      limit={limit}
+      setPage={isChangeCurrentPage}
+      myPostParam={myPostParam}
+      boardList={boardList} 
+      isLoading={isLoading}/>
+    
+    );
 };
 
 export default MyPostContainer;
