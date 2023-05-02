@@ -25,20 +25,6 @@ const ScrapModalContainer = (props) => {
             `${ScrapBaseUrl}?page=${pageNumber}&size=${pageSize}`,
             { headers }
           );
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-          console.log(response)
->>>>>>> f835ee1 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
-=======
-          console.log(response)
->>>>>>> 6fc6ca5 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
-=======
-=======
-          console.log(response)
->>>>>>> 309241773aa3b357fb0165204e1707a590a18c36
->>>>>>> 3e06b14be1a3145e638bfdb132e3ef3c7df6ad8d
           data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
