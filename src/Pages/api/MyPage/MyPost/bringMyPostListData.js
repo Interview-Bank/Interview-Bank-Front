@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { setTokenHeaders } from '../../apiGetTokenHeader';
 
-const baseUrl = `https://bstaging.interviewbank.net/interview/me`
+const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
 const headers = setTokenHeaders();
 
 const bringMyPostListData = async (scrapParam, pageSize = 15) => {
@@ -11,7 +11,7 @@ const bringMyPostListData = async (scrapParam, pageSize = 15) => {
 
     try {
       const response = await axios.get(
-        baseUrl,
+        `${InterviewBaseUrl}/me`,
         {
           params: {
             page: scrapParam.page-1,
