@@ -26,9 +26,13 @@ const ScrapModalContainer = (props) => {
             { headers }
           );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           console.log(response)
 >>>>>>> f835ee1 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
+=======
+          console.log(response)
+>>>>>>> 6fc6ca5 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
           data = response.data.scraps;
           allData = [...allData, ...data];
           setScrapList(allData);
