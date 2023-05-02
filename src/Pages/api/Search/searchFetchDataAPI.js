@@ -4,9 +4,12 @@ import { getDateFormatString } from '../dateConvert';
 const baseUrl = `https://bstaging.interviewbank.net/interview/search`
 const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 6fc6ca5 (fix/logout in Mypage, refactor/Environment variable setting but not working api in My ScrapContainer, so have to check it)
+=======
+>>>>>>> 3e06b14be1a3145e638bfdb132e3ef3c7df6ad8d
 
 
 const bringSearchInterviewListData = async (searchParam, pageSize = 15) => {
