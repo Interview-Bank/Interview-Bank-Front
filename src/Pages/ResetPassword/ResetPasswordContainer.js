@@ -2,8 +2,9 @@ import React, { useState, useCallback } from "react";
 import axios from "axios";
 import ResetPasswordView from './ResetPasswordView'
 import { setTokenHeaders } from "../api/apiGetTokenHeader";
-import { getCookieValue } from "../api/loginApi";
 import { useNavigate } from "react-router-dom";
+
+
 const ResetPasswordContainer = () => {
     const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
 
@@ -12,9 +13,7 @@ const ResetPasswordContainer = () => {
     const [pwdMsg, setPwdMsg] = useState("");
     const [confirmPwdMsg, setConfirmPwdMsg] = useState("");
     const headers = setTokenHeaders();
-    const token = getCookieValue()
-    const navigate = useNavigate()
-    
+    const navigate = useNavigate();
 
 
     const validatePwd = (password) => {
@@ -24,7 +23,7 @@ const ResetPasswordContainer = () => {
     };
 
     const isPwdValid = validatePwd(password);
-    const isConfirmPwd = password === passwordConfirm;//ture or false
+    const isConfirmPwd = password === passwordConfirm;
 
     const onChangePwd = useCallback((e) => {
         const currPwd = e.target.value;
@@ -57,8 +56,8 @@ const ResetPasswordContainer = () => {
           const response = await axios.post(`${AccountBaseUrl}/reset-password`, body, {headers:headers} )
 
           console.log(response)
-        //   navigate("/")  
-        } catch (error) {
+          navigate("/")  
+        } catch (error){
           console.log(error)
         }
       };
