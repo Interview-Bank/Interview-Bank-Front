@@ -16,9 +16,9 @@ const FirstSearchCategoriesCheckBox = ({
 			<label
 				htmlFor={category}
 				style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em" }}
-				onClick={(e) => isChangeCategory(category, e.target.getAttribute("name"))}
+				onClick={(e) => isChangeCategory(e.target.getAttribute("data-name"), category, e.target.getAttribute("name"))}
 			>
-				<input type="checkbox" name={name} value={category} id={category} />
+				<input type="checkbox" name={name} value={category} id={category} data-name={name} />
 				{name}
 			</label>
 			{secondJobCategories.length ? (
@@ -89,6 +89,7 @@ const SearchCategoryCheckBox = ({
 					width: 100%;
 					display: flex;
 					flex-wrap: wrap;
+					margin-bottom: 2px;
 				}
 
 				.acordian {
@@ -120,7 +121,7 @@ const SearchCategoryCheckBox = ({
 				}
 				.acordian.active > li {
 					width: calc(100% - 15%);
-					padding: 10px 0 5px 15%;
+					padding: 6px 0 6px 15%;
 				}
 				.acordian.active > li > label {
 					cursor: pointer;
