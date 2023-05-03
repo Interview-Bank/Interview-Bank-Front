@@ -131,6 +131,10 @@ const SearchSelectBox = ({
 					font-size: 0.83em;
 					height: 46px;
 				}
+				.search__item-area > :nth-last-child(2) {
+					// margin-bottom: 0;
+					margin-bottom: 0;
+				}
 				ul,
 				li {
 					list-style: none;

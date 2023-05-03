@@ -183,6 +183,20 @@ const SearchInterviewView = () => {
 						</SearchItem>
 						<SearchItem>
 							<SearchItemArea>
+								<SearchLeftTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
+								<SearchSelectBox
+									selectTitle={
+										searchParam.careerYear === ""
+											? "경력"
+											: getCareerYearNameFromValue(searchParam.careerYear)
+									}
+									selectArray={CareerYear}
+									isChangeSelectBoxItems={isChangeCareerYear}
+								/>
+							</SearchItemArea>
+						</SearchItem>
+						<SearchItem>
+							<SearchItemArea>
 								<SearchLeftTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
 								<SearchSelectBox
 									selectTitle={
@@ -205,20 +219,6 @@ const SearchInterviewView = () => {
 									isChangeStrDate={isChangeStrDate}
 									isChangeEndDate={isChangeEndDate}
 									resetSearchParams={resetSearchParams}
-								/>
-							</SearchItemArea>
-						</SearchItem>
-						<SearchItem>
-							<SearchItemArea>
-								<SearchLeftTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
-								<SearchSelectBox
-									selectTitle={
-										searchParam.careerYear === ""
-											? "경력"
-											: getCareerYearNameFromValue(searchParam.careerYear)
-									}
-									selectArray={CareerYear}
-									isChangeSelectBoxItems={isChangeCareerYear}
 								/>
 							</SearchItemArea>
 						</SearchItem>
@@ -273,7 +273,7 @@ const SearchInterviewView = () => {
 				}
 
 				.search__left > div {
-					margin-bottom: 25px;
+					margin-bottom: 12px;
 				}
 			`}</style>
 		</Layout>
