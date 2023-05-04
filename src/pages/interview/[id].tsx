@@ -15,14 +15,17 @@ const InterviewPage = ({ response }) => {
   const [accountId, setAccountId] = useState(0);
 	const [scrapModal, setScrapModal] = useState(false);
 	
-	const token = setTokenHeaders()["X-Auth-Token"];
-	const userId = Number(getCookieValue("userId"));
+	// const token = setTokenHeaders()["X-Auth-Token"];
+	let token, userId;
+	// const userId = Number(getCookieValue("userId"));
 	console.log(response)
 
 	useEffect(() => {
 		setAccountId(response.accountId);
 		setInterview(response);
 		setContents(response.questions);
+		token = setTokenHeaders()["X-Auth-Token"];
+		userId = Number(getCookieValue("userId"));
 	}, []);
 
   // const handleScrap = () => {

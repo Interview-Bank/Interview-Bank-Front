@@ -2,13 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { checkCookieExistence, deleteCookie, setTokenHeaders } from '@/pages/api/login/loginCheck';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
 import { Input } from '@/components/atoms/Input/Input';
 import { Button } from '@/components/atoms/Button/Button';
 import { LoginModal } from '@/components/molecules/LoginModal';
-import axios from 'axios';
 import { isLogout } from '@/pages/api/login/loginProcess';
 
 type Props = {}
@@ -22,15 +21,18 @@ const Header = (props: Props) => {
 
   const router = useRouter();
 
+
   const ProfileRef = useRef(null)
   const UserButtonRef = useRef(null)
   // const [loading, setLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [cookie, setCookie] = useState(false);
+  let headers;
 
   useEffect(() => {
-    const cookieExists = checkCookieExistence();
-    setCookie(cookieExists);
+    // const cookieExists = checkCookieExistence();
+    setCookie(checkCookieExistence());
+    headers = setTokenHeaders();
   }, [])
   
   const linkRegisterPage = () => {
@@ -41,10 +43,7 @@ const Header = (props: Props) => {
     router.push('/post');
   }
 
-  const isLogoutEvent = async () => {
-    const headers = setTokenHeaders();
-    // console.log(headers);
-
+  const isLogoutEvent = useCallback(async () => {
     isLogout(headers)
       .then(response => console.log(response))
       .catch(reject => console.log(reject))
@@ -61,7 +60,7 @@ const Header = (props: Props) => {
     //   .catch((e) => {
     //     console.log(e);
     //   });
-  }
+  }, [])
 
   const openLoginPopupEvent = () => {
     setModalActive((prev)=>!prev);

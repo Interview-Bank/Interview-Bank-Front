@@ -3,9 +3,9 @@ import { setTokenHeaders } from '../login/loginCheck';
 // import { setTokenHeaders } from '../apiGetTokenHeader';
 
 const baseUrl = 'https://bstaging.interviewbank.net/interview';
-const headers = setTokenHeaders();
+// const headers = setTokenHeaders();
 
-const postInterview = async (postTitle, postObject, postArray) => {
+const postInterview = async (headers, postTitle, postObject, postArray) => {
   const {
     interviewPeriod,
     careerYear,

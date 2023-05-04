@@ -1,0 +1,16 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+  h5 {
+    font-size: 1rem;
+  }
+  span {
+    color: #737373;
+    margin: 1.67em 0;
+    line-height: 2rem;
+    font-size: 0.83rem;
+    cursor: pointer;
+  }
+}

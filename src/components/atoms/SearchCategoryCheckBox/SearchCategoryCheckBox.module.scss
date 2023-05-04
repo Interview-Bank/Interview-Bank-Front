@@ -1,0 +1,49 @@
+.area {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.select {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .arrow {
+    position: absolute;
+    border: 0;
+    background-color: transparent;
+    right: 0;
+    cursor: pointer;
+    // top: 6px;
+  }
+}
+
+.acordian {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  max-height: 0;
+  // opacity: 0;
+  overflow-y: hidden;
+  // transition: all 0.2s ease-out;
+  &.active {
+    max-height: 100em;
+    li {
+      width: calc(100% - 15%);
+      padding: 10px 0 5px 15%;
+      label {
+        cursor: pointer;
+        input {
+          vertical-align: middle;
+					margin-right: 8px;
+        }
+      }
+    }
+  }
+}

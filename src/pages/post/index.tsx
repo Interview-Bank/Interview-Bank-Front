@@ -106,8 +106,8 @@ function PostContainer() {
 
 	const handleClickSubmit = async () => {
 		if (postValidationCheck()) {
-			postInterview(title, inputSelectBox, inputs)
-				.then((response) => navigate(`/interview/${response.interviewId}`))
+			postInterview(headers, title, inputSelectBox, inputs)
+				.then((response) => router.push(`/interview/${response.interviewId}`))
 				.catch((reject) => console.log(reject));
 		}
 	};
@@ -122,7 +122,6 @@ function PostContainer() {
 		setInputs(newInputs);
 		e.target.style.height = "inherit";
 		e.target.style.height = `${e.target.scrollHeight}px`;
-		console.log(document.querySelector("write__area").height);
 	};
 
 	const checkGenerateQuestionCountOver = () => {

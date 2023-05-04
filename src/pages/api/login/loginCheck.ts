@@ -8,13 +8,11 @@ const getCookie = (key) => {
 }
 
 const getCookieValue = (key) => {
-  if (getCookie(key)) {
     const CookieValue = document.cookie
                           .split("; ")
                           .find((current) => current.startsWith(`${key}=`))
                           .split("=")[1];
     return CookieValue;
-  } else return false;  
 }
 
 const checkCookieExistence = () => {

@@ -1,0 +1,33 @@
+.list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.page {
+  width: 100%;
+}
+
+.empty {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+  color: #ababab;
+  font-size: 24px;
+  position: relative;
+  h4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 0.83em;
+    font-weight: 500;
+  }
+}
