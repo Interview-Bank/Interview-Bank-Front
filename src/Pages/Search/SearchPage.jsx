@@ -75,10 +75,9 @@ const SearchInterviewView = () => {
 		checkedCategoriesArray.forEach(current => current.checked = false);
 	}, [])
 
-	const isChangeCategory = useCallback((value, parent) => {
+	const isChangeCategory = useCallback((name, value, parent) => {
 		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
 																				.filter(current => current.checked === true);
-		
 		if (checkedCategoriesArray.map((current) => current.name).find(current => current !== parent)) {
 			if (parent) {
 				checkedCategoriesArray.filter(current => current.name !== parent).forEach(current => current.checked = false);
@@ -87,6 +86,16 @@ const SearchInterviewView = () => {
 				});
 			}
 		} else {
+			if (name === parent) {
+				checkedCategoriesArray.filter(current => current.dataset.name !== parent).forEach(current => current.checked = false);
+			}
+			else if (
+				Array.from(document.querySelectorAll("input[type=checkbox]")).find(current => current.dataset.name === parent).checked
+				&& checkedCategoriesArray.filter(current => current.dataset.name !== parent && current.name === parent).length
+			) {
+				Array.from(document.querySelectorAll("input[type=checkbox]")).find(current => current.dataset.name === parent).checked = false;
+			}
+			console.log();
 			setSearchParam((prev) => {
 				return { ...prev, category: checkedCategoriesArray.map(current => current.value).join(",") };
 			});
