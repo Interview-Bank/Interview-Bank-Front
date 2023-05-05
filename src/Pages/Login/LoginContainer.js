@@ -6,7 +6,8 @@ import React, { useState } from "react";
 import { setCookie, setCookieExpires } from '../api/loginApi';
 
 const LoginContainer = () => {
-  const API_URL = "https://bstaging.interviewbank.net/";
+  const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
+  const AccountOauthBaseUrl = process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL
   const navigate = useNavigate();
 
   const [loginError, setLoginError] = useState({})
@@ -14,7 +15,7 @@ const LoginContainer = () => {
     const { email, password } = values;
     try {
       await axios
-        .post(API_URL + "account/login", {
+        .post(AccountBaseUrl + "/login", {
           email,
           password,
         })
@@ -32,16 +33,15 @@ const LoginContainer = () => {
   };
 
   const handleGoogleOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/google/login`;
     window.location.assign(oauthUrl);
   };
-  
   const handleKakaoOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/kakao/login`;
     window.location.assign(oauthUrl);
   };
   const handleNaverOauth = () => {
-    const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
+    const oauthUrl = `${AccountOauthBaseUrl}/naver/login`;
     window.location.assign(oauthUrl);
   };
 
