@@ -8,7 +8,6 @@ import { setCookie, setCookieExpires } from '../api/loginApi';
 const LoginContainer = () => {
   const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
   const AccountOauthBaseUrl = process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL
-
   const navigate = useNavigate();
 
   const [loginError, setLoginError] = useState({})
