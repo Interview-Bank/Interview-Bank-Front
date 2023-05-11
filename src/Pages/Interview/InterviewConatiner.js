@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { setTokenHeaders } from '../api/apiGetTokenHeader';
+import { checkCookieExistence } from "../api/loginApi";
 
 const InterviewConatiner = () => {
   const { interview_id } = useParams();
@@ -11,8 +12,9 @@ const InterviewConatiner = () => {
   const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
   const [scrapModal, setScrapModal] = useState(false);
+  const [LoginModal, setLoginModal] = useState(false);
 
-  // const headers = setTokenHeaders();
+  const isLogin = checkCookieExistence()
 
   const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
   const ScrapBaseUrl = process.env.REACT_APP_API_SCRAP_BASE_URL
@@ -33,21 +35,28 @@ const InterviewConatiner = () => {
     });
   }, []);
 
-  const handleScrap = () => {
+  const handleScrap = async () => {
     const headers = setTokenHeaders();
-    axios
-      .post(
-        `${ScrapBaseUrl}`,
-        {
-          interviewId: interview.interviewId,
-        },
-        {
-          headers,
-        }
-      )
-      .then((result) => {console.log(result)})
-      .catch((err) => console.log(err));
-    setScrapModal(true)
+    if(isLogin){
+      try {
+        const result = await axios.post(
+          `${ScrapBaseUrl}`,
+          {
+            interviewId: interview.interviewId,
+          },
+          {
+            headers,
+          }
+        );
+        console.log(result);
+        setScrapModal(true);
+      } catch (err) {
+        console.log(err);
+      }
+    }else{
+      setLoginModal(true)
+    }
+
   };
 
   return (
@@ -55,11 +64,12 @@ const InterviewConatiner = () => {
       interview={interview}
       contents={contents}
       navigate={navigate}
-      // token={headers['X-Auth-Token']}      
       accountId={accountId}
       handleScrap={handleScrap}
       scrapModal = {scrapModal}
       setScrapModal = {setScrapModal}
+      loginModal={LoginModal} 
+      setLoginModal={setLoginModal} 
     />
   );
 };

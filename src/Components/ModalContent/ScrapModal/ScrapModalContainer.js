@@ -39,6 +39,7 @@ const ScrapModalContainer = (props) => {
   }, []);
 
 const onMove = () =>{
+  console.log(scrapList)
   navigate(`/scraps/${scrapList[0].scrapId}`);
 };
 
