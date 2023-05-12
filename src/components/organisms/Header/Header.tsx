@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { checkCookieExistence, deleteCookie, setTokenHeaders } from '@/pages/api/login/loginCheck';
+import { checkCookieExistence, deleteCookie, getCookieValue, setTokenHeaders } from '@/pages/api/login/loginCheck';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
@@ -8,32 +8,30 @@ import Logo from 'public/logo.svg';
 import { Input } from '@/components/atoms/Input/Input';
 import { Button } from '@/components/atoms/Button/Button';
 import { LoginModal } from '@/components/molecules/LoginModal';
-import { isLogout } from '@/pages/api/login/loginProcess';
+import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
+import { Profile } from '@/components/molecules/Profile';
 
-type Props = {}
-
-const Header = (props: Props) => {
+const Header = () => {
   const [modalActive, setModalActive] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
-  const [profile, setProfile] = useState(false)
-  // const token = useSelector((state) => state.Auth.token);
   const [profileImageUrl, setProfileImageUrl] = useState(null)
-
   const router = useRouter();
-
-
-  const ProfileRef = useRef(null)
-  const UserButtonRef = useRef(null)
-  // const [loading, setLoading] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [cookie, setCookie] = useState(false);
-  let headers;
+  const [headers, setHeaders] = useState({});
 
   useEffect(() => {
     // const cookieExists = checkCookieExistence();
     setCookie(checkCookieExistence());
-    headers = setTokenHeaders();
+    // isReceiveProfileImage()
+    //   .then(response => setProfileImageUrl(response));
   }, [])
+
+  useEffect(() => {
+    if (cookie) {
+      isReceiveProfileImage()
+        .then(response => setProfileImageUrl(response))
+    }
+  }, [cookie, profileImageUrl])
   
   const linkRegisterPage = () => {
     router.push('/register');
@@ -44,22 +42,16 @@ const Header = (props: Props) => {
   }
 
   const isLogoutEvent = useCallback(async () => {
-    isLogout(headers)
-      .then(response => console.log(response))
+    isLogout()
+      .then(response => {
+        deleteCookie('authToken');
+        deleteCookie('userId');
+        deleteCookie('user');
+        setCookie(false);
+        if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) router.push('/');
+        // else window.location.reload();
+      })
       .catch(reject => console.log(reject))
-
-    // await axios
-    //   .post(process.env.NEXT_PUBLIC_API_URL + "/account/logout", {}, { headers })
-    //   .then((res) => {
-    //     deleteCookie('authToken');
-    //     deleteCookie('userId');
-    //     deleteCookie('user');
-    //     if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) router.push('/');
-    //     else window.location.reload();
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
   }, [])
 
   const openLoginPopupEvent = () => {
@@ -71,23 +63,6 @@ const Header = (props: Props) => {
   //   setCookie(cookieExists);
   //   setLoading(false);
   // };
-  // useEffect(() => {
-
-  //   function handleClickOutside(event) {
-  //     if (
-  //       UserButtonRef.current && !UserButtonRef.current.contains(event.target) && ProfileRef.current && !ProfileRef.current.contains(event.target)
-  //     ) {
-  //       setProfile(false);
-  //     }
-  //   }
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   checkCookie();
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [ProfileRef, setProfile, loading]);
 
   return (
     <header className={styles.header}>
@@ -104,23 +79,26 @@ const Header = (props: Props) => {
           <Input placeholder='기업별 면접 후기를 검색해보세요'/>
         </div>
         <div className={styles.navigation}>
-          {cookie
+          {(cookie && profileImageUrl)
             ?
               <>
-              <Button value="글쓰기" backgroundColor='blue' color='white' borderColor='0' onClickEvent={linkWritePage} image={"WRITE"} imgWidth={20} imgHeight={20} />
-              <Button value="로그아웃" onClickEvent={isLogoutEvent}/>
+                <Button value="글쓰기" backgroundColor='blue' color='white' borderColor='0' onClickEvent={linkWritePage} image={"WRITE"} imgWidth={20} imgHeight={20} />
+                <Profile profileImageUrl={profileImageUrl} logoutEvent={isLogoutEvent} />
               </>
             :
               <>
                 <Button value="회원가입" onClickEvent={linkRegisterPage}/>
                 <Button value="로그인" backgroundColor='blue' color='white' borderColor='0' onClickEvent={openLoginPopupEvent}/>
                 {modalActive
-                  && <LoginModal onClickEvent={openLoginPopupEvent}/>
+                  && <LoginModal onClickEvent={openLoginPopupEvent} active={modalActive} />
                 }
               </>
           }
         </div>
       </nav>
+      <div className={styles.mobile__search}>
+        <Input placeholder='기업별 면접 후기를 검색해보세요'/>
+      </div>
 
         {/* 
             : <>

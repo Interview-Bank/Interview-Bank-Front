@@ -84,3 +84,20 @@
   font-weight: 700;
   margin-right: 10px;
 }
+
+.font-gray {
+  color: #808080;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) { 
+  .write__create>span:first-child {
+    display: inline-block;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

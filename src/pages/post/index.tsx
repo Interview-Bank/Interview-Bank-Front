@@ -1,13 +1,14 @@
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
 import { PostTitle } from '@/components/atoms/PostTitle';
 import { PostSelect } from '@/components/atoms/PostSelect';
 import { PostBody } from '@/components/molecules/PostBody';
+import { setTokenHeaders } from '../api/login/loginCheck';
 
-function PostContainer() {
+function PostPage() {
 	const dispatch = useDispatch();
 	const router = useRouter();
 
@@ -19,12 +20,19 @@ function PostContainer() {
 			questionsId: inputId.current,
 		},
 	]);
+
+	const [headers, setHeaders] = useState();
 	const [inputSelectBox, setInputSelectBox] = useState({
 		interviewPeriod: "",
 		careerYear: "",
 		firstLevelId: "",
 		secondLevelId: "",
 	});
+
+	useEffect(() => {
+		setHeaders(setTokenHeaders());
+		// headers = setTokenHeaders();
+	},[])
 
 	const generateId = () => {
 		return inputId.current++;
@@ -174,26 +182,26 @@ function PostContainer() {
 
   return (
     <>
-    <div
-      className={inputs.length > 2 ? "post__header sticky" : "post__header"}
-    >
-      <PostTitle
-        setTitle={setTitle}
-        handleClickSubmit={handleClickSubmit}
-        postValidationCheck={postValidationCheck}
-      />
-      <PostSelect
-        inputSelectBox={inputSelectBox}
-        isChangeSelectBoxItems={isChangeSelectBoxItems}
-      />
-    </div>
-    <PostBody
-      inputs={inputs}
-      onRemove={onRemove}
-      onChange={onChange}
-      onAddInput={onAddInput}
-      handleInputLimit={handleInputLimit}
-    />
+			<div
+				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
+			>
+				<PostTitle
+					setTitle={setTitle}
+					handleClickSubmit={handleClickSubmit}
+					postValidationCheck={postValidationCheck}
+				/>
+				<PostSelect
+					inputSelectBox={inputSelectBox}
+					isChangeSelectBoxItems={isChangeSelectBoxItems}
+				/>
+			</div>
+			<PostBody
+				inputs={inputs}
+				onRemove={onRemove}
+				onChange={onChange}
+				onAddInput={onAddInput}
+				handleInputLimit={handleInputLimit}
+			/>
     <style jsx>{`
       .post__header {
         position: sticky;
@@ -212,4 +220,4 @@ function PostContainer() {
 	);
 }
 
-export default PostContainer;
+export default PostPage;

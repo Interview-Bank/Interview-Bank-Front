@@ -20,7 +20,7 @@ const WritingComponent = ({
       <div className={styles.write__content}>
 				<div className={styles.write__job}>
           <span className={styles[`font-blue`]}>{firstCategoryName}</span>
-          <span className={styles[`font-blue`]}>{secondCategoryName}</span>
+          <span className={styles[`font-gray`]}>{secondCategoryName}</span>
 				</div>
         <div className={styles.write__title}>
 					<p>{title}</p>

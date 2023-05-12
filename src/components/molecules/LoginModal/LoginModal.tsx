@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './LoginModal.module.scss';
 import Close from 'public/Icons/close.png';
 import { Button } from '@/components/atoms/Button';
@@ -11,6 +11,7 @@ import { modalSlice } from '@/redux/modalReducer';
 
 interface LoginModalProps {
   onClickEvent: () => void;
+  active: boolean;
 }
 
 interface LoginModalRequestDataProps {
@@ -18,17 +19,26 @@ interface LoginModalRequestDataProps {
   password: string;
 }
 
-const LoginModal = ({ onClickEvent }: LoginModalProps) => {
+const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const defaultValue: LoginModalRequestDataProps = {
     email: "",
     password: "",
   }
+  useEffect(() => {
+    active
+      ? document.body.style.overflow = "hidden"
+      : document.body.style.overflow = "unset"
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  },[active])
   const [loginData, setLoginData] = useState({ ...defaultValue });
   const onChange = (field: string, value: string) => {
     setLoginData((prev) => { return {...prev, [field]: value}})
   }
+
 
   const isLoginSubmit = () => {
     validationCheckForLogin()
@@ -152,13 +162,6 @@ const LoginModal = ({ onClickEvent }: LoginModalProps) => {
             </InputFromWrapper>
           </form>
           <AdditionalBox>
-            <span
-              onClick={() => {
-                navigate("/select");
-              }}
-            >
-              회원가입
-            </span>
             <div></div>
             <span
               onClick={() => {

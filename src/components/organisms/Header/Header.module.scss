@@ -31,8 +31,38 @@
       align-items: center;
       width: auto;
       height: auto;
-      button {
-        
+    }
+  }
+  .mobile__search {
+    display: none;
+  }
+}
+
+@media (max-width: 930px) {
+  .header {
+    .search {
+      input {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 155px;
+    .search {
+      display: none;
+    }
+    .mobile__search {
+      position: relative;
+      display: block;
+      input {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+      }
+      img {
+        right: 40px;
       }
     }
   }

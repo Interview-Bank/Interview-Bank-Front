@@ -12,6 +12,8 @@ interface IconProps {
       | 'NAVER'
       | 'EMAIL'
       | 'WRITE';
+    
+  
 }
 
 interface IconImageProps extends IconProps {

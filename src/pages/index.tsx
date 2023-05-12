@@ -23,7 +23,7 @@ const HomePage = ({interviewList}) => {
         <Banner />
         <HomeSearch />
         <div className="home__title">
-				  <h2>최신 글 보기</h2>
+				  <h2>최신 인터뷰 글 보기</h2>
         </div>
         <div className="home__list">
           {interviewList &&

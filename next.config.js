@@ -11,6 +11,9 @@ const nextConfig = {
   //   });
   //   return config;
   // },
+  images: {
+    domains: ['interviewbank.s3.us-west-2.amazonaws.com'],
+  }
 }
 
 module.exports = nextConfig
