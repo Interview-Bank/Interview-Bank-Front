@@ -6,6 +6,8 @@ import ScrapModalContainer from "../../Components/ModalContent/ScrapModal/ScrapM
 import { setTokenHeaders } from "../api/apiGetTokenHeader";
 import { getCookieValue } from '../api/loginApi';
 import ScrapIconUrl from "../../Assets/Icons/scrapIcon.png"
+import Modal from "../../Components/Modal/LoginModal";
+import LoginContainer from "../Login/LoginContainer";
 
 const InterviewView = ({
 	interview,
@@ -14,6 +16,8 @@ const InterviewView = ({
 	handleScrap,
 	scrapModal,
 	setScrapModal,
+	loginModal,
+	setLoginModal
 }) => {
 	const token = setTokenHeaders()["X-Auth-Token"];
 	const userId = Number(getCookieValue("userId"));
@@ -50,6 +54,15 @@ const InterviewView = ({
 								<ScrapModalContainer />
 							</ScrapModal>
 						)}
+						{loginModal && (
+							<Modal
+								CloseModal={() => {
+								setLoginModal(!loginModal);
+								}}
+							>
+								<LoginContainer />
+							</Modal>
+							)}
 					</BoardDetail>
 					<QuestionsBlock>
 						{contents.map((item, index) => (
