@@ -4,6 +4,7 @@ import { jwtUtils } from "../../utils/jwtUtils";
 import { useSelector } from "react-redux";
 import { setTokenHeaders } from "../../Pages/api/apiGetTokenHeader";
 import axios from "axios";
+import { checkCookieExistence } from "../../Pages/api/loginApi";
 
 const HeaderContainer = () => {
   const AccountBaseUrl = process.env.REACT_APP_API_ACCOUNT_BASE_URL;
@@ -21,25 +22,27 @@ const HeaderContainer = () => {
       setIsAuth(false);
     }
   }, [token]);
-
+  const isLogin = checkCookieExistence()
   const headers = setTokenHeaders();
   useEffect(() => {
-    const getmydata = async () => {
-      try {
-        console.log(headers)
-        const response = await axios.get(
-          `${AccountBaseUrl}/me`,
-          {headers}
-        );
-        console.log(response)
-        setProfileImageUrl(response.data.imageUrl)
-        return response.data.imageUrl;
-      } catch (error) {
-        console.error(error);
+    if (isLogin) {
+      const getmydata = async () => {
+        try {
+          console.log(headers)
+          const response = await axios.get(
+            `${AccountBaseUrl}/me`,
+            {headers}
+          );
+          console.log(response)
+          setProfileImageUrl(response.data.imageUrl)
+          return response.data.imageUrl;
+        } catch (error) {
+          console.error(error);
+        }
       }
+      getmydata();
     }
-    getmydata();
-  },[headers])
+  },[headers, isLogin])
   return <HeaderView 
     loginModal={LoginModal} 
     setLoginModal={setLoginModal} 
