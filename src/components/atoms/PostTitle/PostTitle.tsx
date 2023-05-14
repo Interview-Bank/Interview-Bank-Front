@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './PostTitle.module.scss';
 
 const PostTitle = ({ setTitle, handleClickSubmit }) => {
 	return (
@@ -15,7 +16,7 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 			/>
 			<div className="btn__area">
 				{/* <button className="btn-white" onClick={postValidationCheck}>임시저장</button> */}
-				<button className="btn-blue" onClick={handleClickSubmit}>
+				<button className="btn-blue" onClick={()=>handleClickSubmit()}>
 					발행하기
 				</button>
 			</div>

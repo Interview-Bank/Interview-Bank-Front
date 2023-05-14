@@ -8,6 +8,7 @@ import { isLogin } from '@/pages/api/login/loginProcess';
 import { setCookie, setCookieExpires } from '@/pages/api/login/loginCheck';
 import { useDispatch } from 'react-redux';
 import { modalSlice } from '@/redux/modalReducer';
+import AlertIconUrl from "public/Icons/alertIcon.png"
 
 interface LoginModalProps {
   onClickEvent: () => void;
@@ -26,12 +27,15 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
     email: "",
     password: "",
   }
+  const [loginError, setLoginError] = useState({
+    errorMessage: ""
+  })
   useEffect(() => {
     active
-      ? document.body.style.overflow = "hidden"
-      : document.body.style.overflow = "unset"
+      ? document.documentElement.style.overflow = "hidden"
+      : document.documentElement.style.overflow = "unset"
     return () => {
-      document.body.style.overflow = "unset"
+      document.documentElement.style.overflow = "unset"
     }
   },[active])
   const [loginData, setLoginData] = useState({ ...defaultValue });
@@ -50,11 +54,11 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           setCookie('user', response.data.nickname);
           if (router.pathname.includes('/register')) router.push('/');
           else router.reload();
-          // dispatch(modalSlice.actions.CLOSE());
         })
-        .catch(reject => console.log(reject))
+        .catch(reject =>
+          setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
+        )
   }
-  //     setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
   const linkRegisterPage = () => {
     router.push("/register");
     onClickEvent()
@@ -114,6 +118,14 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
             }}
             placeholder="비밀번호"
           />
+          {loginError.errorMessage && 
+            <div className={styles.error}>
+              <Image src={AlertIconUrl} alt='경고 아이콘' width={18} height={18}/>
+              <div className={styles.message}>
+                {loginError.errorMessage}
+              </div>
+            </div>
+          }
           <Button width='100' height='45px' backgroundColor='blue' value='로그인' color='white' onClickEvent={isLoginSubmit} />
         </div>
         <div className={styles.find__area}>
@@ -136,61 +148,6 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           </div>
         </div>
       </div>
-    {/* 
-      {({ values, handleSubmit, handleChange }) => (
-        <LoginWrapper>
-          <LoginTitle>Interview Bank</LoginTitle>
-          <form onSubmit={handleSubmit} autoComplete="off">
-            
-              {loginError.errorMessage && 
-                <ErrorMessageWrapper>
-                  <AlertIcon src = {AlertIconUrl}/>
-                  <ErrorMessage>
-                    {loginError.errorMessage}
-                  </ErrorMessage>
-                </ErrorMessageWrapper>
-              }
-              <LoginButton
-                color="primary"
-                variant="contained"
-                fullWidth
-                type="submit"
-                error={loginError.errorMessage}
-              >
-                로그인
-              </LoginButton>
-            </InputFromWrapper>
-          </form>
-          <AdditionalBox>
-            <div></div>
-            <span
-              onClick={() => {
-                navigate("/find");
-              }}
-            >
-              비밀번호 찾기
-            </span>
-          </AdditionalBox>
-          <SocialLoginBox>
-            <SocialLoginTitle>다른 계정으로 로그인</SocialLoginTitle>
-            <SocialLoginButtonWrapper>
-              <SocialLoginButton
-                onClick={handleKakaoOauth}>
-                <img src={Kakao} alt="kakaotalk" />
-              </SocialLoginButton>
-              <SocialLoginButton
-                onClick={handleGoogleOauth}>
-                <img src={Google} alt="Google" />
-              </SocialLoginButton>
-              <SocialLoginButton
-                onClick={handleNaverOauth}>
-                <img src={Naver} alt="Naver" />
-              </SocialLoginButton>
-            </SocialLoginButtonWrapper>
-          </SocialLoginBox>
-        </LoginWrapper>
-      )}
-    </Formik> */}
     </div>
   );
 }

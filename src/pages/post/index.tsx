@@ -7,6 +7,8 @@ import { PostTitle } from '@/components/atoms/PostTitle';
 import { PostSelect } from '@/components/atoms/PostSelect';
 import { PostBody } from '@/components/molecules/PostBody';
 import { setTokenHeaders } from '../api/login/loginCheck';
+import { SeoHead } from '@/components/atoms/SeoHead';
+import { modalSlice } from '@/redux/modalReducer';
 
 function PostPage() {
 	const dispatch = useDispatch();
@@ -30,7 +32,7 @@ function PostPage() {
 	});
 
 	useEffect(() => {
-		setHeaders(setTokenHeaders());
+		// setHeaders(setTokenHeaders());
 		// headers = setTokenHeaders();
 	},[])
 
@@ -51,62 +53,55 @@ function PostPage() {
 	};
 	const postValidationCheck = () => {
 		const { interviewPeriod, careerYear, firstLevelId } = inputSelectBox;
-
 		if (!title) {
-			dispatch({
-				type: "OPEN",
-				payload: { title: "제목을 입력해주세요.", content: "" },
-			});
+			dispatch(modalSlice.actions.OPEN(
+				{ title: "제목을 입력해주세요.", content: "" }
+			));
 			return false;
 		}
 		if (!interviewPeriod) {
-			dispatch({
-				type: "OPEN",
-				payload: {
+			dispatch(modalSlice.actions.OPEN(
+				{
 					title: "면접 시기가 선택되지 않았어요!",
 					content: "면접 시기를 선택해주세요.",
-				},
-			});
+				}
+			));
 			return false;
 		}
 		if (!careerYear) {
-			dispatch({
-				type: "OPEN",
-				payload: {
+			dispatch(modalSlice.actions.OPEN(
+				{
 					title: "경력이 선택되지 않았어요!",
 					content: "경력을 선택해주세요.",
-				},
-			});
+				}
+			));
 			return false;
 		}
 		if (!firstLevelId) {
-			dispatch({
-				type: "OPEN",
-				payload: {
+			dispatch(modalSlice.actions.OPEN(
+				{
 					title: "직종이 선택되지 않았어요!",
 					content: "직종을 선택해주세요.",
-				},
-			});
+				}
+			));
 			return false;
 		}
 		if (inputs.length === 0) {
-			dispatch({
-				type: "OPEN",
-				payload: {
+			dispatch(modalSlice.actions.OPEN(
+				{
 					title: "질문이 없어요!",
 					content: "최소 하나의 질문은 적어주세요.",
-				},
-			});
+				}
+			));
 			return false;
 		}
 		if (inputs.filter((current) => current.content === "").length) {
-			dispatch({
-				type: "OPEN",
-				payload: {
+			dispatch(modalSlice.actions.OPEN(
+				{
 					title: "질문이 비었어요!",
 					content: "최소 한글자 이상 입력해주세요.",
-				},
-			});
+				}
+			));
 			return false;
 		}
 		return true;
@@ -114,6 +109,7 @@ function PostPage() {
 
 	const handleClickSubmit = async () => {
 		if (postValidationCheck()) {
+			setHeaders(setTokenHeaders());
 			postInterview(headers, title, inputSelectBox, inputs)
 				.then((response) => router.push(`/interview/${response.interviewId}`))
 				.catch((reject) => console.log(reject));
@@ -181,14 +177,15 @@ function PostPage() {
   };
 
   return (
-    <>
+		<>
+			<SeoHead title='글쓰기'/>
 			<div
 				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
 					setTitle={setTitle}
 					handleClickSubmit={handleClickSubmit}
-					postValidationCheck={postValidationCheck}
+					// postValidationCheck={postValidationCheck}
 				/>
 				<PostSelect
 					inputSelectBox={inputSelectBox}

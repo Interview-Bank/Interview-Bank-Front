@@ -27,6 +27,15 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
+    modalActive
+      ? document.body.style.overflow = "hidden"
+      : document.body.style.overflow = "unset"
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [modalActive])
+
+  useEffect(() => {
     if (cookie) {
       isReceiveProfileImage()
         .then(response => setProfileImageUrl(response))

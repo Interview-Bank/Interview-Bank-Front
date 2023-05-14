@@ -1,7 +1,7 @@
-import { modalSlice } from '@/redux/modalReducer';
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Modal.module.scss';
+import { modalSlice } from '@/redux/modalReducer';
 
 interface RootState<T> {
   [x: string]: T;
@@ -18,10 +18,10 @@ const Modal = memo(() => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		active
-      ? document.body.style.overflow = "hidden"
-      : document.body.style.overflow = "unset"
+      ? document.documentElement.style.overflow = "hidden"
+      : document.documentElement.style.overflow = "unset"
     return () => {
-      document.body.style.overflow = "unset"
+      document.documentElement.style.overflow = "unset"
     }
 	},[active, title, content])
 	return (
@@ -36,7 +36,7 @@ const Modal = memo(() => {
 								{content}
 							</p>
 				}
-				<button className={styles.btn__close} onClick={()=>dispatch(modalSlice.actions.CLOSE())}>확인</button>
+				<button className={styles.btn__close} onClick={() => dispatch(modalSlice.actions.CLOSE())}>확인</button>
 			</div>
     </div>
   )

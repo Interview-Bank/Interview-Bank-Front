@@ -5,13 +5,16 @@ import styles from './RegisterForm.module.scss';
 interface RegisterFormProps {
   title: string;
   placeholder: string;
+  maxLength: number;
 }
 
-const RegisterForm = ({ title, placeholder }: RegisterFormProps) => {
+const RegisterForm = ({ title, placeholder, maxLength }: RegisterFormProps) => {
   return (
     <div className={styles.form}>
-      <h4>{title}</h4>
-      <Input placeholder={`${placeholder}`} />
+      {title &&
+        <h4>{title}</h4>
+      }
+      <Input placeholder={`${placeholder}`} maxLength={maxLength}/>
     </div>    
   )
 }

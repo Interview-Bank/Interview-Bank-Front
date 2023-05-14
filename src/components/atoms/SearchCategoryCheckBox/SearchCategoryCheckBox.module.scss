@@ -13,6 +13,10 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  label > input {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
   .arrow {
     position: absolute;
     border: 0;

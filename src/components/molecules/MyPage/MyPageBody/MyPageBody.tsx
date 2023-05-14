@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react'
 import { Pagination } from '../../Pagination';
 import { WritingComponent } from '../../WritingComponent';
@@ -6,9 +7,10 @@ import styles from './MyPageBody.module.scss';
 type Props = {}
 
 const MyPageBody = ({ totalPosts, totalPages, limit, setPage, myPostParam, boardList, isLoading }) => {
+  const router = useRouter();
   return (
     <div className={styles.page__body}>
-      <h4>작성한 게시글</h4>
+      <h4>{router.query.my === 'my-post' ? '작성한 게시글' : '작성한 답변글'}</h4>
       <div className={styles.page__content}>
         {!isLoading && boardList.length > 0 ? (
           <>

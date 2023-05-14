@@ -13,10 +13,6 @@ const Layout = ({children} :LayOutProps) => {
   const router = useRouter();
   const modal = useSelector((state: any) => state.modal);
 
-  useEffect(() => {
-
-  }, [])
-
   return (
     <div>
       <Header />

@@ -80,6 +80,34 @@
         margin-left: 0;
         margin-top: 14px;
       }
+      .error {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+      
+        width: fit-content;
+        height: fit-content;
+        align-items: center;
+      
+        margin-top: 8px;
+        margin-bottom: 12px;
+        // margin-left: 40px;
+        .message {
+          position: relative;
+        
+          width: 326px;
+          height: 21px;
+        
+          font-family: 'Noto Sans KR';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          text-align: left;
+          color: #F50D0D;
+          margin-left: 2px;
+        }
+      }
     }
     > .find__area {
       position: relative;

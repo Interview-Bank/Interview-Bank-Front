@@ -5,15 +5,17 @@ import Search from 'public/Icons/search.png';
 
 interface InputProps {
   placeholder: string;
+  maxLength: number;
 }
 
-const Input = ({placeholder}: InputProps) => {
+const Input = ({placeholder, maxLength}: InputProps) => {
   return (
     <>
       <input
         className={styles.input}
         type="text"
         placeholder={placeholder}
+        maxLength={maxLength ? maxLength : 9999}
       />
       <Image
         className={styles.image}
