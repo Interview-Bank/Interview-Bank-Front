@@ -4,6 +4,7 @@ import React from 'react'
 
 const RegisterPage = () => {
   const router = useRouter();
+  
   const handleGoogleOauth = () => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
     router.push(oauthUrl);
