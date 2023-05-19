@@ -1,5 +1,6 @@
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { Title } from '@/components/atoms/Title';
+import { InterviewTitleArea } from '@/components/molecules/Interview/InterviewTitleArea';
 import InterviewView from '@/components/molecules/InterviewView/InterviewView';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
@@ -49,8 +50,7 @@ const InterviewPage = ({ response }) => {
 		<section className='interview__area'>
 			<SeoHead title={response.title} />
 			<div className="interview__body">
-				{response.createdAt.slice(0, 10)}
-				<Title title={response.title} />
+				<InterviewTitleArea title={response.title} date={response.createdAt.slice(0, 10).replaceAll('-', '.')} accountId={response.accountId} />
 				{response.questions &&
 					response.questions.map((item, index) => (
 						<InterviewView content={item.content} />
