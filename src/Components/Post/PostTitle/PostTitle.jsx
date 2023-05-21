@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostTitle = ({ setTitle, handleClickSubmit }) => {
+const PostTitle = ({ title, setTitle, handleClickSubmit }) => {
 	return (
 		<div className="post__title">
 			<input
@@ -9,6 +9,7 @@ const PostTitle = ({ setTitle, handleClickSubmit }) => {
 				id="title"
 				placeholder="제목을 입력하세요"
 				maxLength={128}
+				value={title}
 				onChange={(e) => {
 					setTitle(e.target.value);
 				}}

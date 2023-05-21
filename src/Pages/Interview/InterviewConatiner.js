@@ -59,6 +59,24 @@ const InterviewConatiner = () => {
 
   };
 
+  const handleDelete = async () => {
+
+    if (window.confirm("해당 글을 삭제하시겠습니까?")) {
+      try {
+        const headers = setTokenHeaders();
+        await axios.delete(`${InterviewBaseUrl}/${interview_id}`, { headers });
+        window.alert("삭제되었습니다.")
+        navigate('/');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+  const handleEdit = () => {
+    navigate(`/post/${interview_id}`);
+  }
+
   return (
     <InterviewView
       interview={interview}
@@ -70,6 +88,8 @@ const InterviewConatiner = () => {
       setScrapModal = {setScrapModal}
       loginModal={LoginModal} 
       setLoginModal={setLoginModal} 
+      handleDelete={handleDelete}
+      handleEdit = {handleEdit}
     />
   );
 };

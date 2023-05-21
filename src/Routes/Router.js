@@ -26,6 +26,7 @@ const Router = () => {
       <Route path="/signup" element={<RegisterEmailContainer />} />
       <Route path="/find" element={<FindPasswordContainer />} />
       <Route path="/post" element={<PostPage />} />
+      <Route path="/post/:interview_id" element={<PostPage />} />
       <Route path="/interview/:interview_id" element={<InterviewConatiner />} />
       <Route path="/scraps/:scrap_id" element={<ScrapInterviewContainer />} />
       <Route path="/search" element={<SearchPage />} />
