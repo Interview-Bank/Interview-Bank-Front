@@ -17,7 +17,10 @@ const InterviewView = ({
 	scrapModal,
 	setScrapModal,
 	loginModal,
-	setLoginModal
+	setLoginModal,
+	handleDelete,
+	handleEdit
+
 }) => {
 	const token = setTokenHeaders()["X-Auth-Token"];
 	const userId = Number(getCookieValue("userId"));
@@ -41,8 +44,8 @@ const InterviewView = ({
 						</BoardDate>
 						{token && accountId === userId && (
 							<div>
-								<BoardDelete>삭제하기</BoardDelete>
-								<BoardEdit>수정하기</BoardEdit>
+								<BoardDelete onClick={handleDelete}>삭제하기</BoardDelete>
+								<BoardEdit onClick={handleEdit}>수정하기</BoardEdit>
 							</div>
 						)}
 						{scrapModal && (

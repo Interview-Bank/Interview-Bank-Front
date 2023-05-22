@@ -1,13 +1,22 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
+import { updateInterview } from "../api/Post/updateInterviewAPI";
 import Layout from "../../Layout/Layout";
 import PostTitle from "../../Components/Post/PostTitle/PostTitle";
 import PostSelect from "../../Components/Post/PostSelect/PostSelect";
 import PostBody from "../../Components/Post/PostBody/PostBody";
+import { getJobCategories, getFirstJobCategories, getSecondJobCategories } from "../api/Post/jobCategoryAPI";
 
 function PostContainer() {
+	const InterviewBaseUrl = process.env.REACT_APP_API_INTERVIEW_BASE_URL
+	const { interview_id } = useParams();
+
+	const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
+
+	
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -25,6 +34,42 @@ function PostContainer() {
 		firstLevelId: "",
 		secondLevelId: "",
 	});
+
+	useEffect(() => {
+		if (interview_id){
+			(async () => {
+				try {
+					const jobCategoriesArray = await getJobCategories();
+					setJobCategoriesArray(jobCategoriesArray);
+
+					const { data } = await axios.get(`${InterviewBaseUrl}/${interview_id}`);
+					setTitle(data.title)
+					const formattedQuestions = data.questions.map(question => ({
+						content: question.content,
+						questionsId: question.questionId,
+					}));
+					
+					setInputs(formattedQuestions);
+					let tempFirstLevelId = getFirstJobCategories(jobCategoriesArray).find(
+						(current) => current.name === data.jobCategory.firstLevelName
+					).id
+
+					let tempSeconLevelId = getSecondJobCategories(jobCategoriesArray, tempFirstLevelId).find(
+						(current) => current.name === data.jobCategory.secondLevelName
+					).id
+					setInputSelectBox(prevState => ({
+						...prevState,
+						interviewPeriod: data.interviewPeriod,
+						careerYear : data.careerYear,
+						firstLevelId : tempFirstLevelId,
+						secondLevelId : tempSeconLevelId
+					}));
+					}catch (error){
+						console.error(error);
+					}
+			})();
+		}
+	  }, [interview_id]);
 
 	const generateId = () => {
 		return inputId.current++;
@@ -105,10 +150,18 @@ function PostContainer() {
 	};
 
 	const handleClickSubmit = async () => {
-		if (postValidationCheck()) {
-			postInterview(title, inputSelectBox, inputs)
-				.then((response) => navigate(`/interview/${response.interviewId}`))
-				.catch((reject) => console.log(reject));
+		if (interview_id){
+			if (postValidationCheck()) {
+				updateInterview(title, inputSelectBox, inputs, interview_id)
+					.then((response) => navigate(`/interview/${interview_id}`))
+					.catch((reject) => console.log(reject));
+			}
+		}else{
+			if (postValidationCheck()) {
+				postInterview(title, inputSelectBox, inputs)
+					.then((response) => navigate(`/interview/${response.interviewId}`))
+					.catch((reject) => console.log(reject));
+			}
 		}
 	};
 
@@ -179,6 +232,7 @@ function PostContainer() {
 				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
+					title={title}
 					setTitle={setTitle}
 					handleClickSubmit={handleClickSubmit}
 					postValidationCheck={postValidationCheck}
