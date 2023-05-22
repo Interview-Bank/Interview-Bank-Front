@@ -20,7 +20,6 @@ const InterviewView = ({
 	setLoginModal,
 	handleDelete,
 	handleEdit
-
 }) => {
 	const token = setTokenHeaders()["X-Auth-Token"];
 	const userId = Number(getCookieValue("userId"));
