@@ -19,7 +19,7 @@
 
     cursor: pointer;
     button {
-      width: 110px;
+      min-width: 110px;
       height: 23px;
 
       font-size: 16px;
@@ -29,6 +29,55 @@
       border: 0;
       background-color: transparent;
       margin: 0;
+    }
+    // button:first-child {
+    // }
+    .btn {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #ccc;
+      padding: 0 16px;
+    }
+    .btn:first-child {
+      border-left: 0;
+      button {
+        width: 130px;
+      }
+      .toggle {
+        width: 40px;
+        height: 20px;
+        display: block;
+        position: relative;
+        border-radius: 30px;
+        background-color: #AAA;
+        margin-right: 6px;
+        // box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+        transition: all .2s ease-in;
+        cursor: pointer;
+        &.active {
+          background-color: #2e55e7;
+        }
+        .btn__toggle {
+          transition: all .3s ease-in;
+          // margin: 0 4px;
+          /* 버튼은 토글보다 작아야함  */
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          top: 50%;
+          left: 4px;
+          transform: translateY(-50%);
+          border-radius: 50%;
+          background: #fff;
+          &.active {
+            // right: 0;
+            left: calc(100% - 15px - 4px);
+          }
+        }
+      }
+    }
+    .btn:not(:first-child) {
+      padding-right: 0;
     }
   }
 
@@ -62,4 +111,5 @@
       }
     }
   }
+
 }

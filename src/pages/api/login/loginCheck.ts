@@ -8,11 +8,14 @@ const getCookie = (key: string) => {
 }
 
 const getCookieValue = (key: string) => {
-  const CookieValue = (document !== undefined) &&
-                      document.cookie
-                        .split("; ")
-                        .find((current) => current.startsWith(`${key}=`))
-                        .split("=")[1];
+  let CookieValue;
+  if (document !== undefined) {
+    CookieValue = document.cookie
+                    .split("; ")
+                    .find((current) => current.startsWith(`${key}=`))
+                    .split("=")[1];
+  }
+                      
   return CookieValue;
 }
 
@@ -45,7 +48,7 @@ const setTokenHeaders = () => {
   const headers = {
     "X-Auth-Token": token,
   }
-
+  
   return headers;
 }
 

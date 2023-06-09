@@ -17,6 +17,7 @@ const InterviewPage = ({ response }) => {
 	const [scrapModal, setScrapModal] = useState(false);
 	const [token, setToken] = useState("");
 	const [userId, setUserId] = useState(0);
+	const [toggle, setToggle] = useState(false);
 	
 	// const token = setTokenHeaders()["X-Auth-Token"];
 	// const userId = Number(getCookieValue("userId"));
@@ -25,10 +26,15 @@ const InterviewPage = ({ response }) => {
 		setAccountId(response.accountId);
 		setInterview(response);
 		setContents(response.questions);
+		console.log(response);
 		// setToken(setTokenHeaders()["X-Auth-Token"]);
 		// setUserId(Number(getCookieValue("userId")));
 		// userId = Number(getCookieValue("userId"));
 	}, []);
+
+	const toggleSwitch = () => {
+    setToggle(prev => !prev);
+  }
 
   // const handleScrap = () => {
   //   const headers = setTokenHeaders();
@@ -50,44 +56,19 @@ const InterviewPage = ({ response }) => {
 		<section className='interview__area'>
 			<SeoHead title={response.title} />
 			<div className="interview__body">
-				<InterviewTitleArea title={response.title} date={response.createdAt.slice(0, 10).replaceAll('-', '.')} accountId={response.accountId} />
+				<InterviewTitleArea
+					title={response.title}
+					date={response.createdAt.slice(0, 10).replaceAll('-', '.')}
+					accountId={response.accountId}
+					toggle={toggle}
+					toggleSwitch={toggleSwitch}
+				/>
 				{response.questions &&
 					response.questions.map((item, index) => (
-						<InterviewView content={item.content} />
+						<InterviewView content={item.content} key={index} />
 					)) 
 				}
-					{/* <BoardTitle>{interview.title}</BoardTitle>
-					<BoardDetail>
-						<BoardDate>
-							{moment(interview.created).add(9, "hour").format("YYYY-MM-DD")}
-						</BoardDate>
-						{token && accountId === userId && (
-							<div>
-								<BoardDelete>삭제하기</BoardDelete>
-								<BoardEdit>수정하기</BoardEdit>
-							</div>
-						)}
-						{token && accountId !== userId && (
-							<BoardScrapButton onClick={handleScrap}>
-								★ 스크랩
-							</BoardScrapButton>
-						)}
-						{scrapModal && (
-							<ScrapModal
-								CloseModal={() => {
-									setScrapModal(!scrapModal);
-								}}
-							>
-								<ScrapModalContainer />
-							</ScrapModal>
-						)}
-					</BoardDetail>
-					<QuestionsBlock>
-						{contents.map((item, index) => (
-							<li key={index}>{item.content}</li>
-						))}
-					</QuestionsBlock> */}
-				</div>
+			</div>
     </section>
   )
 }
@@ -97,7 +78,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
 		props: {
 			response: response.data
-      // response: response
     }
   };
 }

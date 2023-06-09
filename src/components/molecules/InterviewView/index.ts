@@ -1,1 +1,1 @@
-export * from './InterviewView'
+export * from './InterviewView';

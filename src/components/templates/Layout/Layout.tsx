@@ -1,3 +1,4 @@
+import { ConfirmModal } from '@/components/molecules/ConfirmModal';
 import { Modal } from '@/components/molecules/Modal';
 import { Footer } from '@/components/organisms/Footer/Footer';
 import { Header } from '@/components/organisms/Header/Header';
@@ -12,6 +13,8 @@ interface LayOutProps {
 const Layout = ({children} :LayOutProps) => {
   const router = useRouter();
   const modal = useSelector((state: any) => state.modal);
+  const confirmModal = useSelector((state: any) => state.confirmModal);
+  // const token = useSelector((state: any) => state.token);
 
   return (
     <div>
@@ -21,6 +24,7 @@ const Layout = ({children} :LayOutProps) => {
       </main>
       <Footer />
       {modal.active && <Modal />}
+      {confirmModal.active && <ConfirmModal />}
     </div>
   )
 }

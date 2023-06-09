@@ -13,6 +13,9 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  > label {
+    cursor: pointer;
+  }
   label > input {
     vertical-align: middle;
     margin-right: 8px;

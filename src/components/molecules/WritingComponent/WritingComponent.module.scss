@@ -54,6 +54,11 @@
 
 .write__create>span:first-child {
   margin-left: 0;
+  display: inline-block;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .write__create>span:first-child::before {
@@ -90,6 +95,16 @@
   font-size: 11px;
   font-weight: 700;
   margin-right: 10px;
+}
+
+@media (max-width: 1230px) { 
+  .write__create>span:first-child {
+    display: inline-block;
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 768px) { 

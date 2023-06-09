@@ -9,6 +9,8 @@ import { setCookie, setCookieExpires } from '@/pages/api/login/loginCheck';
 import { useDispatch } from 'react-redux';
 import { modalSlice } from '@/redux/modalReducer';
 import AlertIconUrl from "public/Icons/alertIcon.png"
+import { tokenSlice } from '@/redux/tokenReducer';
+import { headers } from 'next/dist/client/components/headers';
 
 interface LoginModalProps {
   onClickEvent: () => void;
@@ -52,6 +54,7 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           setCookieExpires('authToken', response.headers["x-auth-token"]);
           setCookie('userId', response.data.accountId);
           setCookie('user', response.data.nickname);
+          dispatch(tokenSlice.actions.SET({headers: {'X-Auth-Token': response.headers["x-auth-token"]}}))
           if (router.pathname.includes('/register')) router.push('/');
           else router.reload();
         })

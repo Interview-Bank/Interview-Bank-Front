@@ -18,9 +18,9 @@ const FirstSearchCategoriesCheckBox = ({
 			<label
 				htmlFor={category}
 				style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em" }}
-				onClick={(e) => isChangeCategory(category, e.target.getAttribute("name"))}
+				onClick={(e) => isChangeCategory(e.target.getAttribute('data-name'), category, e.target.getAttribute("name"))}
 			>
-				<input type="checkbox" name={name} value={category} id={category} />
+				<input type="checkbox" name={name} value={category} id={category} data-name={name} />
 				{name}
 			</label>
 			{secondJobCategories.length ? (
@@ -35,11 +35,6 @@ const FirstSearchCategoriesCheckBox = ({
 					)}
 				</button>
 			) : null}
-			<style jsx>{`
-				.check__select > label {
-					cursor: pointer;
-				}
-			`}</style>
 		</div>
 	);
 };

@@ -5,7 +5,7 @@ const bringSearchInterviewListData = async (searchParam, pageSize = 15) => {
   console.log(searchParam);
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/search`,
+        `${process.env.NEXT_PUBLIC_API_URL}/interview/search`,
         {
           params: {
             "query": searchParam.title,

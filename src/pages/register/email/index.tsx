@@ -1,7 +1,7 @@
 import { Button } from '@/components/atoms/Button';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { RegisterForm } from '@/components/molecules/RegisterForm';
-import { registerService } from '@/pages/api/register/register';
+import { registerService } from '@/pages/api/Register/register';
 import { modalSlice } from '@/redux/modalReducer';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react'
