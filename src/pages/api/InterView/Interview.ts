@@ -18,4 +18,14 @@ const isScrap = async (id: any) => {
   }
 }
 
-export { isScrap };
+const deleteInterview = async (interviewId) => {
+  const headers = setTokenHeaders();
+  try {
+    const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${interviewId}`, { headers });
+    return response;
+  } catch (error) {
+    throw new Error(`Error: ${error}`);
+  }
+}
+
+export { isScrap, deleteInterview };

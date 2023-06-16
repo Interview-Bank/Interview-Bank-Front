@@ -13,11 +13,9 @@ import { Profile } from '@/components/molecules/Profile';
 
 const Header = () => {
   const [modalActive, setModalActive] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
   const [profileImageUrl, setProfileImageUrl] = useState(null)
   const router = useRouter();
   const [cookie, setCookie] = useState(false);
-  const [headers, setHeaders] = useState({});
 
   useEffect(() => {
     // const cookieExists = checkCookieExistence();
@@ -84,9 +82,12 @@ const Header = () => {
             />
           </Link>
         </div>
-        <div className={styles.search}>
-          <Input placeholder='기업별 면접 후기를 검색해보세요'/>
-        </div>
+        <ul className={styles.search}>
+          {/* <Input placeholder='기업별 면접 후기를 검색해보세요'/> */}
+          <li>인터뷰</li>
+          <li>문의하기</li>
+          <li>인터뷰뱅크 소개</li>
+        </ul>
         <div className={styles.navigation}>
           {(cookie && profileImageUrl)
             ?

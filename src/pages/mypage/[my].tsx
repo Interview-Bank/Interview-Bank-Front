@@ -77,6 +77,7 @@ const MyPage = (props: Props) => {
             myPostParam={myPostParam}
             boardList={boardList} 
             isLoading={isLoading}
+            type={router.query.my === 'my-scrap' ? 'scraps' : 'interview'}
           />
         : 
           <MyPageSetting />

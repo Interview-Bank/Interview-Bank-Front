@@ -249,6 +249,19 @@ li {
 	margin: 0 auto;
 }
 
+.questions__area {
+	max-width: 1276px;
+	margin: 66px auto 0;
+}
+
+.scrap__btn {
+	display: flex;
+	width: 100%;
+	max-width: 1276px;
+	margin: 0 auto;
+	justify-content: flex-end;
+}
+
 .search__area {
 	min-height: calc(100vh - 60px - 151px);
 	width: 100%;

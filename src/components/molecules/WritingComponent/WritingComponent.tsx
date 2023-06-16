@@ -12,11 +12,21 @@ const WritingComponent = ({
 	firstCategoryName,
 	secondCategoryName,
 	createdAt,
+	type = 'interview',
 }) => {
-  const router = useRouter();
+	const router = useRouter();
+
+	const movePageToInterviewWrite = () => {
+		router.push(`/interview/${id}`)
+	}
+
+	const movePageToScrapWrite = () => {
+		router.push(`/scraps/${id}`)
+	}
+
 	// const [like, setLike] = useState(false);
 	return (
-    <div className={styles.write__area} onClick={() => router.push(`/interview/${id}`)}>
+    <div className={styles.write__area} onClick={() => type === 'scraps' ? movePageToScrapWrite() : movePageToInterviewWrite() }>
       <div className={styles.write__content}>
 				<div className={styles.write__job}>
           <span className={styles[`font-blue`]}>{firstCategoryName}</span>

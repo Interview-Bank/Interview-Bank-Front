@@ -20,10 +20,18 @@
     padding: 0 20px;
     justify-content: space-between;
     .search {
+      display: flex;
       position: relative;
       width: fit-content;
       height: fit-content;
       // margin-right: 234px;
+      & li {
+        margin: 0 40px 0 0;
+        cursor: pointer;
+        &:last-child {
+          margin: 0;
+        }
+      }
     }
     .navigation {
       position: relative;
