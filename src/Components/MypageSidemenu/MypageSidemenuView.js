@@ -7,10 +7,11 @@ import MyPost_UnActiveUrl from "../../Assets/Icons/MyPost_UnActive.png"
 import MyScrap_ActiveUrl from "../../Assets/Icons/MyScrap_Active.png"
 import MyScrap_UnActiveUrl from "../../Assets/Icons/MyScrap_UnActive.png"
 
-const MypageSidemenuView = ({currentMenu, onUserSettingClick, onMyPostsClick, onScrapClick}) => {
+const MypageSidemenuView = ({currentMenu, onUserSettingClick, onMyPostsClick, onScrapClick, onManagePostClick}) => {
     const [isUserSettingHovered, setIsUserSettingHovered] = useState(false);
-    const [isMyPostsHovered, setIsMyPostsHovered] = useState(false);
-    const [isMyScrapHovered, setIsMyScrapHovered] = useState(false);
+    // const [isMyPostsHovered, setIsMyPostsHovered] = useState(false);
+    // const [isMyScrapHovered, setIsMyScrapHovered] = useState(false);
+    const [isManagePostHoverd, setIsManagePostHoverd] = useState(false);
   return (
     <SidemenuContainer>
         <SidemenuTitle>
@@ -31,19 +32,19 @@ const MypageSidemenuView = ({currentMenu, onUserSettingClick, onMyPostsClick, on
                 </Sidemenu>
             </SidemenuContentWrapper>
             <SidemenuContentWrapper 
-                backgroundColor = {currentMenu === "MyPost" ? "rgba(46, 85, 231, 0.1)" : "transparent"} 
-                onClick={onMyPostsClick}
-                onMouseEnter={() => setIsMyPostsHovered(true)}
-                onMouseLeave={() => setIsMyPostsHovered(false)}
+                backgroundColor = {currentMenu === "ManagePost" ? "rgba(46, 85, 231, 0.1)" : "transparent"} 
+                onClick={onManagePostClick}
+                onMouseEnter={() => setIsManagePostHoverd(true)}
+                onMouseLeave={() => setIsManagePostHoverd(false)}
             >
                 <SidemenuIcon 
-                    src={currentMenu === "MyPost" ? MyPost_ActiveUrl : isMyPostsHovered ? MyPost_ActiveUrl :MyPost_UnActiveUrl}/>
+                    src={currentMenu === "ManagePost" ? MyPost_ActiveUrl : isManagePostHoverd ? MyPost_ActiveUrl :MyPost_UnActiveUrl}/>
                 <Sidemenu  
-                    fontColor = {currentMenu === "MyPost" ? "#2e55e7" : "#737373"} >
-                        작성한 게시글
+                    fontColor = {currentMenu === "ManagePost" ? "#2e55e7" : "#737373"} >
+                        게시글 관리
                 </Sidemenu>
             </SidemenuContentWrapper>
-            <SidemenuContentWrapper  
+            {/* <SidemenuContentWrapper  
                 backgroundColor = {currentMenu === "MyScrap" ? "rgba(46, 85, 231, 0.1)" : "transparent"} 
                 onClick={onScrapClick}
                 onMouseEnter={() => setIsMyScrapHovered(true)}
@@ -55,7 +56,7 @@ const MypageSidemenuView = ({currentMenu, onUserSettingClick, onMyPostsClick, on
                     fontColor = {currentMenu === "MyScrap" ? "#2e55e7" : "#737373"}>
                         작성한 답변글
                 </Sidemenu>
-            </SidemenuContentWrapper>
+            </SidemenuContentWrapper> */}
         </SidemenuContensContainer>
     </SidemenuContainer>
   )

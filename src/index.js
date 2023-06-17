@@ -11,13 +11,6 @@ const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-console.log("REACT_APP_API_ACCOUNT_BASE_URL:", process.env.REACT_APP_API_ACCOUNT_BASE_URL);
-console.log("REACT_APP_API_ACCOUNT_OAUTH_BASE_URL:", process.env.REACT_APP_API_ACCOUNT_OAUTH_BASE_URL);
-console.log("REACT_APP_API_INQURIRY_BASE_URL:", process.env.REACT_APP_API_INQURIRY_BASE_URL);
-console.log("REACT_APP_API_INTERVIEW_BASE_URL:", process.env.REACT_APP_API_INTERVIEW_BASE_URL);
-console.log("REACT_APP_API_JOBCATEGORY_BASE_URL:", process.env.REACT_APP_API_JOBCATEGORY_BASE_URL);
-console.log("REACT_APP_API_SCRAP_BASE_URL:", process.env.REACT_APP_API_SCRAP_BASE_URL);
-
 root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
