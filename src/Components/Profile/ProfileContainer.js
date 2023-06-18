@@ -28,19 +28,19 @@ const ProfileContainer = ({profileImageUrl}) => {
       });
   };
 
-  const onScrapClick = () => {
-    navigate("/mypage/my-scrap");
-  };
+  const onProfileClick = () => {
+    navigate("mypage/usersetting")
+  }
 
-  const onMyPostsClick = () => {
-    navigate("/mypage/my-posts");
+  const onMyInterviewClick = () => {
+    navigate("/mypage/manage-posts");
   };
 
   return (
     <ProfileView
       onLogoutClick={onLogoutClick}
-      onScrapClick={onScrapClick}
-      onMyPostsClick={onMyPostsClick}
+      onProfileClick = {onProfileClick}
+      onMyInterviewClick={onMyInterviewClick}
       UserNickname = {UserNickname}
       navigate = {navigate}
       profileImageUrl = {profileImageUrl}

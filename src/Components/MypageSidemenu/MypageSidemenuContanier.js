@@ -14,12 +14,17 @@ const MypageSidemenuContanier = (props) => {
     const onScrapClick = () => {
         navigate("/mypage/my-scrap");
       };
+
+    const onManagePostClick = () => {
+        navigate("/mypage/manage-posts")
+    }
   return (
     <MypageSidemenuView
         currentMenu = {props.currentMenu}
         onUserSettingClick = {onUserSettingClick}
         onMyPostsClick = {onMyPostsClick}
         onScrapClick = {onScrapClick}
+        onManagePostClick = {onManagePostClick}
        />
   )
 }

@@ -16,6 +16,7 @@ import UserSettingContainer from "../Pages/MyPage/UserSetting/UserSettingContain
 import MyPostContainer from "../Pages/MyPage/MyPost/MyPostContainer";
 import MyScrapContainer from "../Pages/MyPage/MyScrap/MyScrapContainer";
 import ResetPasswordContainer from "../Pages/ResetPassword/ResetPasswordContainer";
+import ManagePostContainer from "../Pages/MyPage/ManagePost/ManagePostContainer";
 
 
 const Router = () => {
@@ -35,6 +36,7 @@ const Router = () => {
       <Route path="/oauth2/naver/redirect" element={<NaverSocialLogin/>}/>
       <Route path="/oauth2/kakao/redirect" element={<KakaoSocialLogin/>}/>
       <Route path="/mypage/usersetting" element = {<UserSettingContainer/>}/>
+      <Route path="/mypage/manage-posts" element = {<ManagePostContainer/>}/>
       <Route path="/mypage/my-posts" element = {<MyPostContainer/>}/>
       <Route path="/mypage/my-scrap" element = {<MyScrapContainer/>}/>
       <Route path="/reset-password" element = {<ResetPasswordContainer/>}/>
