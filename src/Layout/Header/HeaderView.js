@@ -48,12 +48,13 @@ const HeaderView = ({ loginModal, setLoginModal, profile, setProfile, profileIma
         <LogoBox>
           <img src={Logo} alt="logo" onClick={() => navigate("/")} />
         </LogoBox>
-        <SearchBox>
-          <SearchInput />
-          <img src={Search} alt="search" />
-        </SearchBox>
+        <MenuWrapper>
+          <MenuContent onClick = {() => navigate("/search")}>인터뷰</MenuContent>
+          <MenuContent onClick = {() => navigate("/inquiry")}>문의하기</MenuContent>
+          <MenuContent>인터뷰뱅크 소개</MenuContent>
+        </MenuWrapper>
         <NavigationBox>
-        {loading === false && // 로딩 상태가 false일 때만 내부 컴포넌트를 렌더링합니다.
+        {loading === false &&
           (!cookie
             ? <>
                 <RegisterPageButton
@@ -126,11 +127,13 @@ const HeaderWrapper = styled.div`
 const HeaderContents = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   max-width: 1276px;
   height: 100%;
-  margin: 0 auto;
   align-items: center;
+
+  padding: 0 320px;
 `;
 
 const LogoBox = styled.div`
@@ -141,8 +144,37 @@ const LogoBox = styled.div`
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  margin-right: 140px;
+
 `;
+
+const MenuWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 50px;
+
+  width: fit-content;
+  height: 20px;
+
+
+`
+
+const MenuContent = styled.div`
+  width: fit-content;
+  height: 20px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #252525;
+  white-space: nowrap;
+  cursor: pointer;
+`
 
 const NavigationBox = styled.div`
   position: relative;
@@ -229,32 +261,6 @@ const ProfilePhoto = styled.img`
 
 const ProfileWrapper = styled.div`
   position: fixed;
-`;
-
-const SearchBox = styled.div`
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-
-  margin-right: 234px;
-  > img {
-    position: absolute;
-    width: 21px;
-    top: 12px;
-    right: 12px;
-    margin: 0;
-  }
-`;
-
-const SearchInput = styled.input`
-  box-sizing: border-box;
-  position: relative;
-  width: calc(480px - 28px);
-  height: 48px;
-  border: 2px solid rgb(46, 85, 231);
-  border-radius: 26px;
-  padding-left: 28px;
-  outline: 0;
 `;
 
 const ProfilePhotoPlaceholder = styled.div`
