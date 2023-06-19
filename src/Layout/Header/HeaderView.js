@@ -127,13 +127,13 @@ const HeaderWrapper = styled.div`
 const HeaderContents = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 80px;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
   max-width: 1276px;
   height: 100%;
   align-items: center;
-
-  padding: 0 320px;
+  margin : 0 auto;
 `;
 
 const LogoBox = styled.div`
