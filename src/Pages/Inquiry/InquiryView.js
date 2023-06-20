@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
 import Layout from "../../Layout/Layout";
-
+//2023-06-20 : 
+// 이메일 errmsg랑 각 input이 없는 경우에 따른 modal 창(비정상 flow)
+// 정상 flow - 문의하기 완료되었다는 modal창 띄우고 api 호출
 
 const InquiryView = ({
   InquiryTypeList,
@@ -16,10 +18,16 @@ const InquiryView = ({
     setInquiryContents,
     attachedFile,
     setAttachedFile,
+    isEmailValid,
     emailErrMsg,
     onChangeEmail,
     handleInputLimit,
-    handleClidkSubmit}) => {
+    getRootProps, 
+    getInputProps, 
+    isDragActive,
+    handleClidkSubmit
+  }) => {
+    console.log(emailErrMsg)
   return (
     <>
       <Layout>
@@ -52,6 +60,9 @@ const InquiryView = ({
                   placeholder="이메일 주소를 입력해주세요."
                   onChange={handleInputLimit(254)}
                   autoComplete="off"/>
+                <ErrMsg className={isEmailValid ? "success" : "error"}>
+                  {emailErrMsg}
+                </ErrMsg>
               </ContentWrapper>
               <ContentWrapper>
                 <Title>제목을 입력해주세요.</Title>
@@ -75,7 +86,14 @@ const InquiryView = ({
               </ContentWrapper>
               <ContentWrapper>
                 <Title>첨부파일</Title>
-                <AttachedFile></AttachedFile>
+                <AttachedFile 
+                  isDragActive={isDragActive}
+                 {...getRootProps()}>
+                  <AttachedFileInput {...getInputProps()} />
+                    <span className='blue'>첨부파일 추가</span>
+                    &nbsp;
+                    <span> 또는 여기로 드래그</span>
+                </AttachedFile>
               </ContentWrapper>
             </InquiryContentWrapper>
             <SubmitBtn>문의하기</SubmitBtn>
@@ -217,6 +235,23 @@ const EmailInput = styled.input`
   }
 `;
 
+const ErrMsg = styled.div`
+  border: none;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: start;
+  &.success {
+    display: none;
+  }
+  &.error {
+    color: red;
+
+    display: block;
+  }
+`;
+
 const TitleInput = styled.input`
   box-sizing: border-box;
 
@@ -293,10 +328,73 @@ const ContentInput = styled.textarea`
 `;
 
 const AttachedFile = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 83px;
+
+  background: #FFFFFF;
+  border: 1px solid ${props => props.isDragActive ? '#2E55E7' : '#D9D9D9'};  border-radius: 8px;
+
+  cursor: pointer;
+
+  #active{
+    border: 1px solid #2E55E7;
+  }
+
+  :hover{
+    border: 1px solid #2E55E7;
+  }
+
+  & span{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+
+    color: #737373;
+  }
+  & span.blue {
+      color: #2E55E7;
+    }
+`;
+
+const AttachedFileInput = styled.input`
 
 `;
 
-const SubmitBtn = styled.div`
+const SubmitBtn = styled.button`
+  position: relative;
+  width: 84px;
+  height: 35px;
+  background: #2E55E7;
+  border : none;
+  border-radius: 4px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+
+  color: #FFFFFF;
+
+  cursor: pointer;
+
+  margin : 0 auto;
+  margin-top: 60px;
 
 `;
 export default InquiryView
