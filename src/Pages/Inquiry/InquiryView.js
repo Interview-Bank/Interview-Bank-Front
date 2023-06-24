@@ -21,7 +21,8 @@ const InquiryView = ({
     isEmailValid,
     emailErrMsg,
     onChangeEmail,
-    handleInputLimit,
+    onChangeTitle,
+    onChangeContent,
     getRootProps, 
     getInputProps, 
     isDragActive,
@@ -58,7 +59,7 @@ const InquiryView = ({
                   id="email"
                   type="text"
                   placeholder="이메일 주소를 입력해주세요."
-                  onChange={handleInputLimit(254)}
+                  onChange={onChangeEmail}
                   autoComplete="off"/>
                 <ErrMsg className={isEmailValid ? "success" : "error"}>
                   {emailErrMsg}
@@ -70,7 +71,7 @@ const InquiryView = ({
                   id="title"
                   type="text"
                   placeholder="제목을 입력해주세요."
-                  onChange={handleInputLimit(128)}
+                  onChange={onChangeTitle}
                   autoComplete="off"/>
               </ContentWrapper>
               <ContentWrapper>
@@ -80,7 +81,7 @@ const InquiryView = ({
                     id="content"
                     type="text"
                     placeholder="내용을 입력해주세요."
-                    onChange={handleInputLimit(65535)}
+                    onChange={onChangeContent}
                     autoComplete="off"/>
                 </ContentInputWrapper>
               </ContentWrapper>
@@ -96,7 +97,7 @@ const InquiryView = ({
                 </AttachedFile>
               </ContentWrapper>
             </InquiryContentWrapper>
-            <SubmitBtn>문의하기</SubmitBtn>
+            <SubmitBtn onClick={handleClidkSubmit}>문의하기</SubmitBtn>
             </InquiryWrapper>
         </InquiryContainer>
       </Layout>
