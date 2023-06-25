@@ -5,8 +5,8 @@ import Image from 'next/image';
 
 const Banner = () => {
   return (
-    <div className={styles.banner__area}>
-      <div className={styles.banner}>
+    <div className={styles.banner}>
+      <div className={styles.banner__area}>
         <h1>
           대기업 면접 정보<br />
           인터뷰 뱅크에서!

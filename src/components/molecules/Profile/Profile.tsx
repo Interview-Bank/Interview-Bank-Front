@@ -5,8 +5,7 @@ import styles from './Profile.module.scss';
 
 export interface ProfileProps {
   profileImageUrl: string;
-  logoutEvent: () => void;
-  setProfile: () => void;
+  logoutEvent?: () => void;
 }
 
 const Profile = ({ profileImageUrl, logoutEvent }: ProfileProps) => {

@@ -36,7 +36,15 @@ const MyPageBody = ({ totalPosts, totalPages, limit, setPage, myPostParam, board
               }
             </div>
           </>
-        ):( null)}
+        ) : (
+            <div className={styles.empty}>
+              <h4>
+                조건에 맞는 결과가 없습니다.
+                <br />
+                다른 키워드로 검색하시거나, 필터 옵션을 변경해 주세요.
+              </h4>
+            </div>
+        )}
       </div>
     </div>
   )

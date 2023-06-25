@@ -18,6 +18,8 @@ const InterviewPage = ({ response }) => {
 	const [token, setToken] = useState("");
 	const [userId, setUserId] = useState(0);
 	const [toggle, setToggle] = useState(false);
+
+	console.log(response)
 	
 	// const token = setTokenHeaders()["X-Auth-Token"];
 	// const userId = Number(getCookieValue("userId"));

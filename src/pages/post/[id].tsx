@@ -10,7 +10,7 @@ import { setTokenHeaders } from '../api/login/loginCheck';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
 
-function PostPage() {
+const PostPage = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 
@@ -34,7 +34,8 @@ function PostPage() {
 	useEffect(() => {
 		// setHeaders(setTokenHeaders());
 		// headers = setTokenHeaders();
-	},[])
+	}, [])
+	
 
 	const generateId = () => {
 		return inputId.current++;

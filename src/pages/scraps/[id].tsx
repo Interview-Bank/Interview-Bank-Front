@@ -97,10 +97,9 @@ const ScrapPage = ({response}) => {
         ? (item.scrapAnswerResponseList[0].content === null ? "" : item.scrapAnswerResponseList[0].content)
         : inputValues[index];
       sendScrapData(item, updateContent, router.query.id)
-        .then(response => console.log(response))
+        .then(response => router.push(`/scraps/${router.query.id}`))
         .catch(reject => console.log(reject))
     });
-    router.push(`/scraps/${router.query.id}`);
   }
 
   return (

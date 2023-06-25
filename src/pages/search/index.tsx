@@ -10,8 +10,8 @@ import { getCareerYearNameFromValue } from '../api/getCareerYearName';
 import { CareerYear, InterviewPeriod } from '../api/Post/PostSelectObject';
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
-import { SearchSelectBox } from '@/components/atoms/SearchSelectBox/SearchSelectBox';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
+import { Select } from '@/components/atoms/Select';
 
 const SearchPage = () => {
   const today = new Date();
@@ -105,6 +105,7 @@ const SearchPage = () => {
 				};
 			});
 		}
+
 	}, []);
 
 	const isChangeCreatedDateRadio = useCallback((value) => {
@@ -198,7 +199,7 @@ const SearchPage = () => {
 						<SearchItem>
 							<SearchItemArea>
 								<SearchLeftTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
-								<SearchSelectBox
+								<Select
 									selectTitle={
 										searchParam.careerYear === ""
 											? "경력"
@@ -212,7 +213,7 @@ const SearchPage = () => {
 						<SearchItem>
 							<SearchItemArea>
 								<SearchLeftTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
-								<SearchSelectBox
+								<Select
 									selectTitle={
 										searchParam.interviewPeriod === ""
 											? "면접 시기"
