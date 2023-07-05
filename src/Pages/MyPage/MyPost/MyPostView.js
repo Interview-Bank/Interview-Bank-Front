@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import Layout from "../../../Layout/Layout";
-import MypageSidemenuContanier from "../../../Components/MypageSidemenu/MypageSidemenuContanier";
+
 import MyPostComponent from "../../../Layout/MyPostList/MyPostComponent";
 import Pagination from "../../../Components/Pagination/Pagination";
 
@@ -9,14 +8,9 @@ const MyPostView = ({ totalPosts, totalPages, limit, setPage, myPostParam, board
   console.log(boardList)
   console.log(boardList.length)
   return (
-    <Layout>
       <MyPostLayout>
         <MyPostsContainer>
-          <MypageSidemenuContanier currentMenu = "MyPost"/>
           <MyPostWrapper>
-            <MyPostsTitle>
-              작성한 게시글
-            </MyPostsTitle>
             <MyPostsBody>
             {!isLoading && boardList.length > 0 ? (
               <>
@@ -47,20 +41,16 @@ const MyPostView = ({ totalPosts, totalPages, limit, setPage, myPostParam, board
           </MyPostWrapper>
         </MyPostsContainer>
       </MyPostLayout>
-    </Layout>
   );
 };
 
 const MyPostLayout = styled.div`
   display: flex; 
   width: 100%;
-  min-height: 100vh; 
+  min-height: 90vh; 
   justify-content: center; 
-  top : 50px;
-
 
   margin : 0 auto;
-  padding-top: 50px;
   
 `;
 const MyPostsContainer = styled.div`
@@ -84,28 +74,12 @@ const MyPostWrapper = styled.div`
   max-width: 1100px;
 `;
 
-const MyPostsTitle = styled.div`
-  position: relative;
-  width: 160px;
-  height: 35px;
-
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 35px;
-
-
-  color: #000000;
-`;
-
 const MyPostsBody = styled.div`
   width: 100%;
   max-width: 1100px;
   height: 100%;
   margin: 0 auto 20px;
-  margin-top: 50px;
+
   display: flex;
   flex-direction: column;
 `;

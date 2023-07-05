@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 
-const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname, navigate, profileImageUrl }) => {
+const ProfileView = ({ onLogoutClick, onProfileClick, onMyInterviewClick, UserNickname, navigate, profileImageUrl }) => {
   return (
     <ProfileContainer>
       <Triangle/>
@@ -26,11 +26,11 @@ const ProfileView = ({ onLogoutClick, onScrapClick, onMyPostsClick, UserNickname
           </UserNicknameWrapper>
         </UserInfo>
         <ProfileMenuWrapper>
-          <ProfileMenu onClick={onMyPostsClick}>
-            작성한 게시글
+          <ProfileMenu onClick={onProfileClick}>
+            프로필
           </ProfileMenu>
-          <ProfileMenu type="button" onClick={onScrapClick}>
-            작성한 답변글
+          <ProfileMenu type="button" onClick={onMyInterviewClick}>
+            내 인터뷰
           </ProfileMenu>
           <ProfileMenu type="button" onClick={onLogoutClick}>
             로그아웃
