@@ -28,7 +28,6 @@ const InquiryView = ({
     isDragActive,
     handleClidkSubmit
   }) => {
-    console.log(emailErrMsg)
   return (
     <>
       <Layout>

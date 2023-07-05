@@ -39,14 +39,12 @@ const InquiryContainer = () => {
 			});
 
     } else {
-      console.log(acceptedFiles);
       setAttachedFile(acceptedFiles)
     }
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   const validateEmail = (email) => {
-    console.log(email)
     return email
       .toLowerCase()
       .match(
@@ -146,23 +144,26 @@ const InquiryContainer = () => {
 			});
 
       const formData = new FormData();
-      if (attachedFile){
-        console.log(attachedFile)
-        formData.append('file', attachedFile);
-      }
-
       const inquiryRequest = {
         content: inquiryContents,
         email: userEmail,
         title: inquiryTitle,
       };
+      const json = JSON.stringify(inquiryRequest);
+      const blob = new Blob([json], { type: 'application/json' });
 
-      formData.append('inquiryRequest', JSON.stringify(inquiryRequest));
+      formData.append('inquiryRequest', blob);
+
+      if (attachedFile){
+        formData.append('file', attachedFile[0]);
+      }
 
       try {
-        const response = await axios.post(`${InquiryUrl}`, 
-        formData
-        )
+        const response = await axios.post(InquiryUrl, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         console.log(response)
       } catch (error) {
         console.log(error);
