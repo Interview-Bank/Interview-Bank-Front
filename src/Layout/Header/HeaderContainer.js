@@ -42,7 +42,7 @@ const HeaderContainer = () => {
       }
       getmydata();
     }
-  },[headers, isLogin])
+  },[AccountBaseUrl, headers, isLogin])
   return <HeaderView 
     loginModal={LoginModal} 
     setLoginModal={setLoginModal} 

@@ -49,7 +49,7 @@ const Modal = ({ modal }) => {
 					left: 50%;
 					background-color: white;
 					width: 100%;
-					max-width: calc(360px - 80px);
+					max-width: calc(360px - 70px);
 					// height: calc(100% - 80px);
 					max-height: 275px;
 					z-index: 9;

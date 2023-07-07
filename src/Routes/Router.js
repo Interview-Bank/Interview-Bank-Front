@@ -16,8 +16,8 @@ import UserSettingContainer from "../Pages/MyPage/UserSetting/UserSettingContain
 import MyPostContainer from "../Pages/MyPage/MyPost/MyPostContainer";
 import MyScrapContainer from "../Pages/MyPage/MyScrap/MyScrapContainer";
 import ResetPasswordContainer from "../Pages/ResetPassword/ResetPasswordContainer";
+import InquiryContainer from "../Pages/Inquiry/InquiryContainer";
 import ManagePostContainer from "../Pages/MyPage/ManagePost/ManagePostContainer";
-
 
 const Router = () => {
   return (
@@ -40,7 +40,7 @@ const Router = () => {
       <Route path="/mypage/my-posts" element = {<MyPostContainer/>}/>
       <Route path="/mypage/my-scrap" element = {<MyScrapContainer/>}/>
       <Route path="/reset-password" element = {<ResetPasswordContainer/>}/>
-
+      <Route path="/inquiry" element = {<InquiryContainer/>}/>
 
     </Routes>
   );
