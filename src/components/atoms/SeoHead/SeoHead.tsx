@@ -21,4 +21,4 @@ const SeoHead = ({title}: HeadProps) => {
   )
 }
 
-export { SeoHead }
+export { SeoHead };
