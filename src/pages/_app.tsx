@@ -1,5 +1,6 @@
 import Layout from '@/components/templates/Layout/Layout'
 import '@/styles/globals.css';
+import '@/styles/post.scss';
 import type { AppProps } from 'next/app'
 import { wrapper } from '../redux/rootReducer';
 

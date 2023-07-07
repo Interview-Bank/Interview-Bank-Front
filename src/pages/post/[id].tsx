@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
-import { PostTitle } from '@/components/atoms/PostTitle';
+import { PostTitle } from '@/components/molecules/PostTitle';
 import { PostSelect } from '@/components/atoms/PostSelect';
 import { PostBody } from '@/components/molecules/PostBody';
 import { setTokenHeaders } from '../api/login/loginCheck';
@@ -184,6 +184,7 @@ const PostPage = () => {
 				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
+					title={title}
 					setTitle={setTitle}
 					handleClickSubmit={handleClickSubmit}
 					// postValidationCheck={postValidationCheck}

@@ -1,8 +1,10 @@
 import React from 'react'
 
-type Props = {}
+interface LabelProps {
+  text: string;
+}
 
-const Label = ({ text }) => {
+const Label = ({ text }: LabelProps) => {
   return (
     <span>{text}</span>
   )

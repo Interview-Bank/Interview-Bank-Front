@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
-import { PostTitle } from '@/components/atoms/PostTitle';
+import { PostTitle } from '@/components/molecules/PostTitle';
 import { PostSelect } from '@/components/atoms/PostSelect';
 import { PostBody } from '@/components/molecules/PostBody';
 import { setTokenHeaders } from '../api/login/loginCheck';
@@ -15,7 +15,7 @@ function PostPage() {
 	const router = useRouter();
 
 	const inputId = useRef(0);
-	const [title, setTitle] = useState("");
+	const [title, setTitle] = useState({ title: "" });
 	const [inputs, setInputs] = useState([
 		{
 			content: "",
@@ -30,6 +30,12 @@ function PostPage() {
 		firstLevelId: "",
 		secondLevelId: "",
 	});
+
+	const changeTitleValue = (name: string, value: string) => {
+		setTitle((prev) => {
+			return { ...prev, [name]: value };
+		})
+	}
 
 	useEffect(() => {
 		// setHeaders(setTokenHeaders());
@@ -107,7 +113,7 @@ function PostPage() {
 		return true;
 	};
 
-	const handleClickSubmit = async () => {
+	const clickPostInterview = async () => {
 		if (postValidationCheck()) {
 			setHeaders(setTokenHeaders());
 			postInterview(headers, title, inputSelectBox, inputs)
@@ -177,15 +183,16 @@ function PostPage() {
   };
 
   return (
-		<>
+		<section className='post'>
 			<SeoHead title='글쓰기'/>
 			<div
 				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
-					setTitle={setTitle}
-					handleClickSubmit={handleClickSubmit}
-					// postValidationCheck={postValidationCheck}
+					title={title.title}
+					type='I'
+					changeTitleValue={changeTitleValue}
+					clickPostInterview={clickPostInterview}
 				/>
 				<PostSelect
 					inputSelectBox={inputSelectBox}
@@ -213,7 +220,7 @@ function PostPage() {
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
       }
     `}</style>
-    </>
+    </section>
 	);
 }
 

@@ -47,15 +47,15 @@ const HomePage = ({interviewList}) => {
 
 export default HomePage;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await axios.get(`https://bstaging.interviewbank.net/interview`, { params: { page: 0, size: 12 } });
-  return {
-		props: {
-			interviewList: response.data.interviews
-      // response: response
-    }
-  };
-}
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const response = await axios.get(`https://bstaging.interviewbank.net/interview`, { params: { page: 0, size: 12 } });
+//   return {
+// 		props: {
+// 			interviewList: response.data.interviews
+//       // response: response
+//     }
+//   };
+// }
 
 // export default function Home() {
   

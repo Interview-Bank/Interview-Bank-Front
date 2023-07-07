@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { HtmlHTMLAttributes, useState } from "react";
 import ArrowDown from "public/Icons/arrow_down.png";
 import ArrowUp from "public/Icons/arrow_up.png";
 import styles from './Select.module.scss';
 import Image from 'next/image';
 
+interface SelectProps {
+	selectTitle: string;
+	selectArray: [];
+	isChangeSelectBoxItems: (name: any) => void;
+}
+
 const Select = ({
 	selectTitle,
 	selectArray,
 	isChangeSelectBoxItems,
-}) => {
+}: SelectProps) => {
 	const [selectActive, setSelectActive] = useState(false);
+
 	return (
 		<ul
 			className={selectActive ? `${styles.ul__select} ${styles.active}` : styles.ul__select}
-			onClick={() => {
-				setSelectActive((prev) => !prev);
-			}}
+			onClick={() => setSelectActive((prev) => !prev)}
 		>
 			<p>{selectTitle}</p>
 			<div
@@ -23,7 +28,7 @@ const Select = ({
 			>
 				<p
 					data-id=""
-					onClick={(e) => isChangeSelectBoxItems(e.target.getAttribute("data-id"))}
+					onClick={(e) => isChangeSelectBoxItems(e.currentTarget.getAttribute("data-id"))}
 				>
 					선택하세요
 				</p>
@@ -33,7 +38,7 @@ const Select = ({
 							key={current.id}
 							data-id={current.id}
 							onClick={(e) =>
-								isChangeSelectBoxItems(e.target.getAttribute("data-id"))
+								isChangeSelectBoxItems(e.currentTarget.getAttribute("data-id"))
 							}
 						>
 							{current.name}

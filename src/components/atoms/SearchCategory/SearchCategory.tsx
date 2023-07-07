@@ -1,7 +1,7 @@
 import { getFirstJobCategories, getJobCategories, getSecondJobCategories } from '@/pages/api/Post/jobCategoryAPI';
 import React, { useEffect, useState } from 'react';
 import { SearchCategoryCheckBox } from '../SearchCategoryCheckBox';
-import { SearchLeftTitle } from '../SearchLeftTitle';
+import { SearchLeftTitle } from '../BoxTitle';
 
 const SearchCategory = ({ isChangeCategory, resetSearchParams }) => {
   const [jobCategoriesArray, setJobCategoriesArray] = useState([]);

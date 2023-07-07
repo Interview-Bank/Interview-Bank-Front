@@ -1,6 +1,13 @@
 
 
-const Checkbox = ({category, name, categoryDivide, isChangeCategory}) => {
+interface CheckBoxProps {
+	category: string;
+	name: string;
+	categoryDivide: string;
+	isChangeCategory: (dataName: string, categroy: string, name: string) => {};
+}
+
+const CheckBox = ({category, name, categoryDivide, isChangeCategory}: CheckBoxProps) => {
   return (
     <li onClick={(e) => isChangeCategory(e.target.getAttribute("data-name"), category, e.target.getAttribute("name"))}>
 			<label
@@ -20,4 +27,4 @@ const Checkbox = ({category, name, categoryDivide, isChangeCategory}) => {
   )
 }
 
-export { Checkbox };
+export { CheckBox };

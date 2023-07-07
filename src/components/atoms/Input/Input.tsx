@@ -1,32 +1,33 @@
-import Image from 'next/image';
 import React from 'react'
 import styles from './Input.module.scss';
-import Search from 'public/Icons/search.png';
 
 interface InputProps {
+  name: string;
+  value: string;
+  type: string;
   placeholder: string;
   maxLength: number;
-  name: string;
-  onChange: (name: string, value: string) => void;
-  type: string;
+  onChangeEvent: (name: string, value: string) => void;
 }
 
-const Input = ({placeholder, maxLength, name, onChange, type}: InputProps) => {
+const Input = ({
+  name,
+  value,
+  type = 'text',
+  placeholder,
+  maxLength,
+  onChangeEvent
+}: InputProps) => {
   return (
-    <>
-      <input
-        className={styles.input}
-        type={type}
-        placeholder={placeholder}
-        onChange={(e)=>{onChange(name, e.target.value)}}
-        maxLength={maxLength ? maxLength : 9999}
-      />
-      <Image
-        className={styles.image}
-        src={Search}
-        alt="search"
-      />
-    </>
+    <input
+      className={styles.input}
+      name={name}
+      value={value}
+      type={type}
+      placeholder={placeholder}
+      maxLength={maxLength ? maxLength : 9999}
+      onChange={(e)=>{onChangeEvent(name, e.target.value)}}
+    />
   )
 }
 

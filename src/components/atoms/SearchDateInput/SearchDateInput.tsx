@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarIcon from 'public/Icons/calendar.png'
-import { SearchLeftTitle } from '../SearchLeftTitle';
+import { SearchLeftTitle } from '../BoxTitle';
 import { Radio } from '../Radio';
 import Image from 'next/image';
 import styles from './SearchDateInput.module.scss';

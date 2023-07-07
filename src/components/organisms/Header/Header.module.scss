@@ -8,10 +8,10 @@
   border-bottom: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.2);
   z-index: 7;
-  .nav__bar {
+
+  .nav {
     display: flex;
     z-index: 7;
-    // flex-direction: row;
     width: 100%;
     max-width: calc(1276px + (20px * 2));
     height: 80px;
@@ -19,26 +19,42 @@
     align-items: center;
     padding: 0 20px;
     justify-content: space-between;
+
     .search {
       display: flex;
-      position: relative;
-      width: fit-content;
-      height: fit-content;
-      // margin-right: 234px;
-      & li {
+
+      > li {
         margin: 0 40px 0 0;
         cursor: pointer;
+
         &:last-child {
           margin: 0;
         }
       }
     }
-    .navigation {
+
+    .nav__menu {
       position: relative;
       display: flex;
       align-items: center;
-      width: auto;
-      height: auto;
+
+      &.login {
+
+        button {
+
+          &:first-child {
+            border: 1px solid #5C5C5C;
+            color: #5C5C5C;
+            background-color: #f9f9f9;
+          }
+        }
+      }
+
+      button {
+        border: 0;
+        color: #fff;
+        background-color: #2e55e7;
+      }
     }
   }
   .mobile__search {

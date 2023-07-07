@@ -5,11 +5,10 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
-import { Input } from '@/components/atoms/Input/Input';
-import { Button } from '@/components/atoms/Button/Button';
 import { LoginModal } from '@/components/molecules/LoginModal';
 import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
 import { Profile } from '@/components/molecules/Profile';
+import { Button, Input } from '@/components/atoms';
 
 const Header = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -65,16 +64,10 @@ const Header = () => {
     setModalActive((prev)=>!prev);
   }
 
-  // const checkCookie = () => {
-  //   const cookieExists = checkCookieExistence();
-  //   setCookie(cookieExists);
-  //   setLoading(false);
-  // };
-
   return (
     <header className={styles.header}>
-      <nav className={styles.nav__bar}>
-        <div className={styles.logo}>
+      <nav className={styles.nav}>
+        <div className={styles.nav__logo}>
           <Link href="/">
             <Image
               src={Logo} alt="logo"
@@ -83,22 +76,27 @@ const Header = () => {
           </Link>
         </div>
         <ul className={styles.search}>
-          {/* <Input placeholder='기업별 면접 후기를 검색해보세요'/> */}
           <li>인터뷰</li>
           <li>문의하기</li>
           <li>인터뷰뱅크 소개</li>
         </ul>
-        <div className={styles.navigation}>
+        <div className={(cookie && profileImageUrl) ? styles.nav__menu : `${styles.nav__menu} ${styles.login}`}>
           {(cookie && profileImageUrl)
             ?
               <>
-                <Button value="글쓰기" backgroundColor='blue' color='white' borderColor='0' onClickEvent={linkWritePage} image={"WRITE"} imgWidth={20} imgHeight={20} />
+                <Button
+                  value="글쓰기"
+                  onClickEvent={linkWritePage}
+                  image={"WRITE"}
+                  imgWidth={20}
+                  imgHeight={20}
+                />
                 <Profile profileImageUrl={profileImageUrl} logoutEvent={isLogoutEvent} />
               </>
             :
               <>
                 <Button value="회원가입" onClickEvent={linkRegisterPage}/>
-                <Button value="로그인" backgroundColor='blue' color='white' borderColor='0' onClickEvent={openLoginPopupEvent}/>
+                <Button value="로그인" onClickEvent={openLoginPopupEvent}/>
                 {modalActive
                   && <LoginModal onClickEvent={openLoginPopupEvent} active={modalActive} />
                 }
@@ -109,56 +107,8 @@ const Header = () => {
       <div className={styles.mobile__search}>
         <Input placeholder='기업별 면접 후기를 검색해보세요'/>
       </div>
-
-        {/* 
-            : <>
-                <ProfilePhoto 
-                  src={profileImageUrl} 
-                  alt="ProfilePhoto"
-                  ref = {UserButtonRef}
-                  onClick={() => {
-                    setProfile(!profile);
-                  }}onLoad={() => setImageLoaded(true)}
-                  style={{ display: imageLoaded ? "block" : "none" }}
-                />
-                {!imageLoaded && <ProfilePhotoPlaceholder />}
-                <ProfileWrapper ref={ProfileRef}>
-                {profile && <ProfileContainer profileImageUrl = {profileImageUrl} />}
-                </ProfileWrapper>
-              </>
-          )
-        }
-        </NavigationBox>
-      </HeaderContents> */}
     </header>
   )
-
-  // useEffect(() => {
-  //   if (jwtUtils.isAuth(token)) {
-  //     setIsAuth(true);
-  //   } else {
-  //     setIsAuth(false);
-  //   }
-  // }, [token]);
-
-  // const headers = setTokenHeaders();
-  // useEffect(() => {
-  //   const getmydata = async () => {
-  //     try {
-  //       console.log(headers)
-  //       const response = await axios.get(
-  //         `https://bstaging.interviewbank.net/account/me`,
-  //         {headers}
-  //       );
-  //       console.log(response)
-  //       setProfileImageUrl(response.data.imageUrl)
-  //       return response.data.imageUrl;
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   getmydata();
-  // },[headers])
 }
 
 export { Header };

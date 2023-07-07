@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ArrowUp from "public/Icons/arrow_up.png";
 import ArrowDown from "public/Icons/arrow_down.png";
-import { Checkbox } from '../CheckBox';
+import { CheckBox } from '../CheckBox';
 import styles from './SearchCategoryCheckBox.module.scss';
 import Image from 'next/image';
 
@@ -60,7 +60,7 @@ const SearchCategoryCheckBox = ({
 			<ul className={toggle ? `${styles.acordian} ${styles.active}` : styles.acordian}>
 				{secondJobCategories &&
 					secondJobCategories.map((current) => (
-						<Checkbox
+						<CheckBox
 							category={current.id}
 							categoryDivide={name}
 							name={current.name}
