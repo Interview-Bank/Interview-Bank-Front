@@ -3,6 +3,7 @@
   place-items: center;
   justify-content: center;
   align-items: center;
+  
   > h4 {
     width: 100%;
     text-align: left;
@@ -11,16 +12,19 @@
     color: #747474;
     font-size: 14px;
   }
+
   > input {
     width: 319px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid #dee2e6;
     padding-left: 15px;
+
     ::placeholder {
       color: #b5b5b5;
     }
   }
+
   .error {
     border: none;
     margin-top: 5px;
@@ -28,7 +32,6 @@
     margin-bottom: 5px;
     font-size: 12px;
     justify-self: self-start;
-    // text-align: start;
     color: red;
     display: block;
   }

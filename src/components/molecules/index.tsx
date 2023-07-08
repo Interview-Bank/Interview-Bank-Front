@@ -1,4 +1,5 @@
 import { MultiSelect } from './MultiSelect';
 import { PostTitle } from './PostTitle';
+import { RegisterInput } from './RegisterInput';
 
-export { PostTitle, MultiSelect };
+export { PostTitle, MultiSelect, RegisterInput };

@@ -1,6 +1,5 @@
-import { Button } from '@/components/atoms/Button';
-import { SeoHead } from '@/components/atoms/SeoHead';
-import { RegisterForm } from '@/components/molecules/RegisterForm';
+import { Title, Button, SeoHead } from '@/components/atoms';
+import { RegisterInput } from '@/components/molecules';
 import { registerService } from '@/pages/api/Register/register';
 import { modalSlice } from '@/redux/modalReducer';
 import { useRouter } from 'next/router';
@@ -103,12 +102,46 @@ const EmailSignUpPage = (props: Props) => {
   return (
     <section className="email__area">
       <SeoHead title='이메일 회원가입' />
-      <h1>회원가입</h1>
+      <Title title='회원가입' />
       <div className="email__form">
-        <RegisterForm title='닉네임' placeholder='닉네임을 입력해주세요.' maxLength={16} name='nickname' onChange={onChangeRegisterData} errorMessage={errorMessage.nickname} />
-        <RegisterForm title='이메일' placeholder='이메일을 입력해주세요.' maxLength={254} name='email' onChange={onChangeRegisterData} errorMessage={errorMessage.email} />
-        <RegisterForm title='비밀번호' placeholder='영문,숫자,특수문자 포함 8자이상' maxLength={30} name='password' onChange={onChangeRegisterData} errorMessage={errorMessage.password} type="password"/>
-        <RegisterForm title='' placeholder='비밀번호를 확인해 주세요' maxLength={30} name='passwordConfirm' onChange={onChangeRegisterData} errorMessage={errorMessage.passwordConfirm} type="password"/>
+        <RegisterInput
+          title='닉네임'
+          name='nickname'
+          value={registerData.nickname}
+          placeholder='닉네임을 입력해주세요.'
+          maxLength={16}
+          onChangeEvent={onChangeRegisterData}
+          errorMessage={errorMessage.nickname}
+        />
+        <RegisterInput
+          title='이메일'
+          name='email'
+          value={registerData.email}
+          placeholder='이메일을 입력해주세요.'
+          maxLength={254}
+          onChangeEvent={onChangeRegisterData}
+          errorMessage={errorMessage.email}
+        />
+        <RegisterInput
+          title='비밀번호'
+          name='password'
+          value={registerData.password}
+          type="password"
+          placeholder='영문,숫자,특수문자 포함 8자이상'
+          maxLength={30}
+          onChangeEvent={onChangeRegisterData}
+          errorMessage={errorMessage.password}
+        />
+        <RegisterInput
+          title=''
+          name='passwordConfirm'
+          value={registerData.passwordConfirm}
+          type="password"
+          placeholder='비밀번호를 확인해 주세요'
+          maxLength={30}
+          onChangeEvent={onChangeRegisterData}
+          errorMessage={errorMessage.passwordConfirm}
+        />
         <Button value='가입하기' onClickEvent={registDataSubmit}/>
       </div>
     </section>
