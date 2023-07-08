@@ -7,6 +7,7 @@ interface ButtonProps {
   image?: "GOOGLE"
   | "KAKAO"
   | "NAVER"
+  | "EMAIL"
   | "WRITE"
   | undefined;
   imgWidth?: number;

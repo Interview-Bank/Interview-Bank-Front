@@ -1,11 +1,13 @@
 import React from 'react';
-import styles from './Title.module.scss';
+// import styles from './Title.module.scss';
 
-const Title = ({title}: any) => {
+interface TitleProps {
+  title: string;
+}
+
+const Title = ({ title }: TitleProps) => {
   return (
-    <div className={styles.title}>
-      <h1>{title}</h1>
-    </div>
+    <h1>{title}</h1>
   )
 }
 

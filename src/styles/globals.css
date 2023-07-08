@@ -139,47 +139,6 @@ li {
     : "calc(100vh - 100px - 151px);"}; */
 }
 
-.register__area > h1 {
-	position: relative;
-	padding-top: 80px;
-	width: 100px;
-	/* height: 35px; */
-	/* font-family: 'Noto Sans KR'; */
-	font-style: normal;
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 35px;
-	text-align: center;
-	color: #2e55e7;
-	margin: 0px auto;
-	margin-bottom: 18px;
-}
-
-.register__area > .register__type {
-	position: relative;
-	width: 220px;
-	height: 21px;
-
-	font-family: "Noto Sans KR";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 23px;
-	text-align: center;
-
-	color: #646464;
-
-	margin: 0px auto;
-	margin-bottom: 52px;
-}
-
-.register__area > .btn__area {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 .email__area {
 	width: 100%;
 	text-align: center;
