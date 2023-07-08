@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import styles from './LoginModal.module.scss';
-import Close from 'public/Icons/close.png';
-import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/router';
 import { isLogin } from '@/pages/api/login/loginProcess';
 import { setCookie, setCookieExpires } from '@/pages/api/login/loginCheck';
+
 import { useDispatch } from 'react-redux';
 import { modalSlice } from '@/redux/modalReducer';
-import AlertIconUrl from "public/Icons/alertIcon.png"
 import { tokenSlice } from '@/redux/tokenReducer';
-import { headers } from 'next/dist/client/components/headers';
-import { Input } from '@/components/atoms';
+
+import Close from 'public/Icons/close.png';
+import AlertIconUrl from "public/Icons/alertIcon.png"
+
+import { Input, Button } from '@/components/atoms';
 
 interface LoginModalProps {
   onClickEvent: () => void;
@@ -94,7 +95,7 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
     router.push(oauthUrl);
   };
-  
+
   const handleNaverOauth = () => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
     router.push(oauthUrl);
