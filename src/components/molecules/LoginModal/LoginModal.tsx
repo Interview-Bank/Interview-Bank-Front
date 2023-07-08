@@ -11,6 +11,7 @@ import { modalSlice } from '@/redux/modalReducer';
 import AlertIconUrl from "public/Icons/alertIcon.png"
 import { tokenSlice } from '@/redux/tokenReducer';
 import { headers } from 'next/dist/client/components/headers';
+import { Input } from '@/components/atoms';
 
 interface LoginModalProps {
   onClickEvent: () => void;
@@ -93,6 +94,7 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
     router.push(oauthUrl);
   };
+  
   const handleNaverOauth = () => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
     router.push(oauthUrl);
@@ -105,21 +107,21 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
         <Image src={Close} alt="닫기 버튼" width={24} height={24} onClick={()=>onClickEvent()} />
         <h2>Interview Bank</h2>
         <div className={styles.login__input}>
-          <input type="text"
+          <Input
+            name='email'
             value={loginData.email}
-            name="email"            
-            onChange={(e)=>onChange("email", e.target.value)}
-            placeholder="이메일"
+            type='text'
+            placeholder='이메일'
+            onChangeEvent={onChange}
           />
-          <input
-            type="password"
+          <Input
+            name='password'
             value={loginData.password}
-            name="password"
-            onChange={(e) => onChange("password", e.target.value)}
-            onKeyDown={(e) => {
-              e.key === 'Enter' && isLoginSubmit();
-            }}
-            placeholder="비밀번호"
+            type='password'
+            placeholder='비밀번호'
+            onChangeEvent={onChange}
+            onKeyDown={true}
+            onKeyDownEvent={isLoginSubmit}
           />
           {loginError.errorMessage && 
             <div className={styles.error}>
@@ -129,7 +131,7 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
               </div>
             </div>
           }
-          <Button width='100' height='45px' backgroundColor='blue' value='로그인' color='white' onClickEvent={isLoginSubmit} />
+          <Button value='로그인' onClickEvent={isLoginSubmit} />
         </div>
         <div className={styles.find__area}>
           <span onClick={() => linkRegisterPage()} >
@@ -145,9 +147,9 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
             다른 계정으로 로그인
           </div>
           <div className={styles.btn__area}>
-            <Button onClickEvent={handleKakaoOauth} image={"KAKAO"} width='50px' height='50px' value=''/>
-            <Button onClickEvent={handleGoogleOauth} image={"GOOGLE"} width='50px' height='50px' value=''/>
-            <Button onClickEvent={handleNaverOauth} image={"NAVER"} width='50px' height='50px' value=''/>
+            <Button onClickEvent={handleKakaoOauth} image={"KAKAO"} value=''/>
+            <Button onClickEvent={handleGoogleOauth} image={"GOOGLE"} value=''/>
+            <Button onClickEvent={handleNaverOauth} image={"NAVER"} value=''/>
           </div>
         </div>
       </div>

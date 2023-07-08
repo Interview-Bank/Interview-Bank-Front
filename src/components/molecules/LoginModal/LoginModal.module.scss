@@ -6,15 +6,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  // display: flex;
-  // flex-direction: column;
-  // margin-top: 84px;
+
   .background {
     width: 100vw;
     height: 100vh;
     background-color: #000;
     opacity: 0.4;
   }
+  
   .whiteground {
     position: fixed;
     top: 50%;
@@ -29,12 +28,14 @@
     z-index: 2;
     animation: 0.25s linear 0s 1 normal none running modaldown;
     padding-top: 84px;
+
     > img {
       position: absolute;
       top: 4%;
       right: 5%;
       cursor: pointer;
     }
+
     > h2 {
       position: relative;
       width: 234px;
@@ -46,13 +47,13 @@
       color: #2E55E7;
       margin: 0 auto;
     }
+
     > .login__input {
       position: relative;
-      // margin-top: 50px;
       margin: 50px auto 0;
       padding: 0 40px;
       width: 100%;
-      // width: calc(100% - 30 * 2px);
+
       > input {
         box-sizing: border-box;
         position: relative;
@@ -69,17 +70,21 @@
         z-index: 2;
         padding-left: 16px;
         margin-bottom: 8px;
+
         &::placeholder{
           color: #AAAAAA;
         }
         // :-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; }
       }
+
       > button {
         border-radius: 8px;
         border: 0;
         margin-left: 0;
         margin-top: 14px;
+        width: 100%;
       }
+
       .error {
         position: relative;
         display: flex;
@@ -135,6 +140,7 @@
     }
     > .social {
       margin-top: 50px;
+
       > .title {
         width: 160px;
         height: 20px;
@@ -152,13 +158,18 @@
         flex-direction: row;
         justify-content: center;
         margin: 0 auto;
+
         > button {
           border: 0;
-          background-color: #ffffff;
+          background-color: transparent;
           cursor: pointer;
+          width: 50px;
+          height: 50px;
+
           &:not(:last-child) {
             margin-right: 32px;
           }
+
           > img {
             width: 50px;
             height: 50px;

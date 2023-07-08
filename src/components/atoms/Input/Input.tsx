@@ -6,8 +6,10 @@ interface InputProps {
   value: string;
   type: string;
   placeholder: string;
-  maxLength: number;
+  maxLength?: number;
   onChangeEvent: (name: string, value: string) => void;
+  onKeyDown?: boolean;
+  onKeyDownEvent?: () => void;
 }
 
 const Input = ({
@@ -16,8 +18,14 @@ const Input = ({
   type = 'text',
   placeholder,
   maxLength,
-  onChangeEvent
+  onChangeEvent,
+  onKeyDown = false,
+  onKeyDownEvent
 }: InputProps) => {
+  const keyPressDownEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    (e.key === 'Enter' && onKeyDownEvent) && onKeyDownEvent();
+  }
+
   return (
     <input
       className={styles.input}
@@ -26,7 +34,12 @@ const Input = ({
       type={type}
       placeholder={placeholder}
       maxLength={maxLength ? maxLength : 9999}
-      onChange={(e)=>{onChangeEvent(name, e.target.value)}}
+      onChange={(e) => { onChangeEvent(name, e.target.value) }}
+      onKeyDown={
+        onKeyDown
+          ? (e) => {keyPressDownEnterKey(e)}
+          : () => {}
+      }
     />
   )
 }
