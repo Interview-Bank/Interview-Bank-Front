@@ -37,8 +37,6 @@ const Router = () => {
       <Route path="/oauth2/kakao/redirect" element={<KakaoSocialLogin/>}/>
       <Route path="/mypage/usersetting" element = {<UserSettingContainer/>}/>
       <Route path="/mypage/manage-posts" element = {<ManagePostContainer/>}/>
-      <Route path="/mypage/my-posts" element = {<MyPostContainer/>}/>
-      <Route path="/mypage/my-scrap" element = {<MyScrapContainer/>}/>
       <Route path="/reset-password" element = {<ResetPasswordContainer/>}/>
       <Route path="/inquiry" element = {<InquiryContainer/>}/>
 
