@@ -1,3 +1,5 @@
+import { isBrowser } from '../isBrower';
+
 const getCookie = (key: string) => {
   if (document !== undefined) {
     const checkKeyExistence = document.cookie
@@ -9,14 +11,14 @@ const getCookie = (key: string) => {
 
 const getCookieValue = (key: string) => {
   let CookieValue;
-  if (document !== undefined) {
+  if (isBrowser()) {
     CookieValue = document.cookie
                     .split("; ")
                     .find((current) => current.startsWith(`${key}=`))
                     .split("=")[1];
   }
                       
-  return CookieValue;
+  return CookieValue || null;
 }
 
 const checkCookieExistence = () => {

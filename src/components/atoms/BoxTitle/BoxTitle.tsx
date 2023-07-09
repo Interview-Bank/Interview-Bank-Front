@@ -7,7 +7,7 @@ interface BoxTitleProps {
   resetSearchParams: (f: any) => {};
 }
 
-const BoxTitle = ({title, field, resetSearchParams}: BoxTitleProps) => {
+const BoxTitle = ({ title, field, resetSearchParams }: BoxTitleProps) => {
   return (
     <div className={styles.title}>
       <h5>{title}</h5>

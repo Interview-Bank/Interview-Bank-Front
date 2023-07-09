@@ -6,15 +6,17 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
+import { useQuery } from 'react-query';
 
-const HomePage = ({interviewList}) => {
-  // const [interviewList, setInterviewList] = useState([]);
+const HomePage = () => {
+  const { data, isError, isLoading } = useQuery("interview", () =>bringHomeInterviewListData(), { staleTime: 2000 })
 
-	// useEffect(() => {
-	// 	bringHomeInterviewListData()
-	// 		.then((result) => setInterviewList(result))
-	// 		.catch((resolve) => console.log(resolve));
-	// }, []);
+  const [interviewList, setInterviewList] = useState([]);
+  
+  useEffect(() => {
+    bringHomeInterviewListData()
+      .then((response) => setInterviewList([...response]));
+  },[])
 
   return (
     <>
@@ -26,8 +28,7 @@ const HomePage = ({interviewList}) => {
 				  <h2>최신 인터뷰 글 보기</h2>
         </div>
         <div className="home__list">
-          {interviewList &&
-            interviewList.map((current) => (
+          {interviewList?.map((current) => (
               <WritingComponent
                 id={current.interviewId}
                 key={current.interviewId}

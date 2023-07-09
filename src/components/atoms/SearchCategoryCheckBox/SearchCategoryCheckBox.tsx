@@ -4,6 +4,7 @@ import ArrowDown from "public/Icons/arrow_down.png";
 import { CheckBox } from '../CheckBox';
 import styles from './SearchCategoryCheckBox.module.scss';
 import Image from 'next/image';
+import { Label } from '../Label';
 
 const FirstSearchCategoriesCheckBox = ({
 	category,
@@ -12,6 +13,8 @@ const FirstSearchCategoriesCheckBox = ({
 	setToggle,
 	secondJobCategories,
 	isChangeCategory,
+	searchDetail,
+	type = 0,
 }) => {
   return (
     <div className={styles.select}>
@@ -22,6 +25,8 @@ const FirstSearchCategoriesCheckBox = ({
 			>
 				<input type="checkbox" name={name} value={category} id={category} data-name={name} />
 				{name}
+				{(searchDetail && type === 0)
+					&& <Label text={searchDetail} />}
 			</label>
 			{secondJobCategories.length ? (
 				<button
@@ -43,6 +48,8 @@ const SearchCategoryCheckBox = ({
 	data,
 	isChangeCategory,
 	secondJobCategories,
+	searchDetail,
+	type,
 }) => {
 	const [toggle, setToggle] = useState(false);
 	const { name, id } = data;
@@ -56,6 +63,8 @@ const SearchCategoryCheckBox = ({
 				setToggle={setToggle}
 				secondJobCategories={secondJobCategories}
 				isChangeCategory={isChangeCategory}
+				searchDetail={searchDetail}
+				type={type}
 			/>
 			<ul className={toggle ? `${styles.acordian} ${styles.active}` : styles.acordian}>
 				{secondJobCategories &&

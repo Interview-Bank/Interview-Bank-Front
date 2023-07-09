@@ -14,9 +14,11 @@
   background-color: #fff;
   margin-bottom: 12px;
   padding-right: 16px;
+
   img {
     cursor: pointer;
   }
+
   .content__area {
     position: relative;
     display: flex;
@@ -25,18 +27,18 @@
     align-items: center;
     width: 100%;
     min-height: 88px;
+
     .content {
       align-self: center;
       font-family: 'Noto Sans KR';
       font-style: normal;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 1.2rem;
       line-height: 23px;
-
       color: #000000;
-
     }
   }
+  
   .input {
     position: relative;
     height: auto;

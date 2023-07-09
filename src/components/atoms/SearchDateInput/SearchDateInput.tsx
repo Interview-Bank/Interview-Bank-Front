@@ -3,8 +3,7 @@ import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarIcon from 'public/Icons/calendar.png'
-import { SearchLeftTitle } from '../BoxTitle';
-import { Radio } from '../Radio';
+import { Radio, BoxTitle } from '@/components/atoms';
 import Image from 'next/image';
 import styles from './SearchDateInput.module.scss';
 
@@ -45,7 +44,7 @@ const SearchDateInput = ({
 	]
 	return (
 		<div className={styles.date}>
-			<SearchLeftTitle title="작성기간" field="CREATEDAT" resetSearchParams={resetSearchParams}/>
+			<BoxTitle title="작성기간" field="CREATEDAT" resetSearchParams={resetSearchParams}/>
 			<div className={styles.radio}>
 				{DateRadioArray.map((current, index) =>
 					<Radio type="createdAt" name={current.name} id={current.id} key={index} searchRadio={searchRadio} isChangeCreatedDateRadio={isChangeCreatedDateRadio} />

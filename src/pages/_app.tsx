@@ -4,12 +4,19 @@ import '@/styles/register.scss';
 import '@/styles/post.scss';
 import type { AppProps } from 'next/app'
 import { wrapper } from '../redux/rootReducer';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient();
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    </QueryClientProvider>
   )
 }
 

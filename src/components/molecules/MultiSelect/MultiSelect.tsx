@@ -3,6 +3,8 @@ import { getInterviewNameFromValue } from '@/pages/api/getInterviewPeriodName';
 import { getFirstJobCategories, getJobCategories, getSecondJobCategories } from '@/pages/api/Post/jobCategoryAPI';
 import React, { useEffect, useState } from 'react';
 import styles from './MultiSelect.module.scss';
+import { Select } from '@/components/atoms';
+import { CareerYear, InterviewPeriod } from '@/pages/api/Post/PostSelectObject';
 
 interface MultiSelectProps {
   inputSelectBox: any;
@@ -31,8 +33,8 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 	}, []);
 
   return (
-    <div className={styles.select__area}>
-			<PostSelectBox
+		<div className={styles.select__area}>
+			<Select
 				selectSection="interviewPeriod"
 				selectTitle={
 					inputSelectBox.interviewPeriod === ""
@@ -44,7 +46,7 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
-			<PostSelectBox
+			<Select
 				selectSection="careerYear"
 				selectTitle={
 					inputSelectBox.careerYear === ""
@@ -56,7 +58,7 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
-			<PostSelectBox
+			<Select
 				selectSection="firstLevelId"
 				selectTitle={
 					inputSelectBox.firstLevelId === ""
@@ -70,7 +72,7 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
-			<PostSelectBox
+			<Select
 				selectSection="secondLevelId"
 				selectTitle={
 					inputSelectBox.secondLevelId === ""

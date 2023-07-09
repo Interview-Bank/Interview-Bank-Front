@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { getDateFormatString } from '../api/dateConvert';
 import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
+import { QuestionComponent } from '@/components/molecules/QuestionComponent';
+import { PostSelect } from '@/components/atoms/PostSelect';
 
 const InterviewPage = ({ response }) => {
 	const router = useRouter();
@@ -18,8 +20,6 @@ const InterviewPage = ({ response }) => {
 	const [token, setToken] = useState("");
 	const [userId, setUserId] = useState(0);
 	const [toggle, setToggle] = useState(false);
-
-	console.log(response)
 	
 	// const token = setTokenHeaders()["X-Auth-Token"];
 	// const userId = Number(getCookieValue("userId"));
@@ -65,10 +65,16 @@ const InterviewPage = ({ response }) => {
 					toggle={toggle}
 					toggleSwitch={toggleSwitch}
 				/>
-				{response.questions &&
-					response.questions.map((item, index) => (
-						<InterviewView content={item.content} key={index} />
-					)) 
+				{toggle 
+					? response.questions?.map((item, index) => (
+							<InterviewView
+								key={index}
+								content = {item.gptAnswer}
+							/>
+						))
+					: response.questions?.map((item, index) => (
+							<InterviewView content={item.content} key={index} />
+						)) 
 				}
 			</div>
     </section>

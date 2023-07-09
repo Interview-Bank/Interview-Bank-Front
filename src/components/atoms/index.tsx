@@ -4,6 +4,7 @@ import { CheckBox } from './CheckBox'
 import { IconImage } from './IconImage'
 import { Input } from './Input'
 import { Label } from './Label'
+import { Radio } from './Radio'
 import { SearchItem } from './SearchItem'
 import { Select, TreeSelect } from './Select'
 import { SeoHead } from './SeoHead'
@@ -16,6 +17,7 @@ export {
   IconImage,
   Input,
   Label,
+  Radio,
   SearchItem,
   Select, TreeSelect,
   SeoHead,

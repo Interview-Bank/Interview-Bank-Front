@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './TreeSelect.module.scss';
+import Image from 'next/image';
+import ArrowDown from "public/Icons/arrow_down.png";
 
 interface TreeSelectProps {
 

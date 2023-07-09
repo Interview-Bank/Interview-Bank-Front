@@ -9,7 +9,8 @@ import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
 import { Select } from '@/components/atoms/Select';
-import { BoxTitle, SearchItem } from '@/components/atoms';
+import { BoxTitle, SearchItem, SeoHead, Title } from '@/components/atoms';
+import { SearchSelectBox } from '@/components/atoms/SearchSelectBox';
 
 const SearchPage = () => {
   const today = new Date();
@@ -23,18 +24,43 @@ const SearchPage = () => {
 		careerYear: "",
 		page: 1,
 	}
+
+	const secondLevelObject = {
+		7: '백엔드',
+		8: '프런트엔드',
+		9: '안드로이드',
+		10: 'IOS',
+		11: '모바일',
+		12: 'DevOps',
+		13: 'QA',
+		14: '게임',
+		15: 'AI',
+		33: 'DBA',
+		34: '기타',
+	}
+
 	const limit = 15;
 	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({...defaultParamValue});
 	const [totalPages, setTotalPages] = useState(0);
 	const [totalPosts, setTotalPosts] = useState(0);
 	const [interviewList, setInterviewList] = useState([]);
+	const [searchDetail, setSearchDetail] = useState(null);
 	
 	useEffect(() => {
 		bringSearchInterviewListData(searchParam)
 			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements)})
 			.catch((resolve) => console.log(resolve));
-  }, [searchParam]);
+	}, [searchParam]);
+	
+	useEffect(() => {
+		console.log(searchParam.category)
+		if (!(searchParam.category?.split(',').length < 2 && Number(searchParam.category) <= 6)) {
+			setSearchDetail(searchParam.category.split(',').map((current) => secondLevelObject[current]).join(','));
+		} else {
+			setSearchDetail(null);
+		}
+	},[searchParam.category])
   
   const resetSearchParams = useCallback((value: any) => {
 		switch (value) {
@@ -79,7 +105,7 @@ const SearchPage = () => {
 			if (parent) {
 				checkedCategoriesArray.filter(current => current.name !== parent).forEach(current => current.checked = false);
 				setSearchParam((prev) => {
-					return { ...prev, category: value };
+					return { ...prev, category: value.toString() };
 				});
 			}
 		} else {
@@ -103,7 +129,7 @@ const SearchPage = () => {
 				};
 			});
 		}
-	}, []);
+	}, [searchParam]);
 
 	const isChangeCreatedDateRadio = useCallback((value) => {
 		setSearchRadio((prev) => value);
@@ -181,19 +207,20 @@ const SearchPage = () => {
 	
   
   return (
-    <section className="search__area">
-      <h1>검색 결과</h1>
+		<section className="search__area">
+			<SeoHead title='인터뷰뱅크 검색' />
+      <Title title='검색 결과' />
       <div className="search__flex">
         <div className="search__left">
           <SearchItem type={"title"}>
             <SearchTitle isChangeTitle={isChangeTitle}/>
           </SearchItem>
           <SearchItem>            
-						<SearchCategory isChangeCategory={isChangeCategory} resetSearchParams={resetSearchParams} />            
+						<SearchCategory isChangeCategory={isChangeCategory} resetSearchParams={resetSearchParams} searchDetail={searchDetail} />            
           </SearchItem>
 					<SearchItem>
 						<BoxTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
-						<Select
+						<SearchSelectBox
 							selectTitle={
 								searchParam.careerYear === ""
 									? "경력"
@@ -205,7 +232,7 @@ const SearchPage = () => {
 					</SearchItem>
 					<SearchItem>							
 						<BoxTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
-						<Select
+						<SearchSelectBox
 							selectTitle={
 								searchParam.interviewPeriod === ""
 									? "면접 시기"
