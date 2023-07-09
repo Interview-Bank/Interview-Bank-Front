@@ -9,11 +9,13 @@ import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
 import { Select } from '@/components/atoms/Select';
-import { BoxTitle, SearchItem, SeoHead, Title } from '@/components/atoms';
+import { BoxTitle, IconImage, Input, SearchItem, SeoHead, Title } from '@/components/atoms';
 import { SearchSelectBox } from '@/components/atoms/SearchSelectBox';
+import { useRouter } from 'next/router';
 
 const SearchPage = () => {
-  const today = new Date();
+	const today = new Date();
+	const router = useRouter();
 	const defaultValue = { startDate: today, endDate: today };
 	const defaultParamValue = {
 		title: "",
@@ -46,12 +48,23 @@ const SearchPage = () => {
 	const [totalPosts, setTotalPosts] = useState(0);
 	const [interviewList, setInterviewList] = useState([]);
 	const [searchDetail, setSearchDetail] = useState(null);
-	
-	useEffect(() => {
+
+	const getSerachParamInterviewList = () => {
 		bringSearchInterviewListData(searchParam)
 			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements)})
 			.catch((resolve) => console.log(resolve));
-	}, [searchParam]);
+	}
+	
+	useEffect(() => {
+		getSerachParamInterviewList();
+	}, [
+		searchParam.category,
+		searchParam.interviewPeriod,
+		searchParam.startDate,
+		searchParam.endDate,
+		searchParam.careerYear,
+		searchParam.page
+	]);
 	
 	useEffect(() => {
 		console.log(searchParam.category)
@@ -84,13 +97,11 @@ const SearchPage = () => {
 		isChangeCurrentPage(1);
 	}, [])
 
-	const isChangeTitle = useCallback((value) => {
-		if (value.key === "Enter") {
-			setSearchParam((prev) => {
-				return { ...prev, title: value.target.value };
-			});
-		}
-	}, []);
+	const isChangeSearchParam = (name: string, value: string) => {
+		setSearchParam((prev) => {
+			return { ...prev, [name]: value };
+		});
+	};
 
 	const resetCategories = useCallback(() => {
 		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
@@ -204,17 +215,28 @@ const SearchPage = () => {
 			return { ...prev, careerYear: value };
 		});
 	}, []);
-	
+
+	useEffect(() => {
+		router.query?.title && isChangeSearchParam('title', router.query.title);
+	}, [])
   
   return (
 		<section className="search__area">
 			<SeoHead title='인터뷰뱅크 검색' />
       <Title title='검색 결과' />
       <div className="search__flex">
-        <div className="search__left">
-          <SearchItem type={"title"}>
-            <SearchTitle isChangeTitle={isChangeTitle}/>
-          </SearchItem>
+				<div className="search__left">
+					<Input 
+						name='title'
+						value={searchParam.title}
+						type='text'
+						placeholder='내용을 검색하세요.'
+						maxLength={128}
+						onChangeEvent={isChangeSearchParam}
+						onKeyDown={true}
+						onKeyDownEvent={getSerachParamInterviewList}
+					/>
+					{/* <IconImage icon="SEARCH" width={24} height={24} /> */}
           <SearchItem>            
 						<SearchCategory isChangeCategory={isChangeCategory} resetSearchParams={resetSearchParams} searchDetail={searchDetail} />            
           </SearchItem>

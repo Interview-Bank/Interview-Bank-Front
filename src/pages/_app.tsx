@@ -2,6 +2,7 @@ import Layout from '@/components/templates/Layout/Layout'
 import '@/styles/globals.css';
 import '@/styles/register.scss';
 import '@/styles/post.scss';
+import '@/styles/search.scss';
 import type { AppProps } from 'next/app'
 import { wrapper } from '../redux/rootReducer';
 import { QueryClient, QueryClientProvider } from "react-query";
