@@ -11,14 +11,15 @@ interface MultiSelectProps {
   isChangeSelectBoxItems: any;
 }
 
+const defaultSelectActiveValue = {
+	interviewPeriod: false,
+	careerYear: false,
+	firstLevelId: false,
+	secondLevelId: false,
+};
+
 const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProps) => {
   const [jobCategoriesArray, setJobCategoriesArray] = useState([]);
-	const defaultSelectActiveValue = {
-		interviewPeriod: false,
-		careerYear: false,
-		firstLevelId: false,
-		secondLevelId: false,
-	};
 	const [selectActive, setSelectActive] = useState(defaultSelectActiveValue);
 	const isChangeSelectActive = (name) => {
 		setSelectActive((prev) => {

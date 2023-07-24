@@ -4,6 +4,7 @@ import { getFirstJobCategories, getJobCategories, getSecondJobCategories } from 
 import { CareerYear, InterviewPeriod } from '@/pages/api/Post/PostSelectObject';
 import React, { useEffect, useState } from "react";
 import { PostSelectBox } from './PostSelectBox';
+import { Select } from '../Select';
 
 const PostSelect = ({ inputSelectBox, isChangeSelectBoxItems }) => {
 	const [jobCategoriesArray, setJobCategoriesArray] = useState([]);

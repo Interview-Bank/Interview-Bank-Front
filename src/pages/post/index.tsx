@@ -9,7 +9,7 @@ import { PostBody } from '@/components/molecules/PostBody';
 import { setTokenHeaders } from '../api/login/loginCheck';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
-import { MultiSelect } from '@/components/molecules';
+import { MultiSelect } from '@/components/organisms';
 
 function PostPage() {
 	const dispatch = useDispatch();
@@ -195,14 +195,14 @@ function PostPage() {
 					changeTitleValue={changeTitleValue}
 					clickPostInterview={clickPostInterview}
 				/>
-				{/* <MultiSelect
-					inputSelectBox={inputSelectBox}
-					isChangeSelectBoxItems={isChangeSelectBoxItems}
-				/> */}
-				<PostSelect
+				<MultiSelect
 					inputSelectBox={inputSelectBox}
 					isChangeSelectBoxItems={isChangeSelectBoxItems}
 				/>
+				{/* <PostSelect
+					inputSelectBox={inputSelectBox}
+					isChangeSelectBoxItems={isChangeSelectBoxItems}
+				/> */}
 			</div>
 			<PostBody
 				inputs={inputs}

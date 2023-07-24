@@ -10,15 +10,20 @@ const getCookie = (key: string) => {
 }
 
 const getCookieValue = (key: string) => {
-  let CookieValue;
-  if (isBrowser()) {
-    CookieValue = document.cookie
-                    .split("; ")
-                    .find((current) => current.startsWith(`${key}=`))
-                    .split("=")[1];
-  }
+  return (
+    (isBrowser()
+      && document.cookie
+          .split("; ")
+          .find((current) => current.startsWith(`${key}=`))
+          .split("=")[1])
+  )
+  // let CookieValue;
+  // if (isBrowser()) {
+  //   CookieValue = document.cookie
+                    
+  // }
                       
-  return CookieValue || null;
+  // return CookieValue || null;
 }
 
 const checkCookieExistence = () => {
