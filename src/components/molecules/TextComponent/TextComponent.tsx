@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import whiteLike from "../../Assets/Images/Icons/white_heart.png";
 import blueLike from "../../Assets/Images/Icons/blue_heart.png";
-import styles from './WritingComponent.module.scss';
+import styles from './TextComponent.module.scss';
 import { useRouter } from 'next/router';
 
-const WritingComponent = ({
+const TextComponent = ({
 	id,
 	title,
 	nickname,
@@ -26,7 +26,13 @@ const WritingComponent = ({
 
 	// const [like, setLike] = useState(false);
 	return (
-    <div className={styles.write__area} onClick={() => type === 'scraps' ? movePageToScrapWrite() : movePageToInterviewWrite() }>
+		<div
+			className={styles.write__area}
+			onClick={() => type === 'scraps'
+											? movePageToScrapWrite()
+											: movePageToInterviewWrite()
+			}
+		>
       <div className={styles.write__content}>
 				<div className={styles.write__job}>
           <span className={styles[`font-blue`]}>{firstCategoryName}</span>
@@ -52,4 +58,4 @@ const WritingComponent = ({
 	);
 };
 
-export { WritingComponent };
+export { TextComponent };

@@ -1,5 +1,5 @@
 import { Pagination } from '@/components/molecules/Pagination';
-import { WritingComponent } from '@/components/molecules/WritingComponent';
+import { WritingComponent } from '@/components/molecules/TextComponent';
 import React from 'react'
 import styles from './SearchArea.module.scss';
 

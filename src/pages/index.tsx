@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SeoHead } from '@/components/atoms';
-import { Banner, HomeSearch, WritingComponent } from '@/components/molecules'
+import { Banner, HomeSearch, TextComponent } from '@/components/molecules'
 import { GetServerSideProps } from 'next';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
 import { useQuery } from 'react-query';
@@ -37,7 +37,7 @@ const HomePage = ({ interviewList }: HomePageProps) => {
         </div>
         <div className="home__list">
           {interviewList?.map((interview) => (
-              <WritingComponent
+              <TextComponent
                 id={interview.interviewId}
                 key={interview.interviewId}
                 nickname={interview.nickname}

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react'
 import { Pagination } from '../../Pagination';
-import { WritingComponent } from '../../WritingComponent';
+import { WritingComponent } from '../../TextComponent';
 import styles from './MyPageBody.module.scss';
 
 type Props = {}
