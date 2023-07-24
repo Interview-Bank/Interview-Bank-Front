@@ -8,20 +8,23 @@ interface SelectProps {
 	selectTitle: string;
 	selectArray: [];
 	isChangeSelectBoxItems: (name: any) => void;
+	selectSection?: string;
+	selectActive?: boolean;
+	isChangeSelectActive?: () => void;
 }
 
 const Select = ({
-	selectSection,
 	selectTitle,
 	selectArray,
+	isChangeSelectBoxItems,
+	selectSection,
 	selectActive,
 	isChangeSelectActive,
-	isChangeSelectBoxItems,
-}) => {
+}: SelectProps) => {
 	return (
 		<ul
 			className={
-				selectActive[selectSection] ? `${styles.ul__select} ${styles.active}` : styles.ul__select
+				`${styles.ul__select} ${selectActive[selectSection] && styles['ul__select--active']}`
 			}
 			onClick={() => {
 				if (!(selectSection === "secondLevelId" && !selectArray.length))

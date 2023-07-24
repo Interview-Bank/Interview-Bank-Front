@@ -1,22 +1,30 @@
-import { SeoHead } from '@/components/atoms/SeoHead';
-import { Banner } from '@/components/molecules/Banner'
-import { HomeSearch } from '@/components/molecules/HomeSearch'
-import { WritingComponent } from '@/components/molecules/WritingComponent';
 import axios from 'axios';
+import { SeoHead } from '@/components/atoms';
+import { Banner, HomeSearch, WritingComponent } from '@/components/molecules'
 import { GetServerSideProps } from 'next';
-import { useEffect, useState } from 'react';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
 import { useQuery } from 'react-query';
 
-const HomePage = () => {
-  const { data, isError, isLoading } = useQuery("interview", () =>bringHomeInterviewListData(), { staleTime: 2000 })
+interface HomePageProps {
+  interviewList: [
+    {
+      careerYear        : string;
+      createdAt         : string;
+      interviewId       : number;
+      interviewPeriod   : string;
+      jobCategory: {
+        firstLevelName  : string;
+        jobCategoryId   : number;
+        secondLevelName : string | null;
+      }
+      nickname          : string;
+      title             : string;
+    }
+  ];
+}
 
-  const [interviewList, setInterviewList] = useState([]);
-  
-  useEffect(() => {
-    bringHomeInterviewListData()
-      .then((response) => setInterviewList([...response]));
-  },[])
+const HomePage = ({ interviewList }: HomePageProps) => {
+  const { data, isError, isLoading } = useQuery("interview", () => bringHomeInterviewListData(), { staleTime: 2000 })
 
   return (
     <>
@@ -28,15 +36,15 @@ const HomePage = () => {
 				  <h2>최신 인터뷰 글 보기</h2>
         </div>
         <div className="home__list">
-          {interviewList?.map((current) => (
+          {interviewList?.map((interview) => (
               <WritingComponent
-                id={current.interviewId}
-                key={current.interviewId}
-                nickname={current.nickname}
-                createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
-                title={current.title}
-                firstCategoryName={current.jobCategory.firstLevelName}
-                secondCategoryName={current.jobCategory.secondLevelName}
+                id={interview.interviewId}
+                key={interview.interviewId}
+                nickname={interview.nickname}
+                createdAt={interview.createdAt.slice(0, 10).replaceAll("-", ".")}
+                title={interview.title}
+                firstCategoryName={interview.jobCategory.firstLevelName}
+                secondCategoryName={interview.jobCategory.secondLevelName}
               />
             ))}
         </div>
@@ -48,16 +56,11 @@ const HomePage = () => {
 
 export default HomePage;
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const response = await axios.get(`https://bstaging.interviewbank.net/interview`, { params: { page: 0, size: 12 } });
-//   return {
-// 		props: {
-// 			interviewList: response.data.interviews
-//       // response: response
-//     }
-//   };
-// }
-
-// export default function Home() {
-  
-// }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await axios.get(`https://bstaging.interviewbank.net/interview`, { params: { page: 0, size: 12 } });
+  return {
+		props: {
+			interviewList: response.data.interviews
+    }
+  };
+}

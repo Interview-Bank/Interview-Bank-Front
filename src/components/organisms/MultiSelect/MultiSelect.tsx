@@ -43,7 +43,7 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 						: getInterviewNameFromValue(inputSelectBox.interviewPeriod)
 				}
 				selectArray={InterviewPeriod}
-				selectActive={selectActive}
+				selectActive={selectActive.interviewPeriod}
 				isChangeSelectActive={isChangeSelectActive}
 				isChangeSelectBoxItems={isChangeSelectBoxItems}
 			/>
