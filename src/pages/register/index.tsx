@@ -1,29 +1,29 @@
 import { Button, SeoHead, Title } from '@/components/atoms';
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useCallback } from 'react'
 
 const RegisterPage = () => {
   const router = useRouter();
   
-  const handleGoogleOauth = () => {
+  const handleGoogleOauth = useCallback(() => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/google/login";
     router.push(oauthUrl);
-  };
+  }, []);
   
-  const handleKakaoOauth = () => {
+  const handleKakaoOauth = useCallback(() => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/kakao/login";
     router.push(oauthUrl);
-  };
+  }, []);
 
-  const handleNaverOauth = () => {
+  const handleNaverOauth = useCallback(() => {
     const oauthUrl = "http://bstaging.interviewbank.net/account/oauth/naver/login";
     router.push(oauthUrl);
-  };
+  }, []);
 
-  const handleEmailOauth = () => {
+  const handleEmailOauth = useCallback(() => {
     const oauthUrl = "/register/email";
     router.push(oauthUrl);
-  }
+  }, []);
 
   return (
     <section className="register__area">
@@ -33,10 +33,10 @@ const RegisterPage = () => {
         회원가입 방식을 선택하세요.
       </p>
       <div className="btn__area">
-        <Button value='Google로 회원가입' image='GOOGLE' onClickEvent={handleGoogleOauth}/>
-        <Button value='KaKao로 회원가입' image='KAKAO' onClickEvent={handleKakaoOauth}/>
-        <Button value='Naver로 회원가입' image='NAVER' onClickEvent={handleNaverOauth}/>
-        <Button value='이메일로 회원가입' image='EMAIL' onClickEvent={handleEmailOauth}/>
+        <Button value='Google로 회원가입' image='GOOGLE'  onClickEvent={handleGoogleOauth}/>
+        <Button value='KaKao로 회원가입'  image='KAKAO'   onClickEvent={handleKakaoOauth}/>
+        <Button value='Naver로 회원가입'  image='NAVER'   onClickEvent={handleNaverOauth}/>
+        <Button value='이메일로 회원가입'   image='EMAIL'   onClickEvent={handleEmailOauth}/>
       </div>
     </section>
   );
