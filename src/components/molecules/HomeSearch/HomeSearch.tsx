@@ -3,11 +3,10 @@ import Search from "public/Icons/search.png";
 import { useRouter } from 'next/router';
 import styles from './HomeSearch.module.scss';
 import Image from 'next/image';
-import { Input } from '@/components/atoms';
+import { IconImage, Input } from '@/components/atoms';
 
 const HomeSearch = () => {
   const router = useRouter();
-
 	const [searchTitle, setSearchTitle] = useState({title: ''})
 
 	const searchOnChangeEvent = (name: string, value: string) => {
@@ -16,7 +15,7 @@ const HomeSearch = () => {
 		});
 	}
 
-	const onClick = () => {
+	const clickSearchButton = () => {
 		router.push({
 			pathname: '/search',
 			query: { title: searchTitle.title }
@@ -38,9 +37,10 @@ const HomeSearch = () => {
 					maxLength				= {48}
 					onChangeEvent		= {searchOnChangeEvent}
 					onKeyDown				= {true}
-					onKeyDownEvent	= {onClick}
+					onKeyDownEvent	= {clickSearchButton}
 				/>
-				<Image src={Search} alt="검색 버튼" />
+				<IconImage icon={"SEARCH"} />
+				{/* <Image src={Search} alt="검색 버튼" /> */}
 			</div>
 		</div>
 	);

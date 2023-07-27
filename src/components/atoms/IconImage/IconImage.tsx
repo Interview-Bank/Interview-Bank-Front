@@ -21,8 +21,8 @@ interface IconProps {
 }
 
 interface IconImageProps extends IconProps {
-  width: number;
-  height: number;
+  width       ?: number;
+  height      ?: number;
 }
 
 const isDiscernIcon = ({ icon }: IconProps) => {
@@ -45,7 +45,11 @@ const isDiscernIcon = ({ icon }: IconProps) => {
   };
 }
 
-const IconImage = ({ icon, width, height }: IconImageProps) => {
+const IconImage = ({
+  icon,
+  width       = 24,
+  height      = 24
+}: IconImageProps) => {
   const Icon: any = isDiscernIcon({icon});
   return (
     <>
