@@ -1,9 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from 'next/router';
+
 import whiteLike from "../../Assets/Images/Icons/white_heart.png";
 import blueLike from "../../Assets/Images/Icons/blue_heart.png";
 import styles from './TextComponent.module.scss';
-import { useRouter } from 'next/router';
+
 import { Label } from '@/components/atoms';
 
 interface TextComponentProps {
@@ -49,9 +50,9 @@ const TextComponent = ({
         <div className={styles.write__title}>
 					<p>{title}</p>
 				</div>
-        <div className={styles.write__create}>
-					<span>{nickname}</span>
-					<span>{createdAt}</span>
+				<div className={styles.write__create}>
+					<Label text={nickname} />
+					<Label text={createdAt} />
 				</div>
 			</div>
       <div className={styles.btn__write}>지금 작성하기</div>
