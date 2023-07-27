@@ -37,16 +37,16 @@ const HomePage = ({ interviewList }: HomePageProps) => {
         </div>
         <div className="home__list">
           {interviewList?.map((interview) => (
-              <TextComponent
-                id                  = {interview.interviewId}
-                key                 = {interview.interviewId}
-                nickname            = {interview.nickname}
-                createdAt           = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
-                title               = {interview.title}
-                firstCategoryName   = {interview.jobCategory.firstLevelName}
-                secondCategoryName  = {interview.jobCategory.secondLevelName}
-              />
-            ))}
+            <TextComponent
+              id                  = {interview.interviewId}
+              key                 = {interview.interviewId}
+              nickname            = {interview.nickname}
+              createdAt           = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
+              title               = {interview.title}
+              firstCategoryName   = {interview.jobCategory.firstLevelName}
+              secondCategoryName  = {interview.jobCategory.secondLevelName}
+            />))
+          }
         </div>
       </section>
     </>
