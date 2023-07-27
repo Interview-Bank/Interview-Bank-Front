@@ -15,25 +15,28 @@ import AlertIconUrl from "public/Icons/alertIcon.png"
 import { Input, Button } from '@/components/atoms';
 
 interface LoginModalProps {
-  onClickEvent: () => void;
-  active: boolean;
+  onClickEvent      : () => void;
+  active            : boolean;
 }
 
 interface LoginModalRequestDataProps {
-  email: string;
-  password: string;
+  email             : string;
+  password          : string;
+}
+
+const defaultValue: LoginModalRequestDataProps = {
+  email: "",
+  password: "",
 }
 
 const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const defaultValue: LoginModalRequestDataProps = {
-    email: "",
-    password: "",
-  }
-  const [loginError, setLoginError] = useState({
+  const [ loginData   , setLoginData  ] = useState({ ...defaultValue });
+  const [ loginError  , setLoginError ] = useState({
     errorMessage: ""
   })
+
   useEffect(() => {
     active
       ? document.documentElement.style.overflow = "hidden"
@@ -41,24 +44,23 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
     return () => {
       document.documentElement.style.overflow = "unset"
     }
-  },[active])
-  const [loginData, setLoginData] = useState({ ...defaultValue });
+  }, [active])
+  
   const onChange = (field: string, value: string) => {
     setLoginData((prev) => { return {...prev, [field]: value}})
   }
 
-
   const isLoginSubmit = () => {
     validationCheckForLogin()
       && isLogin(loginData)
-        .then(response => {
-          dispatch(modalSlice.actions.CLOSE());
-          setCookieExpires('authToken', response.headers["x-auth-token"]);
-          setCookie('userId', response.data.accountId);
-          setCookie('user', response.data.nickname);
-          dispatch(tokenSlice.actions.SET({headers: {'X-Auth-Token': response.headers["x-auth-token"]}}))
-          if (router.pathname.includes('/register')) router.push('/');
-          else router.reload();
+          .then(response => {
+            dispatch(modalSlice.actions.CLOSE());
+            setCookieExpires('authToken', response.headers["x-auth-token"]);
+            setCookie('userId', response.data.accountId);
+            setCookie('user', response.data.nickname);
+            dispatch(tokenSlice.actions.SET({headers: {'X-Auth-Token': response.headers["x-auth-token"]}}))
+            if (router.pathname.includes('/register')) router.push('/');
+            else router.reload();
         })
         .catch(reject =>
           setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
@@ -71,18 +73,21 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
 
   const validationCheckForLogin = () => {
     const { email, password } = loginData;
+
     if (!email) {
       dispatch(modalSlice.actions.OPEN(
         { title: "아이디를 입력해주세요.", content: "" }
       ));
 			return false;
-		}
+    }
+    
     if (!password) {
       dispatch(modalSlice.actions.OPEN(
         { title: "비밀번호를 입력해주세요.", content: "" }
       ))
 			return false;
-		}
+    }
+    
     return true;
   }
 
@@ -109,20 +114,20 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
         <h2>Interview Bank</h2>
         <div className={styles.login__input}>
           <Input
-            name='email'
-            value={loginData.email}
-            type='text'
-            placeholder='이메일'
-            onChangeEvent={onChange}
+            name            = 'email'
+            value           = {loginData.email}
+            type            = 'text'
+            placeholder     = '이메일'
+            onChangeEvent   = {onChange}
           />
           <Input
-            name='password'
-            value={loginData.password}
-            type='password'
-            placeholder='비밀번호'
-            onChangeEvent={onChange}
-            onKeyDown={true}
-            onKeyDownEvent={isLoginSubmit}
+            name            = 'password'
+            value           = {loginData.password}
+            type            = 'password'
+            placeholder     = '비밀번호'
+            onChangeEvent   = {onChange}
+            onKeyDown       = {true}
+            onKeyDownEvent  = {isLoginSubmit}
           />
           {loginError.errorMessage && 
             <div className={styles.error}>
@@ -148,9 +153,9 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
             다른 계정으로 로그인
           </div>
           <div className={styles.btn__area}>
-            <Button onClickEvent={handleKakaoOauth} image={"KAKAO"} value=''/>
-            <Button onClickEvent={handleGoogleOauth} image={"GOOGLE"} value=''/>
-            <Button onClickEvent={handleNaverOauth} image={"NAVER"} value=''/>
+            <Button onClickEvent={handleKakaoOauth}   image={"KAKAO"}   value=''/>
+            <Button onClickEvent={handleGoogleOauth}  image={"GOOGLE"}  value=''/>
+            <Button onClickEvent={handleNaverOauth}   image={"NAVER"}   value=''/>
           </div>
         </div>
       </div>
