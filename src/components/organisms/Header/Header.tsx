@@ -1,27 +1,23 @@
+import React, { useCallback, useEffect, useState } from 'react'
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { checkCookieExistence, deleteCookie, getCookieValue, setTokenHeaders } from '@/pages/api/login/loginCheck';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
-import { LoginModal } from '@/components/molecules/LoginModal';
-import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
-import { Profile } from '@/components/molecules/Profile';
+
 import { Button, Input } from '@/components/atoms';
+import { LoginModal, Profile } from '@/components/molecules';
+
+import { checkCookieExistence, deleteCookie } from '@/pages/api/useCookie';
+import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
+import { HomeMenuListArray } from '@/pages/api/Home/HomeMenuListArray';
 
 const Header = () => {
-  const [modalActive, setModalActive] = useState(false);
-  const [profileImageUrl, setProfileImageUrl] = useState(null)
   const router = useRouter();
-  const [cookie, setCookie] = useState(false);
-
-  useEffect(() => {
-    // const cookieExists = checkCookieExistence();
-    setCookie(checkCookieExistence());
-    // isReceiveProfileImage()
-    //   .then(response => setProfileImageUrl(response));
-  }, [])
+  const [ modalActive     , setModalActive     ] = useState(false);
+  const [ profileImageUrl , setProfileImageUrl ] = useState(null);
+  const [ cookie          , setCookie          ] = useState(checkCookieExistence());
 
   useEffect(() => {
     modalActive
@@ -39,22 +35,20 @@ const Header = () => {
     }
   }, [cookie, profileImageUrl])
   
-  const linkRegisterPage = () => {
-    router.push('/register');
-  }
+  const moveRegisterPage = () => router.push('/register');
 
-  const linkWritePage = () => {
-    router.push('/post');
-  }
+  const moveWritePage = () => router.push('/post');
 
-  const isLogoutEvent = useCallback(async () => {
+  const submitLogout = useCallback(async () => {
     isLogout()
-      .then(response => {
+      .then(() => {
         deleteCookie('authToken');
         deleteCookie('userId');
         deleteCookie('user');
         setCookie(false);
-        if ((window.location.pathname === '/post' || window.location.pathname === '/my-posts' || window.location.pathname === '/scrap')) router.push('/');
+        if ((router.pathname === '/post'
+              || router.pathname.includes('/my')
+              || router.pathname === '/scrap')) router.push('/');
         // else window.location.reload();
       })
       .catch(reject => console.log(reject))
@@ -69,34 +63,43 @@ const Header = () => {
       <nav className={styles.nav}>
         <div className={styles.nav__logo}>
           <Link href="/">
-            <Image
-              src={Logo} alt="logo"
-              // onClick={() => router("/")}
-            />
+            <Image src={Logo} alt="logo" />
           </Link>
         </div>
-        <ul className={styles.search}>
-          <li>인터뷰</li>
-          <li>문의하기</li>
-          <li>인터뷰뱅크 소개</li>
+        <ul className={styles.nav__menu}>
+          {HomeMenuListArray?.map((menu) => (
+            <li key={menu.id}>{menu.name}</li>
+            ))
+          }
         </ul>
-        <div className={(cookie && profileImageUrl) ? styles.nav__menu : `${styles.nav__menu} ${styles.login}`}>
+        <div
+          className={`${styles.nav__menu} ${(cookie && profileImageUrl) ? '' : styles.login}`}
+        >
           {(cookie && profileImageUrl)
             ?
               <>
                 <Button
-                  value="글쓰기"
-                  onClickEvent={linkWritePage}
-                  image={"WRITE"}
-                  imgWidth={20}
-                  imgHeight={20}
+                  value             = "글쓰기"
+                  onClickEvent      = {moveWritePage}
+                  image             = {"WRITE"}
+                  imgWidth          = {20}
+                  imgHeight         = {20}
                 />
-                <Profile profileImageUrl={profileImageUrl} logoutEvent={isLogoutEvent} />
+                <Profile
+                  profileImageUrl   = {profileImageUrl}
+                  logoutEvent       = {submitLogout}
+                />
               </>
             :
               <>
-                <Button value="회원가입" onClickEvent={linkRegisterPage}/>
-                <Button value="로그인" onClickEvent={openLoginPopupEvent}/>
+                <Button
+                  value             = "회원가입"
+                  onClickEvent      = {moveRegisterPage}
+                />
+                <Button
+                  value             = "로그인"
+                  onClickEvent      = {openLoginPopupEvent}
+                />
                 {modalActive
                   && <LoginModal onClickEvent={openLoginPopupEvent} active={modalActive} />
                 }
@@ -105,7 +108,13 @@ const Header = () => {
         </div>
       </nav>
       <div className={styles.mobile__search}>
-        <Input placeholder='기업별 면접 후기를 검색해보세요'/>
+        <Input
+          name              = 'headerSearchInput'
+          value             = ''
+          type              = 'text'
+          onChangeEvent     = {()=>{}}
+          placeholder       = '기업별 면접 후기를 검색해보세요'
+        />
       </div>
     </header>
   )
