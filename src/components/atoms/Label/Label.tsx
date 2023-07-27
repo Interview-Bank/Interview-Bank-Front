@@ -2,13 +2,12 @@ import React from 'react';
 import styles from './Label.module.scss';
 
 interface LabelProps {
-  text: string;
-  color: string;
+  text    : string;
 }
 
-const Label = ({ text, color = 'black' }: LabelProps) => {
+const Label = ({ text }: LabelProps) => {
   return (
-    <span className={styles[`font--${color}`]}>{text}</span>
+    <span>{text}</span>
   )
 }
 

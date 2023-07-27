@@ -1,5 +1,12 @@
-$--color-black: #222;
+$--color-black    : #222;
+$--color-blue     : #2e55e7;
 
 .font--black {
-  color: var(--color-black);
+  &--black {
+    color: var(--color-black);
+  }
+
+  &--blue {
+    color: var(--color-blue);
+  }
 }

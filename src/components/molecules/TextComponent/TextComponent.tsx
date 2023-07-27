@@ -4,6 +4,17 @@ import whiteLike from "../../Assets/Images/Icons/white_heart.png";
 import blueLike from "../../Assets/Images/Icons/blue_heart.png";
 import styles from './TextComponent.module.scss';
 import { useRouter } from 'next/router';
+import { Label } from '@/components/atoms';
+
+interface TextComponentProps {
+	id										: number;
+	title									: string;
+	nickname							: string;
+	firstCategoryName			: string;
+	secondCategoryName	 ?: string | null;
+	createdAt							: string;
+	type									: string;
+}
 
 const TextComponent = ({
 	id,
@@ -13,30 +24,27 @@ const TextComponent = ({
 	secondCategoryName,
 	createdAt,
 	type = 'interview',
-}) => {
+}: TextComponentProps) => {
 	const router = useRouter();
 
-	const movePageToInterviewWrite = () => {
-		router.push(`/interview/${id}`)
-	}
-
-	const movePageToScrapWrite = () => {
-		router.push(`/scraps/${id}`)
-	}
+	const moveInterviewWritePage 	= () => router.push(`/interview/${id}`)
+	const moveScrapWritePage 			= () => router.push(`/scraps/${id}`)
 
 	// const [like, setLike] = useState(false);
 	return (
 		<div
 			className={styles.write__area}
 			onClick={() => type === 'scraps'
-											? movePageToScrapWrite()
-											: movePageToInterviewWrite()
+											? moveScrapWritePage()
+											: moveInterviewWritePage()
 			}
 		>
       <div className={styles.write__content}>
 				<div className={styles.write__job}>
-          <span className={styles[`font-blue`]}>{firstCategoryName}</span>
-          <span className={styles[`font-gray`]}>{secondCategoryName}</span>
+					<Label text={firstCategoryName} />
+					{secondCategoryName
+						&&  <Label text={secondCategoryName} />
+					}
 				</div>
         <div className={styles.write__title}>
 					<p>{title}</p>
