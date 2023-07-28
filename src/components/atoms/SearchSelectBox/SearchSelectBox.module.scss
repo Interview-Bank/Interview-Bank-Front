@@ -1,4 +1,4 @@
-.ul__select {
+.select {
   width: 100%;
   max-height: 40px;
   padding: 0px 16px;
@@ -11,7 +11,8 @@
   overflow-y: hidden;
   border-radius: 4px;
   border: 1px solid #aaa;
-  &.active {
+
+  &--active {
     max-height: 100em;
     overflow-y: unset;
     & > p{
@@ -21,14 +22,16 @@
   &:nth-child(4) {
     border-right: 0;
   }
-  & > p {
+
+  > p {
     width: 100%;
     height: 100%;
     margin: 0;
     font-size: 0.83em;
     line-height: 40px;
   }
-  & > li {
+
+  > li {
     width: 100%;
     height: 66px;
     line-height: 66px;
@@ -45,13 +48,15 @@
     border-radius: 4px;
     background-color: white;
     z-index: 7;
-    &.active {
+
+    &--active {
       max-height: calc(100em / 9);
       padding: 0 16px;
       opacity: 1;
       overflow-y: auto;
     }
-    &>p {
+    
+    > p {
       width: 100%;
       line-height: 40px;
       margin: 0;

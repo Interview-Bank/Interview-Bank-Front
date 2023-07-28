@@ -6,8 +6,8 @@ import { PostBody } from './PostBody';
 import { PostTitle } from './PostTitle';
 import { Profile } from './Profile';
 import { RegisterInput } from './RegisterInput';
+import { SearchItem } from './SearchItem';
 import { TextComponent } from './TextComponent';
-
 
 export {
   Banner,
@@ -17,5 +17,6 @@ export {
   PostTitle, PostBody,
   RegisterInput,
   MultiSelect,
-  TextComponent
+  TextComponent,
+  SearchItem
 };

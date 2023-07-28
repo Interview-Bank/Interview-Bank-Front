@@ -46,18 +46,13 @@ const Select = ({
 				{selectTitle}
 			</p>
 			<div
-				className={
-					selectActive
-						? `${styles.select__option} ${styles.active}`
-						: styles.select__option
-				}
-			>
+				className={`${styles.select__option} ${selectActive ? styles['select__option--active'] : undefined}`}>
 				<p
 					data-id=""
 					onClick={(e) =>
 						isChangeSelectBoxItems(
 							selectSection,
-							e.currentTarget.getAttribute("data-id")
+							e.currentTarget.getAttribute("data-id") || ''
 						)
 					}
 				>
@@ -71,7 +66,7 @@ const Select = ({
 							onClick={(e) =>
 								isChangeSelectBoxItems(
 									selectSection,
-									e.currentTarget.getAttribute("data-id")
+									e.currentTarget.getAttribute("data-id") || ''
 								)
 							}
 						>

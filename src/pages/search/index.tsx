@@ -1,6 +1,8 @@
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { SearchArea } from '@/components/atoms/SearchArea';
 import { SearchTitle } from '@/components/atoms/SearchTitle';
-import { useCallback, useEffect, useState } from 'react';
 import { setCaculateMonth, setCaculateYear } from '../api/dateConvert';
 import { SearchCategory } from '@/components/atoms/SearchCategory';
 import { getCareerYearNameFromValue } from '../api/getCareerYearName';
@@ -8,26 +10,21 @@ import { CareerYear, InterviewPeriod } from '../api/Post/PostSelectObject';
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
-import { Select } from '@/components/atoms/Select';
-import { BoxTitle, IconImage, Input, SearchItem, SeoHead, Title } from '@/components/atoms';
-import { SearchSelectBox } from '@/components/atoms/SearchSelectBox';
-import { useRouter } from 'next/router';
+import { BoxTitle, IconImage, Input, SeoHead, Title, SearchSelectBox } from '@/components/atoms';
+import { defaultSelectActiveValue } from '@/components/molecules/MultiSelect';
+import { SearchItem } from '@/components/molecules';
 
-const SearchPage = () => {
-	const today = new Date();
-	const router = useRouter();
-	const defaultValue = { startDate: today, endDate: today };
-	const defaultParamValue = {
-		title: "",
-		category: "",
-		interviewPeriod: "",
-		startDate: "",
-		endDate: "",
-		careerYear: "",
-		page: 1,
-	}
+const defaultParamValue = {
+	title								: "",
+	category						: "",
+	interviewPeriod			: "",
+	startDate						: "",
+	endDate							: "",
+	careerYear					: "",
+	page								: 1,
+}
 
-	const secondLevelObject = {
+const secondLevelObject = {
 		7: '백엔드',
 		8: '프런트엔드',
 		9: '안드로이드',
@@ -39,15 +36,21 @@ const SearchPage = () => {
 		15: 'AI',
 		33: 'DBA',
 		34: '기타',
-	}
+}
 
-	const limit = 15;
+const limit = 15;
+
+const SearchPage = () => {
+	const router 				= useRouter();
+	const today 				= new Date();
+	const defaultValue 	= { startDate: today, endDate: today };
 	const [searchRadio, setSearchRadio] = useState("ALL");
 	const [searchParam, setSearchParam] = useState({...defaultParamValue});
 	const [totalPages, setTotalPages] = useState(0);
 	const [totalPosts, setTotalPosts] = useState(0);
 	const [interviewList, setInterviewList] = useState([]);
 	const [searchDetail, setSearchDetail] = useState(null);
+	const [selectActive, setSelectActive] = useState({ ...defaultSelectActiveValue });
 
 	const getSerachParamInterviewList = () => {
 		bringSearchInterviewListData(searchParam)
@@ -82,13 +85,13 @@ const SearchPage = () => {
 				// isChangeCategory("");
 				break;
 			case "INTERVIEWPERIOD":
-				isChangeInterviewPeriod("");
+				isChangeSelectBoxItems("interviewPeriod", '');
 				break;
 			case "CREATEDAT":
 				isChangeCreatedDateRadio("ALL");
 				break;
 			case "CAREERYEAR":
-				isChangeCareerYear("");
+				isChangeSelectBoxItems("careerYear", '');
 				break;
 			default:
 				break;
@@ -204,17 +207,11 @@ const SearchPage = () => {
 		});
 	}, []);
 
-	const isChangeInterviewPeriod = useCallback((value) => {
+	const isChangeSelectBoxItems = (name: string, value: string) => {
 		setSearchParam((prev) => {
-			return { ...prev, interviewPeriod: value };
+			return { ...prev, [name]: value };
 		});
-	}, []);
-
-	const isChangeCareerYear = useCallback((value) => {
-		setSearchParam((prev) => {
-			return { ...prev, careerYear: value };
-		});
-	}, []);
+	};
 
 	useEffect(() => {
 		router.query?.title && isChangeSearchParam('title', router.query.title);
@@ -227,14 +224,14 @@ const SearchPage = () => {
       <div className="search__flex">
 				<div className="search__left">
 					<Input 
-						name='title'
-						value={searchParam.title}
-						type='text'
-						placeholder='내용을 검색하세요.'
-						maxLength={128}
-						onChangeEvent={isChangeSearchParam}
-						onKeyDown={true}
-						onKeyDownEvent={getSerachParamInterviewList}
+						name							= 'title'
+						value							= {searchParam.title}
+						type							= 'text'
+						placeholder				= '내용을 검색하세요.'
+						maxLength					= {128}
+						onChangeEvent			= {isChangeSearchParam}
+						onKeyDown					= {true}
+						onKeyDownEvent		= {getSerachParamInterviewList}
 					/>
 					{/* <IconImage icon="SEARCH" width={24} height={24} /> */}
           <SearchItem>            
@@ -243,26 +240,28 @@ const SearchPage = () => {
 					<SearchItem>
 						<BoxTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
 						<SearchSelectBox
-							selectTitle={
-								searchParam.careerYear === ""
-									? "경력"
-									: getCareerYearNameFromValue(searchParam.careerYear)
-							}
-							selectArray={CareerYear}
-							isChangeSelectBoxItems={isChangeCareerYear}
+							selectSection											= "careerYear"
+							selectTitle												= {
+																										searchParam.careerYear
+																										? getCareerYearNameFromValue(searchParam.careerYear)
+																										: "경력"
+																									}
+							selectArray												= {CareerYear}
+							isChangeSelectBoxItems						= {isChangeSelectBoxItems}
 						/>							
 					</SearchItem>
 					<SearchItem>							
 						<BoxTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
 						<SearchSelectBox
-							selectTitle={
-								searchParam.interviewPeriod === ""
-									? "면접 시기"
-									: getInterviewNameFromValue(searchParam.interviewPeriod)
-							}
-							selectArray={InterviewPeriod}
-							isChangeSelectBoxItems={isChangeInterviewPeriod}
-						/>
+							selectSection											= "interviewPeriod"
+							selectTitle												= {
+																										searchParam.interviewPeriod
+																										? getInterviewNameFromValue(searchParam.interviewPeriod)
+																										: "면접 시기"
+																									}
+							selectArray												= {InterviewPeriod}
+							isChangeSelectBoxItems						= {isChangeSelectBoxItems}
+						/>	
 					</SearchItem>
 					<SearchItem>
 						<SearchDateInput

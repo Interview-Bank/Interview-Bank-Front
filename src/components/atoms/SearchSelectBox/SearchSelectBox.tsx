@@ -4,37 +4,43 @@ import ArrowUp from "public/Icons/arrow_up.png";
 import styles from './SearchSelectBox.module.scss';
 import Image from 'next/image';
 
+interface SearchSelectBoxProps {
+	selectTitle								: string;
+	selectArray								: {
+																name: string;
+																id: string;
+															}[];
+	isChangeSelectBoxItems		: (name: string, value: string) => void;
+	selectSection						 	: string;							
+}
+
 const SearchSelectBox = ({
 	selectTitle,
 	selectArray,
 	isChangeSelectBoxItems,
-}) => {
+	selectSection,
+}: SearchSelectBoxProps) => {
 	const [selectActive, setSelectActive] = useState(false);
+
 	return (
 		<ul
-			className={selectActive ? `${styles.ul__select} ${styles.active}` : styles.ul__select}
-			onClick={() => {
-				setSelectActive((prev) => !prev);
-			}}
+			className={`${styles.select} ${selectActive ? styles['select--active'] : undefined}`}
+			onClick={() => setSelectActive((prev) => !prev)}
 		>
 			<p>{selectTitle}</p>
-			<div
-				className={selectActive ? `${styles.select__option} ${styles.active}` : styles.select__option}
-			>
+			<div className={`${styles.select__option} ${selectActive ? styles['select__option--active'] : undefined}`}>
 				<p
 					data-id=""
-					onClick={(e) => isChangeSelectBoxItems(e.target.getAttribute("data-id"))}
+					onClick={(e) => isChangeSelectBoxItems(selectSection, e.currentTarget.getAttribute("data-id") || '')}
 				>
 					선택하세요
 				</p>
 				{selectArray &&
 					selectArray.map((current) => (
 						<p
-							key={current.id}
-							data-id={current.id}
-							onClick={(e) =>
-								isChangeSelectBoxItems(e.target.getAttribute("data-id"))
-							}
+							key				= {current.id}
+							data-id		= {current.id}
+							onClick		= {(e) => isChangeSelectBoxItems(selectSection, e.currentTarget.getAttribute("data-id") || '')}
 						>
 							{current.name}
 						</p>

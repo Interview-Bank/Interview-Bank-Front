@@ -19,7 +19,7 @@ interface SelectActiveProps {
 	secondLevelId						: boolean,
 }
 
-const defaultSelectActiveValue: SelectActiveProps = {
+export const defaultSelectActiveValue: SelectActiveProps = {
 	interviewPeriod					: false,
 	careerYear							: false,
 	firstLevelId						: false,

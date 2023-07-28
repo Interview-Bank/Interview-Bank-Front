@@ -1,5 +1,5 @@
 import { Pagination } from '@/components/molecules/Pagination';
-import { WritingComponent } from '@/components/molecules/TextComponent';
+import { TextComponent } from '@/components/molecules/TextComponent';
 import React from 'react'
 import styles from './SearchArea.module.scss';
 
@@ -12,14 +12,14 @@ const SearchArea = ({totalPosts, totalPages, interviewList, limit, setPage, sear
         <>
           <div className={styles.list}>
             {interviewList.map((current) => (
-              <WritingComponent
-                key={current.interviewId}
-                id={current.interviewId}
-                title={current.title}
-                nickname={current.nickname}
-                firstCategoryName={current.jobCategory.firstLevelName}
-                secondCategoryName={current.jobCategory.secondLevelName}
-                createdAt={current.createdAt.slice(0, 10).replaceAll("-", ".")}
+              <TextComponent
+                key                   = {current.interviewId}
+                id                    = {current.interviewId}
+                title                 = {current.title}
+                nickname              = {current.nickname}
+                firstCategoryName     = {current.jobCategory.firstLevelName}
+                secondCategoryName    = {current.jobCategory.secondLevelName}
+                createdAt             = {current.createdAt.slice(0, 10).replaceAll("-", ".")}
               />
             ))}
           </div>

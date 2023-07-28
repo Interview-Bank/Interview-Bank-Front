@@ -130,7 +130,7 @@
     background-color: white;
     z-index: 7;
 
-    &.active {
+    &--active {
       max-height: calc(100em / 5);
       opacity: 1;
       overflow-y: auto;

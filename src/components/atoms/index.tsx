@@ -5,7 +5,7 @@ import { IconImage } from './IconImage'
 import { Input } from './Input'
 import { Label } from './Label'
 import { Radio } from './Radio'
-import { SearchItem } from './SearchItem'
+import { SearchSelectBox } from './SearchSelectBox'
 import { Select, TreeSelect } from './Select'
 import { SeoHead } from './SeoHead'
 import { Title } from './Title'
@@ -18,7 +18,7 @@ export {
   Input,
   Label,
   Radio,
-  SearchItem,
+  SearchSelectBox,
   Select, TreeSelect,
   SeoHead,
   Title
