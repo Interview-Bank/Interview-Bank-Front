@@ -13,6 +13,7 @@ import Close from 'public/Icons/close.png';
 import AlertIconUrl from "public/Icons/alertIcon.png"
 
 import { Input, Button } from '@/components/atoms';
+import { emailPatternCheck } from '@/pages/api/emailPatternCheck';
 
 interface LoginModalProps {
   onClickEvent      : () => void;
@@ -74,7 +75,7 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
   const validationCheckForLogin = () => {
     const { email, password } = loginData;
 
-    if (!email) {
+    if (!emailPatternCheck(email)) {
       dispatch(modalSlice.actions.OPEN(
         { title: "아이디를 입력해주세요.", content: "" }
       ));
@@ -116,9 +117,10 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           <Input
             name            = 'email'
             value           = {loginData.email}
-            type            = 'text'
+            type            = 'email'
             placeholder     = '이메일'
             onChangeEvent   = {onChange}
+            pattern         = ".+@globex\.com"
           />
           <Input
             name            = 'password'

@@ -26,7 +26,7 @@
   // height: calc(100% - 80px);
   max-height: 275px;
   z-index: 9;
-  // transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -36,10 +36,10 @@
 
   @keyframes modaldown {
     from {
-      transform: translateY(-5%);
+      transform: translate(-50%, -55%);
     }
     to {
-      transform: translateY(0);
+      transform: translate(-50%, -50%);
     }
   }
 }

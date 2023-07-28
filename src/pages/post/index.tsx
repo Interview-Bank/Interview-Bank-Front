@@ -1,30 +1,28 @@
 
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
-import { PostTitle } from '@/components/molecules/PostTitle';
-import { PostSelect } from '@/components/atoms/PostSelect';
-import { PostBody } from '@/components/molecules/PostBody';
+import { useDispatch } from "react-redux";
+
+import { postInterview } from "../api/Post/postAPI";
+import { PostTitle, PostBody } from '@/components/molecules';
 import { setTokenHeaders } from '../api/login/loginCheck';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
 import { MultiSelect } from '@/components/organisms';
 
 function PostPage() {
-	const dispatch = useDispatch();
-	const router = useRouter();
+	const router 		= useRouter();
+	const dispatch 	= useDispatch();
+	const inputId 	= useRef(0);
 
-	const inputId = useRef(0);
-	const [title, setTitle] = useState({ title: "" });
-	const [inputs, setInputs] = useState([
+	const [	title	, setTitle	] = useState({ title: "" });
+	const [	inputs, setInputs	] = useState([
 		{
 			content: "",
 			questionsId: inputId.current,
 		},
 	]);
 
-	const [headers, setHeaders] = useState();
 	const [inputSelectBox, setInputSelectBox] = useState({
 		interviewPeriod: "",
 		careerYear: "",
@@ -37,11 +35,6 @@ function PostPage() {
 			return { ...prev, [name]: value };
 		})
 	}
-
-	useEffect(() => {
-		// setHeaders(setTokenHeaders());
-		// headers = setTokenHeaders();
-	},[])
 
 	const generateId = () => {
 		return inputId.current++;
@@ -187,7 +180,7 @@ function PostPage() {
 		<section className='post'>
 			<SeoHead title='글쓰기'/>
 			<div
-				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
+				className={`post__header ${inputs.length > 2 ? "sticky" : ""}`}
 			>
 				<PostTitle
 					title={title.title}

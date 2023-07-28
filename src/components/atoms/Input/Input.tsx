@@ -10,6 +10,7 @@ interface InputProps {
   onChangeEvent   : (name: string, value: string) => void;
   onKeyDown      ?: boolean;
   onKeyDownEvent ?: () => void;
+  pattern        ?: string;
 }
 
 const Input = ({
@@ -20,7 +21,8 @@ const Input = ({
   maxLength        = 9999,
   onChangeEvent,
   onKeyDown        = false,
-  onKeyDownEvent
+  onKeyDownEvent,
+  pattern          = ''
 }: InputProps) => {
   const keyPressDownEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     (e.key === 'Enter' && onKeyDownEvent) && onKeyDownEvent();
@@ -36,6 +38,8 @@ const Input = ({
       maxLength       = {maxLength}
       onChange        = {(e) => { onChangeEvent(name, e.target.value) }}
       onKeyDown       = {onKeyDown ? (e) => {keyPressDownEnterKey(e)} : () => {}}
+      required        = {type === 'email' ? true : false}
+      pattern         = {pattern}
     />
   )
 }

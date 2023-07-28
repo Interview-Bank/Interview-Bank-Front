@@ -1,6 +1,7 @@
 import { Banner } from './Banner';
 import { HomeSearch } from './HomeSearch';
 import { LoginModal } from './LoginModal';
+import { PostBody } from './PostBody';
 import { PostTitle } from './PostTitle';
 import { Profile } from './Profile';
 import { RegisterInput } from './RegisterInput';
@@ -11,7 +12,7 @@ export {
   Profile,
   LoginModal,
   HomeSearch, 
-  PostTitle,
+  PostTitle, PostBody,
   RegisterInput,
   TextComponent
 };

@@ -8,9 +8,9 @@ interface RootState<T> {
 }
 
 interface ModalStateType {
-  active: boolean;
-  content?: string;
-  title?: string;
+  active			: boolean;
+  content		 ?: string;
+  title			 ?: string;
 }
 
 const Modal = memo(() => {
