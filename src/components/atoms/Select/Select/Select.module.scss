@@ -78,7 +78,7 @@
 //   }
 // }
 
-.ul__select {
+.select {
   width: 25%;
   max-height: 66px;
   padding: 0px 30px;
@@ -91,7 +91,7 @@
   position: relative;
   overflow-y: hidden;
 
-  &.active {
+  &--active {
     max-height: 100em;
     overflow-y: unset;
 

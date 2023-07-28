@@ -40,7 +40,7 @@ function PostPage() {
 		return inputId.current++;
 	};
 
-	const isChangeSelectBoxItems = (name, value) => {
+	const isChangeSelectBoxItems = (name: string, value: string) => {
 		if (name === "firstLevelId" && inputSelectBox.secondLevelId !== "") {
 			setInputSelectBox((prev) => {
 				return { ...prev, [name]: value, secondLevelId: "" };
@@ -51,6 +51,7 @@ function PostPage() {
 			});
 		}
 	};
+
 	const postValidationCheck = () => {
 		const { interviewPeriod, careerYear, firstLevelId } = inputSelectBox;
 		if (!title) {
@@ -109,7 +110,6 @@ function PostPage() {
 
 	const clickPostInterview = async () => {
 		if (postValidationCheck()) {
-			setHeaders(setTokenHeaders());
 			postInterview(headers, title, inputSelectBox, inputs)
 				.then((response) => router.push(`/interview/${response.interviewId}`))
 				.catch((reject) => console.log(reject));

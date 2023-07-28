@@ -5,12 +5,15 @@ import styles from './Select.module.scss';
 import Image from 'next/image';
 
 interface SelectProps {
-	selectTitle: string;
-	selectArray: [];
-	isChangeSelectBoxItems: (name: any) => void;
-	selectSection?: string;
-	selectActive?: boolean;
-	isChangeSelectActive?: () => void;
+	selectTitle								: string;
+	selectArray								: {
+																name: string;
+																id: string;
+															}[];
+	isChangeSelectBoxItems		: (name: string, value: string) => void;
+	selectSection						 	: string;
+	selectActive						 ?: boolean;
+	isChangeSelectActive		 	: (name: string) => void;
 }
 
 const Select = ({
@@ -24,7 +27,7 @@ const Select = ({
 	return (
 		<ul
 			className={
-				`${styles.ul__select} ${selectActive[selectSection] && styles['ul__select--active']}`
+				`${styles.select} ${selectActive ? styles['select--active'] : undefined}`
 			}
 			onClick={() => {
 				if (!(selectSection === "secondLevelId" && !selectArray.length))
@@ -36,15 +39,15 @@ const Select = ({
 					selectSection === "secondLevelId"
 						? !selectArray.length
 							? styles['font-grey']
-							: null
-						: null
+							: undefined
+						: undefined
 				}
 			>
 				{selectTitle}
 			</p>
 			<div
 				className={
-					selectActive[selectSection]
+					selectActive
 						? `${styles.select__option} ${styles.active}`
 						: styles.select__option
 				}
@@ -54,7 +57,7 @@ const Select = ({
 					onClick={(e) =>
 						isChangeSelectBoxItems(
 							selectSection,
-							e.target.getAttribute("data-id")
+							e.currentTarget.getAttribute("data-id")
 						)
 					}
 				>
@@ -68,7 +71,7 @@ const Select = ({
 							onClick={(e) =>
 								isChangeSelectBoxItems(
 									selectSection,
-									e.target.getAttribute("data-id")
+									e.currentTarget.getAttribute("data-id")
 								)
 							}
 						>
