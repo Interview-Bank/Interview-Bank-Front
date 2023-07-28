@@ -1,14 +1,12 @@
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from 'next/router';
 import { useDispatch } from "react-redux";
 
 import { postInterview } from "../api/Post/postAPI";
-import { PostTitle, PostBody } from '@/components/molecules';
-import { setTokenHeaders } from '../api/login/loginCheck';
+import { PostTitle, PostBody, MultiSelect } from '@/components/molecules';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
-import { MultiSelect } from '@/components/organisms';
 
 function PostPage() {
 	const router 		= useRouter();
@@ -23,11 +21,11 @@ function PostPage() {
 		},
 	]);
 
-	const [inputSelectBox, setInputSelectBox] = useState({
-		interviewPeriod: "",
-		careerYear: "",
-		firstLevelId: "",
-		secondLevelId: "",
+	const [	inputSelectBox, setInputSelectBox	] = useState({
+		interviewPeriod		: "",
+		careerYear				: "",
+		firstLevelId			: "",
+		secondLevelId			: "",
 	});
 
 	const changeTitleValue = (name: string, value: string) => {
@@ -54,7 +52,7 @@ function PostPage() {
 
 	const postValidationCheck = () => {
 		const { interviewPeriod, careerYear, firstLevelId } = inputSelectBox;
-		if (!title) {
+		if (!title.title) {
 			dispatch(modalSlice.actions.OPEN(
 				{ title: "제목을 입력해주세요.", content: "" }
 			));
@@ -180,22 +178,18 @@ function PostPage() {
 		<section className='post'>
 			<SeoHead title='글쓰기'/>
 			<div
-				className={`post__header ${inputs.length > 2 ? "sticky" : ""}`}
+				className={`post__header ${inputs.length > 2 ? "post__header--sticky" : undefined}`}
 			>
 				<PostTitle
-					title={title.title}
-					type='I'
-					changeTitleValue={changeTitleValue}
-					clickPostInterview={clickPostInterview}
+					title										= {title.title}
+					type										= 'I'
+					changeTitleValue				= {changeTitleValue}
+					clickPostInterview			= {clickPostInterview}
 				/>
 				<MultiSelect
-					inputSelectBox={inputSelectBox}
-					isChangeSelectBoxItems={isChangeSelectBoxItems}
+					inputSelectBox					= {inputSelectBox}
+					isChangeSelectBoxItems	= {isChangeSelectBoxItems}
 				/>
-				{/* <PostSelect
-					inputSelectBox={inputSelectBox}
-					isChangeSelectBoxItems={isChangeSelectBoxItems}
-				/> */}
 			</div>
 			<PostBody
 				inputs={inputs}
@@ -204,20 +198,6 @@ function PostPage() {
 				onAddInput={onAddInput}
 				handleInputLimit={handleInputLimit}
 			/>
-    <style jsx>{`
-      .post__header {
-        position: sticky;
-        top: 81px;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        padding-bottom: 30px;
-        background-color: #f9f9f9;
-      }
-      .sticky {
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
-      }
-    `}</style>
     </section>
 	);
 }
