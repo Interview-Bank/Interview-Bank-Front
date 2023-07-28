@@ -3,12 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
-import { PostTitle } from '@/components/molecules/PostTitle';
-import { PostSelect } from '@/components/atoms/PostSelect';
-import { PostBody } from '@/components/molecules/PostBody';
 import { setTokenHeaders } from '../api/login/loginCheck';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
+import { PostBody, PostTitle, MultiSelect } from '@/components/molecules';
 
 const PostPage = () => {
 	const dispatch = useDispatch();
@@ -189,7 +187,7 @@ const PostPage = () => {
 					handleClickSubmit={handleClickSubmit}
 					// postValidationCheck={postValidationCheck}
 				/>
-				<PostSelect
+				<MultiSelect
 					inputSelectBox={inputSelectBox}
 					isChangeSelectBoxItems={isChangeSelectBoxItems}
 				/>
