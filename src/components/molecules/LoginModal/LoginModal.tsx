@@ -67,9 +67,15 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           setLoginError({errorMessage : "이메일 또는 비밀번호를 다시 확인해주세요."})
         )
   }
-  const linkRegisterPage = () => {
+
+  const moveRegisterPage = () => {
     router.push("/register");
-    onClickEvent()
+    onClickEvent();
+  }
+
+  const moveFindPage = () => {
+    router.push("/find");
+    onClickEvent();
   }
 
   const validationCheckForLogin = () => {
@@ -142,11 +148,11 @@ const LoginModal = ({ onClickEvent, active }: LoginModalProps) => {
           <Button value='로그인' onClickEvent={isLoginSubmit} />
         </div>
         <div className={styles.find__area}>
-          <span onClick={() => linkRegisterPage()} >
+          <span onClick={() => moveRegisterPage()} >
             회원가입
           </span>
           <div></div>
-          <span onClick={() => router.push("/find")} >
+          <span onClick={() => moveFindPage()} >
             비밀번호 찾기
           </span>
         </div>

@@ -1,27 +1,26 @@
 import { Title, Button, SeoHead } from '@/components/atoms';
 import { RegisterInput } from '@/components/molecules';
 import { registerService } from '@/pages/api/Register/register';
+import { emailPatternCheck } from '@/pages/api/emailPatternCheck';
 import { modalSlice } from '@/redux/modalReducer';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 
-type Props = {}
-
-const EmailSignUpPage = (props: Props) => {
+const EmailSignUpPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [registerData, setRegisterData] = useState({
-    nickname: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    nickname        : '',
+    email           : '',
+    password        : '',
+    passwordConfirm : '',
   });
   const [errorMessage, setErrorMessage] = useState({
-    nickname: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    nickname        : '',
+    email           : '',
+    password        : '',
+    passwordConfirm : '',
   })
 
   const onChangeRegisterData = (name: string, value: string) => {
@@ -32,7 +31,7 @@ const EmailSignUpPage = (props: Props) => {
   const validateRegisterData = (name: string, value: string) => {
     switch (name) {
       case 'email':
-        if (!value.toLowerCase().match(/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
+        if (!emailPatternCheck(value)
             && value.length) {
           setErrorMessage((prev) => { return { ...prev, [name]: "이메일 형식이 올바르지 않습니다." } });
         } else {
