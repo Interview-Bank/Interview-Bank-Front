@@ -20,7 +20,7 @@ const ProfileContainer = ({profileImageUrl}) => {
         deleteCookie('authToken');
         deleteCookie('userId');
         deleteCookie('user');
-        if ((window.location.pathname === '/post' || window.location.pathname === '/mypage/usersetting' || window.location.pathname === `/mypage/my-posts` || window.location.pathname ===  `/mypage/my-scrap`)) navigate('/');
+        if ((window.location.pathname === '/post' || window.location.pathname === '/mypage/usersetting' || window.location.pathname === `/mypage/manage-posts`)) navigate('/');
         else window.location.reload();
       })
       .catch((e) => {
