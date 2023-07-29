@@ -10,8 +10,8 @@ const bringSearchInterviewListData = async (searchParam, pageSize = 15) => {
           params: {
             "query": searchParam.title,
             "job-categories": searchParam.category,
-            "created-start-date": searchParam.startDate !== "" ? getDateFormatString(searchParam.startDate) : "",
-            "created-end-date": searchParam.endDate !== "" ? getDateFormatString(searchParam.endDate) : "",
+            "created-start-date": searchParam.startDate ? getDateFormatString(searchParam.startDate) : "",
+            "created-end-date": searchParam.endDate ? getDateFormatString(searchParam.endDate) : "",
             "interview-period": searchParam.interviewPeriod,
             "career-year": searchParam.careerYear,
             page: searchParam.page-1,

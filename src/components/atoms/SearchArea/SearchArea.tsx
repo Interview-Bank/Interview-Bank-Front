@@ -3,23 +3,22 @@ import { TextComponent } from '@/components/molecules/TextComponent';
 import React from 'react'
 import styles from './SearchArea.module.scss';
 
-type Props = {}
-
 const SearchArea = ({totalPosts, totalPages, interviewList, limit, setPage, searchParam}) => {
   return (
     <div>
       {interviewList.length ? (
         <>
           <div className={styles.list}>
-            {interviewList.map((current) => (
+            {interviewList?.map((interview) => (
               <TextComponent
-                key                   = {current.interviewId}
-                id                    = {current.interviewId}
-                title                 = {current.title}
-                nickname              = {current.nickname}
-                firstCategoryName     = {current.jobCategory.firstLevelName}
-                secondCategoryName    = {current.jobCategory.secondLevelName}
-                createdAt             = {current.createdAt.slice(0, 10).replaceAll("-", ".")}
+                key                   = {interview.interviewId}
+                id                    = {interview.interviewId}
+                title                 = {interview.title}
+                nickname              = {interview.nickname}
+                firstCategoryName     = {interview.jobCategory.firstLevelName}
+                secondCategoryName    = {interview.jobCategory.secondLevelName}
+                createdAt             = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
+                type                  = 'scraps'
               />
             ))}
           </div>

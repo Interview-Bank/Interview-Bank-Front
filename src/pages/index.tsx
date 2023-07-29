@@ -5,7 +5,7 @@ import { GetServerSideProps } from 'next';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
 import { useQuery } from 'react-query';
 
-interface HomePageProps {
+export interface InterviewListProps {
   interviewList: [
     {
       careerYear        : string;
@@ -23,7 +23,7 @@ interface HomePageProps {
   ];
 }
 
-const HomePage = ({ interviewList }: HomePageProps) => {
+const HomePage = ({ interviewList }: InterviewListProps) => {
   const { data, isError, isLoading } = useQuery("interview", () => bringHomeInterviewListData(), { staleTime: 2000 })
 
   return (
@@ -38,13 +38,14 @@ const HomePage = ({ interviewList }: HomePageProps) => {
         <div className="home__list">
           {interviewList?.map((interview) => (
             <TextComponent
-              id                  = {interview.interviewId}
               key                 = {interview.interviewId}
+              id                  = {interview.interviewId}
               nickname            = {interview.nickname}
-              createdAt           = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
               title               = {interview.title}
               firstCategoryName   = {interview.jobCategory.firstLevelName}
               secondCategoryName  = {interview.jobCategory.secondLevelName}
+              createdAt           = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
+              type                = "interview"
             />))
           }
         </div>

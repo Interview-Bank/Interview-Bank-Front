@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { SearchArea } from '@/components/atoms/SearchArea';
-import { SearchTitle } from '@/components/atoms/SearchTitle';
 import { setCaculateMonth, setCaculateYear } from '../api/dateConvert';
 import { SearchCategory } from '@/components/atoms/SearchCategory';
 import { getCareerYearNameFromValue } from '../api/getCareerYearName';
@@ -11,7 +10,6 @@ import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
 import { BoxTitle, IconImage, Input, SeoHead, Title, SearchSelectBox } from '@/components/atoms';
-import { defaultSelectActiveValue } from '@/components/molecules/MultiSelect';
 import { SearchItem } from '@/components/molecules';
 
 const defaultParamValue = {
@@ -44,17 +42,20 @@ const SearchPage = () => {
 	const router 				= useRouter();
 	const today 				= new Date();
 	const defaultValue 	= { startDate: today, endDate: today };
-	const [searchRadio, setSearchRadio] = useState("ALL");
-	const [searchParam, setSearchParam] = useState({...defaultParamValue});
-	const [totalPages, setTotalPages] = useState(0);
-	const [totalPosts, setTotalPosts] = useState(0);
-	const [interviewList, setInterviewList] = useState([]);
-	const [searchDetail, setSearchDetail] = useState(null);
-	const [selectActive, setSelectActive] = useState({ ...defaultSelectActiveValue });
+	const [	searchRadio		, setSearchRadio 	 ] = useState("ALL");
+	const [	searchParam		, setSearchParam 	 ] = useState({...defaultParamValue});
+	const [	totalPages		, setTotalPages		 ] = useState(0);
+	const [	totalPosts		, setTotalPosts		 ] = useState(0);
+	const [	interviewList	, setInterviewList ] = useState([]);
+	const [	searchDetail	, setSearchDetail	 ] = useState(null);
 
 	const getSerachParamInterviewList = () => {
 		bringSearchInterviewListData(searchParam)
-			.then((result) => { setInterviewList(result.interviews); setTotalPages(result.totalPages);  setTotalPosts(result.totalElements)})
+			.then((result) => {
+				setInterviewList(result.interviews);
+				setTotalPages(result.totalPages);
+				setTotalPosts(result.totalElements);
+			})
 			.catch((resolve) => console.log(resolve));
 	}
 	
@@ -78,25 +79,27 @@ const SearchPage = () => {
 		}
 	},[searchParam.category])
   
-  const resetSearchParams = useCallback((value: any) => {
+  const resetSearchParams = useCallback((value: string) => {
 		switch (value) {
 			case "CATEGORIES":
 				resetCategories();
-				// isChangeCategory("");
 				break;
+			
 			case "INTERVIEWPERIOD":
 				isChangeSelectBoxItems("interviewPeriod", '');
 				break;
+			
 			case "CREATEDAT":
 				isChangeCreatedDateRadio("ALL");
 				break;
+			
 			case "CAREERYEAR":
 				isChangeSelectBoxItems("careerYear", '');
 				break;
+			
 			default:
 				break;
 		}
-		
 		isChangeCurrentPage(1);
 	}, [])
 
@@ -150,7 +153,7 @@ const SearchPage = () => {
 		isValidationCheckForDateInput(value);
 	}, []);
 	
-	const isValidationCheckForDateInput = useCallback((value) => {
+	const isValidationCheckForDateInput = useCallback((value: string) => {
 		let dateObject = {
 			startDate: "",
 			endDate: "",
@@ -189,19 +192,19 @@ const SearchPage = () => {
 
 	}, []);
 
-	const isChangeCurrentPage = useCallback((value) => {
+	const isChangeCurrentPage = useCallback((value: number) => {
 		setSearchParam((prev) => {
 			return { ...prev, page: value };
 		});
 	}, []);
 
-	const isChangeStrDate = useCallback((value) => {
+	const isChangeStrDate = useCallback((value: string) => {
 		setSearchParam((prev) => {
 			return { ...prev, startDate: value };
 		});
 	}, []);
 
-	const isChangeEndDate = useCallback((value) => {
+	const isChangeEndDate = useCallback((value: string) => {
 		setSearchParam((prev) => {
 			return { ...prev, endDate: value };
 		});
@@ -235,10 +238,18 @@ const SearchPage = () => {
 					/>
 					{/* <IconImage icon="SEARCH" width={24} height={24} /> */}
           <SearchItem>            
-						<SearchCategory isChangeCategory={isChangeCategory} resetSearchParams={resetSearchParams} searchDetail={searchDetail} />            
+						<SearchCategory
+							isChangeCategory				= {isChangeCategory}
+							resetSearchParams				= {resetSearchParams}
+							searchDetail						= {searchDetail}
+						/>          
           </SearchItem>
 					<SearchItem>
-						<BoxTitle title={"경력"} field="CAREERYEAR" resetSearchParams={resetSearchParams} />
+						<BoxTitle
+							title										={"경력"}
+							field										="CAREERYEAR"
+							resetSearchParams				={resetSearchParams}
+						/>
 						<SearchSelectBox
 							selectSection											= "careerYear"
 							selectTitle												= {
@@ -251,7 +262,11 @@ const SearchPage = () => {
 						/>							
 					</SearchItem>
 					<SearchItem>							
-						<BoxTitle title={"면접시기"} field="INTERVIEWPERIOD" resetSearchParams={resetSearchParams} />
+						<BoxTitle
+							title										={"면접시기"}
+							field										="INTERVIEWPERIOD"
+							resetSearchParams				={resetSearchParams}
+						/>
 						<SearchSelectBox
 							selectSection											= "interviewPeriod"
 							selectTitle												= {
@@ -265,24 +280,24 @@ const SearchPage = () => {
 					</SearchItem>
 					<SearchItem>
 						<SearchDateInput
-							searchRadio={searchRadio}
-							startDate={searchParam.startDate}
-							endDate={searchParam.endDate}
-							isChangeCreatedDateRadio={isChangeCreatedDateRadio}
-							isChangeStrDate={isChangeStrDate}
-							isChangeEndDate={isChangeEndDate}
-							resetSearchParams={resetSearchParams}
+							searchRadio												= {searchRadio}
+							startDate													= {searchParam.startDate}
+							endDate														= {searchParam.endDate}
+							isChangeCreatedDateRadio					= {isChangeCreatedDateRadio}
+							isChangeStrDate										= {isChangeStrDate}
+							isChangeEndDate										= {isChangeEndDate}
+							resetSearchParams									= {resetSearchParams}
 						/>
 					</SearchItem>
         </div>
         <div className="search__right">
 					<SearchArea
-						totalPages={totalPages}
-						totalPosts={totalPosts}
-						limit={limit}
-						setPage={isChangeCurrentPage}
-						searchParam={searchParam}
-						interviewList={interviewList}
+						totalPages													= {totalPages}
+						totalPosts													= {totalPosts}
+						limit																= {limit}
+						setPage															= {isChangeCurrentPage}
+						searchParam													= {searchParam}
+						interviewList												= {interviewList}
 					/>
         </div>
       </div>

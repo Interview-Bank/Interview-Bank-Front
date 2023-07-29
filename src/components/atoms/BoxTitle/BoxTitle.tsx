@@ -2,12 +2,16 @@ import React from 'react'
 import styles from './BoxTitle.module.scss';
 
 interface BoxTitleProps {
-  title: string;
-  field: string;
-  resetSearchParams: (f: any) => {};
+  title               : string;
+  field               : string;
+  resetSearchParams   : (field: string) => void;
 }
 
-const BoxTitle = ({ title, field, resetSearchParams }: BoxTitleProps) => {
+const BoxTitle = ({
+  title,
+  field,
+  resetSearchParams
+}: BoxTitleProps) => {
   return (
     <div className={styles.title}>
       <h5>{title}</h5>

@@ -14,7 +14,7 @@ interface TextComponentProps {
 	firstCategoryName			: string;
 	secondCategoryName	 ?: string | null;
 	createdAt							: string;
-	type									: string;
+	type									: 'interview' | 'scraps';
 }
 
 const TextComponent = ({
@@ -24,7 +24,7 @@ const TextComponent = ({
 	firstCategoryName,
 	secondCategoryName,
 	createdAt,
-	type = 'interview',
+	type								 = 'interview',
 }: TextComponentProps) => {
 	const router = useRouter();
 
