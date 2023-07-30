@@ -9,9 +9,35 @@ import React, { useEffect, useState } from 'react'
 import { getDateFormatString } from '../api/dateConvert';
 import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
 import { QuestionComponent } from '@/components/molecules/QuestionComponent';
-import { PostSelect } from '@/components/atoms/PostSelect';
+import { CareerYearType } from '../types/CareerYearType';
+import { InterviewPeriodType } from '../types/InterviewPeriodType';
 
-const InterviewPage = ({ response }) => {
+interface InterviewPageProps {
+	interviewInfo: {
+		accountId					: number;
+		careerYear				: CareerYearType;
+		createdAt					: string;
+		interviewId				: number;
+		interviewPeriod		: InterviewPeriodType;
+		jobCategory				:	{
+													jobCategoryId		: number;
+													firstLevelName	: string;
+													secondLevelName	: string;
+												}
+		questions					: {
+													content					: string;
+													createdAt				: string;
+													deletedAt			 ?: string | null;
+													deletedFalg			: boolean;
+													gptAnswer				: string;
+													questionId			: number;
+													updatedAt				: string;
+												}[]			
+		title							: string;
+	}
+}
+
+const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
 	const router = useRouter();
   const [interview, setInterview] = useState({});
   const [contents, setContents] = useState([]);
@@ -20,15 +46,12 @@ const InterviewPage = ({ response }) => {
 	const [token, setToken] = useState("");
 	const [userId, setUserId] = useState(0);
 	const [toggle, setToggle] = useState(false);
-	
-	// const token = setTokenHeaders()["X-Auth-Token"];
-	// const userId = Number(getCookieValue("userId"));
 
 	useEffect(() => {
-		setAccountId(response.accountId);
-		setInterview(response);
-		setContents(response.questions);
-		console.log(response);
+		setAccountId(interviewInfo.accountId);
+		setInterview(interviewInfo);
+		setContents(interviewInfo.questions);
+		console.log(interviewInfo);
 		// setToken(setTokenHeaders()["X-Auth-Token"]);
 		// setUserId(Number(getCookieValue("userId")));
 		// userId = Number(getCookieValue("userId"));
@@ -56,23 +79,23 @@ const InterviewPage = ({ response }) => {
   // };
   return (
 		<section className='interview__area'>
-			<SeoHead title={response.title} />
+			<SeoHead title={interviewInfo.title} />
 			<div className="interview__body">
 				<InterviewTitleArea
-					title={response.title}
-					date={response.createdAt.slice(0, 10).replaceAll('-', '.')}
-					accountId={response.accountId}
+					title={interviewInfo.title}
+					date={interviewInfo.createdAt.slice(0, 10).replaceAll('-', '.')}
+					accountId={interviewInfo.accountId}
 					toggle={toggle}
 					toggleSwitch={toggleSwitch}
 				/>
 				{toggle 
-					? response.questions?.map((item, index) => (
+					? interviewInfo.questions?.map((item, index) => (
 							<InterviewView
 								key={index}
 								content = {item.gptAnswer}
 							/>
 						))
-					: response.questions?.map((item, index) => (
+					: interviewInfo.questions?.map((item, index) => (
 							<InterviewView content={item.content} key={index} />
 						)) 
 				}
@@ -85,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const response = await axios.get(`https://bstaging.interviewbank.net/interview/${context.query.id}`)
   return {
 		props: {
-			response: response.data
+			interviewInfo: response.data
     }
   };
 }
