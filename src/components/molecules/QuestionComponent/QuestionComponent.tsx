@@ -4,14 +4,17 @@ import styles from './QuestionComponent.module.scss';
 import ArrowDown from "public/Icons/arrow_down.png";
 import ArrowUp from "public/Icons/arrow_up.png";
 
-const QuestionComponent = ({ item, index, answers, inputValues, inputRefs, handleInputChange, handleInputLimit, toggleAnswerInput }) => {
-  console.log(item)
-  // const [toggle, setToggle] = useState(false);
-
-  // const changeToggleAnswer = () => {
-  //   setToggle(prev => !prev);
-  // }
-
+const QuestionComponent = ({
+  item,
+  index,
+  answers,
+  inputValues,
+  inputRefs,
+  handleInputChange,
+  handleInputLimit,
+  toggleAnswerInput,
+  gptToggle
+}) => {
   return (
     <div className={styles.question}>
       <div className={styles.content__area}>
@@ -21,6 +24,23 @@ const QuestionComponent = ({ item, index, answers, inputValues, inputRefs, handl
       {answers[index]
         &&  <div className={styles.input}>
               <div className={styles.line}></div>
+              {gptToggle
+                &&  <>
+                      <textarea
+                          ref={(el) => (inputRefs.current[index] = el)}
+                          name="answer"
+                          id="answer"
+                          readOnly={true}
+                          // cols="30"
+                          // rows="10"
+                          value={inputValues[index]}
+                          placeholder='답변을 입력해주세요.'
+                          onChange={(e) => handleInputChange(index, e)}
+                          onInput={(e) => handleInputLimit(e)}
+                        />
+                      <div className={styles.line}></div>
+                    </>
+              }
               <textarea
                 ref={(el) => (inputRefs.current[index] = el)}
                 name="answer"

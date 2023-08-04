@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { bringScrapOriginalListData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
 
 const ScrapPage = ({response}) => {
-  const router = useRouter();  
+  const router = useRouter();
   const inputRefs = useRef([]);
   const [toggle, setToggle] = useState(false);
   const [contents, setContents] = useState([]);
@@ -48,6 +48,10 @@ const ScrapPage = ({response}) => {
       .then(response => {
         setInterviewList(response)
         setContents(response.scrapQuestionWithScrapAnswersList)
+        setAnswers((prevAnswer) => ({
+          ...prevAnswer,
+          [0]: true
+        }))
       })
       .catch(reject => console.log(reject));
   }, []);
@@ -120,15 +124,16 @@ const ScrapPage = ({response}) => {
                   <div className="questions__area">
                     {interviewList.scrapQuestionWithScrapAnswersList.map((item, index) => (
                       <QuestionComponent
-                        item={item}
-                        index={index}
-                        key={index}
-                        answers = {answers}
-                        inputValues = {inputValues}
-                        toggleAnswerInput = {toggleAnswerInput}
-                        handleInputChange={handleInputChange}
-                        handleInputLimit={handleInputLimit}
-                        inputRefs={inputRefs}
+                        item                = {item}
+                        index               = {index}
+                        key                 = {index}
+                        answers             = {answers}
+                        inputValues         = {inputValues}
+                        toggleAnswerInput   = {toggleAnswerInput}
+                        handleInputChange   = {handleInputChange}
+                        handleInputLimit    = {handleInputLimit}
+                        inputRefs           = {inputRefs}
+                        gptToggle           = {toggle}
                       /> 
                     ))}
                   </div>

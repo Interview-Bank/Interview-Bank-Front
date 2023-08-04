@@ -30,9 +30,11 @@ const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, prop
         .then(response => {
           dispatch(confirmModalSlice.actions.OPEN(
             {
-              title: "스크랩 되었습니다.",
-              content: "페이지로 이동할까요?",
-              value: "scrap"
+              title     : "스크랩 되었습니다.",
+              content   : "페이지로 이동할까요?",
+              value     : "scrap",
+              yes       : "확인",
+              no        : "취소"
             }
           ));
         })
@@ -45,7 +47,16 @@ const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, prop
   }
 
   const moveOriginalInterview = () => {
-    router.push(`/interview/${accountId}`)
+    dispatch(confirmModalSlice.actions.OPEN(
+      {
+        title   : "저장하고 원본글로 넘어갈까요?",
+        content : "글을 저장하지 않고 원본글을 보면 작성하신 글이 삭제 됩니다. 저장할까요?",
+        value   : "scrap",
+        yes     : "저장하기",
+        no      : "취소"
+      }
+    ));
+    // router.push(`/interview/${accountId}`)
   }
 
   const openLoginPopupEvent = () => {

@@ -4,19 +4,22 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ConfirmModal.module.scss';
+import { Button } from '@/components/atoms';
 
 interface RootState<T> {
   [x: string]: T;
 }
 
 interface ConfirmModalStateType {
-  active: boolean;
-  content?: string;
-  title?: string;
+  active    : boolean;
+  content  ?: string;
+  title    ?: string;
+  yes       : string;
+  no        : string;
 }
 
 const ConfirmModal = () => {
-  const { active, title, content } = useSelector((state: RootState<ConfirmModalStateType>) => state.confirmModal);
+  const { active, title, content, yes, no } = useSelector((state: RootState<ConfirmModalStateType>) => state.confirmModal);
   const dispatch = useDispatch();
   const router = useRouter();
   const [scrapList, setScrapList] = useState([]);
@@ -50,8 +53,8 @@ const ConfirmModal = () => {
 							</p>
         }
         <div className={styles.btn__area}>
-          <button className={styles.btn__close} onClick={() => dispatch(confirmModalSlice.actions.CLOSE())}>취소</button>
-          <button className={`${styles.btn__close} ${styles['btn-blue']}`} onClick={() => isMoveScrapPage()}>이동</button>
+          <Button value={no} onClickEvent={() => dispatch(confirmModalSlice.actions.CLOSE())} />
+          <Button value={yes} onClickEvent={() => isMoveScrapPage()} />
         </div>
       </div>
     </div>

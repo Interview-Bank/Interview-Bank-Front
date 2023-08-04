@@ -200,7 +200,7 @@ li {
 }
 
 .interview__area {
-	padding-top: 60px;
+	padding: 60px 20px 0;
 }
 
 .interview__body {
@@ -208,7 +208,7 @@ li {
 }
 
 .scrap__area {
-	padding-top: 60px;
+	padding: 60px 20px 0;
 }
 
 .scrap__body {

@@ -9,6 +9,7 @@
   align-items: center;
   z-index: 8;
   background-color: rgba(0, 0, 0, 0.4);
+  
   .white {
     position: absolute;
     width: 360px;
@@ -35,7 +36,7 @@
       margin-bottom: 16px;
       font-family: "Inter", sans-serif;
       font-weight: bolder;
-      font-size: 20px;
+      font-size: 1.125rem;
       text-align: center;
       color: #2e62e7;
     }
@@ -43,9 +44,8 @@
     .title-grey {
       margin: 0;
       width: 100%;
-      font-size: 15px;
+      font-size: 1rem;
       font-family: "Inter", sans-serif;
-      font-weight: bolder;
       text-align: center;
       color: #5c5c5c;
     }
@@ -71,7 +71,8 @@
       & button:first-child{
         margin-right: 20px;
       }
-      & .btn-blue {
+
+      & :last-child {
         background-color: #2e55e7;
       }
     }
