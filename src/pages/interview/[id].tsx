@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { getDateFormatString } from '../api/dateConvert';
 import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
-import { QuestionComponent } from '@/components/molecules/QuestionComponent';
 import { CareerYearType } from '../types/CareerYearType';
 import { InterviewPeriodType } from '../types/InterviewPeriodType';
+import { AnswerComponent } from '@/components/molecules/AnswerComponent';
 
 interface InterviewPageProps {
 	interviewInfo: {
@@ -76,6 +76,7 @@ const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
   //     .then((result) => {})
   //     .catch((err) => console.log(err));
   //   setScrapModal(true)
+	console.log(interviewInfo)
   // };
   return (
 		<section className='interview__area'>
@@ -90,9 +91,11 @@ const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
 				/>
 				{toggle 
 					? interviewInfo.questions?.map((item, index) => (
-							<InterviewView
-								key={index}
-								content = {item.gptAnswer}
+						// 	<InterviewView
+						// 		key={index}
+						// 		content = {item.gptAnswer}
+						// />
+							<AnswerComponent 
 							/>
 						))
 					: interviewInfo.questions?.map((item, index) => (

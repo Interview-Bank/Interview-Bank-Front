@@ -94,7 +94,7 @@ const ScrapPage = ({response}) => {
       e.target.setCustomValidity("");
     }
   };
-
+  
   const saveScrapAnswers = () => {
     contents.map(async (item, index) => {
       let updateContent = inputValues[index] === undefined

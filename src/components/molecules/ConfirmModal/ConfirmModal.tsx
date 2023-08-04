@@ -11,18 +11,17 @@ interface RootState<T> {
 }
 
 interface ConfirmModalStateType {
-  active    : boolean;
-  content  ?: string;
-  title    ?: string;
-  yes       : string;
-  no        : string;
+  active        : boolean;
+  content      ?: string;
+  title        ?: string;
+  yes           : string;
+  no            : string;
+  onClickEvent  : () => void;
 }
 
 const ConfirmModal = () => {
-  const { active, title, content, yes, no } = useSelector((state: RootState<ConfirmModalStateType>) => state.confirmModal);
+  const { active, title, content, yes, no, onClickEvent } = useSelector((state: RootState<ConfirmModalStateType>) => state.confirmModal);
   const dispatch = useDispatch();
-  const router = useRouter();
-  const [scrapList, setScrapList] = useState([]);
 
 	useEffect(() => {
 		active
@@ -32,29 +31,26 @@ const ConfirmModal = () => {
       document.documentElement.style.overflow = "unset"
     }
   }, [active, title, content])
-  
-  const isMoveScrapPage = () => {
+
+  const onClickEventAndCloseModal = () => {
+    onClickEvent();
     dispatch(confirmModalSlice.actions.CLOSE());
-    bringScrapListData()
-      .then(response => router.push(`/scraps/${response.scraps[0].scrapId}`))
-      .catch(reject => console.log(reject));
-    // router.push(`/scraps/${scrapList[0].scrapId}`);
   }
 
   return (
     <div className={styles.modal}>
       <div className={styles.white}>
-        <p className={styles['title-blue']}>
+        <p className={styles['white__title--blue']}>
           {title}
         </p>
         {content 
-					&&  <p className={styles[`title-grey`]}>
+					&&  <p className={styles[`white__title--grey`]}>
 								{content}
 							</p>
         }
         <div className={styles.btn__area}>
           <Button value={no} onClickEvent={() => dispatch(confirmModalSlice.actions.CLOSE())} />
-          <Button value={yes} onClickEvent={() => isMoveScrapPage()} />
+          <Button value={yes} onClickEvent={() => onClickEventAndCloseModal()} />
         </div>
       </div>
     </div>

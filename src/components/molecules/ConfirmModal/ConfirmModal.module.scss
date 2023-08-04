@@ -30,24 +30,27 @@
         transform: translateY(0);
       }
     }
-    .title-blue {
-      margin: 0;
-      width: 100%;
-      margin-bottom: 16px;
-      font-family: "Inter", sans-serif;
-      font-weight: bolder;
-      font-size: 1.125rem;
-      text-align: center;
-      color: #2e62e7;
-    }
-    
-    .title-grey {
-      margin: 0;
-      width: 100%;
-      font-size: 1rem;
-      font-family: "Inter", sans-serif;
-      text-align: center;
-      color: #5c5c5c;
+
+    .white__title {
+      &--blue {
+        margin: 0;
+        width: 100%;
+        margin-bottom: 16px;
+        font-family: "Inter", sans-serif;
+        font-weight: bolder;
+        font-size: 1.125rem;
+        text-align: center;
+        color: #2e62e7;
+      }
+
+      &--grey {
+        margin: 0;
+        width: 100%;
+        font-size: 1rem;
+        font-family: "Inter", sans-serif;
+        text-align: center;
+        color: #5c5c5c;
+      }
     }
 
     .btn__area {
