@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styles from './AnswerComponent.module.scss';
 
-const AnswerComponent = () => {
+const AnswerComponent = ({ item }) => {
+  console.log(item);
   const [toggle, setToggle] = useState(false);
   return (
-    <div className={styles.answer}>
+    <div className={`${styles.answer} ${toggle ? styles[`answer--active`] : undefined}`}>
       <div className={styles.answer__area}>
-        1
+        {item.content}
       </div>
       <div
         className = {`${styles.answer__arrow} ${toggle ? styles['answer__arrow--active'] : undefined}`}
@@ -15,6 +16,14 @@ const AnswerComponent = () => {
         <span></span>
         <span></span>
       </div>
+      {toggle
+        &&  <>
+              <div className={styles.answer__divide}></div>
+              <div> {/** textarea 들고오기 */}
+                {item.gptAnswer}
+              </div>
+            </>
+      }
     </div>
   )
 }

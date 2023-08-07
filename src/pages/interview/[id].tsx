@@ -96,6 +96,8 @@ const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
 						// 		content = {item.gptAnswer}
 						// />
 							<AnswerComponent 
+								item			=	{item}
+								key				=	{index}
 							/>
 						))
 					: interviewInfo.questions?.map((item, index) => (
