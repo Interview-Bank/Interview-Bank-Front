@@ -4,7 +4,7 @@ import { registerService } from '@/pages/api/Register/register';
 import { emailPatternCheck } from '@/pages/api/emailPatternCheck';
 import { modalSlice } from '@/redux/modalReducer';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 
 const EmailSignUpPage = () => {
@@ -104,42 +104,42 @@ const EmailSignUpPage = () => {
       <Title title='회원가입' />
       <div className="email__form">
         <RegisterInput
-          title='닉네임'
-          name='nickname'
-          value={registerData.nickname}
-          placeholder='닉네임을 입력해주세요.'
-          maxLength={16}
-          onChangeEvent={onChangeRegisterData}
-          errorMessage={errorMessage.nickname}
+          title             = '닉네임'
+          name              = 'nickname'
+          value             = {registerData.nickname}
+          placeholder       = '닉네임을 입력해주세요.'
+          maxLength         = {16}
+          onChangeEvent     = {onChangeRegisterData}
+          errorMessage      = {errorMessage.nickname}
         />
         <RegisterInput
-          title='이메일'
-          name='email'
-          value={registerData.email}
-          placeholder='이메일을 입력해주세요.'
-          maxLength={254}
-          onChangeEvent={onChangeRegisterData}
-          errorMessage={errorMessage.email}
+          title             = '이메일'
+          name              = 'email'
+          value             = {registerData.email}
+          placeholder       = '이메일을 입력해주세요.'
+          maxLength         = {254}
+          onChangeEvent     = {onChangeRegisterData}
+          errorMessage      = {errorMessage.email}
         />
         <RegisterInput
-          title='비밀번호'
-          name='password'
-          value={registerData.password}
-          type="password"
-          placeholder='영문,숫자,특수문자 포함 8자이상'
-          maxLength={30}
-          onChangeEvent={onChangeRegisterData}
-          errorMessage={errorMessage.password}
+          title             = '비밀번호'
+          name              = 'password'
+          value             = {registerData.password}
+          type              = "password"
+          placeholder       = '영문,숫자,특수문자 포함 8자이상'
+          maxLength         = {30}
+          onChangeEvent     = {onChangeRegisterData}
+          errorMessage      = {errorMessage.password}
         />
         <RegisterInput
-          title=''
-          name='passwordConfirm'
-          value={registerData.passwordConfirm}
-          type="password"
-          placeholder='비밀번호를 확인해 주세요'
-          maxLength={30}
-          onChangeEvent={onChangeRegisterData}
-          errorMessage={errorMessage.passwordConfirm}
+          title             = ''
+          name              = 'passwordConfirm'
+          value             = {registerData.passwordConfirm}
+          type              = "password"
+          placeholder       = '비밀번호를 확인해 주세요'
+          maxLength         = {30}
+          onChangeEvent     = {onChangeRegisterData}
+          errorMessage      = {errorMessage.passwordConfirm}
         />
         <Button value='가입하기' onClickEvent={registDataSubmit}/>
       </div>
