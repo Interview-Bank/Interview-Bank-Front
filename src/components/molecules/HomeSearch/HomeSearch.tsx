@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import Search from "public/Icons/search.png";
 import { useRouter } from 'next/router';
 import styles from './HomeSearch.module.scss';
-import Image from 'next/image';
 import { IconImage, Input } from '@/components/atoms';
 
 const HomeSearch = () => {
-  const router = useRouter();
-	const [searchTitle, setSearchTitle] = useState({title: ''})
+  const router 												= useRouter();
+	const [searchTitle, setSearchTitle] = useState('')
 
 	const searchOnChangeEvent = (name: string, value: string) => {
-		setSearchTitle((prev) => {
-			return { ...prev, [name]: value }
-		});
+		setSearchTitle(value);
 	}
 
 	const clickSearchButton = () => {
 		router.push({
-			pathname: '/search',
-			query: { title: searchTitle.title }
+			pathname	: '/search',
+			query			: {
+										title: searchTitle
+									}
 		});
 	}
 
@@ -31,7 +29,7 @@ const HomeSearch = () => {
 			>
 				<Input
 					name						= 'title'
-					value						= {searchTitle.title}
+					value						= {searchTitle}
 					type						= 'text'
 					placeholder			= '회사, 직무 등을 검색해주세요!'
 					maxLength				= {48}
@@ -40,7 +38,6 @@ const HomeSearch = () => {
 					onKeyDownEvent	= {clickSearchButton}
 				/>
 				<IconImage icon={"SEARCH"} />
-				{/* <Image src={Search} alt="검색 버튼" /> */}
 			</div>
 		</div>
 	);
