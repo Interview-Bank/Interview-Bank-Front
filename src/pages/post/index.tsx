@@ -13,7 +13,7 @@ function PostPage() {
 	const dispatch 	= useDispatch();
 	const inputId 	= useRef(0);
 
-	const [	title	, setTitle	] = useState({ title: "" });
+	const [	title	, setTitle	] = useState("");
 	const [	inputs, setInputs	] = useState([
 		{
 			content: "",
@@ -29,9 +29,7 @@ function PostPage() {
 	});
 
 	const changeTitleValue = (name: string, value: string) => {
-		setTitle((prev) => {
-			return { ...prev, [name]: value };
-		})
+		setTitle(value);
 	}
 
 	const generateId = () => {
@@ -52,17 +50,20 @@ function PostPage() {
 
 	const postValidationCheck = () => {
 		const { interviewPeriod, careerYear, firstLevelId } = inputSelectBox;
-		if (!title.title) {
+		if (!title.trim()) {
 			dispatch(modalSlice.actions.OPEN(
-				{ title: "제목을 입력해주세요.", content: "" }
+				{
+					title		: "제목을 입력해주세요.",
+					content	: ""
+				}
 			));
 			return false;
 		}
 		if (!interviewPeriod) {
 			dispatch(modalSlice.actions.OPEN(
 				{
-					title: "면접 시기가 선택되지 않았어요!",
-					content: "면접 시기를 선택해주세요.",
+					title		: "면접 시기가 선택되지 않았어요!",
+					content	: "면접 시기를 선택해주세요.",
 				}
 			));
 			return false;
@@ -70,8 +71,8 @@ function PostPage() {
 		if (!careerYear) {
 			dispatch(modalSlice.actions.OPEN(
 				{
-					title: "경력이 선택되지 않았어요!",
-					content: "경력을 선택해주세요.",
+					title		: "경력이 선택되지 않았어요!",
+					content	: "경력을 선택해주세요.",
 				}
 			));
 			return false;
@@ -79,8 +80,8 @@ function PostPage() {
 		if (!firstLevelId) {
 			dispatch(modalSlice.actions.OPEN(
 				{
-					title: "직종이 선택되지 않았어요!",
-					content: "직종을 선택해주세요.",
+					title		: "직종이 선택되지 않았어요!",
+					content	: "직종을 선택해주세요.",
 				}
 			));
 			return false;
@@ -88,8 +89,8 @@ function PostPage() {
 		if (inputs.length === 0) {
 			dispatch(modalSlice.actions.OPEN(
 				{
-					title: "질문이 없어요!",
-					content: "최소 하나의 질문은 적어주세요.",
+					title		: "질문이 없어요!",
+					content	: "최소 하나의 질문은 적어주세요.",
 				}
 			));
 			return false;
@@ -97,8 +98,8 @@ function PostPage() {
 		if (inputs.filter((current) => current.content === "").length) {
 			dispatch(modalSlice.actions.OPEN(
 				{
-					title: "질문이 비었어요!",
-					content: "최소 한글자 이상 입력해주세요.",
+					title		: "질문이 비었어요!",
+					content	: "최소 한글자 이상 입력해주세요.",
 				}
 			));
 			return false;
@@ -131,8 +132,8 @@ function PostPage() {
 			dispatch({
 				type: "OPEN",
 				payload: {
-					title: "질문이 너무 많아요!",
-					content: "1000개 이상은 생성 불가능합니다.",
+					title		: "질문이 너무 많아요!",
+					content	: "1000개 이상은 생성 불가능합니다.",
 				},
 			});
 			return false;
@@ -144,14 +145,14 @@ function PostPage() {
 		if (checkGenerateQuestionCountOver()) {
 			generateId();
 			const newInput = {
-				content: "",
-				questionsId: inputId.current,
+				content			: "",
+				questionsId	: inputId.current,
 			};
 			setInputs([...inputs, newInput]);
 		}
 	};
 
-	const onRemove = (id) => {
+	const onRemove = (id: number) => {
 		const newInputs = inputs.filter((input) => input.questionsId !== id);
 		setInputs(newInputs);
 		// if (inputs.length > 0) {
@@ -181,7 +182,7 @@ function PostPage() {
 				className={`post__header ${inputs.length > 2 ? "post__header--sticky" : undefined}`}
 			>
 				<PostTitle
-					title										= {title.title}
+					title										= {title}
 					type										= 'I'
 					changeTitleValue				= {changeTitleValue}
 					clickPostInterview			= {clickPostInterview}
@@ -192,11 +193,11 @@ function PostPage() {
 				/>
 			</div>
 			<PostBody
-				inputs={inputs}
-				onRemove={onRemove}
-				onChange={onChange}
-				onAddInput={onAddInput}
-				handleInputLimit={handleInputLimit}
+				inputs						= {inputs}
+				onRemove					= {onRemove}
+				onChange					= {onChange}
+				onAddInput				= {onAddInput}
+				handleInputLimit	= {handleInputLimit}
 			/>
     </section>
 	);
