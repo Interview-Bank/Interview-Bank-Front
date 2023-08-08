@@ -2,11 +2,11 @@ import Head from 'next/head';
 import React from 'react'
 
 interface HeadProps {
-  title: string;
-  author? :string;
+  title    : string;
+  author  ?: string;
 }
 
-const SeoHead = ({title}: HeadProps) => {
+const SeoHead = ({ title, author = '' }: HeadProps) => {
   return (
     <Head>
       <link rel="shortcut icon" href="/favicon.ico" />
