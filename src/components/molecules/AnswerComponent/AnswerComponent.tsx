@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import styles from './AnswerComponent.module.scss';
 
-const AnswerComponent = ({ item }) => {
-  console.log(item);
+interface AnswerComponentProps {
+  item: {
+    questionId  : number;
+    content     : string;
+    createdAt   : string;
+    deletedAt   : string;
+    deletedFlag : boolean;
+    gptAnswer   : string;
+    updatedAt   : string;
+  }
+}
+
+const AnswerComponent = ({ item }: AnswerComponentProps) => {
   const [toggle, setToggle] = useState(false);
+  console.log(item);
   return (
     <div className={`${styles.answer} ${toggle ? styles[`answer--active`] : undefined}`}>
       <div className={styles.answer__area}>
@@ -19,9 +31,14 @@ const AnswerComponent = ({ item }) => {
       {toggle
         &&  <>
               <div className={styles.answer__divide}></div>
-              <div> {/** textarea 들고오기 */}
-                {item.gptAnswer}
-              </div>
+              <textarea
+                name        = "gptAnswer"
+                readOnly    = {true}
+                value       = {item?.gptAnswer}
+                placeholder = '답변을 입력해주세요.'
+                onChange    = {()=>{}}
+                onInput     = {()=>{}}
+              />
             </>
       }
     </div>

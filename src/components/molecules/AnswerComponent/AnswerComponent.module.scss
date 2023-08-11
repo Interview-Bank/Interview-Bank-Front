@@ -54,6 +54,44 @@
     // height: 88px;
   }
 
+  textarea {
+    width: 100%;
+    max-height: 300px;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow : auto;
+
+    box-sizing: border-box;
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: #000000;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background: #DDDDDD;
+      border-radius: 20px;
+      display: block;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 6px;
+      background: #2E55E7;
+      border-radius: 20px;
+    }
+
+    margin-top : 20px;
+    padding-right: 35px;
+    padding-left: 66px;
+
+  }
+
   .answer__area {
     width: 100%;
   }

@@ -25,6 +25,7 @@ export interface InterviewListProps {
 
 const HomePage = ({ interviewList }: InterviewListProps) => {
   const { data, isError, isLoading } = useQuery("interview", () => bringHomeInterviewListData(), { staleTime: 2000 })
+  console.log(data);
 
   return (
     <section className='home'>
