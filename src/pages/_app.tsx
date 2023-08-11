@@ -5,8 +5,7 @@ import '@/styles/post.scss';
 import '@/styles/search.scss';
 import type { AppProps } from 'next/app'
 import { wrapper } from '../redux/rootReducer';
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 

@@ -3,7 +3,9 @@ import { SeoHead } from '@/components/atoms';
 import { Banner, HomeSearch, TextComponent } from '@/components/molecules'
 import { GetServerSideProps } from 'next';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
-import { useQuery } from 'react-query';
+import { useState, useEffect } from 'react';
+import { useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 
 export interface InterviewListProps {
   interviewList: [
@@ -24,8 +26,28 @@ export interface InterviewListProps {
 }
 
 const HomePage = ({ interviewList }: InterviewListProps) => {
-  const { data, isError, isLoading } = useQuery("interview", () => bringHomeInterviewListData(), { staleTime: 2000 })
-  console.log(data);
+  const { data, isError, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['interview'],
+    ({pageParam = 0}) => bringHomeInterviewListData(12, pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.currentPage < lastPage.totalPages) {
+          return lastPage.currentPage + 1;
+        }
+      }
+    });
+  console.log(data?.pages);
+  const [scrollInterviewList, setScrollInterviewList] = useState([...interviewList]);
+  // const listRef = useInview(null);  
+  const [ref, inView] = useInView();
+
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView, isLoading])
+  
 
   return (
     <section className='home'>
@@ -35,8 +57,8 @@ const HomePage = ({ interviewList }: InterviewListProps) => {
       <div className="home__title">
         <h2>최신 인터뷰 글 보기</h2>
       </div>
-      <div className="home__list">
-        {interviewList?.map((interview) => (
+      <div className="home__list" ref={ref}>
+        {scrollInterviewList?.map((interview) => (
           <TextComponent
             key                 = {interview.interviewId}
             id                  = {interview.interviewId}

@@ -7,7 +7,7 @@ const bringHomeInterviewListData = async (pageSize = 12, pageNumber = 0) => {
       const response = await axios.get(
         baseUrl, { params: { page: pageNumber, size: pageSize } }
       );
-      return response.data.interviews;
+      return response.data;
     } catch (error) {
       throw new Error(`Error: ${error}`);
     }
