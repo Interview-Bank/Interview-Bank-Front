@@ -4,13 +4,16 @@
   height: fit-content;
 	justify-content: space-between;
   align-items: baseline;
+  padding-bottom: 28px;
   margin: 0 auto 12px;
   border-bottom: 1px solid #d9d9d9;
+
   & > div:first-child {
     padding-bottom: 28px;
     border-bottom: 0;
     margin: 0;
   }
+  
   .btn__area {
     display: flex;
     flex-direction: row;

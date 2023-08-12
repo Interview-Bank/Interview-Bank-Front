@@ -8,6 +8,72 @@ import React, { useEffect, useRef, useState } from 'react'
 import { bringScrapOriginalListData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
 import { MultiReadSelect } from '@/components/molecules';
 import { Label } from '@/components/atoms';
+import { AnswerComponent } from '@/components/molecules/AnswerComponent';
+
+const dummyData = {
+  title: '네이버네이버네이버네이버네이버네이버네이버',
+  date: '2023.03.28',
+  view: 0,
+  writerNickname: 'JINU',
+  accountId: 1,
+  item: {
+    questionId  : 1,
+    content     : '2',
+    createdAt   : '2023.03.28',
+    deletedAt   : null,
+    deletedFlag : false,
+    gptAnswer   : '',
+    updatedAt   : '2023.03.28',
+  }
+}
+
+const RelationScraps = () => {
+  const [toggle, setToggle] = useState(false);
+  return (
+    <div>
+      <div onMouseEnter={() => setToggle(true)}>
+        <div className="scraps__relation__title">
+          <div>1</div>
+          <Button value='' image={'LIKE'} />
+        </div>
+        <div className="scraps__relation__content">
+          <h4>{dummyData.title}</h4>
+          <Label text={dummyData.writerNickname} />
+        </div>
+      </div>
+      {toggle
+        &&  <div className='scraps__relation--active'>
+              <Button image={"CLOSE"} value='' onClickEvent={() => { setToggle(false) }} />
+              <div className="relation__title">
+                <InterviewTitleArea
+                  title						= {dummyData.title}
+                  date						= {dummyData.date}
+                  accountId				= {dummyData.accountId}
+                  btnArea         = {false}
+                  propsValue      = {'scrap'}
+                  writerNickname	= {dummyData.writerNickname}
+                  view						= {dummyData.view}
+                />
+              </div>
+              <div className="relation__content">
+                <AnswerComponent 
+                  item			=	{dummyData.item}
+                />
+                <AnswerComponent 
+                  item			=	{dummyData.item}
+                />
+                <AnswerComponent 
+                  item			=	{dummyData.item}
+                />
+                <AnswerComponent 
+                  item			=	{dummyData.item}
+                />
+              </div>
+            </div>
+      }
+    </div>
+  )
+}
 
 const ScrapPage = ({response}) => {
   const router = useRouter();
@@ -17,6 +83,7 @@ const ScrapPage = ({response}) => {
   const [interviewList, setInterviewList] = useState({});
   const [answers, setAnswers] = useState({});
   const [inputValues, setInputValues] = useState({});
+  const [relationToggle, setRelationToggle] = useState(false);
 
   const toggleSwitch = () => {
     setToggle(prev => !prev);
@@ -96,8 +163,6 @@ const ScrapPage = ({response}) => {
       e.target.setCustomValidity("");
     }
   };
-  
-  console.log(interviewList.scrap)
 
   const saveScrapAnswers = () => {
     contents.map(async (item, index) => {
@@ -150,16 +215,8 @@ const ScrapPage = ({response}) => {
                       /> 
                     ))}
                     <div className="scraps__relation">
-                      <div>
-                        <div className="scraps__relation__title">
-                          <div>1</div>
-                          <Button value='' image={'LIKE'} />
-                        </div>
-                        <div className="scraps__relation__content">
-                          <h4>네이버네이버네이버네이버네이버네이버네이버</h4>
-                          <Label text={'fkskgkk95'} />
-                        </div>
-                      </div>
+                      <RelationScraps />
+                      <RelationScraps />
                     </div>
                   </div>
                   // response.questions.map((item, index) => (

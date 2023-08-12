@@ -14,14 +14,15 @@ import { confirmModalSlice } from '@/redux/confirmModalReducer';
 import { bringScrapListData } from '@/pages/api/Scrap/scrapFetchDataAPI';
 
 interface InterviewTitleAreaProps {
-  title: string;
-  date: string;
-  accountId: number;
-  toggle: boolean;
-  toggleSwitch: () => void;
-  propsValue?: string;
-  writerNickname: string;
-  view: number;
+  title             : string;
+  date              : string;
+  accountId         : number;
+  toggle           ?: boolean;
+  toggleSwitch     ?: () => void;
+  propsValue       ?: string;
+  writerNickname    : string;
+  view              : number;
+  btnArea          ?: boolean;
 }
 
 const InterviewTitleArea = ({
@@ -30,9 +31,10 @@ const InterviewTitleArea = ({
   accountId,
   toggle,
   toggleSwitch,
-  propsValue = '',
+  propsValue            = '',
   writerNickname,
-  view
+  view,
+  btnArea               = true
 }: InterviewTitleAreaProps) => {
   const router = useRouter();
   const [ userId        , setUserId       ] = useState(0);
@@ -111,47 +113,51 @@ const InterviewTitleArea = ({
     <div className={styles.title}>
       <div className={styles.title__area}>
         <Title title={title} />
-        <div className={styles.btn__area}>
-          <div className={styles.btn} onClick={() => toggleSwitch()}>
-            <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
-              <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
-            </label>
-            <Button value='챗 GPT 답변보기' onClickEvent={()=> {return}}/>
-          </div>
-          {propsValue === 'scrap'
-            ? <div className={`${styles.btn} ${styles.btn__scrap}`} onClick={() => moveOriginalInterview()}>
-                <Image src={ScrapIcon} alt="원본 글 이동 아이콘" width={18} height={18} />
-                <Button value='원본 글로 이동하기' onClickEvent={()=> {return}}/>
-              </div>
-            : <div className={styles.btn} onClick={() => loginCheck()}>
-                <Image src={ScrapIcon} alt="답변 작성 아이콘" width={18} height={18} />
-                <Button value='답변 작성하기' onClickEvent={()=> {return}}/>
-              </div>
-          }
-        </div>
-        <div className={styles.mobile__btn__area} onClick={() => setMobileToggle((prev) => !prev)}>
-          <button className={styles.mobile__dott__menu}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          {mobileToggle
-            &&  <div className={`${styles.mobile__gpt__toggle} ${propsValue !== 'scrap' ? styles['mobile__gpt__toggle--active'] : undefined}`}>
+        {btnArea && toggleSwitch
+          &&  <>
+                <div className={styles.btn__area}>
                   <div className={styles.btn} onClick={() => toggleSwitch()}>
                     <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
                       <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
                     </label>
                     <Button value='챗 GPT 답변보기' onClickEvent={()=> {return}}/>
                   </div>
-                  {propsValue !== 'scrap'
-                    && <div className={styles.btn} onClick={() => loginCheck()}>
+                  {propsValue === 'scrap'
+                    ? <div className={`${styles.btn} ${styles.btn__scrap}`} onClick={() => moveOriginalInterview()}>
+                        <Image src={ScrapIcon} alt="원본 글 이동 아이콘" width={18} height={18} />
+                        <Button value='원본 글로 이동하기' onClickEvent={()=> {return}}/>
+                      </div>
+                    : <div className={styles.btn} onClick={() => loginCheck()}>
                         <Image src={ScrapIcon} alt="답변 작성 아이콘" width={18} height={18} />
                         <Button value='답변 작성하기' onClickEvent={()=> {return}}/>
                       </div>
                   }
                 </div>
-          }
-        </div>
+                <div className={styles.mobile__btn__area} onClick={() => setMobileToggle((prev) => !prev)}>
+                  <button className={styles.mobile__dott__menu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </button>
+                  {mobileToggle
+                    &&  <div className={`${styles.mobile__gpt__toggle} ${propsValue !== 'scrap' ? styles['mobile__gpt__toggle--active'] : undefined}`}>
+                          <div className={styles.btn} onClick={() => toggleSwitch()}>
+                            <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
+                              <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
+                            </label>
+                            <Button value='챗 GPT 답변보기' onClickEvent={()=> {return}}/>
+                          </div>
+                          {propsValue !== 'scrap'
+                            && <div className={styles.btn} onClick={() => loginCheck()}>
+                                <Image src={ScrapIcon} alt="답변 작성 아이콘" width={18} height={18} />
+                                <Button value='답변 작성하기' onClickEvent={()=> {return}}/>
+                              </div>
+                          }
+                        </div>
+                  }
+              </div>
+          </>
+        }
       </div>
       <div className={styles.user}>
         <ul>
