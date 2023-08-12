@@ -13,3 +13,9 @@
     color: #b5b5b5;
   }
 }
+
+@media (max-width: 460px) {
+  .footer {
+    display: none;
+  }
+}
