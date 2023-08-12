@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import ArrowDown from "public/Icons/arrow_down.png";
-import ArrowUp from "public/Icons/arrow_up.png";
 import styles from './Select.module.scss';
 import Image from 'next/image';
 

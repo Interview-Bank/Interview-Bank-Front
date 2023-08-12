@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { setTokenHeaders } from '../login/loginCheck';
+import axiosInstance from '../axiosInstance';
 // import { setTokenHeaders } from '../apiGetTokenHeader';
 
 const baseUrl = 'https://bstaging.interviewbank.net/interview';
 // const headers = setTokenHeaders();
 
-const postInterview = async (headers, postTitle, postObject, postArray) => {
+const postInterview = async (postTitle, postObject, postArray) => {
   const {
     interviewPeriod,
     careerYear,
@@ -24,12 +25,9 @@ const postInterview = async (headers, postTitle, postObject, postArray) => {
   }
 
   try {
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       baseUrl,
-      postData,
-      {
-        headers,
-      }
+      postData
     );
     return response.data;
   } catch (error) {

@@ -11,6 +11,7 @@ import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
 import { CareerYearType } from '../types/CareerYearType';
 import { InterviewPeriodType } from '../types/InterviewPeriodType';
 import { AnswerComponent } from '@/components/molecules/AnswerComponent';
+import { MultiReadSelect } from '@/components/molecules';
 
 interface InterviewPageProps {
 	interviewInfo: {
@@ -34,6 +35,8 @@ interface InterviewPageProps {
 													updatedAt				: string;
 												}[]			
 		title							: string;
+		writerNickname		: string;
+		view							: number;
 	}
 }
 
@@ -76,18 +79,25 @@ const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
   //     .then((result) => {})
   //     .catch((err) => console.log(err));
   //   setScrapModal(true)
-	console.log(interviewInfo)
   // };
   return (
 		<section className='interview__area'>
 			<SeoHead title={interviewInfo.title} />
 			<div className="interview__body">
 				<InterviewTitleArea
-					title={interviewInfo.title}
-					date={interviewInfo.createdAt.slice(0, 10).replaceAll('-', '.')}
-					accountId={interviewInfo.accountId}
-					toggle={toggle}
-					toggleSwitch={toggleSwitch}
+					title						= {interviewInfo.title}
+					date						= {interviewInfo.createdAt.slice(0, 10).replaceAll('-', '.')}
+					accountId				= {interviewInfo.accountId}
+					toggle					= {toggle}
+					toggleSwitch		= {toggleSwitch}
+					writerNickname	= {interviewInfo.writerNickname}
+					view						= {interviewInfo.view}
+				/>
+				<MultiReadSelect
+					interviewPeriod	= {interviewInfo.interviewPeriod}
+					careerYear			= {interviewInfo.careerYear}
+					firstLevelName	=	{interviewInfo.jobCategory?.firstLevelName}
+					secondLevelName	=	{interviewInfo.jobCategory?.secondLevelName}
 				/>
 				{toggle 
 					? interviewInfo.questions?.map((item, index) => (

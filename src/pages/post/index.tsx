@@ -109,7 +109,7 @@ function PostPage() {
 
 	const clickPostInterview = async () => {
 		if (postValidationCheck()) {
-			postInterview(headers, title, inputSelectBox, inputs)
+			postInterview(title, inputSelectBox, inputs)
 				.then((response) => router.push(`/interview/${response.interviewId}`))
 				.catch((reject) => console.log(reject));
 		}

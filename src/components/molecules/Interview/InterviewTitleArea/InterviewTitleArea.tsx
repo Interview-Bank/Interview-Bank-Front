@@ -13,10 +13,31 @@ import { useDispatch } from 'react-redux';
 import { confirmModalSlice } from '@/redux/confirmModalReducer';
 import { bringScrapListData } from '@/pages/api/Scrap/scrapFetchDataAPI';
 
-const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, propsValue = '' }) => {
+interface InterviewTitleAreaProps {
+  title: string;
+  date: string;
+  accountId: number;
+  toggle: boolean;
+  toggleSwitch: () => void;
+  propsValue?: string;
+  writerNickname: string;
+  view: number;
+}
+
+const InterviewTitleArea = ({
+  title,
+  date,
+  accountId,
+  toggle,
+  toggleSwitch,
+  propsValue = '',
+  writerNickname,
+  view
+}: InterviewTitleAreaProps) => {
   const router = useRouter();
-  const [userId, setUserId] = useState(0);
-  const [modalActive, setModalActive] = useState(false);
+  const [ userId        , setUserId       ] = useState(0);
+  const [ modalActive   , setModalActive  ] = useState(false);
+  const [ mobileToggle  , setMobileToggle ] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {    
@@ -78,14 +99,7 @@ const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, prop
     if (window.confirm("해당 글을 삭제하시겠습니까?")) {
       deleteInterview(router.query.id)
         .then(response => { window.alert("삭제되었습니다."); router.push('/') })
-        .catch(reject => console.log(reject))
-      // try {
-      //   await axios.delete(`${InterviewBaseUrl}/${interview_id}`, { headers });
-      //   window.alert("삭제되었습니다.")
-      //   navigate('/');
-      // } catch (err) {
-      //   console.error(err);
-      // }
+        .catch(reject => console.log(reject));
     }
   }
 
@@ -99,7 +113,6 @@ const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, prop
         <Title title={title} />
         <div className={styles.btn__area}>
           <div className={styles.btn} onClick={() => toggleSwitch()}>
-            {/* <input type="checkbox" id="toggle" hidden />  */}
             <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
               <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
             </label>
@@ -116,16 +129,44 @@ const InterviewTitleArea = ({ title, date, accountId, toggle, toggleSwitch, prop
               </div>
           }
         </div>
+        <div className={styles.mobile__btn__area} onClick={() => setMobileToggle((prev) => !prev)}>
+          <button className={styles.mobile__dott__menu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          {mobileToggle
+            &&  <div className={styles.mobile__gpt__toggle}>
+                  <div className={styles.btn} onClick={() => toggleSwitch()}>
+                    <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
+                      <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
+                    </label>
+                    <Button value='챗 GPT 답변보기' onClickEvent={()=> {return}}/>
+                  </div>
+                  {propsValue === 'scrap'
+                    ? <div className={`${styles.btn} ${styles.btn__scrap}`} onClick={() => moveOriginalInterview()}>
+                        <Image src={ScrapIcon} alt="원본 글 이동 아이콘" width={18} height={18} />
+                        <Button value='원본 글로 이동하기' onClickEvent={()=> {return}}/>
+                      </div>
+                    : <div className={styles.btn} onClick={() => loginCheck()}>
+                        <Image src={ScrapIcon} alt="답변 작성 아이콘" width={18} height={18} />
+                        <Button value='답변 작성하기' onClickEvent={()=> {return}}/>
+                      </div>
+                  }
+                </div>
+          }
+        </div>
       </div>
       <div className={styles.user}>
         <ul>
           <li>
-            <Image src={UserIcon} alt="유저 아이콘" width={18} height={18} />
-
+            <Image src={UserIcon} alt="유저 아이콘" width={20} height={20} />
+            {writerNickname}
           </li>
-          {date
-            && <li>{date}</li>
-          }
+          <li></li>
+          <li>{date}</li>
+          <li></li>
+          <li>{view} View</li>
         </ul>
         {userId === accountId
           &&  <div className={styles.menu}>

@@ -14,6 +14,8 @@ import BannerMoney        from '@/assets/images/banner/banner-money.svg';
 import BannerCalendar     from '@/assets/images/banner/banner-calendar.svg';
 import BannerSmile        from '@/assets/images/banner/banner-smile.svg';
 
+import ArrowDown          from 'public/Icons/arrow_down.png';
+
 interface IconProps {
   icon: string;
 }
@@ -47,6 +49,9 @@ const isDiscernIcon = ({ icon }: IconProps) => {
       return Write;
     case 'SEARCH':
       return Search;
+    
+    case 'ARROW-DOWN':
+      return ArrowDown;
     default:
       break;
   };

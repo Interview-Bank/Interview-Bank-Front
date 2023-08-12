@@ -1,6 +1,7 @@
 import { Banner } from './Banner';
 import { HomeSearch } from './HomeSearch';
 import { LoginModal } from './LoginModal';
+import { MultiReadSelect } from './MultiReadSelect';
 import { MultiSelect } from './MultiSelect';
 import { PostBody } from './PostBody';
 import { PostTitle } from './PostTitle';
@@ -17,6 +18,7 @@ export {
   PostTitle, PostBody,
   RegisterInput,
   MultiSelect,
+  MultiReadSelect,
   TextComponent,
   SearchItem
 };
