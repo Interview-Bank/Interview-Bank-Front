@@ -136,19 +136,15 @@ const InterviewTitleArea = ({
             <span></span>
           </button>
           {mobileToggle
-            &&  <div className={styles.mobile__gpt__toggle}>
+            &&  <div className={`${styles.mobile__gpt__toggle} ${propsValue !== 'scrap' ? styles['mobile__gpt__toggle--active'] : undefined}`}>
                   <div className={styles.btn} onClick={() => toggleSwitch()}>
                     <label htmlFor="toggle" className={toggle ? `${styles.toggle} ${styles.active}` : styles.toggle}>
                       <span className={toggle ? `${styles.btn__toggle} ${styles.active}` : styles.btn__toggle}></span>
                     </label>
                     <Button value='챗 GPT 답변보기' onClickEvent={()=> {return}}/>
                   </div>
-                  {propsValue === 'scrap'
-                    ? <div className={`${styles.btn} ${styles.btn__scrap}`} onClick={() => moveOriginalInterview()}>
-                        <Image src={ScrapIcon} alt="원본 글 이동 아이콘" width={18} height={18} />
-                        <Button value='원본 글로 이동하기' onClickEvent={()=> {return}}/>
-                      </div>
-                    : <div className={styles.btn} onClick={() => loginCheck()}>
+                  {propsValue !== 'scrap'
+                    && <div className={styles.btn} onClick={() => loginCheck()}>
                         <Image src={ScrapIcon} alt="답변 작성 아이콘" width={18} height={18} />
                         <Button value='답변 작성하기' onClickEvent={()=> {return}}/>
                       </div>

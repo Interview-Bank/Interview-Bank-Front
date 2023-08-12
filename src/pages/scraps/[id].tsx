@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import { bringScrapOriginalListData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
+import { MultiReadSelect } from '@/components/molecules';
 
 const ScrapPage = ({response}) => {
   const router = useRouter();
@@ -95,6 +96,8 @@ const ScrapPage = ({response}) => {
     }
   };
   
+  console.log(interviewList.scrap)
+
   const saveScrapAnswers = () => {
     contents.map(async (item, index) => {
       let updateContent = inputValues[index] === undefined
@@ -113,12 +116,21 @@ const ScrapPage = ({response}) => {
               <SeoHead title='' />
               <div className="scrap__body">
                 <InterviewTitleArea
-                  title={interviewList.scrap.title}
-                  date={interviewList.scrap.createdAt}
-                  accountId={interviewList.originalInterview.interviewId}
-                  toggle={toggle}
-                  toggleSwitch={toggleSwitch}
-                  propsValue={'scrap'}
+                  title						= {interviewList.scrap.title}
+                  date						= {interviewList.scrap.createdAt.slice(0, 10).replaceAll('-', '.')}
+                  accountId				= {interviewList.originalInterview.interviewId}
+                  toggle					= {toggle}
+                  toggleSwitch		= {toggleSwitch}
+                  propsValue      = {'scrap'}
+                  writerNickname	= {interviewList.scrap.writerNickname}
+                  view						= {interviewList.scrap.view}
+                />
+                {/* data 보내줌 필요 */}
+                <MultiReadSelect
+                  interviewPeriod	= {interviewList.scrap.interviewPeriod}
+                  careerYear			= {interviewList.careerYear}
+                  firstLevelName	=	{interviewList.jobCategory?.firstLevelName}
+                  secondLevelName	=	{interviewList.jobCategory?.secondLevelName}
                 />
                 {interviewList.scrapQuestionWithScrapAnswersList &&
                   <div className="questions__area">
