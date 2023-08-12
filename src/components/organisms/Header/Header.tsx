@@ -6,10 +6,10 @@ import { useRouter } from 'next/router';
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
 
-import { Button, Input } from '@/components/atoms';
+import { Button, Input, Label } from '@/components/atoms';
 import { LoginModal, Profile } from '@/components/molecules';
 
-import { checkCookieExistence, deleteCookie } from '@/pages/api/useCookie';
+import { checkCookieExistence, deleteCookie, getCookieValue } from '@/pages/api/useCookie';
 import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
 import { HomeMenuListArray } from '@/pages/api/Home/HomeMenuListArray';
 
@@ -36,7 +36,10 @@ const Header = () => {
     }
   }, [cookie, profileImageUrl])
   
-  const moveRegisterPage = () => router.push('/register');
+  const moveRegisterPage = () => {
+    router.push('/register');
+    setMobileToggle(false);
+  };
 
   const moveWritePage = () => router.push('/post');
 
@@ -122,7 +125,52 @@ const Header = () => {
         &&  <div className={styles['mobile__menu--active']}>
               <div className={styles.mobile__background}></div>
               <div className={styles.mobile__whiteground}>
-                
+                <div className={styles.mobile__logo}>
+                  <Image src={Logo} alt="logo" />
+                </div>
+                <div className={styles.mobile__form}>
+                  <div className={styles.mobile__user}>
+                    {cookie
+                      ? <>
+                          <h3><Label text={getCookieValue('user')} /> 님</h3>
+                          <Button value={'로그아웃'} onClickEvent={submitLogout}/>
+                        </>
+                      : <p>로그인 후 다양한 인터뷰를 확인하세요.</p>
+                    }
+                  </div>
+                  <div className={styles.mobile__btn__area}>
+                    {(cookie && profileImageUrl)
+                      ?
+                        <>
+                          <ul>
+                            <li>프로필</li>
+                            <li>내 인터뷰</li>
+                            <li></li>
+                          </ul>
+                      
+                        </>
+                      :
+                        <>
+                          <Button
+                            value             = "로그인"
+                            onClickEvent      = {openLoginPopupEvent}    
+                          />
+                          <Button
+                            value             = "회원가입"
+                            onClickEvent      = {moveRegisterPage}
+                          />
+                          {modalActive
+                            && <LoginModal onClickEvent={openLoginPopupEvent} active={modalActive} />
+                          }
+                        </>
+                    }
+                  </div>
+                  <ul className={styles.mobile__menu__list}>
+                    <li>인터뷰</li>
+                    <li>문의하기</li>
+                    <li>인터뷰뱅크 소개</li>
+                  </ul>
+                </div>
               </div>
             </div>
         }
