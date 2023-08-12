@@ -60,6 +60,65 @@
   .mobile__search {
     display: none;
   }
+
+  .mobile__menu {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 24px 24px;
+    gap: 12px;
+    top: 8px;
+    right: 18px;
+  
+    > img {
+      top: 8px; 
+    }
+
+    > button {
+      margin: 0;
+      top: 8px;
+      right: 18px;
+      width: 24px;
+      height: 24px;
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+
+      &.mobile__menu--hamburger {
+        > span {
+          position: absolute;
+          width: 16px;
+          height: 1px;
+          background-color: #222;
+          right: 4px;
+
+          &:first-child {
+            top: 6px;
+          }
+
+          &:nth-child(2) {
+            top: 12px;
+          }
+
+          &:last-child {
+            top: 18px;
+          }
+        }
+      }
+    }
+
+    // &--hamburger {
+    //   position: relative;
+    //   top: 0;
+
+    //   > span {
+    //     position: absolute;
+    //     width: 12px;
+    //     height: 2px;
+    //     // top: ;
+    //     background-color: #222;
+    //   }
+    // }
+  }
 }
 
 @media (max-width: 930px) {
@@ -107,6 +166,12 @@
 
     .nav {
       height: 44px;
+
+      .nav__logo {
+        img {
+          width: 188px;
+        }
+      }
 
       .nav__menu {
         width: 0;

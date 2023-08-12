@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
 
-import { Button, Input } from '@/components/atoms';
+import { Button, IconImage, Input } from '@/components/atoms';
 import { LoginModal, Profile } from '@/components/molecules';
 
 import { checkCookieExistence, deleteCookie } from '@/pages/api/useCookie';
@@ -115,6 +115,15 @@ const Header = () => {
           onChangeEvent     = {()=>{}}
           placeholder       = '기업별 면접 후기를 검색해보세요'
         />
+      </div>
+      <div className={styles.mobile__menu}>
+        {/* <IconImage icon={'SEARCH'} /> */}
+        <Button image={'SEARCH'} value={''} />
+        <button className={styles['mobile__menu--hamburger']}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
   )

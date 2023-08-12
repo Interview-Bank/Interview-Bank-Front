@@ -4,12 +4,7 @@ import { IconImage } from '../IconImage';
 
 interface ButtonProps {
   value           : string;
-  image          ?: "GOOGLE"
-                  | "KAKAO"
-                  | "NAVER"
-                  | "EMAIL"
-                  | "WRITE"
-                  | undefined;
+  image          ?: string;
   imgWidth       ?: number;
   imgHeight      ?: number;
   onClickEvent   ?: () => void;
