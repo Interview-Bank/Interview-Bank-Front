@@ -16,6 +16,9 @@ import BannerSmile        from '@/assets/images/banner/banner-smile.svg';
 
 import ArrowDown          from 'public/Icons/arrow_down.png';
 
+import Filter             from '@/assets/images/filter.svg';
+import Close              from 'public/Icons/close.png';
+
 interface IconProps {
   icon: string;
 }
@@ -52,6 +55,11 @@ const isDiscernIcon = ({ icon }: IconProps) => {
     
     case 'ARROW-DOWN':
       return ArrowDown;
+    
+    case 'FILTER':
+      return Filter;
+    case 'CLOSE':
+      return Close;
     default:
       break;
   };

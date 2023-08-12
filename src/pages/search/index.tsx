@@ -9,7 +9,7 @@ import { CareerYear, InterviewPeriod } from '../api/Post/PostSelectObject';
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
-import { BoxTitle, IconImage, Input, SeoHead, Title, SearchSelectBox } from '@/components/atoms';
+import { BoxTitle, IconImage, Input, SeoHead, Title, SearchSelectBox, Button } from '@/components/atoms';
 import { SearchItem } from '@/components/molecules';
 
 const defaultParamValue = {
@@ -48,6 +48,7 @@ const SearchPage = () => {
 	const [	totalPosts		, setTotalPosts		 ] = useState(0);
 	const [	interviewList	, setInterviewList ] = useState([]);
 	const [	searchDetail	, setSearchDetail	 ] = useState(null);
+	const [	mobileFilter	, setMobileFilter	 ] = useState(null);
 
 	const getSerachParamInterviewList = () => {
 		bringSearchInterviewListData(searchParam)
@@ -223,7 +224,8 @@ const SearchPage = () => {
   return (
 		<section className="search__area">
 			<SeoHead title='인터뷰뱅크 검색' />
-      <Title title='검색 결과' />
+			<Title title='검색 결과' />
+			<Button image={'FILTER'} value='상세필터' onClickEvent={() => setMobileFilter((prev) => !prev)}/>
       <div className="search__flex">
 				<div className="search__left">
 					<Input 
@@ -289,7 +291,72 @@ const SearchPage = () => {
 							resetSearchParams									= {resetSearchParams}
 						/>
 					</SearchItem>
-        </div>
+				</div>
+				{mobileFilter
+					&& 	<div className="search__mobile__filter">
+								<div className="search__mobile__background"></div>
+								<div className="search__mobile__whiteground">
+									<div className="search__mobile__title">
+										<h3>상세필터</h3>
+										<Button image={"CLOSE"} value='' imgWidth={24} imgHeight={24} onClickEvent={() => setMobileFilter(false)}/>
+									</div>
+									<SearchItem>            
+										<SearchCategory
+											isChangeCategory				= {isChangeCategory}
+											resetSearchParams				= {resetSearchParams}
+											searchDetail						= {searchDetail}
+										/>          
+									</SearchItem>
+									<SearchItem>
+										<BoxTitle
+											title										={"경력"}
+											field										="CAREERYEAR"
+											resetSearchParams				={resetSearchParams}
+										/>
+										<SearchSelectBox
+											selectSection											= "careerYear"
+											selectTitle												= {
+																														searchParam.careerYear
+																														? getCareerYearNameFromValue(searchParam.careerYear)
+																														: "경력"
+																													}
+											selectArray												= {CareerYear}
+											isChangeSelectBoxItems						= {isChangeSelectBoxItems}
+										/>							
+									</SearchItem>
+									<SearchItem>							
+										<BoxTitle
+											title										={"면접시기"}
+											field										="INTERVIEWPERIOD"
+											resetSearchParams				={resetSearchParams}
+										/>
+										<SearchSelectBox
+											selectSection											= "interviewPeriod"
+											selectTitle												= {
+																														searchParam.interviewPeriod
+																														? getInterviewNameFromValue(searchParam.interviewPeriod)
+																														: "면접 시기"
+																													}
+											selectArray												= {InterviewPeriod}
+											isChangeSelectBoxItems						= {isChangeSelectBoxItems}
+										/>	
+									</SearchItem>
+									<SearchItem>
+										<SearchDateInput
+											searchRadio												= {searchRadio}
+											startDate													= {searchParam.startDate}
+											endDate														= {searchParam.endDate}
+											isChangeCreatedDateRadio					= {isChangeCreatedDateRadio}
+											isChangeStrDate										= {isChangeStrDate}
+											isChangeEndDate										= {isChangeEndDate}
+											resetSearchParams									= {resetSearchParams}
+										/>
+									</SearchItem>
+								</div>
+								
+							</div>
+
+				}
         <div className="search__right">
 					<SearchArea
 						totalPages													= {totalPages}
