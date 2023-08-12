@@ -3,9 +3,8 @@ import { SeoHead } from '@/components/atoms';
 import { Banner, HomeSearch, TextComponent } from '@/components/molecules'
 import { GetServerSideProps } from 'next';
 import { bringHomeInterviewListData } from './api/Home/homeFetchDataAPI';
-import { useState, useEffect } from 'react';
-import { useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
-import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 export interface InterviewListProps {
   interviewList: [
@@ -35,18 +34,26 @@ const HomePage = ({ interviewList }: InterviewListProps) => {
           return lastPage.currentPage + 1;
         }
       }
-    });
-  console.log(data?.pages);
-  const [scrollInterviewList, setScrollInterviewList] = useState([...interviewList]);
-  // const listRef = useInview(null);  
-  const [ref, inView] = useInView();
+    }
+  );
 
+  const checkScrollBottom = () => {
+    return window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 50;
+  };
 
   useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [inView, isLoading])
+    const handleScroll = () => {
+      if (checkScrollBottom() && hasNextPage && !isLoading) {
+        fetchNextPage();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [hasNextPage, isLoading, fetchNextPage]);
   
 
   return (
@@ -57,8 +64,8 @@ const HomePage = ({ interviewList }: InterviewListProps) => {
       <div className="home__title">
         <h2>최신 인터뷰 글 보기</h2>
       </div>
-      <div className="home__list" ref={ref}>
-        {scrollInterviewList?.map((interview) => (
+      <div className="home__list">
+        {data?.pages.flatMap(page => page.interviews).map((interview) => (
           <TextComponent
             key                 = {interview.interviewId}
             id                  = {interview.interviewId}

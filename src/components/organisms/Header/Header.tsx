@@ -43,6 +43,11 @@ const Header = () => {
 
   const moveWritePage = () => router.push('/post');
 
+  const moveSearchPage = () => {
+    router.push('/search');
+    setMobileToggle(false);
+  }
+
   const submitLogout = useCallback(async () => {
     isLogout()
       .then(() => {
@@ -166,7 +171,7 @@ const Header = () => {
                     }
                   </div>
                   <ul className={styles.mobile__menu__list}>
-                    <li>인터뷰</li>
+                    <li onClick={()=> moveSearchPage()}>인터뷰</li>
                     <li>문의하기</li>
                     <li>인터뷰뱅크 소개</li>
                   </ul>
