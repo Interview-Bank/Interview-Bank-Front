@@ -346,6 +346,12 @@ li {
 	}
 }
 
+@media (max-width: 650px) {
+	.home__list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
 @media (max-width: 460px) {
 	.main {
 		margin-top: 44px;

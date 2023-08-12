@@ -62,10 +62,8 @@
   }
 
   .mobile__menu {
+    display: none;
     position: absolute;
-    display: grid;
-    grid-template-columns: 24px 24px;
-    gap: 12px;
     top: 8px;
     right: 18px;
   
@@ -188,16 +186,25 @@
     .search {
       display: none;
     }
+    
     .mobile__search {
       position: relative;
       display: none;
+
       input {
         width: calc(100% - 40px);
         margin: 0 20px;
       }
+
       img {
         right: 40px;
       }
+    }
+
+    .mobile__menu {
+      display: grid;
+      grid-template-columns: 24px 24px;
+      gap: 12px;
     }
   }
 }

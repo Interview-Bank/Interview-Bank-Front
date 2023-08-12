@@ -127,3 +127,9 @@
     }
   }
 }
+
+@media (max-width: 460px) { 
+  .write__area {
+    max-width: 460px;
+  }
+}
