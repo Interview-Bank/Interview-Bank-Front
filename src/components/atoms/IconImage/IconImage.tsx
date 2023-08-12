@@ -19,6 +19,8 @@ import ArrowDown          from 'public/Icons/arrow_down.png';
 import Filter             from '@/assets/images/filter.svg';
 import Close              from 'public/Icons/close.png';
 
+import Like               from '@/assets/images/like.svg';
+
 interface IconProps {
   icon: string;
 }
@@ -60,6 +62,9 @@ const isDiscernIcon = ({ icon }: IconProps) => {
       return Filter;
     case 'CLOSE':
       return Close;
+    
+    case 'LIKE':
+      return Like;
     default:
       break;
   };

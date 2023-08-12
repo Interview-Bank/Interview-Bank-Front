@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
 import { bringScrapOriginalListData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
 import { MultiReadSelect } from '@/components/molecules';
+import { Label } from '@/components/atoms';
 
 const ScrapPage = ({response}) => {
   const router = useRouter();
@@ -148,6 +149,18 @@ const ScrapPage = ({response}) => {
                         gptToggle           = {toggle}
                       /> 
                     ))}
+                    <div className="scraps__relation">
+                      <div>
+                        <div className="scraps__relation__title">
+                          <div>1</div>
+                          <Button value='' image={'LIKE'} />
+                        </div>
+                        <div className="scraps__relation__content">
+                          <h4>네이버네이버네이버네이버네이버네이버네이버</h4>
+                          <Label text={'fkskgkk95'} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   // response.questions.map((item, index) => (
                   //   <InterviewView content={item.content} key={index} />

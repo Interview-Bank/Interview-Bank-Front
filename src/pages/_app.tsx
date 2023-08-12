@@ -1,5 +1,5 @@
 import Layout from '@/components/templates/Layout/Layout'
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 import '@/styles/register.scss';
 import '@/styles/post.scss';
 import '@/styles/search.scss';

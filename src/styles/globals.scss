@@ -218,6 +218,58 @@ li {
 .questions__area {
 	max-width: 1276px;
 	margin: 66px auto 0;
+	position: relative;
+}
+
+.scraps__relation {
+	position: absolute;
+	top: 0;
+	right: -120px;
+	cursor: pointer;
+
+	>div {
+		width: 100px;
+		height: 126px;
+		border-radius: 8px;
+		border: 1px solid #ddd;
+		background-color: #fff;
+
+		.scraps__relation__title {
+			display: flex;
+			justify-content: space-between;
+
+			> div {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 32px;
+				aspect-ratio: 1 / 1;
+				background-color: #ddd;
+				border-radius: 8px 0 8px 0;
+			}
+
+			> button {
+				width: 32px;
+				height: 32px;
+				border: 0;
+				background-color: transparent;
+			}
+		}
+
+		.scraps__relation__content {
+			display: grid;
+			grid-template-rows: 46px 1fr;
+			padding: 12px;
+			gap: 4px;
+
+			> h4 {
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			// white-space: nowrap;
+		}
+	}
 }
 
 .scrap__btn {
