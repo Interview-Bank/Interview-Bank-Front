@@ -66,6 +66,30 @@
     position: absolute;
     top: 8px;
     right: 18px;
+
+    &--active {
+      position: fixed;
+      z-index: 3;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+
+      .mobile__background {
+        width: 100vw;
+        height: 100vh;
+        background-color: #5C5C5C;
+        // opacity: ;
+      }
+
+      .mobile__whiteground {
+        position: fixed;
+        top: 0;
+        width: 85%;
+        height: 100vh;
+        background-color: #fff;
+      }
+    }
   
     > img {
       top: 8px; 
@@ -186,7 +210,7 @@
     .search {
       display: none;
     }
-    
+
     .mobile__search {
       position: relative;
       display: none;

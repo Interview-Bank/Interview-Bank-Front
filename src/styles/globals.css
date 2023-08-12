@@ -336,6 +336,7 @@ li {
 @media (max-width: 768px) {
 	.main {
 		margin-top: 156px;
+		min-height: calc(100vh - 150px - 156px);
 	}
 	.home__title {
 		padding: 0 18px;

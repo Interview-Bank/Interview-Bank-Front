@@ -37,3 +37,14 @@
   }
   
 }
+
+@media (max-width: 460px) {
+  .form {
+    justify-content: flex-start;
+    padding: 0 18px;
+    
+    > input {
+      min-width: calc(100vw - 18px * 2);
+    }
+  }
+}

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import styles from './Header.module.scss';
 import Logo from 'public/logo.svg';
 
-import { Button, IconImage, Input } from '@/components/atoms';
+import { Button, Input } from '@/components/atoms';
 import { LoginModal, Profile } from '@/components/molecules';
 
 import { checkCookieExistence, deleteCookie } from '@/pages/api/useCookie';
@@ -18,15 +18,16 @@ const Header = () => {
   const [ modalActive     , setModalActive     ] = useState(false);
   const [ profileImageUrl , setProfileImageUrl ] = useState(null);
   const [ cookie          , setCookie          ] = useState(checkCookieExistence());
+  const [ mobileToggle    , setMobileToggle    ] = useState(false);
 
   useEffect(() => {
-    modalActive
+    (modalActive || mobileToggle)
       ? document.body.style.overflow = "hidden"
       : document.body.style.overflow = "unset"
     return () => {
       document.body.style.overflow = "unset"
     }
-  }, [modalActive])
+  }, [modalActive, mobileToggle])
 
   useEffect(() => {
     if (cookie) {
@@ -117,14 +118,23 @@ const Header = () => {
         />
       </div>
       <div className={styles.mobile__menu}>
+        {mobileToggle
+        &&  <div className={styles['mobile__menu--active']}>
+              <div className={styles.mobile__background}></div>
+              <div className={styles.mobile__whiteground}>
+                
+              </div>
+            </div>
+        }
         {/* <IconImage icon={'SEARCH'} /> */}
         <Button image={'SEARCH'} value={''} />
-        <button className={styles['mobile__menu--hamburger']}>
+        <button className={styles['mobile__menu--hamburger']} onClick={()=>setMobileToggle((prev) => !prev)}>
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
+      
     </header>
   )
 }
