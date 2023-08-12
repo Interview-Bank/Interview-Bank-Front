@@ -73,7 +73,7 @@ const Header = () => {
           }
         </ul>
         <div
-          className={`${styles.nav__menu} ${(cookie && profileImageUrl) ? '' : styles.login}`}
+          className={`${styles.nav__form} ${(cookie && profileImageUrl) ? '' : styles.login}`}
         >
           {(cookie && profileImageUrl)
             ?

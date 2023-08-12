@@ -327,6 +327,12 @@ li {
 	padding: 0 10px 0 30px !important;
 }
 
+@media (max-width: 865px) {
+	.home__list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
 @media (max-width: 768px) {
 	.main {
 		margin-top: 156px;
@@ -337,5 +343,18 @@ li {
 	.home__list {
 		padding: 0 18px;
 		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 460px) {
+	.main {
+		margin-top: 44px;
+	}
+	.home__title {
+		padding: 0;
+	}
+	.home__list {
+		padding: 0 18px;
+		grid-template-columns: repeat(1, 1fr);
 	}
 }

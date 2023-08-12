@@ -1,23 +1,21 @@
-import React from 'react'
+import React              from 'react'
+import Image              from 'next/image';
 
-import Google from 'public/Icons/google.png';
-import Kakao from 'public/Icons/kakaotalk.png';
-import Naver from 'public/Icons/naver.png';
-import Email from 'public/Icons/email.png';
+import Google             from 'public/Icons/google.png';
+import Kakao              from 'public/Icons/kakaotalk.png';
+import Naver              from 'public/Icons/naver.png';
+import Email              from 'public/Icons/email.png';
 
-import Write from 'public/Icons/writeIcon.png';
-import Search from 'public/Icons/search.png';
+import Write              from 'public/Icons/writeIcon.png';
+import Search             from 'public/Icons/search.png';
 
-import Image from 'next/image';
+import BannerPhone        from '@/assets/images/banner/banner-phone.svg';
+import BannerMoney        from '@/assets/images/banner/banner-money.svg';
+import BannerCalendar     from '@/assets/images/banner/banner-calendar.svg';
+import BannerSmile        from '@/assets/images/banner/banner-smile.svg';
 
 interface IconProps {
-  icon: 'GOOGLE'
-  | 'KAKAO'
-  | 'NAVER'
-  | 'EMAIL'
-  | 'WRITE'
-  | 'SEARCH';
-  
+  icon: string;
 }
 
 interface IconImageProps extends IconProps {
@@ -35,6 +33,15 @@ const isDiscernIcon = ({ icon }: IconProps) => {
       return Naver;
     case 'EMAIL':
       return Email;
+    
+    case 'BANNER-PHONE':
+      return BannerPhone;
+    case 'BANNER-MONEY':
+      return BannerMoney;
+    case 'BANNER-CALENDAR':
+      return BannerCalendar;
+    case 'BANNER-SMILE':
+      return BannerSmile;
     
     case 'WRITE':
       return Write;
