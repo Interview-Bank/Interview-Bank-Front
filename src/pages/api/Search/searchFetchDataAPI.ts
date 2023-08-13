@@ -2,6 +2,7 @@ import axios from 'axios';
 import { getDateFormatString } from '../dateConvert';
 
 const bringSearchInterviewListData = async (searchParam, pageSize = 15) => {
+  console.log(searchParam);
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/interview/search`,

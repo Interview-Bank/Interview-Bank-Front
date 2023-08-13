@@ -56,6 +56,7 @@ const SearchPage = () => {
 				setInterviewList(result.interviews);
 				setTotalPages(result.totalPages);
 				setTotalPosts(result.totalElements);
+				console.log(interviewList);
 			})
 			.catch((resolve) => console.log(resolve));
 	}
@@ -72,7 +73,6 @@ const SearchPage = () => {
 	]);
 	
 	useEffect(() => {
-		console.log(searchParam.category)
 		if (!(searchParam.category?.split(',').length < 2 && Number(searchParam.category) <= 6)) {
 			setSearchDetail(searchParam.category.split(',').map((current) => secondLevelObject[current]).join(','));
 		} else {
@@ -241,54 +241,54 @@ const SearchPage = () => {
 					{/* <IconImage icon="SEARCH" width={24} height={24} /> */}
           <SearchItem>            
 						<SearchCategory
-							isChangeCategory				= {isChangeCategory}
-							resetSearchParams				= {resetSearchParams}
-							searchDetail						= {searchDetail}
+							isChangeCategory													= {isChangeCategory}
+							resetSearchParams													= {resetSearchParams}
+							searchDetail															= {searchDetail}
 						/>          
           </SearchItem>
 					<SearchItem>
 						<BoxTitle
-							title										={"경력"}
-							field										="CAREERYEAR"
-							resetSearchParams				={resetSearchParams}
+							title																			= {"경력"}
+							field																			= "CAREERYEAR"
+							resetSearchParams													= {resetSearchParams}
 						/>
 						<SearchSelectBox
-							selectSection											= "careerYear"
-							selectTitle												= {
-																										searchParam.careerYear
-																										? getCareerYearNameFromValue(searchParam.careerYear)
-																										: "경력"
-																									}
-							selectArray												= {CareerYear}
-							isChangeSelectBoxItems						= {isChangeSelectBoxItems}
+							selectSection															= "careerYear"
+							selectTitle																= {
+																														searchParam.careerYear
+																														? getCareerYearNameFromValue(searchParam.careerYear)
+																														: "경력"
+																													}
+							selectArray																= {CareerYear}
+							isChangeSelectBoxItems										= {isChangeSelectBoxItems}
 						/>							
 					</SearchItem>
 					<SearchItem>							
 						<BoxTitle
-							title										={"면접시기"}
-							field										="INTERVIEWPERIOD"
-							resetSearchParams				={resetSearchParams}
+							title																			= {"면접시기"}
+							field																			= "INTERVIEWPERIOD"
+							resetSearchParams													= {resetSearchParams}
 						/>
 						<SearchSelectBox
-							selectSection											= "interviewPeriod"
-							selectTitle												= {
-																										searchParam.interviewPeriod
-																										? getInterviewNameFromValue(searchParam.interviewPeriod)
-																										: "면접 시기"
-																									}
-							selectArray												= {InterviewPeriod}
-							isChangeSelectBoxItems						= {isChangeSelectBoxItems}
+							selectSection															= "interviewPeriod"
+							selectTitle																= {
+																														searchParam.interviewPeriod
+																														? getInterviewNameFromValue(searchParam.interviewPeriod)
+																														: "면접 시기"
+																													}
+							selectArray																= {InterviewPeriod}
+							isChangeSelectBoxItems										= {isChangeSelectBoxItems}
 						/>	
 					</SearchItem>
 					<SearchItem>
 						<SearchDateInput
-							searchRadio												= {searchRadio}
-							startDate													= {searchParam.startDate}
-							endDate														= {searchParam.endDate}
-							isChangeCreatedDateRadio					= {isChangeCreatedDateRadio}
-							isChangeStrDate										= {isChangeStrDate}
-							isChangeEndDate										= {isChangeEndDate}
-							resetSearchParams									= {resetSearchParams}
+							searchRadio																= {searchRadio}
+							startDate																	= {searchParam.startDate}
+							endDate																		= {searchParam.endDate}
+							isChangeCreatedDateRadio									= {isChangeCreatedDateRadio}
+							isChangeStrDate														= {isChangeStrDate}
+							isChangeEndDate														= {isChangeEndDate}
+							resetSearchParams													= {resetSearchParams}
 						/>
 					</SearchItem>
 				</div>
@@ -302,16 +302,16 @@ const SearchPage = () => {
 									</div>
 									<SearchItem>            
 										<SearchCategory
-											isChangeCategory				= {isChangeCategory}
-											resetSearchParams				= {resetSearchParams}
-											searchDetail						= {searchDetail}
+											isChangeCategory									= {isChangeCategory}
+											resetSearchParams									= {resetSearchParams}
+											searchDetail											= {searchDetail}
 										/>          
 									</SearchItem>
 									<SearchItem>
 										<BoxTitle
-											title										={"경력"}
-											field										="CAREERYEAR"
-											resetSearchParams				={resetSearchParams}
+											title															= {"경력"}
+											field															= "CAREERYEAR"
+											resetSearchParams									= {resetSearchParams}
 										/>
 										<SearchSelectBox
 											selectSection											= "careerYear"
@@ -326,9 +326,9 @@ const SearchPage = () => {
 									</SearchItem>
 									<SearchItem>							
 										<BoxTitle
-											title										={"면접시기"}
-											field										="INTERVIEWPERIOD"
-											resetSearchParams				={resetSearchParams}
+											title															= {"면접시기"}
+											field															= "INTERVIEWPERIOD"
+											resetSearchParams									= {resetSearchParams}
 										/>
 										<SearchSelectBox
 											selectSection											= "interviewPeriod"

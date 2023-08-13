@@ -1,23 +1,40 @@
 import { useRouter } from 'next/router';
 import React from 'react'
 import { Pagination } from '../../Pagination';
-import { WritingComponent } from '../../TextComponent';
+import { TextComponent } from '../../TextComponent';
 import styles from './MyPageBody.module.scss';
 
 type Props = {}
 
 const MyPageBody = ({ totalPosts, totalPages, limit, setPage, myPostParam, boardList, isLoading, type }) => {
   const router = useRouter();
-  console.log(boardList)
   return (
     <div className={styles.page__body}>
-      <h4>{router.query.my === 'my-post' ? '작성한 게시글' : '작성한 답변글'}</h4>
+      <h4>게시글 관리</h4>
+      {/* <h4>{router.query.my === 'my-post' ? '작성한 게시글' : '작성한 답변글'}</h4> */}
+      <ul className={styles.page__menu}>
+        <li
+          className={`${router.query.my === 'my-post' ? styles['page__menu--active'] : undefined}`}
+          onClick={() => router.push('/mypage/my-post')}
+        >
+          작성한 게시글
+        </li>
+        <li
+          className={`${router.query.my === 'my-scrap' ? styles['page__menu--active'] : undefined}`}
+          onClick={() => router.push('/mypage/my-scrap')}
+        >
+          작성한 답변글
+        </li>
+        <li>임시저장한 게시글</li>
+        <li>임시저장한 답변글</li>
+      </ul>
+      <div className={styles.divide__line}></div>
       <div className={styles.page__content}>
         {!isLoading && boardList ? (
           <>
             <div className={styles.page__grid}>
               {boardList.map((current) => (
-                <WritingComponent
+                <TextComponent
                   id={type !== 'scraps' ? current.interviewId : current.scrapId}
                   nickname={current.nickname}
                   createdAt={current.createdAt

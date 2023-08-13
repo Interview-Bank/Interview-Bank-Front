@@ -37,11 +37,11 @@ const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileProps
           </div>
         </div>
         <div className={styles.profile__menu}>
-          <div className={styles.profile__item} onClick={() => linkMyPostPage()}>
-            작성한 게시글
+          <div className={styles.profile__item} onClick={() => linkMyPage()}>
+            프로필
           </div>
-          <div className={styles.profile__item} onClick={() => linkMyScrapPage()}>
-            작성한 답변글
+          <div className={styles.profile__item} onClick={() => linkMyPostPage()}>
+            내 인터뷰
           </div>
           <div className={styles.profile__item} onClick={() => logoutEvent()}>
             로그아웃

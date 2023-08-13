@@ -70,7 +70,7 @@ const MyPage = (props: Props) => {
       {(router.query.my === 'my-post' || router.query.my === 'my-scrap')
         ?
           <MyPageBody
-            totalPages={totalPages}
+            totalPages  ={totalPages}
             totalPosts={totalPosts}
             limit={limit}
             setPage={isChangeCurrentPage}

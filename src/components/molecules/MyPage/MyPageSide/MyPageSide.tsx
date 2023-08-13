@@ -47,9 +47,9 @@ const MyPageSide = () => {
             ? <Image src={MyPostActive} alt="계정관리 아이콘" width={24} height={24} />
             : <Image src={MyPostUnActive} alt="계정관리 아이콘" width={24} height={24} />
           }
-          <div className={styles.content__menu}>작성한 게시글</div>
+          <div className={styles.content__menu}>게시글 관리</div>
         </div>
-        <div
+        {/* <div
           className={router.query.my === 'my-scrap' ? `${styles.content} ${styles.active}` : styles.content}
           onClick={() => { linkMyScrapPage() }}
         >
@@ -58,7 +58,7 @@ const MyPageSide = () => {
             : <Image src={MyScrapUnActive} alt="계정관리 아이콘" width={24} height={24} />
           }
           <div className={styles.content__menu}>작성한 답변글</div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

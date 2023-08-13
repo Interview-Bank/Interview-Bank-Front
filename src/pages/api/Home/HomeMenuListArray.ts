@@ -2,7 +2,8 @@ const HomeMenuListArray = [
   {
     id: 1,
     name: '인터뷰',
-    value: 'INTERVIEW'
+    value: 'INTERVIEW',
+    path: '/search'
   },
   {
     id: 2,
