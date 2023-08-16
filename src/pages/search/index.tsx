@@ -9,8 +9,9 @@ import { CareerYear, InterviewPeriod } from '../api/Post/PostSelectObject';
 import { getInterviewNameFromValue } from '../api/getInterviewPeriodName';
 import { SearchDateInput } from '@/components/atoms/SearchDateInput/SearchDateInput';
 import { bringSearchInterviewListData } from '../api/Search/searchFetchDataAPI';
-import { BoxTitle, IconImage, Input, SeoHead, Title, SearchSelectBox, Button } from '@/components/atoms';
+import { BoxTitle, Input, SeoHead, Title, SearchSelectBox, Button } from '@/components/atoms';
 import { SearchItem } from '@/components/molecules';
+import { getSecondLevelObject } from '../api/Search/getSecondLevel';
 
 const defaultParamValue = {
 	title								: "",
@@ -23,17 +24,25 @@ const defaultParamValue = {
 }
 
 const secondLevelObject = {
-		7: '백엔드',
-		8: '프런트엔드',
-		9: '안드로이드',
-		10: 'IOS',
-		11: '모바일',
-		12: 'DevOps',
-		13: 'QA',
-		14: '게임',
-		15: 'AI',
-		33: 'DBA',
-		34: '기타',
+		// 7: '백엔드',
+		// 8: '프런트엔드',
+		// 9: '안드로이드',
+		// 10: 'IOS',
+		// 11: '모바일',
+		// 12: 'DevOps',
+		// 13: 'QA',
+		// 14: '게임',
+		// 15: 'AI',
+		// 33: 'DBA',
+		// 34: '기타',
+}
+
+const changeArrayDataToObjectType = (array, object, flag) => {
+	// if (flag === "DecGubunCd") {
+	// 	object[`${Object.entries(array)[0][1]}`] = Object.entries(array)[4][1];
+	// } else {
+		return object[`${Object.entries(array)[0][1]}`] = Object.entries(array)[2][1];
+	// }
 }
 
 const limit = 15;
@@ -49,6 +58,11 @@ const SearchPage = () => {
 	const [	interviewList	, setInterviewList ] = useState([]);
 	const [	searchDetail	, setSearchDetail	 ] = useState(null);
 	const [	mobileFilter	, setMobileFilter	 ] = useState(null);
+
+	useEffect(() => {
+		getSecondLevelObject().then((resolve) => resolve.map((current) => secondLevelObject[1] = current.name));
+		console.log(secondLevelObject);
+	},[])
 
 	const getSerachParamInterviewList = () => {
 		bringSearchInterviewListData(searchParam)
