@@ -23,27 +23,7 @@ const defaultParamValue = {
 	page								: 1,
 }
 
-const secondLevelObject = {
-		// 7: '백엔드',
-		// 8: '프런트엔드',
-		// 9: '안드로이드',
-		// 10: 'IOS',
-		// 11: '모바일',
-		// 12: 'DevOps',
-		// 13: 'QA',
-		// 14: '게임',
-		// 15: 'AI',
-		// 33: 'DBA',
-		// 34: '기타',
-}
-
-const changeArrayDataToObjectType = (array, object, flag) => {
-	// if (flag === "DecGubunCd") {
-	// 	object[`${Object.entries(array)[0][1]}`] = Object.entries(array)[4][1];
-	// } else {
-		return object[`${Object.entries(array)[0][1]}`] = Object.entries(array)[2][1];
-	// }
-}
+const secondLevelObject = {}
 
 const limit = 15;
 
@@ -60,8 +40,10 @@ const SearchPage = () => {
 	const [	mobileFilter	, setMobileFilter	 ] = useState(null);
 
 	useEffect(() => {
-		getSecondLevelObject().then((resolve) => resolve.map((current) => secondLevelObject[1] = current.name));
-		console.log(secondLevelObject);
+		getSecondLevelObject()
+			.then((resolve) => resolve.map((current) =>
+				secondLevelObject[current.jobCategoryId] = current.name
+			));
 	},[])
 
 	const getSerachParamInterviewList = () => {
