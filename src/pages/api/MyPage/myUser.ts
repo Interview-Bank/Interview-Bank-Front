@@ -1,13 +1,8 @@
-import axios from 'axios';
-import { setTokenHeaders } from '../login/loginCheck';
+import axiosInstance from '../axiosInstance';
 
 const FecthUserData = async () => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/account/me`,
-      { headers }
-    );
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/account/me`);
     return response.data;
   } catch (error) {
     throw new Error(`${error}`);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCookie, setCookieExpires, setTokenHeaders } from './loginCheck';
+import axiosInstance from '../axiosInstance';
 
 const isLogin = async (values: any) => {
   const { email, password } = values;
@@ -15,9 +15,8 @@ const isLogin = async (values: any) => {
 }
 
 const isLogout = async () => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/account/logout`, {}, { headers });
+    const response = await axiosInstance.post(`${process.env.NEXT_PUBLIC_API_URL}/account/logout`, {});
     return response;
   } catch (error) {
     throw new Error(`Error: ${error}`);
@@ -25,9 +24,8 @@ const isLogout = async () => {
 }
 
 const isReceiveProfileImage = async () => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/account/me`, { headers });
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/account/me`);
     return response.data.imageUrl;
   } catch (error) {
     throw new Error(`Error: ${error}`);

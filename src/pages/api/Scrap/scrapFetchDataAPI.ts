@@ -1,17 +1,14 @@
-import axios from 'axios';
-import { setTokenHeaders } from '../login/loginCheck';
+import axiosInstance from '../axiosInstance';
 
 const bringScrapListData = async (pageNumber = 0, pageSize = 10) => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `${process.env.NEXT_PUBLIC_API_URL}/scraps`,
       {
         params: {
           "page": pageNumber,
           "size": pageSize,
         },
-        headers: headers
       }
     );
     return response.data;
@@ -21,14 +18,8 @@ const bringScrapListData = async (pageNumber = 0, pageSize = 10) => {
 };
 
 const bringScrapOriginalListData = async (scrapId) => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}`,
-      {
-        headers: headers
-      }
-    );
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}`);
     return response.data;
   } catch (error) {
     throw new Error(`Error: ${error}`);
@@ -36,12 +27,10 @@ const bringScrapOriginalListData = async (scrapId) => {
 }
 
 const sendScrapData = async (itemArray, updateContent, scrapId) => {
-  const headers = setTokenHeaders();
   try {
-    const response = await axios.put(
+    const response = await axiosInstance.put(
       `${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}/questions/${itemArray.scrapQuestionId}/answers/${itemArray.scrapAnswerResponseList[0].scrapAnswerId}`,
       { content: updateContent },
-      { headers: headers }
     );
     if (response.status !== 200) {
       throw new Error(`Failed to update item, status code: ${response.status}, status text: ${response.statusText}`);
