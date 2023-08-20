@@ -1,21 +1,23 @@
+@import '@/styles/DefaultValueVariable.scss';
+
 .title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  font-size: 1rem;
-  margin-block-start: 1.67em;
-  margin-block-end: 1.67em;
+  display             : flex;
+  justify-content     : space-between;
+  align-items         : center;
+  width               : 100%;
+  font-size           : $--font-regular;
+  margin-block-start  : 1.67em;
+  margin-block-end    : 1.67em;
 
   h5 {
-    font-size: 1rem;
+    font-size: $--font-regular;
   }
   
   span {
-    color: #737373;
-    // margin: 1.67em 0;
-    line-height: 1.67rem;
-    font-size: 0.83rem;
-    cursor: pointer;
+    display           : inline-flex;
+    align-items       : center;
+    color             : $--color-gray;
+    font-size         : $--font-small;
+    cursor            : pointer;
   }
 }

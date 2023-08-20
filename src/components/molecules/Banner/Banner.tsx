@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from './Banner.module.scss';
-import BannerImage from 'public/banner.png';
-import Image from 'next/image';
 import { IconImage } from '@/components/atoms';
 
 const Banner = () => {
@@ -17,7 +15,8 @@ const Banner = () => {
         </h3>
         <div className={styles.banner__images}>
           <IconImage icon={'BANNER-CALENDAR'} width={103} height={103}/>
-          <IconImage icon={'BANNER-PHONE'} width={278} height={254}/>
+          <IconImage icon={'BANNER-MESSAGE'} width={114} height={93}/>
+          <IconImage icon={'BANNER-SYSTEM'} width={81} height={81}/>
           <IconImage icon={'BANNER-SMILE'} width={113} height={113}/>
           <IconImage icon={'BANNER-MONEY'} width={85} height={109}/>
         </div>

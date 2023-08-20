@@ -51,11 +51,15 @@
       }
       
       &:nth-child(2) {
-        top: 22px;
-        left: 45%;
+        top: 120px;
+        left: 50%;
       }
 
       &:nth-child(3) {
+        top: 200px;
+        left: 65%;
+      }
+      &:nth-child(4) {
         top: 71px;
         left: 70%;
       }
@@ -133,13 +137,20 @@
         }
 
         &:nth-child(2) {
-          width: 172px;
-          height: 159px;
-          top: 130%;
-          left: 15%;
+          width: 113px;
+          height: 91px;
+          top: 150%;
+          left: 25%;
         }
 
         &:nth-child(3) {
+          width: 61px;
+          height: 85px;
+          top: 190%;
+          left: 50%;
+        }
+
+        &:nth-child(4) {
           width: 85px;
           height: 85px;
           top: 140%;

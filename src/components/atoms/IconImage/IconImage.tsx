@@ -9,7 +9,8 @@ import Email              from 'public/Icons/email.png';
 import Write              from 'public/Icons/writeIcon.png';
 import Search             from 'public/Icons/search.png';
 
-import BannerPhone        from '@/assets/images/banner/banner-phone.svg';
+import BannerMessage      from '@/assets/images/banner/banner-message.svg';
+import BannerSystem       from '@/assets/images/banner/banner-system.svg';
 import BannerMoney        from '@/assets/images/banner/banner-money.svg';
 import BannerCalendar     from '@/assets/images/banner/banner-calendar.svg';
 import BannerSmile        from '@/assets/images/banner/banner-smile.svg';
@@ -41,8 +42,10 @@ const isDiscernIcon = ({ icon }: IconProps) => {
     case 'EMAIL':
       return Email;
     
-    case 'BANNER-PHONE':
-      return BannerPhone;
+    case 'BANNER-MESSAGE':
+      return BannerMessage;
+    case 'BANNER-SYSTEM':
+      return BannerSystem;
     case 'BANNER-MONEY':
       return BannerMoney;
     case 'BANNER-CALENDAR':
