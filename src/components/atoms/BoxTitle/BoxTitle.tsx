@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './BoxTitle.module.scss';
+import React    from 'react'
+import styles   from './BoxTitle.module.scss';
 
 interface BoxTitleProps {
   title               : string;

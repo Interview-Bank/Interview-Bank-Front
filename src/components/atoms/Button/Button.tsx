@@ -1,9 +1,10 @@
-import React from 'react'
-import styles from './Button.module.scss';
-import { IconImage } from '../IconImage';
+import React          from 'react'
+import styles         from './Button.module.scss';
+import { IconImage }  from '../IconImage';
 
 interface ButtonProps {
-  value           : string;
+  value           : string | null;
+  type           ?: 'DELETE' | null;
   image          ?: string;
   imgWidth       ?: number;
   imgHeight      ?: number;
@@ -12,6 +13,7 @@ interface ButtonProps {
 
 const Button = ({
   value,
+  type,
   image,
   imgWidth      = 24,
   imgHeight     = 24,
@@ -21,6 +23,12 @@ const Button = ({
     <button className={styles.btn} onClick={()=>onClickEvent()}>
       {image
         && <IconImage icon={image} width={imgWidth} height={imgHeight} />
+      }
+      {type
+        &&  <>
+              <span></span>
+              <span></span>
+            </>
       }
       {value}
     </button>

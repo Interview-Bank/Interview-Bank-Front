@@ -1,13 +1,15 @@
 import React from 'react';
-import DeleteButton from "public/Icons/delete.png";
 import Image from 'next/image';
+import DeleteButton from "public/Icons/delete.png";
+import { Button } from '../Button';
+import styles from './PostWrite.module.scss';
 
 const PostWrite = ({inputs, onRemove, onChange, handleInputLimit}) => {
   return (
-		<div className='post__write'>
+    <div className={styles.post}>
       {inputs.map((input) => (
-        <div className="insert__area" key={input.questionsId}>
-          <div className="insert__input">
+        <div className={styles.post__insert} key={input.questionsId}>
+          <div className={styles.post__input}>
             <textarea
               name="content"
               onChange={(e) => onChange(input.questionsId, e)}
@@ -17,24 +19,11 @@ const PostWrite = ({inputs, onRemove, onChange, handleInputLimit}) => {
               rows={1}
               // autoComplete="off"
             />
-            <button className='btn__delete' onClick={() => onRemove(input.questionsId)}>
-              <Image src={DeleteButton} alt="삭제 버튼" />
-            </button>
+            <Button value={null} type={'DELETE'} onClickEvent={() => onRemove(input.questionsId)}/>
           </div>
         </div>
       ))}
       <style jsx>{`
-        .post__write {
-          display: flex;
-	        flex-wrap: wrap;
-          width: 100%;
-        }
-
-        .insert__area {
-          // width: calc(100% - 50 * 2px - 16px);
-          width: 100%;
-          height: 100%;
-        }
 
         .insert__input {
           position: relative;
@@ -85,21 +74,6 @@ const PostWrite = ({inputs, onRemove, onChange, handleInputLimit}) => {
           width: 6px;
           background: #2E55E7;
           border-radius: 20px;
-        }
-
-        .btn__delete {
-          border: none;
-          background-color: #fff;
-          color: #b5b5b5;
-          font-size: 1.1rem;
-          position: absolute;
-          right: 32px;
-          top: 32px;
-          cursor: pointer;
-          // :hover {
-          // 	color: red;
-          // 	cursor: pointer;
-          // }
         }
       `}</style>
 		</div>

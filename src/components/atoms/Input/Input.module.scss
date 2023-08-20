@@ -1,18 +1,20 @@
+@import '@/styles/DefaultValueVariable.scss';
+
 .input {
-  box-sizing: border-box;
-  position: relative;
-  width: calc(480px - 28px);
-  height: 48px;
-  border: 2px solid rgb(46, 85, 231);
-  border-radius: 26px;
-  padding-left: 28px;
-  outline: 0;
+  position        : relative;
+  box-sizing      : border-box;
+  width           : calc(480px - 28px);
+  height          : 48px;
+  border          : 2px solid $--color-main-blue;
+  border-radius   : 26px;
+  padding-left    : 28px;
+  outline         : 0;
 }
 .image {  
-  position: absolute;
-  width: 21px;
-  height: 21px;
-  top: 12px;
-  right: 12px;
-  margin: 0;
+  position        : absolute;
+  top             : 12px;
+  right           : 12px;
+  width           : 21px;
+  height          : 21px;
+  margin          : 0;
 }

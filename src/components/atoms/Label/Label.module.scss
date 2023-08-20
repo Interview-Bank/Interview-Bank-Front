@@ -1,12 +1,11 @@
-$--color-black    : #222;
-$--color-blue     : #2e55e7;
+@import '@/styles/DefaultValueVariable.scss';
 
 .font--black {
   &--black {
-    color: var(--color-black);
+    color: $--color-black;
   }
 
   &--blue {
-    color: var(--color-blue);
+    color: $--color-main-blue;
   }
 }
