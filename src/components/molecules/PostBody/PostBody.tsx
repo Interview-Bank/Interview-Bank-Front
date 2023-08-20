@@ -1,4 +1,4 @@
-import { PostWrite } from '@/components/atoms/PostWrite';
+import { PostWrite } from '@/components/molecules/PostWrite';
 import React from "react";
 
 const PostBody = ({ inputs, onRemove, onChange, onAddInput, handleInputLimit }) => {
