@@ -1,109 +1,103 @@
-.profile {
-  top : 40px;
-  left: -30px;
-  position: absolute;
-  width: fit-content;
-  height: 320px;
-  z-index: 4;
-  .triangle {
-    position: relative;
+@import '@/styles/DefaultValueVariable.scss';
 
-    width: 13.7px;
-    height: 13.7px;
-  
-    background: #FFFFFF;
-    transform: rotate(45deg);
-    left : 170px;
-    top : 7.5px;
-    box-sizing: border-box;
-    border-top: 1px solid #DDDDDD;
-    border-left: 1px solid #DDDDDD;
-    z-index: 1;
+.profile {
+  position      : absolute;
+  top           : 40px;
+  left          : -30px;
+  width         : fit-content;
+  height        : 320px;
+  z-index       : 4;
+  .triangle {
+    position    : relative;
+    top         : 7.5px;
+    left        : 170px;
+    transform   : rotate(45deg);
+    width       : 13.7px;
+    height      : 13.7px;
+    background  : $--color-white;
+    border-top  : 1px solid $--color-gray-light;
+    border-left : 1px solid $--color-gray-light;
+    box-sizing  : border-box;
+    z-index     : 1;
   }
   .profile__area {
-    position: absolute;
-    background-color: #FFFFFF;
+    position          : absolute;
+    display           : flex;
+    flex-direction    : column;
+    align-items       : center;
+    width             : 197px;
+    height            : 299px;
+    background-color  : $--color-white;;
+    text-align        : center;
+    border            : 1px solid $--color-gray-light;
+    border-radius     : 5px;
+    box-sizing        : border-box;
+    box-shadow        : 2px 2px 10px rgba(0, 0, 0.25);
 
-    display: flex;
-    flex-direction: column;
-    width: 197px;
-    height: 299px;
-    text-align: center;
-    align-items: center;
-
-    border: 1px solid #DDDDDD;
-    border-radius: 5px;
-
-    box-sizing: border-box;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0.25);
     .user {
-      position: relative;
-      width: 173px;
-      height: 147px;
+      position        : relative;
+      display         : flex;
+      flex-direction  : column;
+      justify-items   : center;
+      align-items     : center;
+      width           : 173px;
+      height          : 147px;
+      border-bottom   : 1px solid $--color-gray-light;
+      margin-top      : 20px;
   
-      display: flex;
-      flex-direction: column;
-      justify-items: center;
-      align-items: center;
-  
-      margin-top: 20px;
-  
-      border-bottom: 1px solid #DDDDDD;
       img {
         cursor: pointer;
       }
+
       .nickname {
-        position: absolute;
-        top: 85px;
-        left: 50%;
-        transform: translateX(-50%);
-      
-        width: 161px;
-        height: 26px;
-      
-        font-family: 'Noto Sans KR';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 26px;
-      
-        color: #2E55E7;
-        cursor: pointer;
+        position      : absolute;
+        top           : 85px;
+        left          : 50%;
+        transform     : translateX(-50%);
+        display       : flex;
+        align-items   : center;
+        width         : 161px;
+        height        : 26px;      
+        color         : $--color-main-blue;
+        font-family   : 'Noto Sans KR';
+        font-style    : normal;
+        font-weight   : $--weight-bold;
+        font-size     : $--font-large;
+        cursor        : pointer;
       }
     }
+
     .profile__menu {
-      position: relative;
-      width: 173px;
-      height: 147px;
-    
-      display: flex;
-      flex-direction: column;
-      justify-items: center;
-      align-items: center;
-    
-      margin-top: 22px;
-    
-      border-bottom: 1px solid #DDDDDD;
+      position        : relative;
+      display         : flex;
+      flex-direction  : column;
+      justify-items   : center;
+      align-items     : center;
+      width           : 173px;
+      height          : 147px;
+      border-bottom   : 1px solid $--color-gray-light;
+      margin-top      : 22px;
     
       & > div:not(:last-child) {
-        margin-bottom: 14px;
+        margin-bottom : 14px;
       }
+      
       .profile__item {
-        cursor: pointer;
-        position: relative;
-        width: 150px;
-        height: 23px;
-    
-        font-family: 'Noto Sans KR';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 23px;
-        text-align: center;
-    
-        color: #5C5C5C;
+        position      : relative;
+        display       : flex;
+        align-items   : center;
+        width         : 150px;
+        height        : 23px;
+        color         : $--color-gray50;
+        font-family   : 'Noto Sans KR';
+        font-style    : normal;
+        font-weight   : $--weight-regular;
+        font-size     : $--font-regular;
+        text-align    : center;
+        cursor        : pointer;
+        
         &:hover {
-          color: #2e55e7;
+          color: $--color-main-blue;
         }
       }
     }

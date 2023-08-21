@@ -6,8 +6,8 @@ import React, { useCallback } from 'react'
 import styles from './ProfileModal.module.scss';
 
 const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileProps) => {
-  const router = useRouter();
-  const nickname = getCookieValue('user');
+  const router    = useRouter();
+  const nickname  = getCookieValue('user');
 
   const linkMyPage = useCallback(() => {
     router.push('/mypage/userSetting');
@@ -16,11 +16,6 @@ const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileProps
 
   const linkMyPostPage = useCallback(() => {
     router.push('/mypage/my-post');
-    setProfile();
-  }, []);
-
-  const linkMyScrapPage = useCallback(() => {
-    router.push('/mypage/my-scrap');
     setProfile();
   }, []);
 
@@ -43,7 +38,7 @@ const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileProps
           <div className={styles.profile__item} onClick={() => linkMyPostPage()}>
             내 인터뷰
           </div>
-          <div className={styles.profile__item} onClick={() => logoutEvent()}>
+          <div className={styles.profile__item} onClick={() => logoutEvent}>
             로그아웃
           </div>
         </div>
