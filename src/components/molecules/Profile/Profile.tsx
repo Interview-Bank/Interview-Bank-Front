@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './Profile.module.scss';
 
 export interface ProfileProps {
-  profileImageUrl: string;
-  logoutEvent?: () => void;
+  profileImageUrl   : string;
+  logoutEvent      ?: () => void;
 }
 
 const Profile = ({ profileImageUrl, logoutEvent }: ProfileProps) => {

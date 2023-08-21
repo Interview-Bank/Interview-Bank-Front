@@ -5,7 +5,11 @@ import { useRouter } from 'next/router';
 import React, { useCallback } from 'react'
 import styles from './ProfileModal.module.scss';
 
-const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileProps) => {
+interface ProfileModalProps extends ProfileProps {
+  setProfile: () => void;
+}
+
+const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileModalProps) => {
   const router    = useRouter();
   const nickname  = getCookieValue('user');
 
