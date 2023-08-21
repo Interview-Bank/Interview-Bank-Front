@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { SearchArea } from '@/components/atoms/SearchArea';
+import { SearchArea } from '@/components/organisms/SearchArea';
 import { setCaculateMonth, setCaculateYear } from '../api/dateConvert';
 import { SearchCategory } from '@/components/atoms/SearchCategory';
 import { getCareerYearNameFromValue } from '../api/getCareerYearName';
@@ -234,7 +234,6 @@ const SearchPage = () => {
 						onKeyDown					= {true}
 						onKeyDownEvent		= {getSerachParamInterviewList}
 					/>
-					{/* <IconImage icon="SEARCH" width={24} height={24} /> */}
           <SearchItem>            
 						<SearchCategory
 							isChangeCategory													= {isChangeCategory}

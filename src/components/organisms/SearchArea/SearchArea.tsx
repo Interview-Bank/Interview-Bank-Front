@@ -1,11 +1,10 @@
-import { Pagination } from '@/components/molecules/Pagination';
-import { TextComponent } from '@/components/molecules/TextComponent';
+import { Pagination, TextComponent } from '@/components/molecules';
 import React from 'react'
 import styles from './SearchArea.module.scss';
 
 const SearchArea = ({totalPosts, totalPages, interviewList, limit, setPage, searchParam}) => {
   return (
-    <div>
+    <>
       {interviewList.length ? (
         <>
           <div className={styles.list}>
@@ -37,7 +36,7 @@ const SearchArea = ({totalPosts, totalPages, interviewList, limit, setPage, sear
           </h4>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
