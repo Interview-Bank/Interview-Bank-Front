@@ -1,17 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
-
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styles from './Header.module.scss';
-import Logo from 'public/logo.svg';
-
-import { Button, Input, Label } from '@/components/atoms';
-import { LoginModal, Profile } from '@/components/molecules';
-
+import React, { useCallback, useEffect, useState }            from 'react';
+import { useRouter }                                          from 'next/router';
+import { Button, IconImage, Input, Label }                    from '@/components/atoms';
+import { LoginModal, Profile }                                from '@/components/molecules';
 import { checkCookieExistence, deleteCookie, getCookieValue } from '@/pages/api/useCookie';
-import { isLogout, isReceiveProfileImage } from '@/pages/api/login/loginProcess';
-import { HomeMenuListArray } from '@/pages/api/Home/HomeMenuListArray';
+import { isLogout, isReceiveProfileImage }                    from '@/pages/api/login/loginProcess';
+import { HomeMenuListArray }                                  from '@/pages/api/Home/HomeMenuListArray';
+import styles                                                 from './Header.module.scss';
 
 const Header = () => {
   const router = useRouter();
@@ -70,10 +64,8 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <div className={styles.nav__logo}>
-          <Link href="/">
-            <Image src={Logo} alt="logo" />
-          </Link>
+        <div className={styles.nav__logo} onClick={() => router.push('/')}>
+          <IconImage icon={"LOGO"} width={236} height={31}/> 
         </div>
         <ul className={styles.nav__menu}>
           {HomeMenuListArray?.map((menu) => (
@@ -131,7 +123,7 @@ const Header = () => {
               <div className={styles.mobile__background}></div>
               <div className={styles.mobile__whiteground}>
                 <div className={styles.mobile__logo}>
-                  <Image src={Logo} alt="logo" />
+                  <IconImage icon={"LOGO"} /> 
                 </div>
                 <div className={styles.mobile__form}>
                   <div className={styles.mobile__user}>

@@ -1,6 +1,8 @@
 import React              from 'react'
 import Image              from 'next/image';
 
+import Logo               from 'public/logo.svg';
+
 import Google             from 'public/Icons/google.png';
 import Kakao              from 'public/Icons/kakaotalk.png';
 import Naver              from 'public/Icons/naver.png';
@@ -33,6 +35,9 @@ interface IconImageProps extends IconProps {
 
 const isDiscernIcon = ({ icon }: IconProps) => {
   switch (icon) {
+    case 'LOGO':
+      return Logo;
+
     case 'GOOGLE':
       return Google;
     case 'KAKAO':      
