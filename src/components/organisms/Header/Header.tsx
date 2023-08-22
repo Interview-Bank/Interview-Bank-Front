@@ -179,7 +179,6 @@ const Header = () => {
               </div>
             </div>
         }
-        {/* <IconImage icon={'SEARCH'} /> */}
         <Button image={'SEARCH'} value={''} />
         <button className={styles['mobile__menu--hamburger']} onClick={()=>setMobileToggle((prev) => !prev)}>
           <span></span>
