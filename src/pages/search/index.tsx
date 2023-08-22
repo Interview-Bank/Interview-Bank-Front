@@ -112,7 +112,7 @@ const SearchPage = () => {
 		checkedCategoriesArray.forEach(current => current.checked = false);
 	}, [])
 
-	const isChangeCategory = useCallback((name, value, parent) => {
+	const isChangeCategory = useCallback((name: string, value: string, parent: string) => {
 		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
 																				.filter(current => current.checked === true);
 		if (checkedCategoriesArray.map((current) => current.name).find(current => current !== parent)) {
@@ -145,7 +145,7 @@ const SearchPage = () => {
 		}
 	}, [searchParam]);
 
-	const isChangeCreatedDateRadio = useCallback((value) => {
+	const isChangeCreatedDateRadio = useCallback((value: string) => {
 		setSearchRadio((prev) => value);
 		isValidationCheckForDateInput(value);
 	}, []);

@@ -1,7 +1,11 @@
 import React from 'react'
 
 type RadioProps = {
-  id: number;
+  id                        : string;
+  name                      : string;
+  type                      : string;
+  searchRadio               : string;
+  isChangeCreatedDateRadio  : (value: string) => void;
 }
 
 const Radio = ({id, name, type, searchRadio, isChangeCreatedDateRadio}: RadioProps) => {

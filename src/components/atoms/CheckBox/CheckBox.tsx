@@ -4,12 +4,12 @@ interface CheckBoxProps {
 	category: string;
 	name: string;
 	categoryDivide: string;
-	isChangeCategory: (dataName: string, categroy: string, name: string) => {};
+	isChangeCategory: (dataName: string | null, categroy: string, name: string | null) => {};
 }
 
 const CheckBox = ({category, name, categoryDivide, isChangeCategory}: CheckBoxProps) => {
   return (
-    <li onClick={(e) => isChangeCategory(e.target.getAttribute("data-name"), category, e.target.getAttribute("name"))}>
+    <li onClick={(e) => isChangeCategory(e.currentTarget.getAttribute("data-name"), category, e.currentTarget.getAttribute("name"))}>
 			<label
 				htmlFor={category}
 				style={{ width: "100%", fontSize: "0.83em", display: "block" }}
