@@ -6,6 +6,16 @@ import CalendarIcon from 'public/Icons/calendar.png'
 import { Radio, BoxTitle } from '@/components/atoms';
 import Image from 'next/image';
 import styles from './SearchDateInput.module.scss';
+import { ResetSearchCategoryProps } from '../SearchCategory';
+
+interface SearchDateInputProps extends ResetSearchCategoryProps {
+	searchRadio: string;
+	startDate: string;
+	endDate: string;
+	isChangeCreatedDateRadio: (value: string) => void;
+	isChangeStrDate: (value: null | Date) => void;
+	isChangeEndDate: (value: null | Date) => void;
+}
 
 const SearchDateInput = ({
 	searchRadio,
@@ -15,7 +25,7 @@ const SearchDateInput = ({
 	isChangeStrDate,
 	isChangeEndDate,
 	resetSearchParams
-}) => {
+}: SearchDateInputProps) => {
 	const DateRadioArray = [
 		{
 			id: "ALL",

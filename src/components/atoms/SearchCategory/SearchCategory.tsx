@@ -8,8 +8,11 @@ export interface SearchCategoryCommonProps {
 	searchDetail				: string | null;
 }
 
-interface SearchCategoryProps extends SearchCategoryCommonProps {
+export interface ResetSearchCategoryProps {
 	resetSearchParams	  : (value: string) => void;
+}
+
+interface SearchCategoryProps extends SearchCategoryCommonProps, ResetSearchCategoryProps {
 }
 
 const SearchCategory = ({ isChangeCategory, resetSearchParams, searchDetail }: SearchCategoryProps) => {
