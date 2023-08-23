@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { BoxTitle } from '@/components/atoms';
 import { SearchCategoryCheckBox } from '../SearchCategoryCheckBox';
 
-export interface SearchCategoryProps {
+export interface SearchCategoryCommonProps {
 	isChangeCategory		: (name: string | null, value: string, parent: string | null) => void;
-	resetSearchParams	 ?: (value: string) => void;
-	searchDetail: string | null;
+	searchDetail				: string | null;
+}
+
+interface SearchCategoryProps extends SearchCategoryCommonProps {
+	resetSearchParams	  : (value: string) => void;
 }
 
 const SearchCategory = ({ isChangeCategory, resetSearchParams, searchDetail }: SearchCategoryProps) => {

@@ -5,9 +5,9 @@ import { CheckBox } from '../CheckBox';
 import styles from './SearchCategoryCheckBox.module.scss';
 import Image from 'next/image';
 import { Label } from '../Label';
-import { SearchCategoryProps } from '../SearchCategory/SearchCategory';
+import { SearchCategoryCommonProps } from '../SearchCategory/SearchCategory';
 
-interface SearchCategoriesCommonProps extends SearchCategoryProps {
+interface SearchCategoriesCommonProps extends SearchCategoryCommonProps {
 	secondJobCategories: { id: number, name: string }[];
 	type: number;
 }
@@ -38,9 +38,9 @@ const FirstSearchCategoriesCheckBox = ({
 			<label
 				htmlFor={category}
 				style={{ width: "calc(100% - 13px - 24px)", fontSize: "0.83em" }}
-				onClick={(e) => isChangeCategory(e.currentTarget.getAttribute('data-name'), category, e.currentTarget.getAttribute("name"))}
+				// onClick={(e) => isChangeCategory(e.currentTarget.getAttribute('data-name'), category, e.currentTarget.getAttribute("name"))}
 			>
-				<input type="checkbox" name={name} value={category} id={category} data-name={name} />
+				<input type="checkbox" name={name} value={category} id={category} data-name={name} onChange={(e) => isChangeCategory(e.currentTarget.getAttribute('data-name'), category, e.currentTarget.getAttribute("name"))}/>
 				{name}
 				{(searchDetail && type === 0)
 					&& <Label text={searchDetail} />}

@@ -112,7 +112,7 @@ const SearchPage = () => {
 		checkedCategoriesArray.forEach(current => current.checked = false);
 	}, [])
 
-	const isChangeCategory = useCallback((name: string, value: string, parent: string) => {
+	const isChangeCategory = useCallback((name: string | null, value: string, parent: string | null) => {
 		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
 																				.filter(current => current.checked === true);
 		if (checkedCategoriesArray.map((current) => current.name).find(current => current !== parent)) {

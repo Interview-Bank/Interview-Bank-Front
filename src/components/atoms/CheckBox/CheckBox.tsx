@@ -9,7 +9,7 @@ interface CheckBoxProps {
 
 const CheckBox = ({category, name, categoryDivide, isChangeCategory}: CheckBoxProps) => {
   return (
-    <li onClick={(e) => isChangeCategory(e.currentTarget.getAttribute("data-name"), category, e.currentTarget.getAttribute("name"))}>
+		<li>
 			<label
 				htmlFor={category}
 				style={{ width: "100%", fontSize: "0.83em", display: "block" }}
@@ -20,6 +20,8 @@ const CheckBox = ({category, name, categoryDivide, isChangeCategory}: CheckBoxPr
 					value={category}
 					id={category}
 					data-name={name}
+					onChange={(e) => isChangeCategory(e.currentTarget.getAttribute("data-name"), category, e.currentTarget.getAttribute("name"))}
+					readOnly
 				/>
 				{name}
 			</label>

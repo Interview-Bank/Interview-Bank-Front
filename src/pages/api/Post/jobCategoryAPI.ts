@@ -18,7 +18,7 @@ const getFirstJobCategories = (array) => {
 
 const getSecondJobCategories = (array, id) => {  
   return array
-          .filter((current) => current.firstLevelId === id)[0].secondJobCategories
+          .filter((current) => current.firstLevelId === id)[0]?.secondJobCategories
           .map((current) => { return { id: current.secondLevelId, name: current.secondLevelName } });          
 }
 
