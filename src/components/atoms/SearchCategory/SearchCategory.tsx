@@ -3,18 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { BoxTitle } from '@/components/atoms';
 import { SearchCategoryCheckBox } from '../SearchCategoryCheckBox';
 
-interface SearchCategoryProps {
-	isChangeCategory		: (name: string, value: string, parent: string) => void;
-	resetSearchParams		: (value: string) => void;
-	searchDetail: {
-		title: string;
-    category: string;
-    interviewPeriod: string;
-    startDate: string;
-    endDate: string;
-    careerYear: string;
-    page: number;
-	};
+export interface SearchCategoryProps {
+	isChangeCategory		: (name: string | null, value: string, parent: string | null) => void;
+	resetSearchParams	 ?: (value: string) => void;
+	searchDetail: string | null;
 }
 
 const SearchCategory = ({ isChangeCategory, resetSearchParams, searchDetail }: SearchCategoryProps) => {
@@ -24,13 +16,15 @@ const SearchCategory = ({ isChangeCategory, resetSearchParams, searchDetail }: S
     getJobCategories()
 			.then((result) => setJobCategoriesArray(result))
 			.catch((resolve) => resolve);
-  },[])
+	}, [])
+
+	console.log(getSecondJobCategories(jobCategoriesArray, 1))
 
 	return (
     <>
 			<BoxTitle title="직무 구분" field="CATEGORIES" resetSearchParams={resetSearchParams} />
 			{getFirstJobCategories(jobCategoriesArray) &&
-				getFirstJobCategories(jobCategoriesArray).map((current, index) => (
+				getFirstJobCategories(jobCategoriesArray).map((current: {id:number, name:string}, index: number) => (
 					<SearchCategoryCheckBox
 						data={current}
 						key={`${current.name},${current.id}`}

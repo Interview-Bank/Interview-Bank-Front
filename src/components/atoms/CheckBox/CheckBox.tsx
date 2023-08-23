@@ -4,7 +4,7 @@ interface CheckBoxProps {
 	category: string;
 	name: string;
 	categoryDivide: string;
-	isChangeCategory: (dataName: string | null, categroy: string, name: string | null) => {};
+	isChangeCategory: (dataName: string | null, categroy: string, name: string | null) => void;
 }
 
 const CheckBox = ({category, name, categoryDivide, isChangeCategory}: CheckBoxProps) => {
