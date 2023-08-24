@@ -24,8 +24,6 @@ const SearchCategory = ({ isChangeCategory, resetSearchParams, searchDetail }: S
 			.catch((resolve) => resolve);
 	}, [])
 
-	console.log(getSecondJobCategories(jobCategoriesArray, 1))
-
 	return (
     <>
 			<BoxTitle title="직무 구분" field="CATEGORIES" resetSearchParams={resetSearchParams} />

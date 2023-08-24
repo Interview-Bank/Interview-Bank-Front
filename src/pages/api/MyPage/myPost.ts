@@ -1,6 +1,6 @@
 import axiosInstance from '../axiosInstance';
 
-const bringMyPostListData = async (scrapParam, pageSize = 15) => {
+const bringMyPostListData = async (scrapParam: { page: number; }, pageSize = 15) => {
   try {
     const response = await axiosInstance.get(
       `${process.env.NEXT_PUBLIC_API_URL}/interview/me`,
@@ -17,7 +17,7 @@ const bringMyPostListData = async (scrapParam, pageSize = 15) => {
   }
 }
 
-const bringMyScrapListData = async (scrapParam, pageSize = 15) => {  
+const bringMyScrapListData = async (scrapParam: { page: number; }, pageSize = 15) => {  
   try {
     const response = await axiosInstance.get(
       `${process.env.NEXT_PUBLIC_API_URL}/scraps`,

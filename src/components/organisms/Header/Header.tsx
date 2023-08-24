@@ -69,7 +69,7 @@ const Header = () => {
         </div>
         <ul className={styles.nav__menu}>
           {HomeMenuListArray?.map((menu) => (
-            <li key={menu.id} onClick={() => router.push(menu.path)}>{menu.name}</li>
+            <li key={menu.id} onClick={() => router.push(`${menu.path}`)}>{menu.name}</li>
             ))
           }
         </ul>

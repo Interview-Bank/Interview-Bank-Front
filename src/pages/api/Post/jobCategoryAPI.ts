@@ -8,15 +8,15 @@ const getJobCategories = async () => {
     // getSecondJobCategories(response.data);
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(`${error}`);
   }
 }
 
-const getFirstJobCategories = (array) => {
+const getFirstJobCategories = (array: { firstLevelId: number; firstLevelName: string; }[]) => {
   return array.map((current) => {return {id: current.firstLevelId, name: current.firstLevelName}});
 }
 
-const getSecondJobCategories = (array, id) => {  
+const getSecondJobCategories = (array: { firstLevelId: number; firstLevelName: string; secondJobCategories: { secondLevelId: number; secondLevelName: string; }[]}[], id: number) => {  
   return array
           .filter((current) => current.firstLevelId === id)[0]?.secondJobCategories
           .map((current) => { return { id: current.secondLevelId, name: current.secondLevelName } });          

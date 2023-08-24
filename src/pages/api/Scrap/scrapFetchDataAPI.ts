@@ -17,7 +17,7 @@ const bringScrapListData = async (pageNumber = 0, pageSize = 10) => {
   }
 };
 
-const bringScrapOriginalListData = async (scrapId) => {
+const bringScrapOriginalListData = async (scrapId: number) => {
   try {
     const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}`);
     return response.data;
@@ -26,7 +26,7 @@ const bringScrapOriginalListData = async (scrapId) => {
   }  
 }
 
-const sendScrapData = async (itemArray, updateContent, scrapId) => {
+const sendScrapData = async (itemArray: { scrapQuestionId: number; scrapAnswerResponseList: { scrapAnswerId: number; }[] }, updateContent: string, scrapId: number) => {
   try {
     const response = await axiosInstance.put(
       `${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}/questions/${itemArray.scrapQuestionId}/answers/${itemArray.scrapAnswerResponseList[0].scrapAnswerId}`,

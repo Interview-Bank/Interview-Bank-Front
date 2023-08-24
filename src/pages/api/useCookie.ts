@@ -35,13 +35,13 @@ const setCookie = (key: string, value: string) => {
 };
 
 const setCookieExpires = (key: string, value: string) => {
-  let today = new Date(Date.now() + (15 * 60 * 60 * 1000));
+  let today: Date | string = new Date(Date.now() + (15 * 60 * 60 * 1000));
   today = today.toUTCString();
   document.cookie = `${key} = ${value}; path=/; expires=${today};`;
 };
 
 const deleteCookie = (key: string) => {
-  let today = new Date();
+  let today: Date | string = new Date();
   today = today.toUTCString();
   document.cookie = `${key}=; path=/; expires=${today}`;
 }

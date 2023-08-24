@@ -2,7 +2,43 @@ import { Pagination, TextComponent } from '@/components/molecules';
 import React from 'react'
 import styles from './SearchArea.module.scss';
 
-const SearchArea = ({totalPosts, totalPages, interviewList, limit, setPage, searchParam}) => {
+interface SearchAreaProps {
+  totalPosts: number;
+  totalPages: number;
+  interviewList: {
+    careerYear: string;
+    createdAt: string;
+    interviewId: number;
+    interviewPeriod: string;
+    jobCategory: {
+      jobCategoryId: number;
+      firstLevelName: string;
+      secondLevelName: string | null;
+    };
+    nickname: string;
+    title: string;
+  }[];
+  limit: number;
+  setPage: (page: number) => void;
+  searchParam: {
+    title								: string;
+    category						: string;
+    interviewPeriod			: string;
+    startDate						: string;
+    endDate							: string;
+    careerYear					: string;
+    page								: number;
+  };
+}
+
+const SearchArea = ({
+  totalPosts,
+  totalPages,
+  interviewList,
+  limit,
+  setPage,
+  searchParam
+}: SearchAreaProps) => {
   return (
     <>
       {interviewList.length ? (

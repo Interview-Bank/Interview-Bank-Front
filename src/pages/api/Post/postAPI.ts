@@ -6,7 +6,7 @@ import axiosInstance from '../axiosInstance';
 const baseUrl = 'https://bstaging.interviewbank.net/interview';
 // const headers = setTokenHeaders();
 
-const postInterview = async (postTitle, postObject, postArray) => {
+const postInterview = async (postTitle: string, postObject: { interviewPeriod: string; careerYear: string; firstLevelId: number; secondLevelId: number; }, postArray: []) => {
   const {
     interviewPeriod,
     careerYear,
@@ -17,7 +17,7 @@ const postInterview = async (postTitle, postObject, postArray) => {
   const postData = {
     interviewPeriod,
     careerYear,
-    jobCategoryId: secondLevelId === "" ? Number(firstLevelId) : Number(secondLevelId),
+    jobCategoryId: secondLevelId ? Number(firstLevelId) : Number(secondLevelId),
     questionsRequest: {
       questions: postArray,
     },
@@ -31,7 +31,7 @@ const postInterview = async (postTitle, postObject, postArray) => {
     );
     return response.data;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(`${error}`);
   }
 }
 
