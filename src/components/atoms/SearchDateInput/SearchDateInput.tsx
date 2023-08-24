@@ -10,8 +10,8 @@ import { ResetSearchCategoryProps } from '../SearchCategory';
 
 interface SearchDateInputProps extends ResetSearchCategoryProps {
 	searchRadio: string;
-	startDate: string;
-	endDate: string;
+	startDate: Date | null;
+	endDate: Date | null;
 	isChangeCreatedDateRadio: (value: string) => void;
 	isChangeStrDate: (value: null | Date) => void;
 	isChangeEndDate: (value: null | Date) => void;

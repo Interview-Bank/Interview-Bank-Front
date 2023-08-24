@@ -4,9 +4,39 @@ import { Pagination } from '../../Pagination';
 import { TextComponent } from '../../TextComponent';
 import styles from './MyPageBody.module.scss';
 
-type Props = {}
+interface MyPageBodyProps {
+  totalPosts: number;
+  totalPages: number;
+  limit: number;
+  setPage: number;
+  myPostParam: any;
+  boardList: {
+    careerYear: string;
+    createdAt: string;
+    interviewId?: number;
+    scrapId?: number;
+    interviewPeriod: string;
+    jobCategory: {
+      firstLevelName: string;
+      jobCategoryId: number;
+      secondLevelName: string;
+    };
+    nickname: string;
+    title: string;
+  }[];
+  isLoading: boolean;
+  type: "scraps" | "interview";
+}
 
-const MyPageBody = ({ totalPosts, totalPages, limit, setPage, myPostParam, boardList, isLoading, type }) => {
+const MyPageBody = ({ totalPosts,
+  totalPages,
+  limit,
+  setPage,
+  myPostParam,
+  boardList,
+  isLoading,
+  type
+}: MyPageBodyProps) => {
   const router = useRouter();
   return (
     <div className={styles.page__body}>

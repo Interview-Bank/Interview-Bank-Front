@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './InterviewContent.module.scss';
 
-interface InterviewContentProps {
+export interface InterviewContentProps {
   content: string;
 }
 

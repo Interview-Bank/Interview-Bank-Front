@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './InterviewView.module.scss';
+import { InterviewContentProps } from '../InterviewContent/InterviewContent';
 
-type Props = {}
-
-const InterviewView = ({ content }) => {
+const InterviewView = ({ content }: InterviewContentProps) => {
   return (
     <div className={styles.view}>
       <li>{content}</li>

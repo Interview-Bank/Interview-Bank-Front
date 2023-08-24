@@ -8,7 +8,7 @@ import styles from './TextComponent.module.scss';
 import { Label } from '@/components/atoms';
 
 interface TextComponentProps {
-	id										: number;
+	id										: number | undefined;
 	title									: string;
 	nickname							: string;
 	firstCategoryName			: string;

@@ -1,2 +1,1 @@
-export * from './TreeSelect/TreeSelect';
-export * from './Select/Select';
+export * from './Select';
