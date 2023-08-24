@@ -19,12 +19,12 @@ const PostTitle = ({
 		<div className={styles.title}>
 			{type === 'I'
 				? <Input
-						name						="title"
-						value						={title}
-						placeholder			="제목을 입력하세요"
-						type						="text"
-						maxLength				={128}
-						onChangeEvent		={changeTitleValue}
+						name						= "title"
+						value						= {title}
+						placeholder			= "제목을 입력하세요"
+						type						= "text"
+						maxLength				= {128}
+						onChangeEvent		= {changeTitleValue}
 					/>
 				: <h2>{title}</h2>
 			}

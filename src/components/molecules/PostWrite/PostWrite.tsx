@@ -1,20 +1,17 @@
 import React      from 'react';
 import styles     from './PostWrite.module.scss';
 import { Button } from '../../atoms/Button';
-
-interface PostWriteProps {
-  
-}
+import { PostBodyCommonProps } from '../PostBody';
 
 const PostWrite = ({
   inputs,
   onRemove,
   onChange,
   handleInputLimit
-}) => {
+}: PostBodyCommonProps) => {
   return (
     <div className={styles.post}>
-      {inputs.map((input) => (
+      {inputs.map((input: { questionsId: number; content: string; }) => (
         <div className={styles.post__insert} key={input.questionsId}>
           <div className={styles.post__input}>
             <textarea

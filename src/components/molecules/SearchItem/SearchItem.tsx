@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './SearchItem.module.scss';
 
-const SearchItem = ({ children, type = '' }) => {
+interface SearchItemProps {
+  children: React.ReactNode;
+  type: string;
+}
+
+const SearchItem = ({ children, type = '' }: SearchItemProps) => {
   return (
     <div className={type === 'title' ? styles.search : `${styles.search} ${styles.area}`}>
       {children}

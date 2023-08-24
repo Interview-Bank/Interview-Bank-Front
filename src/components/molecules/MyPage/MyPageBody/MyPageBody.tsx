@@ -79,7 +79,7 @@ const MyPageBody = ({ totalPosts,
             </div>
             <div className={styles.page__paging}>
               {totalPages && 
-                <Pagination limit={limit} setPage={setPage} page={myPostParam.page} totalPosts={totalPosts} totalPages={totalPages}/>
+                <Pagination limit={limit} setPage={()=>setPage} page={myPostParam.page} totalPosts={totalPosts} totalPages={totalPages}/>
               }
             </div>
           </>

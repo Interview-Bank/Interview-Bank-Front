@@ -144,7 +144,7 @@ const ScrapPage = ({response}) => {
     );
   }, [contents]);
 
-  const handleInputChange = (index, e) => {
+  const handleInputChange = (index: number, e) => {
     setInputValues({ ...inputValues, [index]: e.target.value });
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;

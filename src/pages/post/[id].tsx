@@ -115,16 +115,16 @@ const PostPage = () => {
 		}
 	};
 
-	const onChange = (questionsId, e) => {
+	const onChange = (questionsId: number, e: React.FormEvent<HTMLTextAreaElement>) => {
 		const newInputs = inputs.map((input) => {
 			if (input.questionsId === questionsId) {
-				return { ...input, content: e.target.value };
+				return { ...input, content: e.currentTarget.value };
 			}
 			return input;
 		});
 		setInputs(newInputs);
-		e.target.style.height = "inherit";
-		e.target.style.height = `${e.target.scrollHeight}px`;
+		e.currentTarget.style.height = "inherit";
+		e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
 	};
 
 	const checkGenerateQuestionCountOver = () => {
@@ -152,7 +152,7 @@ const PostPage = () => {
 		}
 	};
 
-	const onRemove = (id) => {
+	const onRemove = (id: number) => {
 		const newInputs = inputs.filter((input) => input.questionsId !== id);
 		setInputs(newInputs);
 		// if (inputs.length > 0) {
@@ -161,7 +161,7 @@ const PostPage = () => {
 		// }
 	};
 
-	const handleInputLimit = (e) => {
+	const handleInputLimit = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const maxLengthInBytes = 65535;
     const inputText = e.target.value;
     const byteCount = new Blob([inputText]).size;

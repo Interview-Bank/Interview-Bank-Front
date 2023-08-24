@@ -4,6 +4,23 @@ import styles from './QuestionComponent.module.scss';
 import ArrowDown from "public/Icons/arrow_down.png";
 import ArrowUp from "public/Icons/arrow_up.png";
 
+interface QuestionComponentProps {
+  item: {
+    content: string;
+    gptAnswer: string;
+  };
+  index: number;
+  answers: string;
+  inputValues: string;
+  inputRefs: {
+    current: any;
+  };
+  handleInputChange: (index: number, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleInputLimit: (e: React.FormEvent<HTMLTextAreaElement>) => void;
+  toggleAnswerInput: (index: number) => void;
+  gptToggle: boolean;
+}
+
 const QuestionComponent = ({
   item,
   index,
@@ -14,7 +31,7 @@ const QuestionComponent = ({
   handleInputLimit,
   toggleAnswerInput,
   gptToggle
-}) => {
+}: QuestionComponentProps) => {
   return (
     <div className={styles.question}>
       <div className={styles.content__area}>

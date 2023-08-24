@@ -7,6 +7,7 @@
   width         : fit-content;
   height        : 320px;
   z-index       : 4;
+  
   .triangle {
     position    : relative;
     top         : 7.5px;
@@ -20,6 +21,7 @@
     box-sizing  : border-box;
     z-index     : 1;
   }
+  
   .profile__area {
     position          : absolute;
     display           : flex;
@@ -50,20 +52,21 @@
       }
 
       .nickname {
-        position      : absolute;
-        top           : 85px;
-        left          : 50%;
-        transform     : translateX(-50%);
-        display       : flex;
-        align-items   : center;
-        width         : 161px;
-        height        : 26px;      
-        color         : $--color-main-blue;
-        font-family   : 'Noto Sans KR';
-        font-style    : normal;
-        font-weight   : $--weight-bold;
-        font-size     : $--font-large;
-        cursor        : pointer;
+        position          : absolute;
+        top               : 85px;
+        left              : 50%;
+        transform         : translateX(-50%);
+        display           : flex;
+        justify-content   : center;
+        align-items       : center;
+        width             : 161px;
+        height            : 26px;      
+        color             : $--color-main-blue;
+        font-family       : 'Noto Sans KR';
+        font-style        : normal;
+        font-weight       : $--weight-bold;
+        font-size         : $--font-large;
+        cursor            : pointer;
       }
     }
 

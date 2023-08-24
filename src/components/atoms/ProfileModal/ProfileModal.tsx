@@ -6,7 +6,7 @@ import React, { useCallback } from 'react'
 import styles from './ProfileModal.module.scss';
 
 interface ProfileModalProps extends ProfileProps {
-  setProfile: () => void;
+  setProfile: (value?: boolean) => void;
 }
 
 const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileModalProps) => {
