@@ -6,7 +6,7 @@ import axiosInstance from '../axiosInstance';
 const baseUrl = 'https://bstaging.interviewbank.net/interview';
 // const headers = setTokenHeaders();
 
-const postInterview = async (postTitle: string, postObject: { interviewPeriod: string; careerYear: string; firstLevelId: number; secondLevelId: number; }, postArray: []) => {
+const postInterview = async (postTitle: string, postObject: { interviewPeriod: string; careerYear: string; firstLevelId: number | string; secondLevelId: number | string; }, postArray: { content: string; questionsId: number;}[]) => {
   const {
     interviewPeriod,
     careerYear,

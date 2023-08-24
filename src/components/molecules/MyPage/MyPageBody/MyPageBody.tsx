@@ -8,7 +8,7 @@ interface MyPageBodyProps {
   totalPosts: number;
   totalPages: number;
   limit: number;
-  setPage: number;
+  setPage: (value: number) => void;
   myPostParam: any;
   boardList: {
     careerYear: string;

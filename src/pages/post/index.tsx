@@ -37,7 +37,7 @@ function PostPage() {
 	};
 
 	const isChangeSelectBoxItems = (name: string, value: string) => {
-		if (name === "firstLevelId" && inputSelectBox.secondLevelId !== "") {
+		if (name === "firstLevelId" && inputSelectBox.secondLevelId) {
 			setInputSelectBox((prev) => {
 				return { ...prev, [name]: value, secondLevelId: "" };
 			});
@@ -115,10 +115,10 @@ function PostPage() {
 		}
 	};
 
-	const onChange = (questionsId, e) => {
+	const onChange = (questionsId: number, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const newInputs = inputs.map((input) => {
 			if (input.questionsId === questionsId) {
-				return { ...input, content: e.target.value };
+				return { ...input, content: e.currentTarget.value };
 			}
 			return input;
 		});
@@ -161,17 +161,17 @@ function PostPage() {
 		// }
 	};
 
-	const handleInputLimit = (e) => {
+	const handleInputLimit = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const maxLengthInBytes = 65535;
-    const inputText = e.target.value;
+    const inputText = e.currentTarget.value;
     const byteCount = new Blob([inputText]).size;
   
     if (byteCount > maxLengthInBytes) {
-      e.target.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
-      e.target.reportValidity();
-      e.target.value = inputText.slice(0, maxLengthInBytes);
+      e.currentTarget.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
+      e.currentTarget.reportValidity();
+      e.currentTarget.value = inputText.slice(0, maxLengthInBytes);
     } else {
-      e.target.setCustomValidity("");
+      e.currentTarget.setCustomValidity("");
     }
   };
 

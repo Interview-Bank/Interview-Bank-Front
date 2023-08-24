@@ -16,10 +16,10 @@ import { MultiReadSelect } from '@/components/molecules';
 interface InterviewPageProps {
 	interviewInfo: {
 		accountId					: number;
-		careerYear				: CareerYearType;
+		careerYear				: string;
 		createdAt					: string;
 		interviewId				: number;
-		interviewPeriod		: InterviewPeriodType;
+		interviewPeriod		: string;
 		jobCategory				:	{
 													jobCategoryId		: number;
 													firstLevelName	: string;
@@ -28,8 +28,8 @@ interface InterviewPageProps {
 		questions					: {
 													content					: string;
 													createdAt				: string;
-													deletedAt			 ?: string | null;
-													deletedFalg			: boolean;
+													deletedAt			  : string;
+													deletedFlag			: boolean;
 													gptAnswer				: string;
 													questionId			: number;
 													updatedAt				: string;
@@ -43,7 +43,6 @@ interface InterviewPageProps {
 const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
 	const router = useRouter();
   const [interview, setInterview] = useState({});
-  const [contents, setContents] = useState([]);
   const [accountId, setAccountId] = useState(0);
 	const [scrapModal, setScrapModal] = useState(false);
 	const [token, setToken] = useState("");
@@ -53,33 +52,12 @@ const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
 	useEffect(() => {
 		setAccountId(interviewInfo.accountId);
 		setInterview(interviewInfo);
-		setContents(interviewInfo.questions);
-		console.log(interviewInfo);
-		// setToken(setTokenHeaders()["X-Auth-Token"]);
-		// setUserId(Number(getCookieValue("userId")));
-		// userId = Number(getCookieValue("userId"));
 	}, []);
 
 	const toggleSwitch = () => {
     setToggle(prev => !prev);
   }
 
-  // const handleScrap = () => {
-  //   const headers = setTokenHeaders();
-  //   axios
-  //     .post(
-  //       `https://bstaging.interviewbank.net/scraps`,
-  //       {
-  //         interviewId: interview.interviewId,
-  //       },
-  //       {
-  //         headers,
-  //       }
-  //     )
-  //     .then((result) => {})
-  //     .catch((err) => console.log(err));
-  //   setScrapModal(true)
-  // };
   return (
 		<section className='interview__area'>
 			<SeoHead title={interviewInfo.title} />

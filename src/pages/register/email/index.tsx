@@ -1,7 +1,7 @@
 import { Title, Button, SeoHead } from '@/components/atoms';
 import { RegisterInput } from '@/components/molecules';
-import { registerService } from '@/pages/api/Register/register';
 import { emailPatternCheck } from '@/pages/api/emailPatternCheck';
+import { registerService } from '@/pages/api/register/register';
 import { modalSlice } from '@/redux/modalReducer';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'

@@ -37,7 +37,7 @@ const MyPage = (props: Props) => {
 
   useEffect(() => {
     // router.query.my &&
-    setCurrentRouter(router.query.my);
+    setCurrentRouter(`${router.query.my}`);
     if (router.query.my === 'my-post') {
       if (currentRouter !== 'my-post' && myPostParam.page !== 1) {
         // setCurrentRouter(router.query.my);
@@ -57,7 +57,7 @@ const MyPage = (props: Props) => {
     }
   }, [router.query.my, myPostParam]);
 
-  const isChangeCurrentPage = useCallback((value) => {
+  const isChangeCurrentPage = useCallback((value: number) => {
 		setMyPostParam((prev) => {
 			return { ...prev, page: value };
 		});

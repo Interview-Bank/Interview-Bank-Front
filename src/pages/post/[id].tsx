@@ -3,30 +3,28 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postInterview } from "../api/Post/postAPI";
 import { useRouter } from 'next/router';
-import { setTokenHeaders } from '../api/login/loginCheck';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import { modalSlice } from '@/redux/modalReducer';
 import { PostBody, PostTitle, MultiSelect } from '@/components/molecules';
 
 const PostPage = () => {
-	const dispatch = useDispatch();
-	const router = useRouter();
+	const router 		= useRouter();
+	const dispatch 	= useDispatch();
+	const inputId 	= useRef(0);
 
-	const inputId = useRef(0);
-	const [title, setTitle] = useState("");
-	const [inputs, setInputs] = useState([
+	const [	title	, setTitle	] = useState("");
+	const [	inputs, setInputs	] = useState([
 		{
 			content: "",
 			questionsId: inputId.current,
 		},
 	]);
 
-	const [headers, setHeaders] = useState();
 	const [inputSelectBox, setInputSelectBox] = useState({
 		interviewPeriod: "",
 		careerYear: "",
-		firstLevelId: "",
-		secondLevelId: "",
+		firstLevelId: null,
+		secondLevelId: null,
 	});
 
 	useEffect(() => {
@@ -39,8 +37,8 @@ const PostPage = () => {
 		return inputId.current++;
 	};
 
-	const isChangeSelectBoxItems = (name, value) => {
-		if (name === "firstLevelId" && inputSelectBox.secondLevelId !== "") {
+	const isChangeSelectBoxItems = (name: string, value: string) => {
+		if (name === "firstLevelId" && inputSelectBox.secondLevelId) {
 			setInputSelectBox((prev) => {
 				return { ...prev, [name]: value, secondLevelId: "" };
 			});
@@ -108,8 +106,7 @@ const PostPage = () => {
 
 	const handleClickSubmit = async () => {
 		if (postValidationCheck()) {
-			setHeaders(setTokenHeaders());
-			postInterview(headers, title, inputSelectBox, inputs)
+			postInterview(title, inputSelectBox, inputs)
 				.then((response) => router.push(`/interview/${response.interviewId}`))
 				.catch((reject) => console.log(reject));
 		}
@@ -182,10 +179,10 @@ const PostPage = () => {
 				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
 			>
 				<PostTitle
-					title={title}
-					setTitle={setTitle}
-					handleClickSubmit={handleClickSubmit}
-					// postValidationCheck={postValidationCheck}
+					title										= {title}
+					type										= 'I'
+					changeTitleValue				= {changeTitleValue}
+					clickPostInterview			= {clickPostInterview}
 				/>
 				<MultiSelect
 					inputSelectBox={inputSelectBox}
