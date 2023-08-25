@@ -53,7 +53,7 @@ const MyPage = (props: Props) => {
         setMyPostParam({ ...defaultParamValue });
       }
       bringMyScrapListData(myPostParam)
-        .then((response) => { console.log(response); setBoardList(response.scraps); setTotalPages(response.totalPages); setTotalPosts(response.totalElements); setIsLoading(false) })
+        .then((response) => { setBoardList(response.scraps); setTotalPages(response.totalPages); setTotalPosts(response.totalElements); setIsLoading(false) })
     }
   }, [router.query.my, myPostParam]);
 

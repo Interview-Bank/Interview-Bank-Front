@@ -5,7 +5,7 @@ import { QuestionComponent } from '@/components/molecules/QuestionComponent';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
-import { bringScrapOriginalListData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
+import { bringScrapOriginalListData, bringScrapRelationData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
 import { MultiReadSelect } from '@/components/molecules';
 import { Label } from '@/components/atoms';
 import { AnswerComponent } from '@/components/molecules/AnswerComponent';
@@ -152,6 +152,8 @@ const ScrapPage = () => {
           ...prevAnswer,
           [0]: true
         }))
+        bringScrapRelationData(`${response.originalInterview.interviewId}`)
+          .then(response => console.log(response));
       })
       .catch(reject => console.log(reject));
   }, []);
@@ -167,9 +169,9 @@ const ScrapPage = () => {
 
   useEffect(() => {
     setInputValues(
-      contents.map((item: ScrapQuestionProps) => {
+      contents.map((item: ScrapQuestionProps) => 
         item.scrapAnswerResponseList[0].content
-      })
+      )
     );
   }, [contents]);
 
@@ -203,6 +205,8 @@ const ScrapPage = () => {
         .catch(reject => console.log(reject))
     });
   }
+  console.log(inputValues);
+  console.log(contents);
   
   return (
     <section className="scrap__area">

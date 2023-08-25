@@ -15,7 +15,7 @@ interface AnswerComponentProps {
 
 const AnswerComponent = ({ item }: AnswerComponentProps) => {
   const [toggle, setToggle] = useState(false);
-  console.log(item);
+  
   return (
     <div className={`${styles.answer} ${toggle ? styles[`answer--active`] : undefined}`}>
       <div className={styles.answer__area}>

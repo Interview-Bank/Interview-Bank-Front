@@ -34,6 +34,8 @@ const QuestionComponent = ({
   toggleAnswerInput,
   gptToggle
 }: QuestionComponentProps) => {
+
+  console.log(inputValues);
   return (
     <div className={styles.question}>
       <div className={styles.content__area}>

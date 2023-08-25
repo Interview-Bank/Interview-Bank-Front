@@ -61,7 +61,6 @@ const SearchPage = () => {
 				setInterviewList(result.interviews);
 				setTotalPages(result.totalPages);
 				setTotalPosts(result.totalElements);
-				console.log(interviewList);
 			})
 			.catch((resolve) => console.log(resolve));
 	}

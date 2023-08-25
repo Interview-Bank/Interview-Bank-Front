@@ -26,7 +26,20 @@ const bringScrapOriginalListData = async (scrapId: string) => {
   }  
 }
 
+const bringScrapRelationData = async (interviewId: string) => {
+  try {
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/scraps/interview/${interviewId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error: ${error}`);
+  }  
+}
+
 const sendScrapData = async (itemArray: { scrapQuestionId: number; scrapAnswerResponseList: { scrapAnswerId: number; }[] }, updateContent: string, scrapId: string) => {
+  console.log(itemArray);
+  console.log(updateContent);
+  console.log(scrapId);
+
   try {
     const response = await axiosInstance.put(
       `${process.env.NEXT_PUBLIC_API_URL}/scraps/${scrapId}/questions/${itemArray.scrapQuestionId}/answers/${itemArray.scrapAnswerResponseList[0].scrapAnswerId}`,
@@ -73,4 +86,4 @@ const sendScrapData = async (itemArray: { scrapQuestionId: number; scrapAnswerRe
   // } 
 }
   
-export { bringScrapListData, bringScrapOriginalListData, sendScrapData };
+export { bringScrapListData, bringScrapOriginalListData, bringScrapRelationData, sendScrapData };

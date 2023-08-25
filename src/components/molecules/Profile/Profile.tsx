@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 export interface ProfileProps {
   profileImageUrl   : string;
-  logoutEvent      ?: () => void;
+  logoutEvent       : () => void;
 }
 
 const Profile = ({ profileImageUrl, logoutEvent }: ProfileProps) => {
@@ -36,7 +36,7 @@ const Profile = ({ profileImageUrl, logoutEvent }: ProfileProps) => {
     return () => {
       setProfile(false);
     }
-  },[router.asPath])
+  }, [router.asPath])
 
   return (
     <>

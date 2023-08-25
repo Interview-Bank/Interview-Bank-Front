@@ -42,7 +42,7 @@ const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileModal
           <div className={styles.profile__item} onClick={() => linkMyPostPage()}>
             내 인터뷰
           </div>
-          <div className={styles.profile__item} onClick={() => logoutEvent}>
+          <div className={styles.profile__item} onClick={() => logoutEvent()}>
             로그아웃
           </div>
         </div>
