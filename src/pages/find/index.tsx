@@ -19,7 +19,7 @@ const FindPage = (props: Props) => {
         <br />
         링크는 3시간이 지나면 만료됩니다.
       </p>
-      <Input placeholder="이메일을 입력해주세요." />
+      {/* <Input placeholder="이메일을 입력해주세요." /> */}
       <Button value='이메일 전송' />
     </section>
   )

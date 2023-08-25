@@ -6,7 +6,7 @@ interface AnswerComponentProps {
     questionId  : number;
     content     : string;
     createdAt   : string;
-    deletedAt   : string;
+    deletedAt   : string | null;
     deletedFlag : boolean;
     gptAnswer   : string;
     updatedAt   : string;

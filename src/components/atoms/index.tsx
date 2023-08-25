@@ -6,7 +6,7 @@ import { Input } from './Input'
 import { Label } from './Label'
 import { Radio } from './Radio'
 import { SearchSelectBox } from './SearchSelectBox'
-import { Select, TreeSelect } from './Select'
+import { Select } from './Select'
 import { SeoHead } from './SeoHead'
 import { Title } from './Title'
 
@@ -19,7 +19,7 @@ export {
   Label,
   Radio,
   SearchSelectBox,
-  Select, TreeSelect,
+  Select,
   SeoHead,
   Title
 }

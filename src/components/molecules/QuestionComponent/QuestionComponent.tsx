@@ -6,11 +6,13 @@ import ArrowUp from "public/Icons/arrow_up.png";
 
 interface QuestionComponentProps {
   item: {
-    content: string;
-    gptAnswer: string;
+    content: string | null;
+    gptAnswer: string | null;
   };
   index: number;
-  answers: string;
+  answers: {
+    [key: string]: boolean;
+  }[];
   inputValues: string;
   inputRefs: {
     current: any;
@@ -46,7 +48,7 @@ const QuestionComponent = ({
                       <textarea
                         name        = "gptAnswer"
                         readOnly    = {true}
-                        value       = {item?.gptAnswer}
+                        value       = {item?.gptAnswer ?? ""}
                         placeholder = '답변을 입력해주세요.'
                         onChange    = {(e) => handleInputChange(index, e)}
                         onInput     = {(e) => handleInputLimit(e)}

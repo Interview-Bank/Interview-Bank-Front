@@ -3,7 +3,7 @@ import styles from './SearchItem.module.scss';
 
 interface SearchItemProps {
   children: React.ReactNode;
-  type: string;
+  type?: string;
 }
 
 const SearchItem = ({ children, type = '' }: SearchItemProps) => {

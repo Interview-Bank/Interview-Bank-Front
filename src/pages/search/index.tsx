@@ -23,7 +23,16 @@ const defaultParamValue = {
 	page								: 1,
 }
 
-const secondLevelObject = {}
+interface SecondLevelObjectProps {
+	[key: string]: string;
+}
+
+interface DateObjectProps {
+	startDate: string | Date;
+	endDate: string | Date;
+}
+
+const secondLevelObject: SecondLevelObjectProps = {};
 
 const limit = 15;
 
@@ -36,12 +45,12 @@ const SearchPage = () => {
 	const [	totalPages		, setTotalPages		 ] = useState(0);
 	const [	totalPosts		, setTotalPosts		 ] = useState(0);
 	const [	interviewList	, setInterviewList ] = useState([]);
-	const [	searchDetail	, setSearchDetail	 ] = useState(null);
-	const [	mobileFilter	, setMobileFilter	 ] = useState(null);
+	const [	searchDetail	, setSearchDetail	 ] = useState<string | null>(null);
+	const [	mobileFilter	, setMobileFilter	 ] = useState(false);
 
 	useEffect(() => {
 		getSecondLevelObject()
-			.then((resolve) => resolve.map((current) =>
+			.then((resolve) => resolve.map((current: SecondLevelObjectProps) => 
 				secondLevelObject[current.jobCategoryId] = current.name
 			));
 	},[])
@@ -107,13 +116,13 @@ const SearchPage = () => {
 	};
 
 	const resetCategories = useCallback(() => {
-		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
+		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>)
 																				.filter(current => current.checked === true);
 		checkedCategoriesArray.forEach(current => current.checked = false);
 	}, [])
 
 	const isChangeCategory = useCallback((name: string | null, value: string, parent: string | null) => {
-		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]"))
+		const checkedCategoriesArray = Array.from(document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>)
 																				.filter(current => current.checked === true);
 		if (checkedCategoriesArray.map((current) => current.name).find(current => current !== parent)) {
 			if (parent) {
@@ -123,20 +132,20 @@ const SearchPage = () => {
 				});
 			}
 		} else {
+			const foundElement = Array.from(document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>)
+																.find(current => current.dataset.name === parent);
 			if (name === parent) {
 				checkedCategoriesArray.filter(current => current.dataset.name !== parent).forEach(current => current.checked = false);
 			}
 			else if (
-				Array.from(document.querySelectorAll("input[type=checkbox]")).find(current => current.dataset.name === parent) &&
-				Array.from(document.querySelectorAll("input[type=checkbox]")).find(current => current.dataset.name === parent).checked
-				&& checkedCategoriesArray.filter(current => current.dataset.name !== parent && current.name === parent).length
+				foundElement?.checked && checkedCategoriesArray.filter(current => current.dataset.name !== parent && current.name === parent).length
 			) {
-				Array.from(document.querySelectorAll("input[type=checkbox]")).find(current => current.dataset.name === parent).checked = false;
+				foundElement.checked = false;
 			}
 			setSearchParam((prev) => {
 				return {
 					...prev,
-					category: Array.from(document.querySelectorAll("input[type=checkbox]"))
+					category: Array.from(document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>)
 													.filter(current => current.checked === true)
 													.map(current => current.value)
 													.join(",")
@@ -151,7 +160,7 @@ const SearchPage = () => {
 	}, []);
 	
 	const isValidationCheckForDateInput = useCallback((value: string) => {
-		let dateObject = {
+		let dateObject: DateObjectProps = {
 			startDate: "",
 			endDate: "",
 		}
@@ -183,7 +192,7 @@ const SearchPage = () => {
 				break;
 		}
 
-		setSearchParam((prev) => {
+		setSearchParam((prev: any) => {
 			return { ...prev, startDate: dateObject.startDate, endDate: dateObject.endDate };
 		})
 
@@ -195,14 +204,14 @@ const SearchPage = () => {
 		});
 	}, []);
 
-	const isChangeStrDate = useCallback((value: string) => {
-		setSearchParam((prev) => {
+	const isChangeStrDate = useCallback((value: Date | null) => {
+		setSearchParam((prev: any) => {
 			return { ...prev, startDate: value };
 		});
 	}, []);
 
-	const isChangeEndDate = useCallback((value: string) => {
-		setSearchParam((prev) => {
+	const isChangeEndDate = useCallback((value: Date | null) => {
+		setSearchParam((prev: any) => {
 			return { ...prev, endDate: value };
 		});
 	}, []);
@@ -214,7 +223,7 @@ const SearchPage = () => {
 	};
 
 	useEffect(() => {
-		router.query?.title && isChangeSearchParam('title', router.query.title);
+		router.query?.title && isChangeSearchParam('title', `${router.query.title}`);
 	}, [])
   
   return (

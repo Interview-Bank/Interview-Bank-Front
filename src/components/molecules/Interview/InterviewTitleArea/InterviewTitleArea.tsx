@@ -99,7 +99,7 @@ const InterviewTitleArea = ({
   const deletePost = async () => {
 
     if (window.confirm("해당 글을 삭제하시겠습니까?")) {
-      deleteInterview(router.query.id)
+      deleteInterview(`${router.query.id}`)
         .then(response => { window.alert("삭제되었습니다."); router.push('/') })
         .catch(reject => console.log(reject));
     }

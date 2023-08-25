@@ -74,6 +74,7 @@ const MyPageBody = ({ totalPosts,
                   firstCategoryName={current.jobCategory.firstLevelName}
                   secondCategoryName={current.jobCategory.secondLevelName}
                   type={type}
+                  key={type !== 'scraps' ? current.interviewId : current.scrapId}
                 />
               ))}
             </div>

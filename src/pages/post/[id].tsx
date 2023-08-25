@@ -23,15 +23,13 @@ const PostPage = () => {
 	const [inputSelectBox, setInputSelectBox] = useState({
 		interviewPeriod: "",
 		careerYear: "",
-		firstLevelId: null,
-		secondLevelId: null,
+		firstLevelId: "",
+		secondLevelId: "",
 	});
 
-	useEffect(() => {
-		// setHeaders(setTokenHeaders());
-		// headers = setTokenHeaders();
-	}, [])
-	
+	const changeTitleValue = (name: string, value: string) => {
+		setTitle(value);
+	}
 
 	const generateId = () => {
 		return inputId.current++;
@@ -48,6 +46,7 @@ const PostPage = () => {
 			});
 		}
 	};
+
 	const postValidationCheck = () => {
 		const { interviewPeriod, careerYear, firstLevelId } = inputSelectBox;
 		if (!title) {
@@ -104,7 +103,7 @@ const PostPage = () => {
 		return true;
 	};
 
-	const handleClickSubmit = async () => {
+	const clickPostInterview = async () => {
 		if (postValidationCheck()) {
 			postInterview(title, inputSelectBox, inputs)
 				.then((response) => router.push(`/interview/${response.interviewId}`))
@@ -112,7 +111,7 @@ const PostPage = () => {
 		}
 	};
 
-	const onChange = (questionsId: number, e: React.FormEvent<HTMLTextAreaElement>) => {
+	const onChange = (questionsId: number, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const newInputs = inputs.map((input) => {
 			if (input.questionsId === questionsId) {
 				return { ...input, content: e.currentTarget.value };
@@ -120,8 +119,8 @@ const PostPage = () => {
 			return input;
 		});
 		setInputs(newInputs);
-		e.currentTarget.style.height = "inherit";
-		e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+		e.target.style.height = "inherit";
+		e.target.style.height = `${e.target.scrollHeight}px`;
 	};
 
 	const checkGenerateQuestionCountOver = () => {
@@ -158,25 +157,25 @@ const PostPage = () => {
 		// }
 	};
 
-	const handleInputLimit = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleInputLimit = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const maxLengthInBytes = 65535;
-    const inputText = e.target.value;
+    const inputText = e.currentTarget.value;
     const byteCount = new Blob([inputText]).size;
   
     if (byteCount > maxLengthInBytes) {
-      e.target.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
-      e.target.reportValidity();
-      e.target.value = inputText.slice(0, maxLengthInBytes);
+      e.currentTarget.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
+      e.currentTarget.reportValidity();
+      e.currentTarget.value = inputText.slice(0, maxLengthInBytes);
     } else {
-      e.target.setCustomValidity("");
+      e.currentTarget.setCustomValidity("");
     }
   };
 
   return (
-		<>
-			<SeoHead title='글쓰기'/>
+		<section className='post'>
+			<SeoHead title='글쓰기' />
 			<div
-				className={inputs.length > 2 ? "post__header sticky" : "post__header"}
+				className={`post__header ${inputs.length > 2 ? "post__header--sticky" : undefined}`}
 			>
 				<PostTitle
 					title										= {title}
@@ -185,32 +184,18 @@ const PostPage = () => {
 					clickPostInterview			= {clickPostInterview}
 				/>
 				<MultiSelect
-					inputSelectBox={inputSelectBox}
-					isChangeSelectBoxItems={isChangeSelectBoxItems}
+					inputSelectBox					= {inputSelectBox}
+					isChangeSelectBoxItems	= {isChangeSelectBoxItems}
 				/>
 			</div>
 			<PostBody
-				inputs={inputs}
-				onRemove={onRemove}
-				onChange={onChange}
-				onAddInput={onAddInput}
-				handleInputLimit={handleInputLimit}
+				inputs						= {inputs}
+				onRemove					= {onRemove}
+				onChange					= {onChange}
+				onAddInput				= {onAddInput}
+				handleInputLimit	= {handleInputLimit}
 			/>
-    <style jsx>{`
-      .post__header {
-        position: sticky;
-        top: 81px;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        padding-bottom: 30px;
-        background-color: #f9f9f9;
-      }
-      .sticky {
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
-      }
-    `}</style>
-    </>
+    </section>
 	);
 }
 

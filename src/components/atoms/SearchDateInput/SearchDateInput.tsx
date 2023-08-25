@@ -10,8 +10,8 @@ import { ResetSearchCategoryProps } from '../SearchCategory';
 
 interface SearchDateInputProps extends ResetSearchCategoryProps {
 	searchRadio: string;
-	startDate: Date | null;
-	endDate: Date | null;
+	startDate: Date | string | null;
+	endDate: Date | string | null;
 	isChangeCreatedDateRadio: (value: string) => void;
 	isChangeStrDate: (value: null | Date) => void;
 	isChangeEndDate: (value: null | Date) => void;
@@ -63,8 +63,8 @@ const SearchDateInput = ({
       <div className={styles.area}>
 				<div className={styles.picker}>
 					<DatePicker
-						selected={startDate}
-						onChange={(date) => isChangeStrDate(date)}
+						selected={startDate ? new Date(startDate) : null}
+						onChange={(date: Date) => isChangeStrDate(date)}
 						locale={ko}
 						dateFormat="yyyy-MM-dd"
 						className={searchRadio==="DIRECT_SELECT" ? styles.input : `${styles.input} ${styles.readonly}`}
@@ -75,8 +75,8 @@ const SearchDateInput = ({
 				<span> ~ </span>
 				<div className={styles.picker}>
 					<DatePicker
-						selected={endDate}
-						onChange={(date) => isChangeEndDate(date)}
+						selected={endDate ? new Date(endDate) : null}
+						onChange={(date: Date) => isChangeEndDate(date)}
 						locale={ko}
 						dateFormat="yyyy-MM-dd"
 						className={searchRadio==="DIRECT_SELECT" ? styles.input : `${styles.input} ${styles.readonly}`}

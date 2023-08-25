@@ -75,22 +75,53 @@ const RelationScraps = () => {
   )
 }
 
-const ScrapPage = ({response}) => {
+interface AnswersProps {
+  [key: string]: boolean;
+}
+
+interface InterviewListProps {
+  originalInterview: {
+    interviewId: number;
+    title: string;
+  }
+  scrap: {
+    createdAt: string;
+    isPublic: boolean;
+    scrapId: number;
+    title: string;
+    view: number;
+    writerAccountId: number;
+    writerNickname: string;
+  }
+  scrapQuestionWithScrapAnswersList: ScrapQuestionProps[]
+}
+
+interface ScrapQuestionProps {
+  content: string;
+  gptAnswer: string | null;
+  scrapAnswerResponseList: {
+    content: string | null;
+    scrapAnswerId: number;
+  }[]
+  scrapQuestionId: number;
+}
+
+const ScrapPage = () => {
   const router = useRouter();
   const inputRefs = useRef([]);
   const [toggle, setToggle] = useState(false);
   const [contents, setContents] = useState([]);
-  const [interviewList, setInterviewList] = useState({});
-  const [answers, setAnswers] = useState({});
-  const [inputValues, setInputValues] = useState({});
+  const [interviewList, setInterviewList] = useState<InterviewListProps>();
+  const [answers, setAnswers] = useState<any>({});
+  const [inputValues, setInputValues] = useState<any>({});
   const [relationToggle, setRelationToggle] = useState(false);
 
   const toggleSwitch = () => {
     setToggle(prev => !prev);
   }
   
-  const toggleAnswerInput = (index) => {
-    setAnswers((prevAnswers) => ({
+  const toggleAnswerInput = (index: number) => {
+    setAnswers((prevAnswers: any) => ({
       ...prevAnswers,
       [index]: !prevAnswers[index],
     }));
@@ -113,11 +144,11 @@ const ScrapPage = ({response}) => {
   // };
 
   useEffect(() => {
-    bringScrapOriginalListData(router.query.id)
+    bringScrapOriginalListData(`${router.query.id}`)
       .then(response => {
         setInterviewList(response)
         setContents(response.scrapQuestionWithScrapAnswersList)
-        setAnswers((prevAnswer) => ({
+        setAnswers((prevAnswer: any) => ({
           ...prevAnswer,
           [0]: true
         }))
@@ -128,56 +159,54 @@ const ScrapPage = ({response}) => {
   useEffect(() => {
     inputRefs.current.forEach((inputRef, index) => {
       if (answers[index]) {
-        inputRef.style.height = "auto";
-        inputRef.style.height = inputRef.scrollHeight + "px";
+        (inputRef as HTMLElement).style.height = "auto";
+        (inputRef as HTMLElement).style.height = (inputRef as HTMLElement).scrollHeight + "px";
       }
     });
   }, [answers]);
 
   useEffect(() => {
     setInputValues(
-      contents.map((item) =>
-        item.scrapAnswerResponseList[0].content === null
-          ? ""
-          : item.scrapAnswerResponseList[0].content
-      )
+      contents.map((item: ScrapQuestionProps) => {
+        item.scrapAnswerResponseList[0].content
+      })
     );
   }, [contents]);
 
-  const handleInputChange = (index: number, e) => {
-    setInputValues({ ...inputValues, [index]: e.target.value });
+  const handleInputChange = (index: number, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setInputValues({ ...inputValues, [index]: e.currentTarget.value });
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
 
-  const handleInputLimit = (e) => {
+  const handleInputLimit = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const maxLengthInBytes = 65535;
-    const inputText = e.target.value;
+    const inputText = e.currentTarget.value;
     const byteCount = new Blob([inputText]).size;
   
     if (byteCount > maxLengthInBytes) {
-      e.target.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
-      e.target.reportValidity();
-      e.target.value = inputText.slice(0, maxLengthInBytes);
+      e.currentTarget.setCustomValidity("글자 수가 65,535 바이트를 초과하였습니다.");
+      e.currentTarget.reportValidity();
+      e.currentTarget.value = inputText.slice(0, maxLengthInBytes);
     } else {
-      e.target.setCustomValidity("");
+      e.currentTarget.setCustomValidity("");
     }
   };
 
   const saveScrapAnswers = () => {
-    contents.map(async (item, index) => {
+    contents.map(async (item: ScrapQuestionProps, index) => {
       let updateContent = inputValues[index] === undefined
         ? (item.scrapAnswerResponseList[0].content === null ? "" : item.scrapAnswerResponseList[0].content)
         : inputValues[index];
-      sendScrapData(item, updateContent, router.query.id)
+      sendScrapData(item, updateContent, `${router.query.id}`)
         .then(response => router.push(`/scraps/${router.query.id}`))
         .catch(reject => console.log(reject))
     });
   }
-
+  
   return (
     <section className="scrap__area">
-      {interviewList.scrap !== undefined
+      {interviewList?.scrap !== undefined
         &&  <>
               <SeoHead title='' />
               <div className="scrap__body">
@@ -193,10 +222,14 @@ const ScrapPage = ({response}) => {
                 />
                 {/* data 보내줌 필요 */}
                 <MultiReadSelect
-                  interviewPeriod	= {interviewList.scrap.interviewPeriod}
-                  careerYear			= {interviewList.careerYear}
-                  firstLevelName	=	{interviewList.jobCategory?.firstLevelName}
-                  secondLevelName	=	{interviewList.jobCategory?.secondLevelName}
+                  // interviewPeriod	= {interviewList.scrap.interviewPeriod}
+                  // careerYear			= {interviewList.careerYear}
+                  // firstLevelName	=	{interviewList.jobCategory?.firstLevelName}
+                  // secondLevelName	=	{interviewList.jobCategory?.secondLevelName}
+                  interviewPeriod	= {""}
+                  careerYear			= {""}
+                  firstLevelName	=	{""}
+                  secondLevelName	=	{""}
                 />
                 {interviewList.scrapQuestionWithScrapAnswersList &&
                   <div className="questions__area">
@@ -224,7 +257,7 @@ const ScrapPage = ({response}) => {
                   // )) 
                 }
                 <div className="scrap__btn">    
-                  <Button value='저장' onClickEvent={saveScrapAnswers} backgroundColor="blue" color="white" borderColor='0'/>
+                  <Button value='저장' onClickEvent={saveScrapAnswers} />
                 </div>
               </div>
             </>

@@ -12,14 +12,27 @@ const getJobCategories = async () => {
   }
 }
 
-const getFirstJobCategories = (array: { firstLevelId: number; firstLevelName: string; }[]) => {
+const getFirstJobCategories = (array:
+  // {
+  // firstLevelId: number;
+  // firstLevelName: string;
+  // secondJobCategories?: {
+	// 	secondLevelId?: number;
+	// 	secondLevelName?: string;
+  //   }[]
+  // }[]
+  any[]
+) => {
   return array.map((current) => {return {id: current.firstLevelId, name: current.firstLevelName}});
 }
 
-const getSecondJobCategories = (array: { firstLevelId: number; firstLevelName: string; secondJobCategories: { secondLevelId: number; secondLevelName: string; }[]}[], id: number) => {  
+const getSecondJobCategories = (array:
+  // { firstLevelId: number; firstLevelName: string; secondJobCategories: { secondLevelId: number; secondLevelName: string; }[] }[]
+  any[]
+  , id: number) => {  
   return array
           .filter((current) => current.firstLevelId === id)[0]?.secondJobCategories
-          .map((current) => { return { id: current.secondLevelId, name: current.secondLevelName } });          
+          .map((current: any) => { return { id: current.secondLevelId, name: current.secondLevelName } });          
 }
 
 export { getJobCategories, getFirstJobCategories, getSecondJobCategories }

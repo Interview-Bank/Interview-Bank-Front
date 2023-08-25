@@ -13,7 +13,7 @@ interface ModalStateType {
   title			 ?: string;
 }
 
-const Modal = memo(() => {
+const Modal = () => {
 	const { active, title, content } = useSelector((state: RootState<ModalStateType>) => state.modal);
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -40,6 +40,6 @@ const Modal = memo(() => {
 			</div>
     </div>
   )
-})
+}
 
 export { Modal };

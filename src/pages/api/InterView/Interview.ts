@@ -18,7 +18,7 @@ const isScrap = async (id: any) => {
   }
 }
 
-const deleteInterview = async (interviewId: number) => {
+const deleteInterview = async (interviewId: string) => {
   const headers = setTokenHeaders();
   try {
     const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${interviewId}`, { headers });

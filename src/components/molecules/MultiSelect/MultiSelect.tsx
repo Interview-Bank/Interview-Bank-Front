@@ -26,10 +26,19 @@ export const defaultSelectActiveValue: SelectActiveProps = {
 	secondLevelId						: false,
 };
 
+export interface JobCategoriesProps {
+	firstLevelId: number;
+	firstLevelName: string;
+	secondJobCategories?: {
+		secondLevelId?: number;
+		secondLevelName?: string;
+	}[]
+}[];
+
 const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProps) => {
-  const [	jobCategoriesArray, setJobCategoriesArray	] = useState([]);
+  const [	jobCategoriesArray, setJobCategoriesArray	] = useState<any[]>();
 	const [	selectActive			, setSelectActive				]	= useState({...defaultSelectActiveValue});
-	
+
 	useEffect(() => {
 		getJobCategories()
 			.then((result) => setJobCategoriesArray(result))
@@ -71,13 +80,13 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 			<Select
 				selectSection											= "firstLevelId"
 				selectTitle												= {
-																							inputSelectBox.firstLevelId
-																								? getFirstJobCategories(jobCategoriesArray).find(
+																							jobCategoriesArray !== undefined && inputSelectBox.firstLevelId
+																								? (getFirstJobCategories(jobCategoriesArray).find(
 																										(current) => current.id === Number(inputSelectBox.firstLevelId)
-																									).name
+																									) || {}).name || "직종"
 																								: "직종"
 																						}
-				selectArray												= {getFirstJobCategories(jobCategoriesArray)}
+				selectArray												= {jobCategoriesArray !== undefined ? getFirstJobCategories(jobCategoriesArray) : []}
 				selectActive											= {selectActive.firstLevelId}
 				isChangeSelectActive							= {isChangeSelectActive}
 				isChangeSelectBoxItems						= {isChangeSelectBoxItems}
@@ -85,17 +94,17 @@ const MultiSelect = ({ inputSelectBox, isChangeSelectBoxItems }: MultiSelectProp
 			<Select
 				selectSection											= "secondLevelId"
 				selectTitle												=	{
-																							inputSelectBox.secondLevelId
+																							jobCategoriesArray !== undefined && inputSelectBox.secondLevelId
 																								? getSecondJobCategories(
 																									jobCategoriesArray,
 																									Number(inputSelectBox.firstLevelId)
 																									).find(
-																										(current) => current.id === Number(inputSelectBox.secondLevelId)
+																										(current: any) => current.id === Number(inputSelectBox.secondLevelId)
 																										).name
 																								: "세부직무"
 																						}
 				selectArray												= {
-																							inputSelectBox.firstLevelId
+																							jobCategoriesArray !== undefined && inputSelectBox.firstLevelId
 																								? getSecondJobCategories(
 																										jobCategoriesArray,
 																										Number(inputSelectBox.firstLevelId)
