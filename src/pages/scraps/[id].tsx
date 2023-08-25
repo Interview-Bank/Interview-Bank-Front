@@ -205,8 +205,6 @@ const ScrapPage = () => {
         .catch(reject => console.log(reject))
     });
   }
-  console.log(inputValues);
-  console.log(contents);
   
   return (
     <section className="scrap__area">
