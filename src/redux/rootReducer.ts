@@ -1,5 +1,5 @@
 import { createWrapper } from 'next-redux-wrapper'
-import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import modalReducer from './modalReducer';
 import confirmModalReducer from './confirmModalReducer';
 import tokenReducer from './tokenReducer';

@@ -52,10 +52,9 @@ const Header = () => {
         if ((router.pathname === '/post'
               || router.pathname.includes('/my')
               || router.pathname === '/scrap')) router.push('/');
-        // else window.location.reload();
       })
       .catch(reject => console.log(reject))
-  }, [])
+  }, [router])
 
   const openLoginPopupEvent = () => {
     setModalActive((prev)=>!prev);

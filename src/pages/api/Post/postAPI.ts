@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { setTokenHeaders } from '../login/loginCheck';
 import axiosInstance from '../axiosInstance';
 // import { setTokenHeaders } from '../apiGetTokenHeader';
 

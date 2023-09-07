@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from 'next/router';
-
-import whiteLike from "../../Assets/Images/Icons/white_heart.png";
-import blueLike from "../../Assets/Images/Icons/blue_heart.png";
 import styles from './TextComponent.module.scss';
 
 import { Label } from '@/components/atoms';

@@ -1,12 +1,12 @@
 
-import React, { useRef, useState } from "react";
 import { useRouter } from 'next/router';
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { postInterview } from "../api/Post/postAPI";
-import { PostTitle, PostBody, MultiSelect } from '@/components/molecules';
 import { SeoHead } from '@/components/atoms/SeoHead';
+import { MultiSelect, PostBody, PostTitle } from '@/components/molecules';
 import { modalSlice } from '@/redux/modalReducer';
+import { postInterview } from "../api/Post/postAPI";
 
 function PostPage() {
 	const router 		= useRouter();

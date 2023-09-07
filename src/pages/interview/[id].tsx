@@ -1,17 +1,12 @@
 import { SeoHead } from '@/components/atoms/SeoHead';
-import { Title } from '@/components/atoms/Title';
+import { MultiReadSelect } from '@/components/molecules';
+import { AnswerComponent } from '@/components/molecules/AnswerComponent';
 import { InterviewTitleArea } from '@/components/molecules/Interview/InterviewTitleArea';
 import InterviewView from '@/components/molecules/InterviewView/InterviewView';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react'
-import { getDateFormatString } from '../api/dateConvert';
-import { getCookieValue, setTokenHeaders } from '../api/login/loginCheck';
-import { CareerYearType } from '../types/CareerYearType';
-import { InterviewPeriodType } from '../types/InterviewPeriodType';
-import { AnswerComponent } from '@/components/molecules/AnswerComponent';
-import { MultiReadSelect } from '@/components/molecules';
+import { useEffect, useState } from 'react';
 
 interface InterviewPageProps {
 	interviewInfo: {
@@ -41,12 +36,8 @@ interface InterviewPageProps {
 }
 
 const InterviewPage = ({ interviewInfo }: InterviewPageProps) => {
-	const router = useRouter();
   const [interview, setInterview] = useState({});
   const [accountId, setAccountId] = useState(0);
-	const [scrapModal, setScrapModal] = useState(false);
-	const [token, setToken] = useState("");
-	const [userId, setUserId] = useState(0);
 	const [toggle, setToggle] = useState(false);
 
 	useEffect(() => {

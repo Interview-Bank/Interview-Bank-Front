@@ -1,5 +1,3 @@
-import React      from 'react';
-import styles     from './Label.module.scss';
 
 interface LabelProps {
   text    : string;

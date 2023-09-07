@@ -1,5 +1,4 @@
 import { Button } from '@/components/atoms/Button';
-import { Input } from '@/components/atoms/Input';
 import { SeoHead } from '@/components/atoms/SeoHead';
 import React from 'react';
 

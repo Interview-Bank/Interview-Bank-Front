@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './QuestionComponent.module.scss';
 import ArrowDown from "public/Icons/arrow_down.png";
 import ArrowUp from "public/Icons/arrow_up.png";

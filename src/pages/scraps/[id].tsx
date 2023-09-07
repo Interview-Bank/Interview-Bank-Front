@@ -1,14 +1,13 @@
+import { Label } from '@/components/atoms';
 import { Button } from '@/components/atoms/Button';
 import { SeoHead } from '@/components/atoms/SeoHead';
+import { MultiReadSelect } from '@/components/molecules';
+import { AnswerComponent } from '@/components/molecules/AnswerComponent';
 import { InterviewTitleArea } from '@/components/molecules/Interview/InterviewTitleArea';
 import { QuestionComponent } from '@/components/molecules/QuestionComponent';
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { bringScrapOriginalListData, bringScrapRelationData, sendScrapData } from '../api/Scrap/scrapFetchDataAPI';
-import { MultiReadSelect } from '@/components/molecules';
-import { Label } from '@/components/atoms';
-import { AnswerComponent } from '@/components/molecules/AnswerComponent';
 
 const dummyData = {
   title: '네이버네이버네이버네이버네이버네이버네이버',

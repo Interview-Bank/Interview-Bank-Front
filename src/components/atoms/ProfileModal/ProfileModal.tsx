@@ -2,7 +2,6 @@ import { ProfileProps } from '@/components/molecules/Profile';
 import { getCookieValue } from '@/pages/api/login/loginCheck';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useCallback } from 'react'
 import styles from './ProfileModal.module.scss';
 
 interface ProfileModalProps extends ProfileProps {
@@ -13,15 +12,15 @@ const ProfileModal = ({ profileImageUrl, logoutEvent, setProfile }: ProfileModal
   const router    = useRouter();
   const nickname  = getCookieValue('user');
 
-  const linkMyPage = useCallback(() => {
+  const linkMyPage = () => {
     router.push('/mypage/userSetting');
     setProfile();
-  }, []);
+  }
 
-  const linkMyPostPage = useCallback(() => {
+  const linkMyPostPage = () => {
     router.push('/mypage/my-post');
     setProfile();
-  }, []);
+  }
 
   return (
     <div className={styles.profile}>

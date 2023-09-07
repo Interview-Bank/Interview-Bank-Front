@@ -3,7 +3,6 @@ import styles from './MyPageSetting.module.scss'
 import { Label } from '@/components/atoms/Label/Label'
 import { FecthUserData } from '@/pages/api/MyPage/myUser'
 import { useRouter } from 'next/router'
-import { Profile } from '../../Profile'
 import { Button } from '@/components/atoms/Button'
 import Image from 'next/image'
 

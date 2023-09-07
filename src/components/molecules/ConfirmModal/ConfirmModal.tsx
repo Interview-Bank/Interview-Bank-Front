@@ -1,10 +1,8 @@
-import { bringScrapListData } from '@/pages/api/Scrap/scrapFetchDataAPI';
+import { Button } from '@/components/atoms';
 import { confirmModalSlice } from '@/redux/confirmModalReducer';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ConfirmModal.module.scss';
-import { Button } from '@/components/atoms';
 
 interface RootState<T> {
   [x: string]: T;

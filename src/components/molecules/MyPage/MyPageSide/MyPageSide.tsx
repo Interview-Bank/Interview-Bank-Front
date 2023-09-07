@@ -4,8 +4,6 @@ import UserSettingActive from "public/Icons/UserSetting_Active.png"
 import UserSettingUnActive from "public/Icons/UserSetting_UnActive.png"
 import MyPostActive from "public/Icons/MyPost_Active.png"
 import MyPostUnActive from "public/Icons/MyPost_UnActive.png"
-import MyScrapActive from "public/Icons/MyScrap_Active.png"
-import MyScrapUnActive from "public/Icons/MyScrap_UnActive.png"
 import React from 'react'
 import styles from './MyPageSide.module.scss';
 import { useRouter } from 'next/router';
