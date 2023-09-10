@@ -53,7 +53,7 @@ const SearchArea = ({
                 firstCategoryName     = {interview.jobCategory.firstLevelName}
                 secondCategoryName    = {interview.jobCategory.secondLevelName}
                 createdAt             = {interview.createdAt.slice(0, 10).replaceAll("-", ".")}
-                type                  = 'scraps'
+                type                  = 'interview'
               />
             ))}
           </div>
