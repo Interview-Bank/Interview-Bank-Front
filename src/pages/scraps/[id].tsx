@@ -268,7 +268,6 @@ const ScrapPage = () => {
 }
   
 // export const getServerSideProps: GetServerSideProps = async (context) => {
-//   // const headers = setTokenHeaders();
 //   // const response = [];
 //   // let headers;
 //   // if (typeof window !== undefined) {
