@@ -13,7 +13,8 @@ const HomeMenuListArray = [
   {
     id: 3,
     name: '인터뷰뱅크 소개',
-    value: 'INTERVIEW'
+    value: 'INTERVIEW',
+    path: '/info'
   },
 ];
 

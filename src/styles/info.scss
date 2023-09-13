@@ -1,0 +1,21 @@
+@import '@/styles/DefaultValueVariable.scss';
+
+.info {
+
+  .info__content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 72px auto 0;
+
+    > h1 {
+      margin-bottom: 42px;
+      font-size: 28px;
+    }
+
+    > div {
+      display: grid;
+      grid-template-rows: calc(1fr - 24px) 1fr 1fr;
+      gap: 24px;
+    }
+  }
+}

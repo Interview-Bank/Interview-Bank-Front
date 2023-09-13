@@ -37,6 +37,8 @@ const Header = () => {
 
   const moveWritePage = () => router.push('/post');
 
+  const moveInfoPage = () => router.push('/info');
+
   const moveSearchPage = () => {
     router.push('/search');
     setMobileToggle(false);
@@ -162,9 +164,9 @@ const Header = () => {
                     }
                   </div>
                   <ul className={styles.mobile__menu__list}>
-                    <li onClick={()=> moveSearchPage()}>인터뷰</li>
+                    <li onClick={() => moveSearchPage()}>인터뷰</li>
                     <li>문의하기</li>
-                    <li>인터뷰뱅크 소개</li>
+                    <li onClick={() => moveInfoPage()}>인터뷰뱅크 소개</li>
                   </ul>
                 </div>
               </div>

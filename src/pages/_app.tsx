@@ -1,6 +1,7 @@
 import Layout from '@/components/templates/Layout/Layout'
 import '@/styles/globals.scss';
 import '@/styles/register.scss';
+import '@/styles/info.scss';
 import '@/styles/post.scss';
 import '@/styles/search.scss';
 import type { AppProps } from 'next/app'
