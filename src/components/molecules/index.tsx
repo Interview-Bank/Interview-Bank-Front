@@ -9,8 +9,10 @@ import { PostTitle }        from './PostTitle';
 import { PostWrite }        from './PostWrite';
 import { Profile }          from './Profile';
 import { RegisterInput }    from './RegisterInput';
+import { InquiryInput } from './InquiryInput';
 import { SearchItem }       from './SearchItem';
 import { TextComponent }    from './TextComponent';
+import { InquiryTextArea } from './InquiryTextArea';
 
 export {
   Banner,
@@ -23,5 +25,7 @@ export {
   MultiReadSelect,
   Pagination,
   TextComponent,
-  SearchItem
+  SearchItem,
+  InquiryInput,
+  InquiryTextArea
 };

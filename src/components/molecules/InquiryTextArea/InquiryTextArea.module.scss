@@ -1,0 +1,129 @@
+@import '@/styles/DefaultValueVariable.scss';
+.inquiry {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  > h4 {
+    width: 100%;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    color: #747474;
+    font-size: 14px;
+  }
+
+
+  > textarea {
+    width: 800px;
+    height: 300px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    padding-left: 15px;
+
+    ::placeholder {
+      color: #b5b5b5;
+    }
+
+
+    outline: none;
+    resize: none;
+    overflow : auto;
+  
+  
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  
+    &::-webkit-scrollbar {
+      width: 6px;
+      background: #DDDDDD;
+      border-radius: 20px;
+      display: block;
+  
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      width: 6px;
+      background: #2E55E7;
+      border-radius: 20px;
+    }
+        // background-color  : $--color-white;
+        // color             : #000;
+        // font-family       : 'Noto Sans KR';
+        // font-size         : $--font-regular;
+        // font-weight       : $--weight-bold;
+        // border            : 0;
+        // border-radius     : 8px;
+        // outline           : none;
+        // resize            : none;
+        // overflow          : auto;
+  }
+
+  button {
+    position              : absolute;
+    top                   : 50%;
+    right                 : 25px;
+    transform             : translate(-50%, -50%);
+    background-color      : transparent;
+    border                : 0;
+    width                 : 25px;
+    height                : 25px;
+
+  }
+}
+
+.form {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  
+  > h4 {
+    width: 100%;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    color: #747474;
+    font-size: 14px;
+  }
+
+  > input {
+    width: 319px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    padding-left: 15px;
+
+    ::placeholder {
+      color: #b5b5b5;
+    }
+  }
+
+  .error {
+    border: none;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    justify-self: self-start;
+    color: red;
+    display: block;
+  }
+  
+}
+
+@media (max-width: 460px) {
+  .form {
+    justify-content: flex-start;
+    padding: 0 18px;
+    
+    > input {
+      min-width: calc(100vw - 18px * 2);
+    }
+  }
+}
+

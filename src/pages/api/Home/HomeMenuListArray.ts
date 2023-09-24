@@ -8,7 +8,8 @@ const HomeMenuListArray = [
   {
     id: 2,
     name: '문의하기',
-    value: 'INTERVIEW'
+    value: 'INTERVIEW',
+    path: '/inquiry'
   },
   {
     id: 3,
