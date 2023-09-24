@@ -1,1 +1,1 @@
-export * from './InquiryInput'
+export * from './InquiryTypeInput'

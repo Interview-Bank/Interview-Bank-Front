@@ -19,19 +19,7 @@ const InquiryTypeInput = ({ title, name, value, type = 'text', placeholder, maxL
       {title &&
         <h4>{title}</h4>
       }
-      <Input
-        name={name}
-        value={value}
-        type={type}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        onChangeEvent={onChangeEvent}
-      />
-      {errorMessage &&
-        <div className={styles.error}>
-          {errorMessage}
-        </div>
-      }
+      {/* 문의유형 타입 선택 와야함 */}
     </div>    
   )
 }

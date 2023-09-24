@@ -11,6 +11,10 @@ interface SelectOptionProps {
   onKeyDown      ?: boolean;
   onKeyDownEvent ?: () => void;
   pattern        ?: string;
+  InquiryTypeList : {
+                      type: string;
+                      index: string;
+                    }[];
 }
 
 const SelectOption = ({
@@ -22,7 +26,8 @@ const SelectOption = ({
   onChangeEvent,
   onKeyDown        = false,
   onKeyDownEvent,
-  pattern          = ''
+  pattern          = '',
+  InquiryTypeList
 }: SelectOptionProps) => {
   const keyPressDownEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     (e.key === 'Enter' && onKeyDownEvent) && onKeyDownEvent();
@@ -30,7 +35,12 @@ const SelectOption = ({
 
   return (
     <select>
-      <option></option>
+      <option value="" disabled hidden>카테고리</option>
+        {/* {InquiryTypeList.map((type, index) => (
+          // <option key={index} value={type}>
+          //   {type}
+          // </option>
+        ))} */}
     </select>
   )
 }
